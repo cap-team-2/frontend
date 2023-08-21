@@ -14,5 +14,7 @@ ks-test
 kr-test
 jn-test
 js-test
+fc-test
+
 
 
