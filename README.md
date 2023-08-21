@@ -9,4 +9,10 @@ Currently, two official plugins are available:
 
 # frontend
 
+
 ks-test
+kr-test
+jn-test
+js-test
+
+
