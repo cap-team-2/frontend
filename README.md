@@ -9,12 +9,8 @@ Currently, two official plugins are available:
 
 # frontend
 
-
-ks-test
+ks
 kr-test
 jn-test
 js-test
 fc-test
-
-
-
