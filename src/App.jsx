@@ -13,9 +13,8 @@ function App() {
 
 
   return (
-    <main>
+    <main className="h-full w-full">
       <Router>
-        <h2>PANTRI</h2>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
