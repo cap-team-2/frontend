@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
       white: "#ffffff",
       black: "#000000",
-      secondary: "#FECF73",
-      "dark-blue": "#1D1D4B",
-      primary: "#5CB845",
-      "light-blue": "#73A2FE",
+      topaz: "#FECF73",
+      gold: "#E6A50E",
+      "green-light": "#5CB845",
+      "green-dark": "#267113",
+      'blue-light': '#73A2FE',
+      'blue-dark': '#0E4FE6',
+      'space': '#1D1D4B'
     },
     extend: {},
   },
