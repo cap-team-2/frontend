@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // PAGES
 import Browse from "./Pages/Browse";
 import FarmersMarkets from "./Pages/FarmersMarkets";
-import Food from "./Pages/Food";
+import Products from "./Pages/Products";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/food" element={<Food />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/vendors" element={<Vendors />} />
           <Route path="/market" element={<Market />} />
           <Route path="/browse" element={<Browse />} />
