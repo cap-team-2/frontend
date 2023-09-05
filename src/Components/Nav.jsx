@@ -12,10 +12,12 @@ import {
 export default function Nav() {
     return (
       <div className="border h-20 w-full flex items-center justify-between relative bg-light">
+        {/* Logo that links back to homepage */}
         <Link to={"/"}>
-          <img src={PantriLogo} alt="Pantri Logo" className="absolute border top-0 h-40 md:invisible" />
+          <img src={PantriLogo} alt="Pantri Logo" className="absolute top-0 h-20 md:invisible" />
           <p className='text-black text-3xl invisible md:visible'>PANTRI</p>
         </Link>
+        {/* Nav Links */}
         <div className='md:flex items-center gap-10 hidden'>
           <Link to={"/"}>
             <MdOutlineShoppingBag className="text-3xl text-green-light" />
@@ -23,8 +25,9 @@ export default function Nav() {
           <Link to={"/"} className='text-lg'>Login</Link>
           <Link to={"/"} className='text-lg bg-green-light p-1 px-4 rounded-full'>Get Started</Link>
         </div>
+        {/* Hamburger Menu */}
         <div className='md:hidden'>
-            <MdMenu className='text-3xl' />
+            <MdMenu className='text-3xl cursor-pointer' />
         </div>
       </div>
     );

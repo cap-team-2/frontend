@@ -1,5 +1,5 @@
 // Market.jsx
 
 export default function Market() {
-  return <div></div>;
+  return <div><h1>Market</h1></div>;
 }

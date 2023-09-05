@@ -1,5 +1,6 @@
 // FarmersMarkets.jsx
 
 export default function FarmersMarkets() {
-  return <div></div>;
+  // eslint-disable-next-line react/no-unescaped-entities
+  return <div><h1>Farmer's Markets</h1></div>;
 }

@@ -1,5 +1,5 @@
 // Vendors.jsx
 
 export default function Vendors() {
-  return <div></div>;
+  return <div><h1>Vendors</h1></div>;
 }
