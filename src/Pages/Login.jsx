@@ -1,9 +1,11 @@
 // Login.jsx
 
+import LoginForm from "../Components/LoginForm";
+
 export default function Login() {
     return ( 
-        <div>
-            <h1>Login</h1>
+        <div className="h-full w-full absolute top-0 z-50">
+            <LoginForm />
         </div>
     )
 }
