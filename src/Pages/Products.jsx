@@ -1,7 +1,7 @@
 // Products.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-const API = process.env.REACT_APP_API_URL
+const API = import.meta.env.VITE_APP_API_URL
 
 export default function Products( ) {
   const [products, setProducts] = useState([])
