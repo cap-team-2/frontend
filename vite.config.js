@@ -8,7 +8,7 @@ export default defineConfig({
 
   // Define the entry point of your application.
   entry: {
-    main: 'src/main.js',
+    main: 'src/main.jsx',
   },
 
   build: {
