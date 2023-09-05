@@ -9,8 +9,11 @@ export default function Products( ) {
   useEffect(() => {
     axios.get(`${API}/products`)
       .then((res) => {
-        console.log(res)
+        console.log(res.data)
         // setProducts()
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }, []);
 
