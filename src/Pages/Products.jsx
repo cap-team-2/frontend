@@ -1,18 +1,18 @@
 // Products.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-const API = import.meta.env.VITE_APP_API_URL
+const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Products( ) {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios.get(`${API}/products`)
       .then((res) => {
-        setProducts(res.data)
+        setProducts(res.data);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       })
   }, []);
 
