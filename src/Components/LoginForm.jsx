@@ -46,7 +46,6 @@ export default function LoginForm() {
                 value={login.email}
                 type="email"
                 id="email"
-                required
               />
               <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
                 Please enter a valid email
@@ -59,7 +58,7 @@ export default function LoginForm() {
                 className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 invalid:border-[red] focus:border-none"
                 onChange={handleFormChange}
                 value={login.password}
-                type="text"
+                type="password"
                 id="password"
                 required
               />
