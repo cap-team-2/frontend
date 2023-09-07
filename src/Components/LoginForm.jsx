@@ -64,7 +64,7 @@ export default function LoginForm() {
               </p>
               <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
             </div>
-            <div className="grid gap-2 mb-4 relative">
+            <div className="grid gap-2 relative">
               <label htmlFor="password">Password</label>
               <input
                 placeholder="Password"
