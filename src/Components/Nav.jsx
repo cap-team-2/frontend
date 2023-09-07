@@ -22,8 +22,8 @@ export default function Nav() {
           <Link to={"/"}>
             <MdOutlineShoppingBag className="text-3xl text-green-light" />
           </Link>
-          <Link to={"/"} className='text-lg'>Login</Link>
-          <Link to={"/"} className='text-lg bg-green-light p-1 px-4 rounded-full'>Get Started</Link>
+          <Link to={"/login"} className='text-lg'>Login</Link>
+          <Link to={"/register"} className='text-lg bg-green-light p-1 px-4 rounded-full'>Get Started</Link>
         </div>
         {/* Hamburger Menu */}
         <div className='md:hidden'>
