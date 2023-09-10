@@ -4,18 +4,16 @@ import { Link } from 'react-router-dom';
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
   MdOutlineShoppingBag,
-  MdOutlineShoppingBasket,///
-  MdOutlineShoppingCart,
   MdMenu,
 } from "react-icons/md";
 
 export default function Nav() {
     return (
-      <div className="border h-20 w-full flex items-center justify-between relative">
+      <div className="h-28 w-full flex items-center justify-between relative px-4">
         {/* Logo that links back to homepage */}
         <Link to={"/"}>
-          <img src={PantriLogo} alt="Pantri Logo" className="absolute top-0 h-20 md:invisible" />
-          <p className='text-black text-3xl invisible md:visible'>PANTRI</p>
+          <img src={PantriLogo} alt="Pantri Logo" className="absolute top-0 h-32 " />
+          {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
         </Link>
         {/* Nav Links */}
         <div className='md:flex items-center gap-10 hidden'>
