@@ -21,12 +21,14 @@ export default function RegisterForm() {
 
   // Function to update the form state with every change for login form
   const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setRegistration({ ...registration, [name]: value });
+    const { id, value } = e.target;
+    setRegistration({ ...registration, [id]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Add an axios API call (create) to create a user when the handleSubmit function is called.
   };
 
   // Function that toggles the passwordType from 'password' to 'text' creating a show password effect
@@ -47,8 +49,8 @@ export default function RegisterForm() {
             Log In
           </Link>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="grid mb-4">
+        <form noValidate className="group">
+          <div className="grid mb-4 gap-2 relative">
             <label htmlFor="first_name">First Name</label>
             <input
               type="text"
@@ -57,15 +59,19 @@ export default function RegisterForm() {
               placeholder="First Name"
               value={registration.first_name}
               onChange={handleFormChange}
-              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+              className="peer h-12 border placeholder:text-[#5a5a5a]  pl-4 outline-none ease-in-out duration-500 focus:ring focus:border-blue-light"
+              pattern={`^[A-Za-z'-]+$`}
+              required
             />
-            <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
+            <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible peer-invalid:visible peer-valid:invisible peer-focus:invisible">
               Please enter your first name
             </p>
             <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid mb-4">
-            <label htmlFor="last_name">Last Name</label>
+          <div className="grid mb-4 gap-2 relative">
+            <label htmlFor="last_name" className="mb-2">
+              Last Name
+            </label>
             <input
               type="text"
               id="last_name"
@@ -73,15 +79,19 @@ export default function RegisterForm() {
               placeholder="Last Name"
               value={registration.last_name}
               onChange={handleFormChange}
-              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring  focus:border-blue-light"
+              pattern="^[A-Za-z'-]+$"
+              required
             />
-            <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
+            <p className="text-xs text-[red] invisible peer-placeholder-shown:peer-invalid:invisible peer-focus:invisible peer-invalid:visible">
               Please enter your last name
             </p>
-            <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+            <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid mb-4">
-            <label htmlFor="email">Email</label>
+          <div className="grid mb-4 gap-2 relative">
+            <label htmlFor="email" className="mb-2">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -89,26 +99,28 @@ export default function RegisterForm() {
               placeholder="yourname@domain.com"
               value={registration.email}
               onChange={handleFormChange}
-              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring focus:border-blue-light"
+              required
             />
-            <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
+            <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible invisible peer-invalid:visible peer-focus:invisible">
               Please enter a valid email
             </p>
-            <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+            <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid gap-2 relative">
+          <div className="grid mb-4 gap-2 relative">
             <label htmlFor="password">Password</label>
             <input
               placeholder="Password"
-              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+              className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 focus:border-blue-light"
               onChange={handleFormChange}
               value={registration.password}
               type={passwordType}
               id="password"
               maxLength={40}
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+              required
             />
-            <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
+            <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible invisible peer-invalid:visible peer-focus:invisible">
               Password must contain at least 8 characters, including one
               uppercase letter, one lowercase letter, and one digit.
             </p>
@@ -129,7 +141,7 @@ export default function RegisterForm() {
           <div className="grid text-center gap-2 text-sm">
             <button
               onClick={handleSubmit}
-              className="rounded-md h-12 bg-blue-light bg-opacity-70 font-light cursor-default"
+              className="rounded-md h-12 bg-blue-light font-light group-invalid:pointer-events-none group-invalid:cursor-default group-invalid:opacity-60 cursor-pointer"
             >
               Create My Account
             </button>
