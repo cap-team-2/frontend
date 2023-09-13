@@ -5,7 +5,6 @@ import { FcGoogle } from "react-icons/fc";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
-  AiOutlineCheck,
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
 
