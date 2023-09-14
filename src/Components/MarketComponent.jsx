@@ -62,7 +62,7 @@ export default function MarketComponent() {
                     <label className="flex justify-center gap-2">
                         Zip Code
                     </label>
-                    <input type="text" value={filterZip} onChange={(e) => setFilterZip(e.target.value)} className="border border-black rounded-lg " />
+                    <input type="text" value={filterZip} onChange={(e) => setFilterZip(e.target.value)} className="border border-black rounded-lg  " />
                 </div>
                 <div>
                     <label className="flex justify-center gap-2">
