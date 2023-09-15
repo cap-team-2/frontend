@@ -5,6 +5,7 @@ export default {
     colors: {
       white: "#ffffff",
       black: "#000000",
+      "gray-light": "#F6F6F5",
       topaz: "#FECF73",
       gold: "#E6A50E",
       "green": "#10890F",

@@ -7,7 +7,7 @@ import {
   MdOutlineShoppingBag,
   MdMenu,
 } from "react-icons/md";
-
+import { IoSearchCircleSharp } from "react-icons/io5";
 
 export default function Nav() {
   const [items, setItems] = useState([]);
@@ -37,7 +37,7 @@ export default function Nav() {
   }
 
     return (
-      <div className="h-28 w-full flex flex-col relative py-4 border">
+      <div className="h-auto w-full flex flex-col relative py-4 border">
         {/* Logo that links back to homepage */}
         <div className="self-center">
           <Link to={"/"}>
@@ -54,7 +54,7 @@ export default function Nav() {
           <div className="flex items-center gap-2">
             <Link
               to={"/login"}
-              className="text-xs text-white bg-green-light border p-2 font-semibold rounded-3xl"
+              className="text-xs text-white bg-green-light border p-2 font-semibold rounded-xl"
             >
               Log In
             </Link>
@@ -71,36 +71,33 @@ export default function Nav() {
         </div>
 
         {/*search bar*/}
-        <div className="">
-          <form onSubmit={search4} className="my-24">
-            <div className="flex justify-center mt-24 ">
-              <select
+        <div className="mt-4">
+          <form>
+            <div className="flex justify-center">
+              {/* <select
                 onChange={handleSelectChange}
                 id="select"
-                className="z-10 h-10 text-black divide-y rounded-l-lg shadow w-1/4 md:w-36"
+                className="z-10 h-10 text-black divide-y rounded-l-lg text-xs shadow font-semibold w-14 md:w-36"
               >
                 <option value={"name"}>Filter</option>
                 <option value={"name"}>Name</option>
                 <option value={"cost"}>Cost</option>
                 <option value={"category"}>Categories</option>
-              </select>
-              <div className="relative w-2/3">
+              </select> */}
+              <div className="relative w-10/12 flex items-center">
                 <input
                   onChange={handleSearchChange}
                   type="search"
                   id="search-dropdown"
-                  className="block p-2.5 h-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-2 dark:text-white shadow"
+                  className="block p-2.5 h-10 w-full z-20 text-sm text-gray-900 rounded-xl border-l-2 text-white shadow"
                   placeholder="Search"
                 />
-                <button
+                <IoSearchCircleSharp onClick={search4} className='absolute right-0 text-5xl h-10 text-green-light z-50 border-l border-gray-light rounded-r-xl cursor-pointer hover:bg-gray-light' />
+                {/* <button
                   type="submit"
-                  className="absolute top-0 h-10 right-0 p-1 text-sm font-medium text-green-light rounded-r-lg focus:ring-2 shadow"
+                  className=" h-10 right-0 p-1 text-sm font-medium text-green-light rounded-r-lg focus:ring-2 shadow"
                 >
-                  {/* <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" strokeWidth={1} stroke="black" className="w-10 h-8">
-                  <path d="M8.25 10.875a2.625 2.625 0 115.25 0 2.625 2.625 0 01-5.25 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg> */}
-
+                  
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -120,7 +117,7 @@ export default function Nav() {
                   </svg>
 
                   <span className="sr-only">Search</span>
-                </button>
+                </button> */}
               </div>
             </div>
           </form>
