@@ -1,5 +1,10 @@
 // Market.jsx
+import MarketComponent from "../Components/MarketComponent"
 
 export default function Market() {
-  return <div><h1>Market</h1></div>;
+  return (
+    <div className="h-full w-full">
+      <MarketComponent />
+    </div>
+  )
 }
