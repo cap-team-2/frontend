@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
-  MdOutlineShoppingBag,
   MdMenu,
 } from "react-icons/md";
 import { IoSearchCircleSharp } from "react-icons/io5";
-import { BsBag, BsBagFill } from "react-icons/bs";
+import { BsBag } from "react-icons/bs";
 
 export default function Nav() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(false);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("name");
-  const [cartQuantity, setCartQuantity] = useState(0);
+
 
   function handleSelectChange(event) {
     setSelect(event.target.value);
