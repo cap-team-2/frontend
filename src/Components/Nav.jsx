@@ -39,21 +39,25 @@ export default function Nav() {
   }
 
     return (
-      <div className="h-auto w-full flex flex-col relative border-b-2 border-b-gray-light">
-        {/* Logo that links back to homepage */}
-        <div className="self-center">
-          <Link to={"/"}>
-            <img src={PantriLogo} alt="Pantri Logo" className="h-20 md:h-28" />
-            {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
-          </Link>
-        </div>
-        <div className="flex items-center justify-between absolute w-screen top-5 px-2">
+      <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light">
+        <div className="grid grid-cols-3 items-center top-5 px-2">
           {/* Hamburger Menu */}
           <div className="md:hidden">
             <MdMenu className="text-2xl cursor-pointer" />
           </div>
+          {/* Logo that links back to homepage */}
+          <div className='flex items-center justify-center'>
+            <Link to={"/"}>
+              <img
+                src={PantriLogo}
+                alt="Pantri Logo"
+                className="h-20 md:h-28"
+              />
+              {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
+            </Link>
+          </div>
           {/* Nav Links */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2">
             <Link
               to={"/login"}
               className="text-xs text-white bg-green-light p-2 font-semibold rounded-xl"
@@ -66,7 +70,7 @@ export default function Nav() {
             >
               Get Started
             </Link>
-            <Link to={'/cart'} >
+            <Link to={"/cart"}>
               <BsBag className="text-2xl text-green-light" />
             </Link>
           </div>
