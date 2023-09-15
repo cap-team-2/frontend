@@ -87,7 +87,7 @@ export default function Nav() {
                 {/* Search button magnifying glass */}
                 <IoSearchCircleSharp
                   onClick={search4}
-                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light shadow"
+                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray-light"
                 />
               </div>
             </div>
