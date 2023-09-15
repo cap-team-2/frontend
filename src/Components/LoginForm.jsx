@@ -35,8 +35,8 @@ export default function LoginForm() {
     }
 
     return (
-      <div className="bg-white h-full w-full flex justify-center items-center pb-40">
-        <div className="h-96 w-96">
+      <div className="bg-white h-full w-full flex justify-center pt-[10%]">
+        <div className="h-96 w-96 p-2">
           <h1 className="text-2xl font-semibold mb-4">Login</h1>
           <div className="flex gap-2 mb-8">
             <p>New?</p>
