@@ -81,13 +81,13 @@ export default function Nav() {
                   onChange={handleSearchChange}
                   type="text"
                   id="search-dropdown"
-                  className="p-2.5 h-10 w-full text-sm rounded-xl border border-gray-light text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
+                  className="p-2.5 h-10 w-full text-sm rounded-xl border border-gray text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
                 />
                 {/* Search button magnifying glass */}
                 <IoSearchCircleSharp
                   onClick={search4}
-                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray-light"
+                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray"
                 />
               </div>
             </div>
