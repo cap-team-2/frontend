@@ -7,6 +7,7 @@ export default {
       black: "#000000",
       topaz: "#FECF73",
       gold: "#E6A50E",
+      "green": "#10890F",
       "green-light": "#74C360",
       "green-dark": "#21610F",
       "blue-light": "#73A2FE",
