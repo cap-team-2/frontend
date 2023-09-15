@@ -1,9 +1,10 @@
 // Home.jsx
+import Home from "../Components/Home.jsx"
 
-export default function HomePage() {
+export default function HomePage({products}) {
     return (
         <div>
-            <h1>Home</h1>
+            <Home products={products}/>
         </div>
     )
 }

@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from "axios";
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
   MdOutlineShoppingBag,
@@ -9,11 +10,12 @@ import {
 } from "react-icons/md";
 
 
-export default function Nav() {
+export default function Nav( {products, setProducts} ) {
   const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState(false);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("name");
+
+  const API = import.meta.env.VITE_APP_API_URL;
 
   function handleSelectChange(event) {
     setSelect(event.target.value);
@@ -25,24 +27,33 @@ export default function Nav() {
 
   function search4(event) {
     event.preventDefault();
-    setFilteredItems(
-      items.filter((item) => {
-        if (select === "cost") {
-          return parseInt(item.cost) <= parseInt(search);
-        } else {
-          return item[select].toLowerCase().includes(search.toLowerCase());
-        }
+    if (search) {
+      axios.get(`${API}/search/${search}`)
+      .then((res) => {
+        setProducts(res.data);
       })
-    );
+      .catch((error) => {
+        console.log(error);
+      });
+    } else {
+      axios.get(`${API}/products`)
+      .then((res) => {
+        console.log(res.data)
+        setProducts(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
     return (
-      <div className="h-28 w-full flex items-center justify-between relative px-4">
+      <div className="h-28 w-full flex items-center justify-between relative px-4 bg-green-dark">
         {/* Logo that links back to homepage */}
         <div >
         <Link to={"/"}>
           <img src={PantriLogo} alt="Pantri Logo" className="h-28" />
-          {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
+          {/* <p className='text-white text-3xl invisible md:visible'>PANTRI</p> */}
         </Link>
         </div>
 
@@ -65,7 +76,7 @@ export default function Nav() {
                 onChange={handleSearchChange}
                 type="search"
                 id="search-dropdown"
-                className="block p-2.5 h-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-2 dark:text-white shadow"
+                className="block p-2.5 h-10 w-full z-20 text-sm rounded-r-lg border-l-2 shadow"
                 placeholder="Search"
               />
               <button
@@ -104,7 +115,7 @@ export default function Nav() {
             <MdOutlineShoppingBag className="text-3xl text-green-light" />
           </Link>
           <Link to={"/login"} className='text-lg'>Login</Link>
-          <Link to={"/register"} className='text-lg bg-green-light p-1 px-4 rounded-full'>Get Started</Link>
+          <Link to={"/register"} className='text-lg bg-white p-1 px-4 rounded-full'>Get Started</Link>
         </div>
         {/* Hamburger Menu */}
         <div className='md:hidden'>

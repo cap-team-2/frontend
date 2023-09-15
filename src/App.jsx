@@ -2,6 +2,8 @@
 
 // DEPENDENCIES
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios"
 
 
 // PAGES
@@ -17,14 +19,24 @@ import Register from "./Pages/Register";
 import Vendors from "./Pages/Vendors";
 
 function App() {
+  const [ products, setProducts ] = useState([])
+  const API = import.meta.env.VITE_APP_API_URL;
 
-
+  useEffect(() => {
+    axios.get(`${API}/products`)
+    .then((res) => {
+      setProducts(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
   return (
     <main className="h-full w-full">
       <Router>
-          <Nav />
+          <Nav setProducts={setProducts} products={products}/>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage products={products} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/products" element={<Products />} />

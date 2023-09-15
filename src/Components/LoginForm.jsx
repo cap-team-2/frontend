@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
 
-const API = import.meta.env.VITE_APP_API_URL;
+// const API = import.meta.env.VITE_APP_API_URL;
 
 export default function LoginForm() {
     const [login, setLogin] = useState({ 
