@@ -87,12 +87,12 @@ export default function Nav() {
               <div className="relative w-10/12 flex items-center">
                 <input
                   onChange={handleSearchChange}
-                  type="search"
+                  type="text"
                   id="search-dropdown"
-                  className="block p-2.5 h-10 w-full z-20 text-sm text-gray-900 rounded-xl border-l-2 text-white shadow"
+                  className="p-2.5 h-10 w-full z-20 text-sm rounded-xl text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
                 />
-                <IoSearchCircleSharp onClick={search4} className='absolute right-0 text-5xl h-10 text-green-light z-50 border-l border-gray-light rounded-r-xl cursor-pointer hover:bg-gray-light' />
+                <IoSearchCircleSharp onClick={search4} className='absolute right-0 text-5xl h-10 text-green-light z-50  rounded-r-xl cursor-pointer md:hover:bg-gray-light shadow' />
                 {/* <button
                   type="submit"
                   className=" h-10 right-0 p-1 text-sm font-medium text-green-light rounded-r-lg focus:ring-2 shadow"
