@@ -65,7 +65,7 @@ export default function Nav() {
               Get Started
             </Link>
             <Link to={"/"}>
-              <MdOutlineShoppingBag className="text-xl text-green-light" />
+              <MdOutlineShoppingBag className="text-2xl text-green-light" />
             </Link>
           </div>
         </div>
@@ -74,16 +74,6 @@ export default function Nav() {
         <div className="mt-4">
           <form>
             <div className="flex justify-center">
-              {/* <select
-                onChange={handleSelectChange}
-                id="select"
-                className="z-10 h-10 text-black divide-y rounded-l-lg text-xs shadow font-semibold w-14 md:w-36"
-              >
-                <option value={"name"}>Filter</option>
-                <option value={"name"}>Name</option>
-                <option value={"cost"}>Cost</option>
-                <option value={"category"}>Categories</option>
-              </select> */}
               <div className="relative w-10/12 flex items-center">
                 <input
                   onChange={handleSearchChange}
@@ -92,32 +82,8 @@ export default function Nav() {
                   className="p-2.5 h-10 w-full z-20 text-sm rounded-xl text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
                 />
+                {/* Search button magnifying glass */}
                 <IoSearchCircleSharp onClick={search4} className='absolute right-0 text-5xl h-10 text-green-light z-50  rounded-r-xl cursor-pointer md:hover:bg-gray-light shadow' />
-                {/* <button
-                  type="submit"
-                  className=" h-10 right-0 p-1 text-sm font-medium text-green-light rounded-r-lg focus:ring-2 shadow"
-                >
-                  
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-10 h-8 text-2xl"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8.25 10.875a2.625 2.625 0 115.25 0 2.625 2.625 0 01-5.25 0z"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.125 4.5a4.125 4.125 0 102.338 7.524l2.007 2.006a.75.75 0 101.06-1.06l-2.006-2.007a4.125 4.125 0 00-3.399-6.463z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-
-                  <span className="sr-only">Search</span>
-                </button> */}
               </div>
             </div>
           </form>
