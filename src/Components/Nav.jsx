@@ -60,7 +60,7 @@ export default function Nav() {
           <div className="flex items-center justify-end gap-2">
             <Link
               to={"/login"}
-              className="text-xs text-white bg-green-light p-2 font-semibold rounded-xl"
+              className="text-xs text-white bg-green-light p-1.5 text-center w-14 font-semibold rounded-3xl"
             >
               Log In
             </Link>
@@ -85,13 +85,13 @@ export default function Nav() {
                   onChange={handleSearchChange}
                   type="text"
                   id="search-dropdown"
-                  className="p-2.5 h-10 w-full text-sm rounded-xl border border-gray text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
+                  className="p-2.5 h-10 w-full text-sm rounded-3xl border border-gray text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
                 />
                 {/* Search button magnifying glass */}
                 <IoSearchCircleSharp
                   onClick={search4}
-                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray"
+                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-3xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray"
                 />
               </div>
             </div>
