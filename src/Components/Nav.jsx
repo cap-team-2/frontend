@@ -60,7 +60,7 @@ export default function Nav() {
           <div className="flex items-center justify-end gap-2">
             <Link
               to={"/login"}
-              className="text-xs text-white bg-green-light p-2 font-semibold rounded-xl"
+              className="text-xs text-white bg-green-light p-1.5 text-center w-14 font-semibold rounded-3xl"
             >
               Log In
             </Link>
