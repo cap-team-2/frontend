@@ -37,29 +37,25 @@ export default function Nav() {
   }
 
     return (
-      <div className="h-28 w-full flex flex-col relative p-2 border">
-        <div className='flex items-center justify-between'>
+      <div className="h-28 w-full flex flex-col relative py-4 border">
+        {/* Logo that links back to homepage */}
+        <div className="self-center">
+          <Link to={"/"}>
+            <img src={PantriLogo} alt="Pantri Logo" className="h-20 md:h-28" />
+            {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
+          </Link>
+        </div>
+        <div className="flex items-center justify-between absolute w-screen top-9 px-2">
           {/* Hamburger Menu */}
           <div className="md:hidden">
-            <MdMenu className="text-3xl cursor-pointer" />
-          </div>
-          {/* Logo that links back to homepage */}
-          <div>
-            <Link to={"/"}>
-              <img
-                src={PantriLogo}
-                alt="Pantri Logo"
-                className="h-20 md:h-28"
-              />
-              {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
-            </Link>
+            <MdMenu className="text-2xl cursor-pointer" />
           </div>
           {/* Nav Links */}
           <div className="flex items-center gap-2">
-            <Link to={"/"}>
-              <MdOutlineShoppingBag className="text-xl text-green-light" />
-            </Link>
-            <Link to={"/login"} className="text-xs bg-green-light">
+            <Link
+              to={"/login"}
+              className="text-xs text-white bg-green-light border p-2 font-semibold rounded-3xl"
+            >
               Log In
             </Link>
             <Link
@@ -67,6 +63,9 @@ export default function Nav() {
               className="text-xs bg-green-light p-1 rounded-full hidden"
             >
               Get Started
+            </Link>
+            <Link to={"/"}>
+              <MdOutlineShoppingBag className="text-xl text-green-light" />
             </Link>
           </div>
         </div>
