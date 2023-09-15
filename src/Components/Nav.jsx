@@ -84,7 +84,7 @@ export default function Nav( {products, setProducts} ) {
 
         {/*search bar*/}
         <div className="mt-4">
-          <form>
+          <form onSubmit={search4}>
             <div className="flex justify-center">
               <div className="relative w-10/12 flex items-center">
                 <input
@@ -99,19 +99,6 @@ export default function Nav( {products, setProducts} ) {
               </div>
             </div>
           </form>
-        </div>
-
-        {/* Nav Links */}
-        <div className='md:flex items-center gap-10 hidden'>
-          <Link to={"/"}>
-            <MdOutlineShoppingBag className="text-3xl text-green-light" />
-          </Link>
-          <Link to={"/login"} className='text-lg'>Login</Link>
-          <Link to={"/register"} className='text-lg bg-white p-1 px-4 rounded-full'>Get Started</Link>
-        </div>
-        {/* Hamburger Menu */}
-        <div className='md:hidden'>
-            <MdMenu className='text-3xl cursor-pointer' />
         </div>
       </div>
     );
