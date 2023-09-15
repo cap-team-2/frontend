@@ -5,8 +5,10 @@ export default {
     colors: {
       white: "#ffffff",
       black: "#000000",
+      "gray-light": "#F6F6F5",
       topaz: "#FECF73",
       gold: "#E6A50E",
+      "green": "#10890F",
       "green-light": "#74C360",
       "green-dark": "#21610F",
       "blue-light": "#73A2FE",
