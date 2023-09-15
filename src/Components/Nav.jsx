@@ -8,12 +8,14 @@ import {
   MdMenu,
 } from "react-icons/md";
 import { IoSearchCircleSharp } from "react-icons/io5";
+import { BsBag, BsBagFill } from "react-icons/bs";
 
 export default function Nav() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(false);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("name");
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   function handleSelectChange(event) {
     setSelect(event.target.value);
@@ -37,7 +39,7 @@ export default function Nav() {
   }
 
     return (
-      <div className="h-auto w-full flex flex-col relative py-4 border">
+      <div className="h-auto w-full flex flex-col relative border-b-2 border-b-gray-light">
         {/* Logo that links back to homepage */}
         <div className="self-center">
           <Link to={"/"}>
@@ -45,7 +47,7 @@ export default function Nav() {
             {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
           </Link>
         </div>
-        <div className="flex items-center justify-between absolute w-screen top-9 px-2">
+        <div className="flex items-center justify-between absolute w-screen top-5 px-2">
           {/* Hamburger Menu */}
           <div className="md:hidden">
             <MdMenu className="text-2xl cursor-pointer" />
@@ -54,7 +56,7 @@ export default function Nav() {
           <div className="flex items-center gap-2">
             <Link
               to={"/login"}
-              className="text-xs text-white bg-green-light border p-2 font-semibold rounded-xl"
+              className="text-xs text-white bg-green-light p-2 font-semibold rounded-xl"
             >
               Log In
             </Link>
@@ -64,14 +66,14 @@ export default function Nav() {
             >
               Get Started
             </Link>
-            <Link to={"/"}>
-              <MdOutlineShoppingBag className="text-2xl text-green-light" />
+            <Link to={'/cart'} >
+              <BsBag className="text-2xl text-green-light" />
             </Link>
           </div>
         </div>
 
         {/*search bar*/}
-        <div className="mt-4">
+        <div className="my-2">
           <form>
             <div className="flex justify-center">
               <div className="relative w-10/12 flex items-center">
@@ -79,11 +81,14 @@ export default function Nav() {
                   onChange={handleSearchChange}
                   type="text"
                   id="search-dropdown"
-                  className="p-2.5 h-10 w-full z-20 text-sm rounded-xl text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
+                  className="p-2.5 h-10 w-full text-sm rounded-xl border border-gray-light text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
                 />
                 {/* Search button magnifying glass */}
-                <IoSearchCircleSharp onClick={search4} className='absolute right-0 text-5xl h-10 text-green-light z-50  rounded-r-xl cursor-pointer md:hover:bg-gray-light shadow' />
+                <IoSearchCircleSharp
+                  onClick={search4}
+                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-xl cursor-pointer md:hover:bg-gray-light shadow"
+                />
               </div>
             </div>
           </form>
