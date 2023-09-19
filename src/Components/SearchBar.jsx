@@ -20,6 +20,18 @@ export default function SearchBar({setSearchResults}) {
       search();
     }, [search]);
 
+    useEffect(() => {
+        axios
+            .get(`${API}/products`) 
+            .then((res) => {
+                setSearchResults(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }, [])
+
     async function performSearch(searchKey) {
       axios
         .get(`${API}/search/${searchKey}`)
