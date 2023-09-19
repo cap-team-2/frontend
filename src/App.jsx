@@ -2,7 +2,7 @@
 
 // DEPENDENCIES
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 
 // PAGES
 import Browse from "./Pages/Browse";
@@ -19,13 +19,14 @@ import Vendors from "./Pages/Vendors";
 
 function App() {
 
+const [searchResults, setSearchResults] = useState([]);
 
   return (
     <main className="h-full w-full">
       <Router>
-        <Nav />
+        <Nav setSearchResults={setSearchResults} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage searchResults={searchResults} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
