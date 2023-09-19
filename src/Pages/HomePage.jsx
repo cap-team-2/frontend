@@ -4,14 +4,13 @@ import FilterProductsBy from "../Components/FilterProductsBy";
 import { useState, useEffect } from 'react';
 
 export default function HomePage({searchResults}) {
-    const 
+
 
     return (
         <div className="h-full w-full">
             <FilterProductsBy />
             <h1>Home</h1>
-            {console.log(searchResults.length)}
-            {searchResults.length ? searchResults.map((results) => {
+            {searchResults ? searchResults.map((results) => {
                 return (
                     <div key={results.id}>
                         <h2>{results.name}</h2>

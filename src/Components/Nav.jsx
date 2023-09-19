@@ -31,8 +31,12 @@ export default function Nav({setSearchResults}) {
   async function performSearch(searchKey) {
     axios.get(`${API}/search/${searchKey}`)
       .then((res) => {
-        console.log(res.data)
-        setSearchResults(res.data)
+        if(res.data.length) {
+          setSearchResults(res.data);
+        } else {
+          setSearchResults(false);
+          console.log('false')
+        }
       })
       .catch((error) => {
         console.log(error);
