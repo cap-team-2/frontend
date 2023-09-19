@@ -9,7 +9,7 @@ import {
 import { BsBag } from "react-icons/bs";
 import SearchBar from './SearchBar';
 
-export default function Nav() {
+export default function Nav({setSearchResults}) {
   
   return (
     <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light">
