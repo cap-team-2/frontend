@@ -1,20 +1,23 @@
 // Home.jsx
 
 import FilterProductsBy from "../Components/FilterProductsBy";
+import { useState, useEffect } from 'react';
 
 export default function HomePage({searchResults}) {
+
+
     return (
         <div className="h-full w-full">
             <FilterProductsBy />
             <h1>Home</h1>
-            {searchResults.map((results) => {
+            {searchResults ? searchResults.map((results) => {
                 return (
-                    <div>
-                        <h1>{results.name}</h1>
+                    <div key={results.id}>
+                        <h2>{results.name}</h2>
                         {/* <img src={results.image} alt={results.description} /> */}
                     </div>
                 )
-            })}
+            }): <h2>Results Not Found</h2> }
 
         </div>
     )
