@@ -9,7 +9,7 @@ export default function HomePage({searchResults}) {
     return (
       <div className="h-full w-full">
         <FilterProductsBy />
-        <div className="grid justify-center gap-10 mt-6">
+        <div className="grid justify-center gap-12 mt-6">
           {searchResults ? (
             searchResults.map((results) => {
               return (
