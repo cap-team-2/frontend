@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import MarketCard from "./marketCard/MarketCard";
-import FilterComponent from "./FilterComponent";
-import DetailedViewComponent from "./DetailedViewComponent";
+import FilterMarketComponent from "./FilterMarketComponent";
+import DetailedMarketView from "./DetailedMarketViewComponent";
 import Modal from "@mui/material/Modal"
 
 const API = "https://data.ny.gov/resource/xjya-f8ng.json?$select=county,market_name, address_line_1,city,state,zip,contact,phone,market_link,operation_hours,operation_season,operation_months_code,fmnp,snap_status";
@@ -69,7 +69,7 @@ export default function MarketComponent() {
         <div className="flex flex-col mt-10 items-center">
             <div className="w-[1000px] justify-self-center">
                 <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 dark:text-green md:text-5xl lg:text-6xl"><span>MARKETS</span></h1>
-                <FilterComponent filterCounty={filterCounty} filterZip={filterZip} filterCity={filterCity} setFilterCity={setFilterCity} setFilterCounty={setFilterCounty} setFilterZip={setFilterZip} />
+                <FilterMarketComponent filterCounty={filterCounty} filterZip={filterZip} filterCity={filterCity} setFilterCity={setFilterCity} setFilterCounty={setFilterCounty} setFilterZip={setFilterZip} />
 
                 <div className=" grid md:grid-cols-3 gap-6 mt-8 mx-4">
 
@@ -101,7 +101,7 @@ export default function MarketComponent() {
                 onClose={handleCloseDetails}
             >
                 <div>
-                    <DetailedViewComponent selectedMarket={selectedMarket} setSelectedMarket={setSelectedMarket} />
+                    <DetailedMarketView selectedMarket={selectedMarket} setSelectedMarket={setSelectedMarket} />
                 </div>
             </Modal>
 
