@@ -6,5 +6,7 @@ export default function HomePage({products}) {
         <div>
             <Home products={products}/>
         </div>
-    )
+        <SearchResults setSearchResults={setSearchResults} />
+      </div>
+    );
 }

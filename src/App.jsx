@@ -8,8 +8,10 @@ import axios from "axios"
 
 // PAGES
 import Browse from "./Pages/Browse";
+import Cart from "./Pages/Cart";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import Products from "./Pages/Products";
+import ProductById from "./Components/ProductById";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -34,18 +36,23 @@ function App() {
   return (
     <main className="h-full w-full">
       <Router>
-          <Nav setProducts={setProducts} products={products}/>
-          <Routes>
-            <Route path="/" element={<HomePage products={products} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/vendors" element={<Vendors />} />
-            <Route path="/market" element={<Market />} />
-            <Route path="/browse" element={<Browse />} />
-            <Route path="/farmers-markets" element={<FarmersMarkets />} />
-            <Route path="*" element={<FourOFour />} />
-          </Routes>
+        <Nav setSearchResults={setSearchResults} />
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage searchResults={searchResults} />}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductById />} />
+          <Route path="/vendors" element={<Vendors />} />
+          <Route path="/market" element={<Market />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/farmers-markets" element={<FarmersMarkets />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<FourOFour />} />
+        </Routes>
       </Router>
     </main>
   );

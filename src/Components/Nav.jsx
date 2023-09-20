@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
@@ -5,10 +6,10 @@ import { useState } from 'react';
 import axios from "axios";
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
-  MdOutlineShoppingBag,
   MdMenu,
 } from "react-icons/md";
-import { IoSearchCircleSharp } from "react-icons/io5";
+import { BsBag } from "react-icons/bs";
+import SearchBar from './SearchBar';
 
 
 export default function Nav( {products, setProducts} ) {
@@ -50,10 +51,16 @@ export default function Nav( {products, setProducts} ) {
     return (
       <div className="h-auto w-full flex flex-col relative py-4 border">
         {/* Logo that links back to homepage */}
-        <div className="self-center">
+        <div className="flex items-center justify-center">
           <Link to={"/"}>
-            <img src={PantriLogo} alt="Pantri Logo" className="h-20 md:h-28" />
-            {/* <p className='text-black text-3xl invisible md:visible'>PANTRI</p> */}
+            <img
+              src={PantriLogo}
+              alt="Pantri Logo"
+              className="h-20 md:hidden"
+            />
+            <p className="text-black text-3xl hidden md:block md:text-green-light">
+              PANTRI
+            </p>
           </Link>
         </div>
         <div className="flex items-center justify-between absolute w-screen top-9 px-2">
