@@ -1,7 +1,5 @@
 // FilterComponent.jsx
 
-
-
 export default function FilterComponent({ filterCounty, filterCity, filterZip, setFilterCity, setFilterCounty, setFilterZip }) {
 
     return (
