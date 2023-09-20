@@ -16,10 +16,9 @@ import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Vendors from "./Pages/Vendors";
-
 function App() {
 
-const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   return (
     <main className="h-full w-full">
