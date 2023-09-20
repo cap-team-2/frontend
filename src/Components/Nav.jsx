@@ -39,7 +39,6 @@ export default function Nav( {products, setProducts} ) {
     } else {
       axios.get(`${API}/products`)
       .then((res) => {
-        console.log(res.data)
         setProducts(res.data);
       })
       .catch((error) => {
