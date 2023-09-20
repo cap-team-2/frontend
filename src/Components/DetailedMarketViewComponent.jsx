@@ -1,6 +1,6 @@
-// DetailedView.jsx
+// DetailedMarketViewComponent.jsx
 
-export default function DetailedViewComponent({ selectedMarket, setSelectedMarket }) {
+export default function DetailedMarketViewComponent({ selectedMarket, setSelectedMarket }) {
 
     const handleCloseDetails = () => {
         setSelectedMarket(null);
