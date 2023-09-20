@@ -1,9 +1,9 @@
 import "./MarketCard.css";
 
-const MarketCard = ({ market }) => {
+const MarketCard = ({ market, showDetails }) => {
     const marketLink = market.market_link ? market.market_link.url : null;
     return (
-        <div className="market-card">
+        <div className="market-card" onClick={showDetails}>
             <div className="market-card__top-half">
                 <div className="market-card__date"> {market.operation_season} </div>
                 <div className="market-card__title">{market.market_name} </div>
