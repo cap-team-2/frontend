@@ -1,15 +1,15 @@
-import { useState } from 'react'
+// // import { useState } from 'react'
 
-export default function Home({ products }) {
-    // const {products, setProducts} = useState([]);
+// export default function Home({ products }) {
+//     // const {products, setProducts} = useState([]);
 
-  return (
-    <div>
-        {products ? 
-        products.map((product) => {return(
-            <h1 key={product.id}>{product.name}</h1>
-        )})
-        :"not here"}
-    </div>
-  )
-}
+//   return (
+//     <div>
+//         {products ? 
+//         products.map((product) => {return(
+//             <h1 key={product.id}>{product.name}</h1>
+//         )})
+//         :"not here"}
+//     </div>
+//   )
+// }

@@ -21,13 +21,13 @@ import Register from "./Pages/Register";
 import Vendors from "./Pages/Vendors";
 
 function App() {
-  const [ products, setProducts ] = useState([])
+  const [searchResults, setSearchResults] = useState([]);
   const API = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
     axios.get(`${API}/products`)
     .then((res) => {
-      setProducts(res.data);
+      setSearchResults(res.data);
     })
     .catch((error) => {
       console.log(error);
@@ -36,7 +36,7 @@ function App() {
   return (
     <main className="h-full w-full">
       <Router>
-        <Nav setSearchResults={setSearchResults} />
+        <Nav searchResults={searchResults} setSearchResults={setSearchResults} />
         <Routes>
           <Route
             path="/"
