@@ -18,7 +18,8 @@ import Login from "./Pages/Login";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
-import Vendors from "./Pages/Vendors";
+import Sellers from "./Pages/Sellers";
+import SellersById from "./Components/SellersById";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -46,7 +47,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductById />} />
-          <Route path="/vendors" element={<Vendors />} />
+          <Route path="/sellers" element={<Sellers />} />
+          <Route path="/sellers/:id" element={<SellersById />} />
           <Route path="/market" element={<Market />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
