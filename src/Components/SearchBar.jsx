@@ -6,15 +6,15 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 
 export default function SearchBar({setSearchResults}) {
-    const [searchKey, setSearchKey] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     function handleSearchChange(event) {
-      setSearchKey(event.target.value);
+      setSearchQuery(event.target.value);
     }
 
     const search = useCallback(async () => {
-      await performSearch(searchKey);
-    }, [searchKey]);
+      await performSearch(searchQuery);
+    }, [searchQuery]);
 
     useEffect(() => {
       search();
@@ -32,9 +32,9 @@ export default function SearchBar({setSearchResults}) {
 
     }, [])
 
-    async function performSearch(searchKey) {
+    async function performSearch(searchQuery) {
       axios
-        .get(`${API}/search/${searchKey}`)
+        .get(`${API}/search/${searchQuery}`)
         .then((res) => {
           if (res.data.length) {
             setSearchResults(res.data);
