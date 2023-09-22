@@ -10,10 +10,12 @@ export default function SearchBar({setSearchResults}) {
 
     function handleSearchChange(event) {
       setSearchQuery(event.target.value);
+      search()
     }
 
     const search = useCallback(async () => {
       await performSearch(searchQuery);
+
     }, [searchQuery]);
 
     useEffect(() => {
@@ -24,7 +26,6 @@ export default function SearchBar({setSearchResults}) {
         axios
             .get(`${API}/products`) 
             .then((res) => {
-              console.log(res.data)
                 setSearchResults(res.data);
             })
             .catch((error) => {
@@ -35,9 +36,10 @@ export default function SearchBar({setSearchResults}) {
 
     async function performSearch(searchQuery) {
       axios
-        .get(`${API}/search/${searchQuery}`)
+        .get(`${API}/products/?q=${searchQuery}`)
         .then((res) => {
           if (res.data.length) {
+            console.log(res.data)
             setSearchResults(res.data);
           } else {
             setSearchResults(false);
@@ -63,7 +65,7 @@ export default function SearchBar({setSearchResults}) {
             <div className="flex justify-center">
               <div className="relative w-10/12 tablet:w-8/12 flex items-center">
                 <input
-                  onChange={() => handleSearchChange}
+                  onChange={handleSearchChange}
                   type="text"
                   className="p-2.5 h-10 w-full text-sm rounded-3xl border border-gray text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
                   placeholder="Search"
