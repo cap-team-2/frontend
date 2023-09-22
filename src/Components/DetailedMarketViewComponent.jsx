@@ -8,7 +8,7 @@ export default function DetailedMarketViewComponent({ selectedMarket, setSelecte
     console.log(selectedMarket)
     return (
         selectedMarket && (
-            <div className=" bg-opacity-75 md:bg-opacity-50 border bg-white border-gray-light position-center md:object-top padding-15px">
+            <div className=" bg-opacity-75 tablet:bg-opacity-50 border bg-white border-gray-light position-center tablet:object-top padding-15px">
                 <h2 className="text-2xl font-bold mb-4">Details for {selectedMarket.market_name}</h2>
                 <div className="grid grid-cols-2 gap-4">
                     <div>

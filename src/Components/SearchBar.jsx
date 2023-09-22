@@ -10,10 +10,12 @@ export default function SearchBar({setSearchResults}) {
 
     function handleSearchChange(event) {
       setSearchQuery(event.target.value);
+      search()
     }
 
     const search = useCallback(async () => {
       await performSearch(searchQuery);
+
     }, [searchQuery]);
 
     useEffect(() => {
@@ -34,9 +36,10 @@ export default function SearchBar({setSearchResults}) {
 
     async function performSearch(searchQuery) {
       axios
-        .get(`${API}/search/${searchQuery}`)
+        .get(`${API}/products/?q=${searchQuery}`)
         .then((res) => {
           if (res.data.length) {
+            console.log(res.data)
             setSearchResults(res.data);
           } else {
             setSearchResults(false);
@@ -60,7 +63,7 @@ export default function SearchBar({setSearchResults}) {
         <div className="my-2">
           <form onSubmit={handleSearchSubmit}>
             <div className="flex justify-center">
-              <div className="relative w-10/12 md:w-8/12 flex items-center">
+              <div className="relative w-10/12 tablet:w-8/12 flex items-center">
                 <input
                   onChange={handleSearchChange}
                   type="text"
@@ -69,8 +72,8 @@ export default function SearchBar({setSearchResults}) {
                 />
                 {/* Search button magnifying glass */}
                 <IoSearchCircleSharp
-                  type="submit"
-                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-3xl cursor-pointer md:hover:bg-gray-light border-l border-l-gray"
+                  onClick={search}
+                  className="absolute right-0 text-5xl h-10 text-green-light rounded-r-3xl cursor-pointer tablet:hover:bg-gray-light border-l border-l-gray"
                 />
               </div>
             </div>

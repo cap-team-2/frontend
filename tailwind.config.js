@@ -27,6 +27,9 @@ export default {
 
       desktop: "1280px",
       // => @media (min-width: 1280px)
+
+      xl: "1680px",
+      // => @media (min-width: 1680px)
     },
     extend: {
       backgroundImage: {
