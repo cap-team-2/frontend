@@ -11,7 +11,6 @@ const API = "https://data.ny.gov/resource/xjya-f8ng.json?$select=county,market_n
 
 export default function MarketComponent() {
     const [markets, setMarkets] = useState([]);
-    const [filter, setFilter] = useState('county');
     const [filterCounty, setFilterCounty] = useState('');
     const [filterZip, setFilterZip] = useState('');
     const [filterCity, setFilterCity] = useState('');
