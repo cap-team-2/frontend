@@ -8,7 +8,7 @@ export default function SearchResults({searchResults}) {
           searchResults.map((results) => {
             return (
               <div
-                className="flex flex-col justify-between p-2 gap-4 h-96 tablet:h-[450px] w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light"
+                className="flex flex-col justify-between p-2 gap-4 h-96 tablet:h-[450px] w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light "
                 key={results.id}
               >
                 <div className="flex flex-col gap-4 shrink-0">
