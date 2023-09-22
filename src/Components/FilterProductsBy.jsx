@@ -2,6 +2,7 @@
 
 import { LuCarrot, LuApple, LuBeef, LuMilk } from "react-icons/lu";
 import { v4 as generateId } from "uuid";
+import { useState } from "react";
 // Array of various products to be used as filter buttons on the home page
 const products = [
   {
@@ -33,8 +34,7 @@ const products = [
 
 
 export default function FilterProductsBy() {
-
-
+  // const [category, setCategory] = useState('');
     return (
         <div className='flex justify-evenly'>
             {products.map(product => {

@@ -15,7 +15,7 @@ export default function SearchResults({searchResults}) {
                   <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center shadow-sm shadow-green-dark"
+                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center shadow-sm shadow-green-dark hover:cursor-pointer hover:shadow-md"
                   />
                   <p className="text-sm font-bold">
                     {results.description} - {Math.round(results.weight)}
