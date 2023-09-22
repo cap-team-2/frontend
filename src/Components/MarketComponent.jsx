@@ -37,7 +37,7 @@ export default function MarketComponent() {
             return matchesCounty && matchesZip && matchesCity;
         });
         setFilteredMarkets(marketsAfterFiltering);
-    }, [filterCounty, filterZip, filterCity]);
+    }, []);
 
     useEffect(() => {
         if (selectionRef.current) {

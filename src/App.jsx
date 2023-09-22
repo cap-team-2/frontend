@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<HomePage searchResults={searchResults} />}
+            element={<HomePage searchResults={searchResults} setSearchResults={setSearchResults} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
