@@ -9,7 +9,7 @@ import {
 import { BsBag } from "react-icons/bs";
 import SearchBar from "./SearchBar";
 
-export default function Nav({setSearchResults}) {
+export default function Nav({setSearchResults, setFilteredProducts}) {
   
   return (
     <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light">
@@ -55,7 +55,7 @@ export default function Nav({setSearchResults}) {
         </div>
       </div>
       <div className="tablet:hidden">
-        <SearchBar setSearchResults={setSearchResults} />
+        <SearchBar setSearchResults={setSearchResults} setFilteredProducts={setFilteredProducts} />
       </div>
     </div>
   );

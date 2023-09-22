@@ -8,7 +8,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 // Array of various products to be used as filter buttons on the home page
 
-export default function FilterProductsBy({setSearchResults}) {
+export default function FilterProductsBy({setSearchResults, filter, setFilter }) {
 
   const [productFilters, setProductFilters] = useState([
     {
@@ -36,7 +36,6 @@ export default function FilterProductsBy({setSearchResults}) {
         "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
     },
   ]);
-  const [ filter, setFilter ] = useState("");
 
   function filterProducts (productFilter) {
     if(productFilter.category === "Vegetables"){
