@@ -2,8 +2,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import SellersById from "../Components/SellersById";
-// import SellerCard from "../Components/sellerCard/SellerCard"
-
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Sellers() {
