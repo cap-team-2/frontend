@@ -67,11 +67,11 @@ export default function MarketComponent() {
 
     return (
         <div className="flex flex-col mt-10 items-center">
-            <div className="w-[1000px] justify-self-center">
-                <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 dark:text-green md:text-5xl lg:text-6xl"><span>MARKETS</span></h1>
+            <div className="w-[1000px] flex flex-col">
+                <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl"><span>MARKETS</span></h1>
                 <FilterMarketComponent filterCounty={filterCounty} filterZip={filterZip} filterCity={filterCity} setFilterCity={setFilterCity} setFilterCounty={setFilterCounty} setFilterZip={setFilterZip} />
 
-                <div className=" grid md:grid-cols-3 gap-6 mt-8 mx-4">
+                <div className=" grid tablet:grid-cols-3 gap-6 mt-8 mx-4">
 
                     {/*  all markets */}
                     {markets.length > 0 && !filterZip && !filterCounty && !filterCity && markets.map((market, index) => (
@@ -85,7 +85,7 @@ export default function MarketComponent() {
 
                     {/* no results */}
                     {(filterZip || filterCity || filterCounty) && filteredMarkets.length === 0 &&
-                        <div>No results</div>
+                        <div className="text-xl text-center">No results</div>
                     }
 
                     {/* loading view */}

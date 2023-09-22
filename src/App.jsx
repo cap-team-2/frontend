@@ -19,7 +19,7 @@ import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
-import SellersById from "./Components/SellersById";
+import SellersById from "./Pages/SellersById"
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);

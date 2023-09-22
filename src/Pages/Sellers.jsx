@@ -1,25 +1,45 @@
-// Vendors.jsx
-
+// Sellers.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-const API = import.meta.env.VITE_APP_API_URL
+// import SellersById from "../Components/SellersById";
+const API = import.meta.env.VITE_APP_API_URL;
 
-//well be used to retrieve all vendor data 
 export default function Sellers() {
-  const [seller, setSeller] = useState([])
+  const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API}/sellers`)
+    axios
+      .get(`${API}/sellers`)
       .then((res) => {
-        console.log(res.data)
-
+        setSellers(res.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }, []);
+  console.log("hi", sellers)
+  return (
+    <div>
 
+      {sellers ? sellers.map((seller) => {
+        return (
+          <div key={seller.id} className="front">
+            <h1>Seller Details</h1>
+            <p>Name: {seller.first_name} {seller.last_name}</p>
+            <p>Email: {seller.email}</p>
+            <p>Phone: {seller.phone}</p>
 
-
-  return <div><h1>Sellers</h1></div>;
+            <div className="back">
+              <p>Address: {seller.address_1}</p>
+              <p>City: {seller.city}</p>
+              <p>Zipcode: {seller.zipcode}</p>
+              <p>Type: {seller.type && seller.type.seller}</p>
+            </div>
+          </div>
+          // <SellersById key={seller.id} seller={seller} />
+          // <SellerCard key={seller.id} seller={seller} />
+        )
+      }) : <p>here</p>}
+    </div>
+  );
 }
