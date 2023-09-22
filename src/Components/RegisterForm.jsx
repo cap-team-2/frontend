@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineCheck } from "react-icons/hi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { auth } from "../fireBase.js";
+import { auth, provider  } from "../fireBase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
 import axios from "axios"
 
 
@@ -42,13 +43,21 @@ export default function RegisterForm() {
     });
     axios.post(`${API}/users`, registration)
     .then(() => {
+      console.log(registration)
       naviagte("/");
     })
     .catch((error) => {
       console.log(error);
     })
-    // Add an axios API call (create) to create a user when the handleSubmit function is called.
   };
+
+  function google() {
+    signInWithPopup(auth, provider)
+    .catch((error) => {
+      alert(error);
+    });
+    naviagte("/");
+  }
 
   // Function that toggles the passwordType from 'password' to 'text' creating a show password effect
   const togglePassword = (type) => {
@@ -79,7 +88,7 @@ export default function RegisterForm() {
               value={registration.first_name}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a]  pl-4 outline-none ease-in-out duration-500 focus:ring focus:border-blue-light"
-              pattern={`^[A-Za-z'-]+$`}
+              // pattern={`^[A-Za-z'-]+$`}
               required
             />
             <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible peer-invalid:visible peer-valid:invisible peer-focus:invisible">
@@ -99,7 +108,7 @@ export default function RegisterForm() {
               value={registration.last_name}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring  focus:border-blue-light"
-              pattern="^[A-Za-z'-]+$"
+              // pattern="^[A-Za-z'-]+$"
               required
             />
             <p className="text-xs text-[red] invisible peer-placeholder-shown:peer-invalid:invisible peer-focus:invisible peer-invalid:visible">
@@ -166,7 +175,7 @@ export default function RegisterForm() {
             </button>
             <p>or</p>
             <button
-              onClick={signUp}
+              onClick={google}
               className="border border-[#e2e2e2] rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
             >
               <FcGoogle size={24} /> Sign up with Google
@@ -183,4 +192,3 @@ export default function RegisterForm() {
     </div>
   );
 }
-
