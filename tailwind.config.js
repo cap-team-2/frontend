@@ -33,8 +33,10 @@ export default {
     },
     extend: {
       backgroundImage: {
-        light: "url(./src/assets/GlassWater.png)",
-        dark: "url(./src/assets/slickCarbon.png)",
+        light: "url('./src/assets/GlassWater.png')",
+        dark: "url('./src/assets/slickCarbon.png')",
+        "veggieBanner":
+          "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
       },
     },
   },
