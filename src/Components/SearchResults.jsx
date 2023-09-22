@@ -1,7 +1,6 @@
 // SearchResults.jsx
 
 export default function SearchResults({searchResults}) {
-console.log(searchResults)
     return (
       <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto mt-6 tablet:grid-cols-4 px-4 tablet:px-8 desktop:w-8/12 self-center gap-4">
         {searchResults ? (

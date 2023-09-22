@@ -53,7 +53,6 @@ export default function SearchBar({setSearchResults}) {
       search();
     }
 
-
     return (
       <>
         {/*search bar*/}
