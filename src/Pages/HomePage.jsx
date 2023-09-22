@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import SearchResults from "../Components/SearchResults";
 import BannerImage from "../assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg";
 
-export default function HomePage({searchResults}) {
+export default function HomePage({searchResults, setSearchResults, setFilter, filter, setFilteredProducts, filteredProducts}) {
 
 
     return (
@@ -14,9 +14,8 @@ export default function HomePage({searchResults}) {
           <img src={BannerImage} alt="Banner Image of assorted vegetables" />
           <FilterProductsBy />
         </div>
-
-        <div>
-          <SearchResults searchResults={searchResults} />
+        <div className="">
+          <SearchResults searchResults={searchResults} filteredProducts={filteredProducts}/>
         </div>
       </div>
     );

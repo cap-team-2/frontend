@@ -3,6 +3,7 @@
 // DEPENDENCIES
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios"
 
 // PAGES
 import Browse from "./Pages/Browse";
@@ -20,17 +21,41 @@ import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById"
 
 function App() {
-
   const [searchResults, setSearchResults] = useState([]);
+  const [ filter, setFilter ] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const API = import.meta.env.VITE_APP_API_URL;
 
+  useEffect(() => {
+    axios.get(`${API}/products`)
+    .then((res) => {
+      setSearchResults(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
   return (
     <main className="h-full w-full">
       <Router>
-        <Nav setSearchResults={setSearchResults} />
+        <Nav 
+        // searchResults={searchResults} 
+        setSearchResults={setSearchResults}
+        setFilteredProducts={setFilteredProducts}
+        filter={filter}
+        // filteredProducts={filteredProducts}
+        />
         <Routes>
           <Route
             path="/"
-            element={<HomePage searchResults={searchResults} />}
+            element={<HomePage 
+              searchResults={searchResults} 
+              setSearchResults={setSearchResults} 
+              setFilteredProducts={setFilteredProducts} 
+              filteredProducts={filteredProducts}
+              filter={filter}
+              setFilter={setFilter}
+              />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
