@@ -32,7 +32,7 @@ export default function SearchBar({ setSearchResults }) {
   }, []);
 
   async function performSearch(searchQuery) {
-    try {
+         try {
       const response = await axios.get(`${API}/products/?q=${searchQuery}`);
       if (response.data) {
         setSearchResults(response.data);
@@ -40,7 +40,6 @@ export default function SearchBar({ setSearchResults }) {
     } catch (error) {
       setSearchResults([]);
     }
-    
     // axios
     //   .get(`${API}/products/?q=${searchQuery}`)
     //   .then((res) => {

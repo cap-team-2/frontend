@@ -2,13 +2,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
+import { auth, provider } from "../fireBase.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
-const API = import.meta.env.VITE_APP_API_URL;
+
+// const API = import.meta.env.VITE_APP_API_URL;
 
 export default function LoginForm() {
     const [login, setLogin] = useState({ 
@@ -17,6 +22,8 @@ export default function LoginForm() {
     });
 
     const [passwordType, setPasswordType] = useState('password');
+
+    const navigate = useNavigate();
 
     // Function that toggles the passwordType from 'password' to 'text' creating a show password effect
     const togglePassword = (type) => {
@@ -30,8 +37,25 @@ export default function LoginForm() {
     }
 
     //  Function to handle submitting the form when all fields are filled out correctly
-    const handleSubmit = (event) => {
+    const logIn = (event) => {
         event.preventDefault();
+        signInWithEmailAndPassword(auth, login.email, login.password)
+        .then((userCredential) => {
+          navigate("/");
+          console.log(userCredential);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Wrong Email or Password!!!!");
+        });
+    }
+
+    function google() {
+      signInWithPopup(auth, provider)
+      .catch((error) => {
+        alert(error);
+      });
+      navigate("/items");
     }
 
     return (
@@ -95,20 +119,20 @@ export default function LoginForm() {
             </div>
             <div className="grid text-center gap-2 text-sm">
               <button
-                onClick={handleSubmit}
+                onClick={logIn}
                 className="rounded-md h-12 bg-blue-light bg-opacity-70 font-light cursor-default"
               >
                 Log In
               </button>
               <p>or</p>
               <button
-                onClick={handleSubmit}
+                onClick={google}
                 className="border border-[#e2e2e2] rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
               >
                 <FcGoogle size={24} /> Sign in with Google
               </button>
               <button
-                onClick={handleSubmit}
+                onClick={logIn}
                 className="border bg-black text-white rounded-md h-12 ease-in-out duration-300 hover:bg-opacity-60"
               >
                 Sign in with Facebook

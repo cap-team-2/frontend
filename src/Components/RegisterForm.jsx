@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineCheck } from "react-icons/hi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { auth, provider  } from "../fireBase.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import axios from "axios"
 
 
 const API = import.meta.env.VITE_APP_API_URL;
@@ -19,17 +24,40 @@ export default function RegisterForm() {
 
   const [passwordType, setPasswordType] = useState("password");
 
+  const naviagte = useNavigate();
+
   // Function to update the form state with every change for login form
   const handleFormChange = (e) => {
     const { id, value } = e.target;
     setRegistration({ ...registration, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const signUp = (e) => {
     e.preventDefault();
-
-    // Add an axios API call (create) to create a user when the handleSubmit function is called.
+    createUserWithEmailAndPassword(auth, registration.email, registration.password)
+    .then((userCredential) => {
+        console.log(userCredential);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    axios.post(`${API}/users`, registration)
+    .then(() => {
+      console.log(registration)
+      naviagte("/");
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   };
+
+  function google() {
+    signInWithPopup(auth, provider)
+    .catch((error) => {
+      alert(error);
+    });
+    naviagte("/");
+  }
 
   // Function that toggles the passwordType from 'password' to 'text' creating a show password effect
   const togglePassword = (type) => {
@@ -60,7 +88,7 @@ export default function RegisterForm() {
               value={registration.first_name}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a]  pl-4 outline-none ease-in-out duration-500 focus:ring focus:border-blue-light"
-              pattern={`^[A-Za-z'-]+$`}
+              // pattern={`^[A-Za-z'-]+$`}
               required
             />
             <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible peer-invalid:visible peer-valid:invisible peer-focus:invisible">
@@ -80,7 +108,7 @@ export default function RegisterForm() {
               value={registration.last_name}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring  focus:border-blue-light"
-              pattern="^[A-Za-z'-]+$"
+              // pattern="^[A-Za-z'-]+$"
               required
             />
             <p className="text-xs text-[red] invisible peer-placeholder-shown:peer-invalid:invisible peer-focus:invisible peer-invalid:visible">
@@ -126,34 +154,34 @@ export default function RegisterForm() {
             </p>
             <AiOutlineEye
               className={`absolute top-11 right-10 text-2xl cursor-pointer ${
-                passwordType === "password" ? "visible" : "invisible"
-              }`}
-              onClick={() => togglePassword("password")}
-            />
-            <AiOutlineEyeInvisible
-              className={`absolute top-11 right-10 text-2xl cursor-pointer ${
                 passwordType === "text" ? "visible" : "invisible"
               }`}
               onClick={() => togglePassword("text")}
+            />
+            <AiOutlineEyeInvisible
+              className={`absolute top-11 right-10 text-2xl cursor-pointer ${
+                passwordType === "password" ? "visible" : "invisible"
+              }`}
+              onClick={() => togglePassword("password")}
             />
             <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
           </div>
           <div className="grid text-center gap-2 text-sm">
             <button
-              onClick={handleSubmit}
+              onClick={signUp}
               className="rounded-md h-12 bg-blue-light font-light group-invalid:pointer-events-none group-invalid:cursor-default group-invalid:opacity-60 cursor-pointer"
             >
               Create My Account
             </button>
             <p>or</p>
             <button
-              onClick={handleSubmit}
+              onClick={google}
               className="border border-[#e2e2e2] rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
             >
               <FcGoogle size={24} /> Sign up with Google
             </button>
             <button
-              onClick={handleSubmit}
+              onClick={signUp}
               className="border bg-black text-white rounded-md h-12 ease-in-out duration-300 hover:bg-opacity-60"
             >
               Sign up with Facebook
@@ -164,4 +192,3 @@ export default function RegisterForm() {
     </div>
   );
 }
-

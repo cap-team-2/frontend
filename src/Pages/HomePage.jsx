@@ -4,7 +4,7 @@ import FilterProductsBy from "../Components/FilterProductsBy";
 import SearchResults from "../Components/SearchResults";
 
 
-export default function HomePage({searchResults}) {
+export default function HomePage({searchResults, setSearchResults, setFilter, filter, setFilteredProducts, filteredProducts}) {
 
 
     return (
@@ -12,8 +12,9 @@ export default function HomePage({searchResults}) {
         <div className="self-center">
           <FilterProductsBy />
         </div>
-        <div>
-          <SearchResults searchResults={searchResults} />
+        <div className="">
+          <SearchResults searchResults={searchResults} filteredProducts={filteredProducts}/>
+
         </div>
       </div>
     );

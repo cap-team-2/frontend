@@ -1,7 +1,6 @@
 // SearchResults.jsx
 
 export default function SearchResults({searchResults}) {
-
     return (
       <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center ">
         {searchResults.length ? (
