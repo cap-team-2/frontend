@@ -40,8 +40,8 @@ export default function FilterProductsBy() {
             {products.map(product => {
                 return (
                   <div className=" h-20 w-20 flex flex-col items-center justify-center gap-2 hover:underline hover:underline-offset-8 decoration-2 decoration-green-light cursor-pointer" key={generateId()}>
-                    <product.icon className="text-2xl md:text-3xl text-green-light font-light" />
-                    <p className="text-xs md:text-sm">{product.category}</p>
+                    <product.icon className="text-2xl tablet:text-3xl text-green-light font-light" />
+                    <p className="text-xs tablet:text-sm">{product.category}</p>
                   </div>
                 );
                 
