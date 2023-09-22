@@ -22,9 +22,7 @@ import SellersById from "./Components/SellersById";
 function App() {
 
   const [searchResults, setSearchResults] = useState([]);
-  useEffect(() => {
-    console.log(searchResults)
-  }, [searchResults])
+
   return (
     <main className="h-full w-full">
       <Router>
