@@ -13,7 +13,7 @@ const SellerCard = ({ seller }) => {
 
                         </div>
                         <div className="flip-card-back">
-                            <p><strong>Email:</strong>{seller.email}</p>
+                            <p><strong>Email:</strong> {seller.email}</p>
                             <p><strong>Address:</strong> {seller.address_1} </p>
 
                             <p>   <strong>City:</strong> {seller.city} </p>

@@ -16,14 +16,14 @@
 }
 
 .flip-card-front {
-  background-color: #3498db; /* Set your desired background color */
+  background-color: #3498db;
   display: flex;
   align-items: center;
   justify-content: center;
 background-image: url("https://media.istockphoto.com/id/1321479436/photo/multi-generational-farmer-team-holding-wood-boxes-with-fresh-organic-vegetables-focus-on-faces.jpg?s=612x612&w=0&k=20&c=YCxEi20QTwdZKpqITSju84m4hDZpzliWDZPxkUIp45c=");
 width: 295%;
   height: 97%;
-color: #39ff14 ; 
+color: #ff14eb ; 
 }
 
 .flip-card-back {
