@@ -1,8 +1,10 @@
 .seller-card-front {
-  width: 200px;
+ width: 200px;
   height: 300px;
   perspective: 1000px;
-  position: relative;
+  position:relative; left:100px; top:100px;
+  padding: 5px;
+  margin-bottom: 10px;
 
 }
 
@@ -16,23 +18,30 @@
 }
 
 .flip-card-front {
-  background-color: #3498db;
   display: flex;
   align-items: center;
   justify-content: center;
-background-image: url("https://media.istockphoto.com/id/1321479436/photo/multi-generational-farmer-team-holding-wood-boxes-with-fresh-organic-vegetables-focus-on-faces.jpg?s=612x612&w=0&k=20&c=YCxEi20QTwdZKpqITSju84m4hDZpzliWDZPxkUIp45c=");
-width: 295%;
+  width: 180%;
   height: 97%;
-color: #ff14eb ; 
 }
-
+.flip-card-front__name{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 250px;
+  color: #1437ff ; 
+}
+.flip-card-front__name p{
+  width: 200px;
+  
+}
 .flip-card-back {
-  background-color: rgba(0, 255, 0, 0.2);
+  border-color:black;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: rotateY(180deg);
-  width: 295%;
+  width: 200%;
   height: 97%;
   flex-direction: column; 
 }
