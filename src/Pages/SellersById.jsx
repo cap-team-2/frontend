@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-// import SellerCard from "./sellerCard/sellerCard";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
@@ -36,6 +35,7 @@ export default function SellersById() {
                     <p>Zipcode: {seller[0].zipcode}</p>
                 </div>
             </div> : null}
+
         </div>
     );
 }
