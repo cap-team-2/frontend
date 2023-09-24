@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 // import SellersById from "../Components/SellersById";
 import SellerCard from "../Components/sellerCard/sellerCard";
+import SellerProfile from "../Components/SellerProfile";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Sellers() {
@@ -39,7 +40,8 @@ export default function Sellers() {
               </div>
             </div>
             {/* <SellersById key={seller.id} seller={seller} /> */}
-            <SellerCard key={seller.id} seller={seller} />
+            {/* <SellerCard key={seller.id} seller={seller} /> */}
+            <SellerProfile key={seller.id} seller={seller} />
           </div>
         )
       }) : <p>here</p>}
