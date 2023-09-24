@@ -10,7 +10,7 @@ export default function HomePage({searchResults, setSearchResults, setFilter, fi
     return (
       <div className="h-full w-full flex flex-col ">
         <div className="self-center">
-          <FilterProductsBy />
+          <FilterProductsBy setSearchResults={setSearchResults} filter={filter} setFilter={setFilter} />
         </div>
         <div className="">
           <SearchResults searchResults={searchResults} filteredProducts={filteredProducts}/>

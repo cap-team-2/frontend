@@ -48,6 +48,7 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
   useEffect(() => {
     axios.get(`${API}/products/filter${filter}`)
     .then((res) => {
+      console.log(res.data)
       setSearchResults(res.data);
     })
     .catch((error) => {
