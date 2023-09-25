@@ -22,12 +22,27 @@ import SellersById from "./Pages/SellersById"
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
+  const [ searchResults, setSearchResults ] = useState([]);
   const [ filter, setFilter ] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [ sessionID, setSessionID ] = useState(
+    {
+      user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
+      total: '0.00',
+      created_at: 'here'
+    }
+  );
+  const API = import.meta.env.VITE_APP_API_URL;
+
+  //replace with the signed in user or a guest uuid
+  // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
 
   // Update searchResults state to have all products App component is rendered
   useEffect(() => {
+    // if (axios.get(`${API}/shopping-session`)) {
+    // } 
+
+// used to fectch all products
     axios.get(`${API}/products`)
     .then((res) => {
       setSearchResults(res.data);
@@ -35,8 +50,17 @@ function App() {
     .catch((error) => {
       console.log(error);
     });
+// used to create a new shopping session
+    axios.post(`${API}/shopping-session`, sessionID )
+    .then((res) => {
+      setSessionID(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+
   }, []);
-  
+
   return (
     <main className="h-full w-full">
       <Router>
@@ -55,6 +79,7 @@ function App() {
               filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
+              sessionID={sessionID}
               />}
           />
           <Route path="/login" element={<Login />} />
