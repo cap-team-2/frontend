@@ -13,6 +13,6 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
         <div className="mt-32">
           <SearchResults sessionID={sessionID} searchResults={searchResults} filteredProducts={filteredProducts} />
         </div>
-    </div>
+      </div>
   );
 }
