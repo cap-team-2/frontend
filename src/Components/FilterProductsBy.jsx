@@ -39,16 +39,15 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
 
   function filterProducts (productFilter) {
     if(productFilter.category === "Vegetables"){
-      setFilter("?q=Veggies")
+      setFilter("category=Veggies")
     } else {
-      setFilter(`?q=${productFilter.category}`);
+      setFilter(`category=${productFilter.category}`);
     }
   }
 
   useEffect(() => {
-    axios.get(`${API}/products/filter${filter}`)
+    axios.get(`${API}/products?${filter}`)
     .then((res) => {
-      console.log(res.data)
       setSearchResults(res.data);
     })
     .catch((error) => {
@@ -68,7 +67,6 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
                     <p className="text-xs md:text-sm">{productFilter.category}</p>
                   </div>
                 );
-                
             })}
         </div>
     )
