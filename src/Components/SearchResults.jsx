@@ -1,6 +1,30 @@
 // SearchResults.jsx
 
-export default function SearchResults({searchResults}) {
+import axios from "axios";
+import { useState, useEffect } from "react";
+const API = import.meta.env.VITE_APP_API_URL;
+
+export default function SearchResults({searchResults, sessionID}) {
+  const [ cart, setCart ] = useState(
+    {
+      session_id: '',
+      product_id: '',
+      quantity: ''
+    }
+  );
+
+  function addToCart (product) {
+    setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "0"})
+    createCart(product);
+  }
+
+  function createCart () {
+    axios.post(`${API}/cart-products`, cart)
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
     return (
       <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center ">
         {searchResults.length ? (
@@ -23,7 +47,9 @@ export default function SearchResults({searchResults}) {
                   <p className="text-xs font-medium">${results.cost}</p>
                 </div>
 
-                <button className="bg-green-light rounded text-xs text-white font-semibold h-8 w-full justify-self-center hover:bg-green">
+                <button className="bg-green-light rounded text-xs text-white font-semibold h-8 w-full justify-self-center hover:bg-green"
+                onClick={() => addToCart(results)}
+                >
                   Add to cart
                 </button>
               </div>
