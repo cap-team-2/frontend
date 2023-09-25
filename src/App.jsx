@@ -19,6 +19,7 @@ import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById"
+const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [ searchResults, setSearchResults ] = useState([]);
@@ -36,6 +37,7 @@ function App() {
   //replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
 
+  // Update searchResults state to have all products App component is rendered
   useEffect(() => {
     // if (axios.get(`${API}/shopping-session`)) {
     // } 
@@ -63,11 +65,9 @@ function App() {
     <main className="h-full w-full">
       <Router>
         <Nav 
-        // searchResults={searchResults} 
         setSearchResults={setSearchResults}
         setFilteredProducts={setFilteredProducts}
         filter={filter}
-        // filteredProducts={filteredProducts}
         />
         <Routes>
           <Route

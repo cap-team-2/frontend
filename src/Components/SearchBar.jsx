@@ -7,32 +7,25 @@ const API = import.meta.env.VITE_APP_API_URL;
 export default function SearchBar({ setSearchResults }) {
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Update page view to show the products that match the search input **change this to show results in a dropdown and change the view of products only after submitting
   function handleSearchChange(event) {
     setSearchQuery(event.target.value);
     search();
   }
 
+  // Async function to call performSearch function
   const search = useCallback(async () => {
     await performSearch(searchQuery);
   }, [searchQuery]);
 
+  // Call the search function
   useEffect(() => {
     search();
   }, [search]);
 
-  useEffect(() => {
-    axios
-      .get(`${API}/products`)
-      .then((res) => {
-        setSearchResults(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+  // Api call to retrieve a specific product
   async function performSearch(searchQuery) {
-         try {
+    try {
       const response = await axios.get(`${API}/products/?q=${searchQuery}`);
       if (response.data) {
         setSearchResults(response.data);
@@ -40,21 +33,9 @@ export default function SearchBar({ setSearchResults }) {
     } catch (error) {
       setSearchResults([]);
     }
-    // axios
-    //   .get(`${API}/products/?q=${searchQuery}`)
-    //   .then((res) => {
-    //     // if (res.data) {
-    //     //   setSearchResults(res.data);
-    //     // } else {
-    //     //   setSearchResults(false);
-    //     //   console.log("false");
-    //     // }
-    //   })
-    //   .catch((error) => {
-    //     return error;
-    //   });
   }
 
+  // Submit search input and call search() function
   function handleSearchSubmit(event) {
     event.preventDefault();
     search();
@@ -64,7 +45,7 @@ export default function SearchBar({ setSearchResults }) {
     <>
       {/*search bar*/}
       <div className="my-2">
-        <form onSubmit={handleSearchSubmit}>
+        <form id="search" onSubmit={handleSearchSubmit}>
           <div className="flex justify-center">
             <div className="relative w-10/12 tablet:w-8/12 flex items-center">
               <input
