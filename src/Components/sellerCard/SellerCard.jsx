@@ -1,8 +1,9 @@
-import React from "react";
+// SellerCard.jsx
 
+import React from "react";
 import "./SellerCard.css";
 
-const SellerCard = ({ seller }) => {
+export default function SellerCard({ seller }) {
     return (
         <div className="flex flex-col">
             <div className="seller-card-front">
@@ -28,4 +29,4 @@ const SellerCard = ({ seller }) => {
 }
 
 
-export default SellerCard;
+
