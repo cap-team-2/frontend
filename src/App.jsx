@@ -35,15 +35,14 @@ function App() {
       console.log(error);
     });
   }, []);
+  
   return (
     <main className="h-full w-full">
       <Router>
         <Nav 
-        // searchResults={searchResults} 
         setSearchResults={setSearchResults}
         setFilteredProducts={setFilteredProducts}
         filter={filter}
-        // filteredProducts={filteredProducts}
         />
         <Routes>
           <Route
