@@ -2,14 +2,29 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from "axios";
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
   MdMenu,
 } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
 import SearchBar from "./SearchBar";
+const API = import.meta.env.VITE_APP_API_URL;
+
 
 export default function Nav({setSearchResults, setFilteredProducts}) {
+  
+  const getAllProducts = () => {
+    axios
+      .get(`${API}/products`)
+      .then((res) => {
+        setSearchResults(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   
   return (
     <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light">
@@ -20,7 +35,7 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
         </div>
         {/* Logo that links back to homepage */}
         <div className="flex items-center justify-center">
-          <Link to={"/"}>
+          <Link to={"/"} onClick={getAllProducts}>
             <img
               src={PantriLogo}
               alt="Pantri Logo"
