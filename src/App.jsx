@@ -23,7 +23,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [ searchResults, setSearchResults ] = useState([]);
-  const [ filter, setFilter ] = useState("");
+  const [ filter, setFilter ] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ sessionID, setSessionID ] = useState(
     {
@@ -50,7 +50,7 @@ function App() {
     .catch((error) => {
       console.log(error);
     });
-    
+
 // used to create a new shopping session
     axios.post(`${API}/shopping-session`, sessionID )
     .then((res) => {

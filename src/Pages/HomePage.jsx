@@ -6,11 +6,11 @@ import SearchResults from "../Components/SearchResults";
 export default function HomePage({ searchResults, setSearchResults, setFilter, filter, filteredProducts, sessionID }) {
 
     return (
-      <div className="h-full w-full flex flex-col ">
-        <div className="self-center">
+      <div className="h-full w-full flex flex-col pt-24">
+        <div className="flex justify-center border-y border-gray h-[70px] fixed w-full pt-2 bg-white drop-shadow-md">
           <FilterProductsBy  setFilter={setFilter} setSearchResults={setSearchResults} filter={filter} />
         </div>
-        <div className="">
+        <div className="mt-32">
           <SearchResults sessionID={sessionID} searchResults={searchResults} filteredProducts={filteredProducts} />
         </div>
     </div>
