@@ -1,6 +1,8 @@
+// SellerProfile.jsx
+
 import React from "react";
 import { useState } from "react";
-import SellerCard from "./sellerCard/sellerCard";
+import SellerCard from "./sellerCard/SellerCard";
 
 export default function SellerProfile({ seller }) {
     const [bio, setBio] = useState("");
@@ -49,7 +51,7 @@ export default function SellerProfile({ seller }) {
     const handleSaveEdit = (index) => {
         setEditingIndex(null);
     };
-    const reviews = [{}]
+    // const reviews = [{}]
     return (
         <div key={seller.id} className="seller-profile">
             <div className="seller-bio">
