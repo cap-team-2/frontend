@@ -71,7 +71,7 @@ export default function LoginForm() {
               Create an Account
             </Link>
           </div>
-          <form className="grid gap-4 mb-8 relative">
+          <form id="login" className="grid gap-4 mb-8 relative">
             <div className="grid gap-2">
               <label htmlFor="email">Email Address</label>
               <input

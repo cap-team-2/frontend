@@ -1,6 +1,8 @@
+// SellerProfile.jsx
+
 import React from "react";
 import { useState } from "react";
-import SellerCard from "./sellerCard/sellerCard";
+import SellerCard from "./sellerCard/SellerCard";
 
 export default function SellerProfile({ seller }) {
     const [bio, setBio] = useState("");
@@ -49,9 +51,9 @@ export default function SellerProfile({ seller }) {
     const handleSaveEdit = (index) => {
         setEditingIndex(null);
     };
-    const reviews = [{}]
+    // const reviews = [{}]
     return (
-        <div className="seller-profile">
+        <div key={seller.id} className="seller-profile">
             <div className="seller-bio">
                 <h2>Biography</h2>
                 <SellerCard key={seller.id} seller={seller} />
@@ -105,11 +107,11 @@ export default function SellerProfile({ seller }) {
             </div>
             <div className="reviews">
                 <h2> Reviews</h2>
-                {reviews.map((reviews) => (
-                    <div key={reviews.id} className="review">
+                {/* {reviews.map((reviews, index) => (
+                    <div key={index} className="review">
 
                     </div>
-                ))}
+                ))} */}
             </div>
 
         </div>

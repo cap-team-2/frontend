@@ -15,6 +15,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Nav({setSearchResults, setFilteredProducts}) {
   
+  // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
     axios
       .get(`${API}/products`)

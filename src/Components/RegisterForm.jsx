@@ -24,7 +24,7 @@ export default function RegisterForm() {
 
   const [passwordType, setPasswordType] = useState("password");
 
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
   // Function to update the form state with every change for login form
   const handleFormChange = (e) => {
@@ -44,7 +44,7 @@ export default function RegisterForm() {
     axios.post(`${API}/users`, registration)
     .then(() => {
       console.log(registration)
-      naviagte("/");
+      navigate("/");
     })
     .catch((error) => {
       console.log(error);
@@ -56,7 +56,7 @@ export default function RegisterForm() {
     .catch((error) => {
       alert(error);
     });
-    naviagte("/");
+    navigate("/");
   }
 
   // Function that toggles the passwordType from 'password' to 'text' creating a show password effect
@@ -77,8 +77,8 @@ export default function RegisterForm() {
             Log In
           </Link>
         </div>
-        <form noValidate className="group">
-          <div className="grid mb-4 gap-2 relative">
+        <form id="register" noValidate className="group">
+          <div className="grid gap-2 relative">
             <label htmlFor="first_name">First Name</label>
             <input
               type="text"
@@ -96,7 +96,7 @@ export default function RegisterForm() {
             </p>
             <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid mb-4 gap-2 relative">
+          <div className="grid gap-2 relative">
             <label htmlFor="last_name" className="mb-2">
               Last Name
             </label>
@@ -116,7 +116,7 @@ export default function RegisterForm() {
             </p>
             <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid mb-4 gap-2 relative">
+          <div className="grid gap-2 relative">
             <label htmlFor="email" className="mb-2">
               Email
             </label>
@@ -135,7 +135,7 @@ export default function RegisterForm() {
             </p>
             <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
           </div>
-          <div className="grid mb-4 gap-2 relative">
+          <div className="grid gap-2 relative">
             <label htmlFor="password">Password</label>
             <input
               placeholder="Password"

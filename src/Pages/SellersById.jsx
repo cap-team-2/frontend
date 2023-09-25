@@ -14,13 +14,14 @@ export default function SellersById() {
         axios
             .get(`${API}/sellers/${id}`)
             .then((res) => {
+                console.log(res.data);
                 setSeller(res.data);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
-    console.log("here", seller)
+
     return (
         <div>
             {seller[0] ? <div className="front">

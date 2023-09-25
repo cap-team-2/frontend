@@ -5,7 +5,7 @@ export default function DetailedMarketViewComponent({ selectedMarket, setSelecte
     const handleCloseDetails = () => {
         setSelectedMarket(null);
     };
-    console.log(selectedMarket)
+
     return (
         selectedMarket && (
             <div className=" bg-opacity-75 tablet:bg-opacity-50 border bg-white border-gray-light position-center tablet:object-top padding-15px">

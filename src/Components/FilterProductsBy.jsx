@@ -2,45 +2,48 @@
 
 import { LuCarrot, LuApple, LuBeef, LuMilk } from "react-icons/lu";
 import { v4 as generateId } from "uuid";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 const API = import.meta.env.VITE_APP_API_URL;
 
 // Array of various products to be used as filter buttons on the home page
+const productFilters = [
+  {
+    category: "Vegetables",
+    icon: LuCarrot,
+    image:
+      "https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
+  },
+  {
+    category: "Fruits",
+    icon: LuApple,
+    image:
+      "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",
+  },
+  {
+    category: "Meat",
+    icon: LuBeef,
+    image:
+      "https://images.unsplash.com/photo-1595356161904-6708c97be89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80",
+  },
+  {
+    category: "Dairy",
+    icon: LuMilk,
+    image:
+      "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
+  },
+];
+
 
 export default function FilterProductsBy({setSearchResults, filter, setFilter }) {
 
-  const [productFilters, setProductFilters] = useState([
-    {
-      category: "Vegetables",
-      icon: LuCarrot,
-      image:
-        "https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-    },
-    {
-      category: "Fruits",
-      icon: LuApple,
-      image:
-        "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",
-    },
-    {
-      category: "Meat",
-      icon: LuBeef,
-      image:
-        "https://images.unsplash.com/photo-1595356161904-6708c97be89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80",
-    },
-    {
-      category: "Dairy",
-      icon: LuMilk,
-      image:
-        "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
-    },
-  ]);
 
+  // Update the filter state to switch between the different filters for each product category
   function filterProducts (productFilter) {
-    setFilter(`${productFilter.category}`);
+    setFilter(`${productFilter.category}`)
   }
 
+  // Api call for different selected product category, using the filter state
   useEffect(() => {
     axios.get(`${API}/products?category=${filter}`)
     .then((res) => {
