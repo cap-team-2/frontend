@@ -26,19 +26,19 @@ export default function SearchResults({searchResults, sessionID}) {
   }
 
     return (
-      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center ">
+      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center gap-8">
         {searchResults.length ? (
           searchResults.map((results) => {
             return (
               <div
-                className="flex flex-col justify-between items-center p-2 gap-4 h-96 tablet:h-[450px] w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light "
+                className="flex flex-col justify-between items-center p-2 gap-4 h-96 tablet:h-[450px] w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light shadow-xl"
                 key={results.id}
               >
                 <div className="flex flex-col gap-4 shrink-0">
                   <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center shadow-sm shadow-green-dark hover:cursor-pointer hover:shadow-md"
+                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer"
                   />
                   <p className="text-sm font-bold">
                     {results.description} - {Math.round(results.weight)}
