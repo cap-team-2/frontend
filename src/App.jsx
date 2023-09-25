@@ -19,13 +19,14 @@ import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById"
+const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [ filter, setFilter ] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const API = import.meta.env.VITE_APP_API_URL;
 
+  // Update searchResults state to have all products App component is rendered
   useEffect(() => {
     axios.get(`${API}/products`)
     .then((res) => {
