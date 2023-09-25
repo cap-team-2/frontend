@@ -51,7 +51,7 @@ export default function SellerProfile({ seller }) {
     };
     const reviews = [{}]
     return (
-        <div className="seller-profile">
+        <div key={seller.id} className="seller-profile">
             <div className="seller-bio">
                 <h2>Biography</h2>
                 <SellerCard key={seller.id} seller={seller} />
@@ -105,11 +105,11 @@ export default function SellerProfile({ seller }) {
             </div>
             <div className="reviews">
                 <h2> Reviews</h2>
-                {reviews.map((reviews) => (
-                    <div key={reviews.id} className="review">
+                {/* {reviews.map((reviews, index) => (
+                    <div key={index} className="review">
 
                     </div>
-                ))}
+                ))} */}
             </div>
 
         </div>

@@ -40,19 +40,6 @@ export default function SearchBar({ setSearchResults }) {
     } catch (error) {
       setSearchResults([]);
     }
-    // axios
-    //   .get(`${API}/products/?q=${searchQuery}`)
-    //   .then((res) => {
-    //     // if (res.data) {
-    //     //   setSearchResults(res.data);
-    //     // } else {
-    //     //   setSearchResults(false);
-    //     //   console.log("false");
-    //     // }
-    //   })
-    //   .catch((error) => {
-    //     return error;
-    //   });
   }
 
   function handleSearchSubmit(event) {
