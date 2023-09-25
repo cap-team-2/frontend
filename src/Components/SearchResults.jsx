@@ -12,12 +12,12 @@ export default function SearchResults({searchResults, sessionID}) {
       quantity: ''
     }
   );
-
+// on click button function
   function addToCart (product) {
     setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "0"})
     createCart(product);
   }
-
+// function to create a new cart product
   function createCart () {
     axios.post(`${API}/cart-products`, cart)
     .catch((error) => {

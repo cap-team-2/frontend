@@ -39,6 +39,8 @@ function App() {
   useEffect(() => {
     // if (axios.get(`${API}/shopping-session`)) {
     // } 
+
+// used to fectch all products
     axios.get(`${API}/products`)
     .then((res) => {
       setSearchResults(res.data);
@@ -46,7 +48,7 @@ function App() {
     .catch((error) => {
       console.log(error);
     });
-
+// used to create a new shopping session
     axios.post(`${API}/shopping-session`, sessionID )
     .then((res) => {
       setSessionID(res.data);
