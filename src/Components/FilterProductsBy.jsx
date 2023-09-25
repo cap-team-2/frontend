@@ -40,13 +40,7 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
 
   // Update the filter state to switch between the different filters for each product category
   function filterProducts (productFilter) {
-
-    if(productFilter.category === "Vegetables"){
-      setFilter("category=Vegetables")
-    } else {
-      setFilter(`category=${productFilter.category}`);
-    }
-
+    setFilter(`${productFilter.category}`)
   }
 
   // Api call for different selected product category, using the filter state

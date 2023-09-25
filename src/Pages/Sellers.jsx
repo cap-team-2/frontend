@@ -1,8 +1,6 @@
 // Sellers.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import SellersById from "../Components/SellersById";
-import SellerCard from "../Components/sellerCard/sellerCard";
 import SellerProfile from "../Components/SellerProfile";
 const API = import.meta.env.VITE_APP_API_URL;
 

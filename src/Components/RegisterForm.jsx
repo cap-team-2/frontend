@@ -77,7 +77,7 @@ export default function RegisterForm() {
             Log In
           </Link>
         </div>
-        <form noValidate className="group">
+        <form id="register" noValidate className="group">
           <div className="grid gap-2 relative">
             <label htmlFor="first_name">First Name</label>
             <input
