@@ -32,7 +32,7 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
         <div className='flex tablet:gap-10'>
             {ProductFilters.map(productFilter => {
                 return (
-                  <div className={`h-20 w-20 flex flex-col items-center justify-start gap-2 hover:underline hover:underline-offset-8 decoration-2 cursor-pointer ${filter == productFilter.category ? 'underline  underline-offset-8 decoration-green-light' : 'hover:decoration-gray'}`}
+                  <div className={`h-16 w-20 flex flex-col items-center justify-start gap-2 hover:underline hover:underline-offset-8 decoration-2 cursor-pointer ${filter == productFilter.category ? 'underline  underline-offset-8 decoration-green-light' : 'hover:decoration-gray'}`}
                   key={generateId()}
                   onClick={() => filterProducts(productFilter)}
                   >

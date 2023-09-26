@@ -28,11 +28,11 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
   }
   
   return (
-    <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light fixed top-0 bg-white z-40">
-      <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center top-5 px-2 tablet:mt-10 tablet:mb-2">
+    <div className="h-auto w-full flex flex-col fixed top-0 bg-white z-50 shadow">
+      <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center px-2 tablet:p-4">
         {/* Hamburger Menu */}
         <div className="tablet:hidden">
-          <MdMenu className="text-2xl cursor-pointer" />
+          <MdMenu className="text-2xl cursor-pointer text-green-light" />
         </div>
         {/* Logo that links back to homepage */}
         <div className="flex items-center justify-center">
@@ -46,10 +46,6 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
               PANTRI
             </p>
           </Link>
-        </div>
-        {/* Search Bar */}
-        <div className="h-auto w-full hidden tablet:block">
-          <SearchBar setSearchResults={setSearchResults} />
         </div>
         {/* Nav Links */}
         <div className="flex items-center justify-end gap-4">
@@ -70,9 +66,7 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
           </Link>
         </div>
       </div>
-      <div className="tablet:hidden">
-        <SearchBar setSearchResults={setSearchResults} setFilteredProducts={setFilteredProducts} />
-      </div>
+
     </div>
   );
 }
