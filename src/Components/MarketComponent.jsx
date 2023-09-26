@@ -6,6 +6,8 @@ import MarketCard from "./marketCard/MarketCard";
 import FilterMarketComponent from "./FilterMarketComponent";
 import DetailedMarketView from "./DetailedMarketViewComponent";
 import Modal from "@mui/material/Modal"
+import SearchBar from "../Components/SearchBar";
+
 
 const API = "https://data.ny.gov/resource/xjya-f8ng.json?$select=county,market_name, address_line_1,city,state,zip,contact,phone,market_link,operation_hours,operation_season,operation_months_code,fmnp,snap_status";
 
@@ -66,45 +68,57 @@ export default function MarketComponent() {
     // lazy load cards or paginate cards / or simply filter out non-nyc markets before rendering 
 
     return (
-        <div className="flex flex-col mt-10 items-center">
-            <div className="w-[1000px] flex flex-col">
-                <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl"><span>MARKETS</span></h1>
-                <FilterMarketComponent filterCounty={filterCounty} filterZip={filterZip} filterCity={filterCity} setFilterCity={setFilterCity} setFilterCounty={setFilterCounty} setFilterZip={setFilterZip} />
+      <div className="flex flex-col mt-10 items-center">
+        <div className="w-[1000px] flex flex-col">
+          <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+            <span>MARKETS</span>
+          </h1>
+          <div className="h-auto w-full mt-10">
+            <SearchBar />
+          </div>
+          <div className=" grid tablet:grid-cols-3 gap-6 mt-8 mx-4">
+            {/*  all markets */}
+            {markets.length > 0 &&
+              !filterZip &&
+              !filterCounty &&
+              !filterCity &&
+              markets.map((market, index) => (
+                <MarketCard
+                  key={index}
+                  market={market}
+                  showDetails={(e) => handleShowDetails(e, market)}
+                />
+              ))}
 
-                <div className=" grid tablet:grid-cols-3 gap-6 mt-8 mx-4">
+            {/* filtered markets */}
+            {filteredMarkets.length > 0 &&
+              filteredMarkets.map((market, index) => (
+                <MarketCard
+                  key={index}
+                  market={market}
+                  showDetails={(e) => handleShowDetails(e, market)}
+                />
+              ))}
 
-                    {/*  all markets */}
-                    {markets.length > 0 && !filterZip && !filterCounty && !filterCity && markets.map((market, index) => (
-                        <MarketCard key={index} market={market} showDetails={(e) => handleShowDetails(e, market)} />
-                    ))}
+            {/* no results */}
+            {(filterZip || filterCity || filterCounty) &&
+              filteredMarkets.length === 0 && (
+                <div className="text-xl text-center">No results</div>
+              )}
 
-                    {/* filtered markets */}
-                    {filteredMarkets.length > 0 && filteredMarkets.map((market, index) => (
-                        <MarketCard key={index} market={market} showDetails={(e) => handleShowDetails(e, market)} />
-                    ))}
+            {/* loading view */}
+            {markets.length === 0 && <div> Loading...</div>}
+          </div>
+        </div>
 
-                    {/* no results */}
-                    {(filterZip || filterCity || filterCounty) && filteredMarkets.length === 0 &&
-                        <div className="text-xl text-center">No results</div>
-                    }
-
-                    {/* loading view */}
-                    {markets.length === 0 &&
-                        <div> Loading...</div>
-                    }
-
-                </div>
-            </div>
-
-            <Modal
-                open={open}
-                onClose={handleCloseDetails}
-            >
-                <div>
-                    <DetailedMarketView selectedMarket={selectedMarket} setSelectedMarket={setSelectedMarket} />
-                </div>
-            </Modal>
-
-        </div >
+        <Modal open={open} onClose={handleCloseDetails}>
+          <div>
+            <DetailedMarketView
+              selectedMarket={selectedMarket}
+              setSelectedMarket={setSelectedMarket}
+            />
+          </div>
+        </Modal>
+      </div>
     );
 }
