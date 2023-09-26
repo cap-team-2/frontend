@@ -48,7 +48,7 @@ export default function SearchResults({searchResults, sessionID}) {
                   <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 peer-hover:decoration-green-light">
                     {capitalize(results.name)}
                   </p>
-                  <p className="text-2xl font-semibold font-[roboto] relative -z-0">
+                  <p className="text-2xl font-semibold relative -z-0">
                     <span className="text-3xl">
                       ${`${results.cost.split(".")[0]}`}
                     </span>

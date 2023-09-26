@@ -36,8 +36,8 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
                   key={generateId()}
                   onClick={() => filterProducts(productFilter)}
                   >
-                    <productFilter.icon className="text-2xl md:text-3xl text-green-light font-light" />
-                    <p className="text-xs md:text-sm">{productFilter.category}</p>
+                    <productFilter.icon className="text-2xl md:text-3xl text-green-light" />
+                    <p className="text-xs tablet:text-sm">{productFilter.category}</p>
                   </div>
                 );
             })}
