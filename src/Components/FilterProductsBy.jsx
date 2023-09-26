@@ -1,7 +1,7 @@
 // FilterProductsBy.jsx
 
 import { v4 as generateId } from "uuid";
-import { useEffect } from "react";
+import { useEffect } from "react"; 
 import axios from "axios";
 import ProductFilters from "./ProductFilters";
 const API = import.meta.env.VITE_APP_API_URL;

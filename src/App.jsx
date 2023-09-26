@@ -10,7 +10,7 @@ import Browse from "./Pages/Browse";
 import Cart from "./Pages/Cart";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import Products from "./Pages/Products";
-import ProductById from "./Components/ProductById";
+import ProductById from "./Components/ProductDetails";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -63,7 +63,7 @@ function App() {
   }, []);
 
   return (
-    <main className="h-full w-full">
+    <main className="h-full w-full font-font">
       <Router>
         <Nav 
         setSearchResults={setSearchResults}
