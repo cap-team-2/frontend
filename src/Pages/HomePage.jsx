@@ -1,5 +1,4 @@
 // Home.jsx
-
 import FilterProductsBy from "../Components/FilterProductsBy";
 import SearchResults from "../Components/SearchResults";
 

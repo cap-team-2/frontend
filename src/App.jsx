@@ -7,7 +7,7 @@ import axios from "axios"
 
 // PAGES
 import Browse from "./Pages/Browse";
-import Cart from "./Pages/Cart";
+import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import Products from "./Pages/Products";
 import ProductById from "./Components/ProductById";
@@ -32,7 +32,6 @@ function App() {
       created_at: 'here'
     }
   );
-  const API = import.meta.env.VITE_APP_API_URL;
 
   //replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
@@ -92,7 +91,7 @@ function App() {
           <Route path="/market" element={<Market />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       </Router>
