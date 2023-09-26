@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function Nav({setSearchResults, setFilteredProducts}) {
+export default function Nav({ setSearchResults }) {
   
   // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
@@ -48,25 +48,27 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
           </Link>
         </div>
         {/* Nav Links */}
-        <div className="flex items-center justify-end gap-4">
+        <div className="flex items-end justify-end gap-4">
           <Link
             to={"/login"}
-            className="text-xs tablet:text-sm text-white bg-green-light p-1.5  text-center w-14 tablet:w-16 font-semibold rounded-3xl"
+            className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium "
           >
             Log In
           </Link>
           <Link
             to={"/register"}
-            className="text-xs bg-green-light p-1 rounded-full hidden"
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block"
           >
             Get Started
           </Link>
-          <Link to={"/cart"}>
-            <BsBag className="text-2xl text-green-light" />
-          </Link>
+          <div>
+            <Link to={"/cart"}>
+              <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
+            </Link>
+
+          </div>
         </div>
       </div>
-
     </div>
   );
 }
