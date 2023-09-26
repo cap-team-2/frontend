@@ -28,7 +28,7 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
   }
   
   return (
-    <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light fixed bg-white">
+    <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light fixed top-0 bg-white z-40">
       <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center top-5 px-2 tablet:mt-10 tablet:mb-2">
         {/* Hamburger Menu */}
         <div className="tablet:hidden">

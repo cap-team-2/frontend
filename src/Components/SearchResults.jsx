@@ -1,7 +1,8 @@
 // SearchResults.jsx
 
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function SearchResults({searchResults, sessionID}) {
@@ -12,7 +13,9 @@ export default function SearchResults({searchResults, sessionID}) {
       quantity: ''
     }
   );
-// on click button function
+  const navigate = useNavigate();
+
+// Function to add a product to the cart
   function addToCart (product) {
     setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "0"})
     createCart(product);
@@ -26,29 +29,41 @@ export default function SearchResults({searchResults, sessionID}) {
   }
 
     return (
-      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center gap-8">
+      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center gap-8">
         {searchResults.length ? (
           searchResults.map((results) => {
+            const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
             return (
               <div
                 className="flex flex-col justify-between items-center p-2 gap-4 h-96 tablet:h-[450px] w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light shadow-xl"
                 key={results.id}
               >
-                <div className="flex flex-col gap-4 shrink-0">
+                <div className="flex flex-col gap-4 shrink-0 ">
                   <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer"
+                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer tablet:hover:border tablet:hover:border-[transparent] peer"
+                    onClick={() => navigate(`/products/${results.id}`)}
                   />
-                  <p className="text-sm font-bold">
-                    {results.description} - {Math.round(results.weight)}
-                    {results.unit_measurement}
+                  <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 peer-hover:decoration-green-light">
+                    {capitalize(results.name)}
                   </p>
-                  <p className="text-xs font-medium">${results.cost}</p>
+                  <p className="text-2xl font-semibold font-[roboto] relative -z-0">
+                    <span className="text-3xl">
+                      ${`${results.cost.split(".")[0]}`}
+                    </span>
+                    <span className="text-xs absolute top-1 ">
+                      {results.cost.split(".")[1]}
+                    </span>
+                    <span className="pl-4 text-[gray] text-sm font-normal">
+                      ({costPerUnitWeight}/{results.unit_measurement})
+                    </span>
+                  </p>
                 </div>
 
-                <button className="bg-green-light rounded text-xs text-white font-semibold h-8 w-full justify-self-center hover:bg-green"
-                onClick={() => addToCart(results)}
+                <button
+                  className="bg-green-light rounded text-xs text-white font-semibold h-8 w-20 self-start hover:bg-green"
+                  onClick={() => addToCart(results)}
                 >
                   Add to cart
                 </button>
@@ -60,4 +75,11 @@ export default function SearchResults({searchResults, sessionID}) {
         )}
       </div>
     );
+}
+
+const capitalize = (str) => {
+  const stringArray = str.split(' ');
+  const capitalizedString = stringArray.map(string => string[0].toUpperCase() + string.slice(1))
+
+  return capitalizedString.join(' ');
 }

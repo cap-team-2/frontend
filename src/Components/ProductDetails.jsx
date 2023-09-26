@@ -1,4 +1,5 @@
-// ProductById.jsx
+// ProductDetails.jsx
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
@@ -23,8 +24,10 @@ export default function ProductById() {
 
 
     return (
-        <div>
-
+        <div className="h-full w-full mt-40 flex justify-center">
+            <div className="h-60 w-60">
+                <img src={product.image} alt={product.description} />
+            </div>
         </div>
     )
 }

@@ -7,7 +7,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
 
     return (
       <div className="h-full w-full flex flex-col pt-[136px] tablet:pt-24">
-        <div className="flex overflow-x-auto overflow-y-clip tablet:justify-center border-y border-gray h-[70px] fixed w-full pt-2 bg-white drop-shadow-md">
+        <div className="flex overflow-x-auto overflow-y-clip tablet:justify-center border-y border-gray h-[70px] fixed w-full pt-2 bg-white drop-shadow-md z-40">
           <FilterProductsBy  setFilter={setFilter} setSearchResults={setSearchResults} filter={filter} />
         </div>
         <div className="mt-32">
