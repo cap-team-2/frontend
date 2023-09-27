@@ -7,12 +7,14 @@ import FilterMarketComponent from "./FilterMarketComponent";
 import DetailedMarketView from "./DetailedMarketViewComponent";
 import Modal from "@mui/material/Modal"
 import SearchBar from "../Components/SearchBar";
+import SearchResults from "./SearchResults";
 
 
-const API = "https://data.ny.gov/resource/xjya-f8ng.json?$select=county,market_name, address_line_1,city,state,zip,contact,phone,market_link,operation_hours,operation_season,operation_months_code,fmnp,snap_status";
+const API = "https://data.ny.gov/resource/xjya-f8ng.json?";
 
-export default function MarketComponent() {
-    const [markets, setMarkets] = useState([]);
+export default function MarketComponent({ searchResults, setSearchResults }) {
+    const [allMarkets, setAllMarkets] = useState([]);
+    const [marketFilter, setMarketFilter] = useState('market_name');
     const [filterCounty, setFilterCounty] = useState('');
     const [filterZip, setFilterZip] = useState('');
     const [filterCity, setFilterCity] = useState('');
@@ -21,31 +23,44 @@ export default function MarketComponent() {
     const [open, setOpen] = useState(false);
     const selectionRef = useRef();
 
+    // When the page is rendered, all of the markets are stored in the allMarkets state variable
     useEffect(() => {
         axios.get(API)
             .then((res) => {
-                setMarkets(res.data);
+                setAllMarkets(res.data);  
             })
             .catch((error) => {
                 console.log(error);
             })
     }, []);
 
+    // When the page is rendered all of the markets in New York county are loaded to the page
     useEffect(() => {
-        const marketsAfterFiltering = markets.filter(market => {
-            const matchesCounty = !filterCounty || market.county.toLowerCase().includes(filterCounty.toLowerCase());
-            const matchesZip = !filterZip || market.zip.includes(filterZip);
-            const matchesCity = !filterCity || market.city.toLowerCase().includes(filterCity.toLowerCase());
-            return matchesCounty && matchesZip && matchesCity;
-        });
-        setFilteredMarkets(marketsAfterFiltering);
-    }, []);
+      setFilteredMarkets(
+          allMarkets.filter((market) => market.county == "New York")
+        );
+      }, [allMarkets])
 
-    useEffect(() => {
-        if (selectionRef.current) {
-            selectionRef.current.click();
-        }
-    }, [filteredMarkets]);
+    const searchForMarkets = (query) => {
+      console.log(marketFilter, query)
+      setFilteredMarkets(allMarkets.filter((market) => market[marketFilter.toLowerCase()].includes(query.toLowerCase())))
+    };
+
+      // useEffect(() => {
+      //     const marketsAfterFiltering = markets.filter(market => {
+      //         const matchesCounty = !filterCounty || market.county.toLowerCase().includes(filterCounty.toLowerCase());
+      //         const matchesZip = !filterZip || market.zip.includes(filterZip);
+      //         const matchesCity = !filterCity || market.city.toLowerCase().includes(filterCity.toLowerCase());
+      //         return matchesCounty && matchesZip && matchesCity;
+      //     });
+      //     setFilteredMarkets(marketsAfterFiltering);
+      // }, []);
+
+    // useEffect(() => {
+    //     if (selectionRef.current) {
+    //         selectionRef.current.click();
+    //     }
+    // }, [filteredMarkets]);
 
     const handleShowDetails = (event, market) => {
         event.preventDefault();
@@ -58,8 +73,12 @@ export default function MarketComponent() {
         setOpen(false);
     };
 
-
-    // improve styling of filtering  component
+    // Function to handle search filter options
+    const handleFilterChange = (selection) => {
+      setMarketFilter(selection);
+    };
+   
+   // improve styling of filtering  component
     // improve 'detail view' to flip card (possibly)
     // style loading view
 
@@ -70,19 +89,39 @@ export default function MarketComponent() {
     return (
       <div className="flex flex-col mt-10 items-center">
         <div className="w-[1000px] flex flex-col">
-          <h1 className="text-center text-4xl mt-10 mb-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+          <h1 className="text-center text-4xl mt-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
             <span>MARKETS</span>
           </h1>
-          <div className="h-auto w-full mt-10">
-            <SearchBar />
+          {/* Search Bar */}
+          <div className="h-auto w-full ">
+            <SearchBar setSearchResults={setSearchResults} marketFilter={marketFilter} searchForMarkets={searchForMarkets} />
           </div>
-          <div className=" grid tablet:grid-cols-3 gap-6 mt-8 mx-4">
+          {/* Dropdown filter menu */}
+          <form id="filterMarkets" className="ml-4">
+            <label htmlFor="marketFilter" className="justify-center mr-4">
+              Filter Search By:
+            </label>
+            <select
+              onChange={(e) => handleFilterChange(e.target.value)}
+              className="h-auto w-auto self-center border mt-2 border-gray shadow cursor-pointer z-50"
+              id="marketFilter"
+              defaultValue={"market_name"}
+            >
+              <option value="market_name">
+                Name
+              </option>
+              <option value="county">County</option>
+              <option value="city">City</option>
+              <option value="zip">Zip Code</option>
+            </select>
+          </form>
+          <div className=" grid tablet:grid-cols-3 gap-6 mt-4 mx-4">
             {/*  all markets */}
-            {markets.length > 0 &&
+            {filteredMarkets.length > 0 &&
               !filterZip &&
               !filterCounty &&
               !filterCity &&
-              markets.map((market, index) => (
+              filteredMarkets.map((market, index) => (
                 <MarketCard
                   key={index}
                   market={market}
@@ -107,7 +146,7 @@ export default function MarketComponent() {
               )}
 
             {/* loading view */}
-            {markets.length === 0 && <div> Loading...</div>}
+            {filteredMarkets.length === 0 && <div> Loading...</div>}
           </div>
         </div>
 

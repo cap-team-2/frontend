@@ -89,7 +89,7 @@ function App() {
           <Route path="/products/:id" element={<ProductById />} />
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/sellers/:id" element={<SellersById />} />
-          <Route path="/market" element={<Market />} />
+          <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
           <Route path="/cart" element={<Cart />} />

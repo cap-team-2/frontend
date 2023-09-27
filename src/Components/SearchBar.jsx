@@ -3,14 +3,15 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { IoSearchCircleSharp } from "react-icons/io5";
 const API = import.meta.env.VITE_APP_API_URL;
+const MARKETAPI =
+  "https://data.ny.gov/resource/xjya-f8ng.json?";
 
-export default function SearchBar({ setSearchResults }) {
+export default function SearchBar({ setSearchResults, marketFilter, searchForMarkets }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Update page view to show the products that match the search input **change this to show results in a dropdown and change the view of products only after submitting
   function handleSearchChange(event) {
     setSearchQuery(event.target.value);
-    search();
   }
 
   // Async function to call performSearch function
@@ -26,9 +27,15 @@ export default function SearchBar({ setSearchResults }) {
   // Api call to retrieve a specific product
   async function performSearch(searchQuery) {
     try {
-      const response = await axios.get(`${API}/products/?q=${searchQuery}`);
-      if (response.data) {
-        setSearchResults(response.data);
+      if (marketFilter) {
+        // console.log(marketFilter, searchQuery)
+        searchForMarkets(searchQuery);
+      } else {
+
+        const response = await axios.get(`${API}/products/?q=${searchQuery}`);
+        if (response.data) {
+          setSearchResults(response.data);
+        }
       }
     } catch (error) {
       setSearchResults([]);
