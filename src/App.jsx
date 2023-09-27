@@ -23,7 +23,6 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [ searchResults, setSearchResults ] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [ filter, setFilter ] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ sessionID, setSessionID ] = useState(
@@ -74,8 +73,6 @@ function App() {
               filter={filter}
               setFilter={setFilter}
               sessionID={sessionID}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
               />}
           />
           <Route path="/login" element={<Login />} />
