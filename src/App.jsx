@@ -23,6 +23,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [ searchResults, setSearchResults ] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [ filter, setFilter ] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ sessionID, setSessionID ] = useState(
@@ -42,14 +43,6 @@ function App() {
     // if (axios.get(`${API}/shopping-session`)) {
     // } 
 
-// used to fetch all products
-    axios.get(`${API}/products`)
-    .then((res) => {
-      setSearchResults(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
 // used to create a new shopping session
     axios.post(`${API}/shopping-session`, sessionID )
@@ -81,6 +74,8 @@ function App() {
               filter={filter}
               setFilter={setFilter}
               sessionID={sessionID}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
               />}
           />
           <Route path="/login" element={<Login />} />

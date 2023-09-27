@@ -7,7 +7,6 @@ const MARKETAPI =
   "https://data.ny.gov/resource/xjya-f8ng.json?";
 
 export default function SearchBar({ setSearchResults, marketFilter, searchForMarkets }) {
-  const [searchQuery, setSearchQuery] = useState("");
 
   // Update page view to show the products that match the search input **change this to show results in a dropdown and change the view of products only after submitting
   function handleSearchChange(event) {
