@@ -51,12 +51,6 @@ export default function Nav({ setSearchResults }) {
         <div className="flex gap-4 items-end">
           <Link
             to={"/market"}
-            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block"
-          >
-            Markets
-          </Link>
-          <Link
-            to={"/market"}
             className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
           >
             Markets
