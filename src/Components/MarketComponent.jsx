@@ -14,7 +14,7 @@ const API = "https://data.ny.gov/resource/xjya-f8ng.json?";
 
 export default function MarketComponent({ searchResults, setSearchResults }) {
     const [allMarkets, setAllMarkets] = useState([]);
-    const [marketFilter, setMarketFilter] = useState('market_name');
+    const [marketFilter, setMarketFilter] = useState('city');
     const [filterCounty, setFilterCounty] = useState('');
     const [filterZip, setFilterZip] = useState('');
     const [filterCity, setFilterCity] = useState('');
@@ -27,12 +27,35 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
     useEffect(() => {
         axios.get(API)
             .then((res) => {
+              console.log(res.data)
                 setAllMarkets(res.data);  
             })
             .catch((error) => {
                 console.log(error);
             })
     }, []);
+
+    // Function to filter through allMarkets based on user search
+    const performSearch = (searchQuery) => {
+      console.log(marketFilter)
+      setFilteredMarkets(
+        allMarkets.filter(
+          (market) =>
+            market[marketFilter]
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .includes(searchQuery.replace(/\s/g, "").toLowerCase()) ||
+            searchQuery
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .includes(market[marketFilter].replace(/\s/g, "").toLowerCase())
+        )
+      );
+      // const results = allMarkets.filter((market) => {
+      //   market[filterBy].toLowerCase().includes(searchQuery.toLowerCase());
+      // })
+
+    };
 
     // When the page is rendered all of the markets in New York county are loaded to the page
     useEffect(() => {
@@ -46,21 +69,6 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
       setFilteredMarkets(allMarkets.filter((market) => market[marketFilter.toLowerCase()].includes(query.toLowerCase())))
     };
 
-      // useEffect(() => {
-      //     const marketsAfterFiltering = markets.filter(market => {
-      //         const matchesCounty = !filterCounty || market.county.toLowerCase().includes(filterCounty.toLowerCase());
-      //         const matchesZip = !filterZip || market.zip.includes(filterZip);
-      //         const matchesCity = !filterCity || market.city.toLowerCase().includes(filterCity.toLowerCase());
-      //         return matchesCounty && matchesZip && matchesCity;
-      //     });
-      //     setFilteredMarkets(marketsAfterFiltering);
-      // }, []);
-
-    // useEffect(() => {
-    //     if (selectionRef.current) {
-    //         selectionRef.current.click();
-    //     }
-    // }, [filteredMarkets]);
 
     const handleShowDetails = (event, market) => {
         event.preventDefault();
@@ -94,7 +102,7 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
           </h1>
           {/* Search Bar */}
           <div className="h-auto w-full ">
-            <SearchBar setSearchResults={setSearchResults} marketFilter={marketFilter} searchForMarkets={searchForMarkets} />
+            <SearchBar performSearch={performSearch} marketFilter={marketFilter} />
           </div>
           {/* Dropdown filter menu */}
           <form id="filterMarkets" className="ml-4">
@@ -107,11 +115,11 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
               id="marketFilter"
               defaultValue={"market_name"}
             >
+              <option value="city">City</option>
               <option value="market_name">
                 Name
               </option>
               <option value="county">County</option>
-              <option value="city">City</option>
               <option value="zip">Zip Code</option>
             </select>
           </form>
@@ -140,13 +148,8 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
               ))}
 
             {/* no results */}
-            {(filterZip || filterCity || filterCounty) &&
-              filteredMarkets.length === 0 && (
-                <div className="text-xl text-center">No results</div>
-              )}
-
-            {/* loading view */}
-            {filteredMarkets.length === 0 && <div> Loading...</div>}
+            {filteredMarkets.length === 0 && <div className="self-center w-full"> No Results Found</div>}
+          
           </div>
         </div>
 
