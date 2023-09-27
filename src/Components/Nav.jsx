@@ -56,6 +56,12 @@ export default function Nav({ setSearchResults }) {
             Markets
           </Link>
           <Link
+            to={"/market"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Markets
+          </Link>
+          <Link
             to={"/login"}
             className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium "
           >
@@ -67,9 +73,13 @@ export default function Nav({ setSearchResults }) {
           >
             Get Started
           </Link>
-          <Link to={"/cart"}>
-            <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
-          </Link>
+
+          <div>
+            <Link to={"/cart"}>
+              <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
+            </Link>
+          </div>
+
         </div>
       </div>
     </div>
