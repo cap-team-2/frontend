@@ -48,7 +48,13 @@ export default function Nav({ setSearchResults }) {
           </Link>
         </div>
         {/* Nav Links */}
-        <div className="flex items-end justify-end gap-4">
+        <div className="flex gap-4 items-end">
+          <Link
+            to={"/market"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block"
+          >
+            Markets
+          </Link>
           <Link
             to={"/market"}
             className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
@@ -67,11 +73,13 @@ export default function Nav({ setSearchResults }) {
           >
             Get Started
           </Link>
+
           <div>
             <Link to={"/cart"}>
               <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
             </Link>
           </div>
+
         </div>
       </div>
     </div>
