@@ -14,16 +14,19 @@ export default function SearchResults({searchResults, sessionID}) {
   );
 // on click button function
   function addToCart (product) {
-    setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "0"})
-    createCart(product);
+    setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "1"})
   }
+
+  useEffect(() => {
+    if (cart.session_id && cart.product_id && cart.quantity) {
+      axios.post(`${API}/cart-products`, cart)
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  }, [cart]);
+
 // function to create a new cart product
-  function createCart () {
-    axios.post(`${API}/cart-products`, cart)
-    .catch((error) => {
-      console.log(error);
-    });
-  }
 
     return (
       <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center gap-8">

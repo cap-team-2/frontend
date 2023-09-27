@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function Nav({setSearchResults, setFilteredProducts}) {
+export default function Nav({setSearchResults}) {
   
   // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
@@ -71,7 +71,7 @@ export default function Nav({setSearchResults, setFilteredProducts}) {
         </div>
       </div>
       <div className="tablet:hidden">
-        <SearchBar setSearchResults={setSearchResults} setFilteredProducts={setFilteredProducts} />
+        <SearchBar setSearchResults={setSearchResults} />
       </div>
     </div>
   );

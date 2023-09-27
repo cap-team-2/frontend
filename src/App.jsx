@@ -24,7 +24,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 function App() {
   const [ searchResults, setSearchResults ] = useState([]);
   const [ filter, setFilter ] = useState("Home");
-  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  // const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ sessionID, setSessionID ] = useState(
     {
       user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
@@ -66,8 +66,8 @@ function App() {
       <Router>
         <Nav 
         setSearchResults={setSearchResults}
-        setFilteredProducts={setFilteredProducts}
-        filter={filter}
+        // setFilteredProducts={setFilteredProducts}
+        // filter={filter}
         />
         <Routes>
           <Route
@@ -75,8 +75,8 @@ function App() {
             element={<HomePage 
               searchResults={searchResults} 
               setSearchResults={setSearchResults} 
-              setFilteredProducts={setFilteredProducts} 
-              filteredProducts={filteredProducts}
+              // setFilteredProducts={setFilteredProducts} 
+              // filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
               sessionID={sessionID}
@@ -91,7 +91,7 @@ function App() {
           <Route path="/market" element={<Market />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart" element={<CartPage  sessionID={sessionID}/>} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       </Router>

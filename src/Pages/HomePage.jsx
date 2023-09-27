@@ -2,7 +2,7 @@
 import FilterProductsBy from "../Components/FilterProductsBy";
 import SearchResults from "../Components/SearchResults";
 
-export default function HomePage({ searchResults, setSearchResults, setFilter, filter, filteredProducts, sessionID }) {
+export default function HomePage({ searchResults, setSearchResults, setFilter, filter, sessionID }) {
 
     return (
       <div className="h-full w-full flex flex-col pt-[136px] tablet:pt-24">
@@ -10,7 +10,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
           <FilterProductsBy  setFilter={setFilter} setSearchResults={setSearchResults} filter={filter} />
         </div>
         <div className="mt-32">
-          <SearchResults sessionID={sessionID} searchResults={searchResults} filteredProducts={filteredProducts} />
+          <SearchResults sessionID={sessionID} searchResults={searchResults} />
         </div>
       </div>
   );
