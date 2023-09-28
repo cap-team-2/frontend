@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function Nav({setSearchResults}) {
+export default function Nav({ setSearchResults }) {
   
   // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
@@ -28,11 +28,11 @@ export default function Nav({setSearchResults}) {
   }
   
   return (
-    <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light fixed bg-white">
-      <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center top-5 px-2 tablet:mt-10 tablet:mb-2">
+    <div className="h-auto w-full flex flex-col fixed top-0 bg-white z-50 shadow">
+      <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center px-2 tablet:p-4">
         {/* Hamburger Menu */}
         <div className="tablet:hidden">
-          <MdMenu className="text-2xl cursor-pointer" />
+          <MdMenu className="text-2xl cursor-pointer text-green-light" />
         </div>
         {/* Logo that links back to homepage */}
         <div className="flex items-center justify-center">
@@ -47,31 +47,30 @@ export default function Nav({setSearchResults}) {
             </p>
           </Link>
         </div>
-        {/* Search Bar */}
-        <div className="h-auto w-full hidden tablet:block">
-          <SearchBar setSearchResults={setSearchResults} />
-        </div>
         {/* Nav Links */}
-        <div className="flex items-center justify-end gap-4">
+        <div className="flex gap-4 items-end justify-end">
+          <Link
+            to={"/market"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Markets
+          </Link>
           <Link
             to={"/login"}
-            className="text-xs tablet:text-sm text-white bg-green-light p-1.5  text-center w-14 tablet:w-16 font-semibold rounded-3xl"
+            className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium "
           >
             Log In
           </Link>
           <Link
             to={"/register"}
-            className="text-xs bg-green-light p-1 rounded-full hidden"
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block"
           >
             Get Started
           </Link>
           <Link to={"/cart"}>
-            <BsBag className="text-2xl text-green-light" />
+            <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
           </Link>
         </div>
-      </div>
-      <div className="tablet:hidden">
-        <SearchBar setSearchResults={setSearchResults} />
       </div>
     </div>
   );

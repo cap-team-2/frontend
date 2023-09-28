@@ -16,6 +16,9 @@ export default {
       "blue-dark": "#0E4FE6",
       space: "#1D1D4B",
     },
+    fontFamily: {
+      font: ["Montserrat"],
+    },
     screens: {
       mobile: "375px",
       // => @media (min-width: 375px)
@@ -35,10 +38,12 @@ export default {
       backgroundImage: {
         light: "url('./src/assets/GlassWater.png')",
         dark: "url('./src/assets/slickCarbon.png')",
-        "veggieBanner":
+        veggieBanner:
           "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
       },
     },
   },
   plugins: [],
 };
+
+

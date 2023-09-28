@@ -10,7 +10,7 @@ import Browse from "./Pages/Browse";
 import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import Products from "./Pages/Products";
-import ProductById from "./Components/ProductById";
+import ProductById from "./Components/ProductDetails";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -41,14 +41,6 @@ function App() {
     // if (axios.get(`${API}/shopping-session`)) {
     // } 
 
-// used to fetch all products
-    axios.get(`${API}/products`)
-    .then((res) => {
-      setSearchResults(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
 // used to create a new shopping session
     axios.put(`${API}/shopping-session/1`, session )
@@ -64,7 +56,7 @@ function App() {
   }, []);
 
   return (
-    <main className="h-full w-full">
+    <main className="h-full w-full font-font">
       <Router>
         <Nav 
         setSearchResults={setSearchResults}
@@ -90,7 +82,7 @@ function App() {
           <Route path="/products/:id" element={<ProductById />} />
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/sellers/:id" element={<SellersById />} />
-          <Route path="/market" element={<Market />} />
+          <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
           <Route path="/cart" element={<CartPage  session={session}/>} />
