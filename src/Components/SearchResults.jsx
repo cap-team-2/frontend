@@ -1,7 +1,7 @@
 // SearchResults.jsx
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const API = import.meta.env.VITE_APP_API_URL;
 
