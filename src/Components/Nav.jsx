@@ -2,19 +2,17 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
 import axios from "axios";
 import PantriLogo from '../assets/Pantri-logo-removebg.png';
 import {
   MdMenu,
 } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
-import SearchBar from "./SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
 export default function Nav({ setSearchResults }) {
-  
+
   // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
     axios
@@ -26,7 +24,7 @@ export default function Nav({ setSearchResults }) {
         console.log(error);
       });
   }
-  
+
   return (
     <div className="h-auto w-full flex flex-col fixed top-0 bg-white z-50 shadow">
       <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center px-2 tablet:p-4">
@@ -60,6 +58,12 @@ export default function Nav({ setSearchResults }) {
             className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
           >
             Markets
+          </Link>
+          <Link
+            to={"/sellers"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Vendors
           </Link>
           <Link
             to={"/login"}
