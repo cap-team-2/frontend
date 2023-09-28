@@ -40,6 +40,7 @@ export default {
         dark: "url('./src/assets/slickCarbon.png')",
         veggieBanner:
           "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
+        landingBanner: "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
       },
     },
   },
