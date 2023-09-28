@@ -50,6 +50,12 @@ export default function Nav({ setSearchResults }) {
         {/* Nav Links */}
         <div className="flex gap-4 items-end justify-end">
           <Link
+            to={"/Home"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Home
+          </Link>
+          <Link
             to={"/market"}
             className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
           >
