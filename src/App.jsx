@@ -20,41 +20,41 @@ import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById"
-// const API = import.meta.env.VITE_APP_API_URL;
+const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [filter, setFilter] = useState("Home");
-  // const [ filteredProducts, setFilteredProducts ] = useState([]);
-  // const [session, setSession] = useState(
-  //   {
-  //     user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
-  //     total: '0.00',
-  //     created_at: 'today'
-  //   }
-  // );
+  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [session, setSession] = useState(
+    {
+      user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
+      total: '0.00',
+      created_at: 'today'
+    }
+  );
 
-  //replace with the signed in user or a guest uuid
-  // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
+  // replace with the signed in user or a guest uuid
+  const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
 
   // Update searchResults state to have all products App component is rendered
-  //   useEffect(() => {
-  //     // if (axios.get(`${API}/shopping-session`)) {
-  //     // } 
+    useEffect(() => {
+      // if (axios.get(`${API}/shopping-session`)) {
+      // } 
 
 
-  // // used to create a new shopping session
-  //     axios.put(`${API}/shopping-session/1`, session )
+  // used to create a new shopping session
+      axios.put(`${API}/shopping-session/1`, session )
 
-  //     axios.get(`${API}/shopping-session/1`)
-  //     .then((res) => {
-  //       setSession(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
+      axios.get(`${API}/shopping-session/1`)
+      .then((res) => {
+        setSession(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 
-  //   }, []);
+    }, []);
 
   return (
     <main className="h-full w-full font-font">
