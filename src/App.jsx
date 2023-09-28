@@ -9,6 +9,7 @@ import axios from "axios"
 import Browse from "./Pages/Browse";
 // import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
+import LandingPage from "./Pages/LandingPage";
 import Products from "./Pages/Products";
 import ProductById from "./Components/ProductDetails";
 import FourOFour from "./Pages/FourOFour";
@@ -64,13 +65,14 @@ function App() {
         // filter={filter}
         />
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route
-            path="/"
-            element={<HomePage
-              searchResults={searchResults}
-              setSearchResults={setSearchResults}
-              // setFilteredProducts={setFilteredProducts} 
-              // filteredProducts={filteredProducts}
+            path="/home"
+            element={<HomePage 
+              searchResults={searchResults} 
+              setSearchResults={setSearchResults} 
+              setFilteredProducts={setFilteredProducts} 
+              filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
             // session={session}
