@@ -1,11 +1,11 @@
 // SearchResults.jsx
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function SearchResults({searchResults, sessionID}) {
+export default function SearchResults({searchResults, session}) {
   const [ cart, setCart ] = useState(
     {
       session_id: '',
@@ -17,16 +17,19 @@ export default function SearchResults({searchResults, sessionID}) {
 
 // Function to add a product to the cart
   function addToCart (product) {
-    setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "0"})
-    createCart(product);
+    setCart({...cart, session_id: session.id, product_id: product.id, quantity: "1"})
   }
+
+  useEffect(() => {
+    if (cart.session_id && cart.product_id && cart.quantity) {
+      axios.post(`${API}/cart-products`, cart)
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  }, [cart]);
+
 // function to create a new cart product
-  function createCart () {
-    axios.post(`${API}/cart-products`, cart)
-    .catch((error) => {
-      console.log(error);
-    });
-  }
 
     return (
       <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 desktop:px-[12%] xl:px-[15%] self-center tablet:gap-8">
