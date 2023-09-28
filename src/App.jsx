@@ -25,11 +25,11 @@ function App() {
   const [ searchResults, setSearchResults ] = useState([]);
   const [ filter, setFilter ] = useState("Home");
   // const [ filteredProducts, setFilteredProducts ] = useState([]);
-  const [ sessionID, setSessionID ] = useState(
+  const [ session, setSession ] = useState(
     {
       user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
       total: '0.00',
-      created_at: 'here'
+      created_at: 'today'
     }
   );
 
@@ -51,9 +51,11 @@ function App() {
     });
 
 // used to create a new shopping session
-    axios.post(`${API}/shopping-session`, sessionID )
+    axios.put(`${API}/shopping-session/1`, session )
+
+    axios.get(`${API}/shopping-session/1`)
     .then((res) => {
-      setSessionID(res.data);
+      setSession(res.data);
     })
     .catch((error) => {
       console.log(error);
@@ -79,7 +81,7 @@ function App() {
               // filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
-              sessionID={sessionID}
+              session={session}
               />}
           />
           <Route path="/login" element={<Login />} />
@@ -91,7 +93,7 @@ function App() {
           <Route path="/market" element={<Market />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<CartPage  sessionID={sessionID}/>} />
+          <Route path="/cart" element={<CartPage  session={session}/>} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       </Router>

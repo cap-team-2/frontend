@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function SearchResults({searchResults, sessionID}) {
+export default function SearchResults({searchResults, session}) {
   const [ cart, setCart ] = useState(
     {
       session_id: '',
@@ -14,7 +14,7 @@ export default function SearchResults({searchResults, sessionID}) {
   );
 // on click button function
   function addToCart (product) {
-    setCart({...cart, session_id: sessionID.id, product_id: product.id, quantity: "1"})
+    setCart({...cart, session_id: session.id, product_id: product.id, quantity: "1"})
   }
 
   useEffect(() => {

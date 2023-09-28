@@ -1,27 +1,24 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-const API = import.meta.env.VITE_APP_API_URL;
+// cart component 
 
-export default function Cart({sessionID}) {
-    const [ cartProducts, setCartProducts ] = useState([])
-
-    // gets all items in the cart
-    useEffect(() => {
-        axios.get(`${API}/cart-products`)
-        .then((res) => {
-            setCartProducts(res.data);
-        })
-    }, [])
-
-    console.log(sessionID, cartProducts)
+export default function Cart({cartProducts}) {
+    // console.log(session.id)
+    // console.log(cartProducts)
 
   return (
     <div>
         <p>My Cart</p>
         {cartProducts ?
-            cartProducts.map((productAdded) => {
+            cartProducts.map((productAdded, index) => {
                 return (
-                    <p>{productAdded.product_id}</p>
+                    <div key={productAdded.id + index} className="rounded-none border-black">
+                        <img src={productAdded.image} alt={productAdded.name}/>
+                        <p> Name: {productAdded.name}</p>
+                        <p> Description: {productAdded.description}</p>
+                        <p> Cost: {productAdded.cost}</p>
+                        <p> Quantity: {productAdded.quantity}</p>
+                        <p> Weight: {productAdded.weight} {productAdded.unit_measurement}</p>
+                        <p> </p>
+                    </div>
                 )
             })
          : null}
