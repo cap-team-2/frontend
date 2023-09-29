@@ -3,7 +3,7 @@
 
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import PantriLogo from '../assets/Pantri-logo-removebg.png';
+import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
 import {
   MdMenu,
 } from "react-icons/md";
