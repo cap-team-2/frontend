@@ -15,6 +15,7 @@ export default {
       "blue-light": "#73A2FE",
       "blue-dark": "#0E4FE6",
       space: "#1D1D4B",
+      red: "#ff0000",
     },
     fontFamily: {
       font: ["Montserrat"],
@@ -36,11 +37,12 @@ export default {
     },
     extend: {
       backgroundImage: {
-        light: "url('./src/assets/GlassWater.png')",
-        dark: "url('./src/assets/slickCarbon.png')",
+        light: "url('./src/assets/backgrounds/GlassWater.png')",
+        dark: "url('./src/assets/backgrounds/slickCarbon.png')",
         veggieBanner:
           "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
-        landingBanner: "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
+        landingBanner:
+          "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
       },
     },
   },
