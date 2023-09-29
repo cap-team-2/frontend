@@ -7,8 +7,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaFacebookF,
-  FaGithub,
-  FaT,
+  FaGithub
 } from "react-icons/fa6";
 
 
@@ -16,10 +15,10 @@ import {
 export default function LandingPage() {
     return (
       <div className="h-full w-full grid bg-green-light tablet:px-32">
-        <div className="">
+        <div className="h-full w-full bg-landingBanner bg-contain bg-no-repeat tablet:h-42 mt-16">
           {/* CTA with background image and Get Started Button */}
-          <div className="h-auto tablet:h-96 w-full bg-landingBanner bg-cover mt-20 tablet:mt-10 flex items-center flex-col py-20 relative">
-            <h1 className="text-white text-2xl font-bold text-center bg-black bg-opacity-30 font-font py-4 h-auto w-full">
+          <div className="h-auto tablet:h-96 w-full  tablet:mt-10 flex items-center flex-col py-20 relative">
+            <h1 className="text-white text-2xl font-bold text-center bg-black bg-opacity-30 ">
               From Market to <span className="text-green-light">PANTRI</span>:
               Nourish Your <span className="text-green-light">Home</span>,
               Nourish Your <span className="text-green-light">Community</span>
@@ -27,7 +26,7 @@ export default function LandingPage() {
             {/* Get Started Button */}
             <Link
               to={"/login"}
-              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-6"
+              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-6 "
             >
               Get Started
             </Link>
@@ -35,7 +34,7 @@ export default function LandingPage() {
         </div>
         {/* Info and data about food insecurity */}
         <div className="bg-green-light h-auto w-full p-4">
-          <h2 className="text-white font-extrabold text-2xl text-center pt-8">
+          <h2 className="text-white font-extrabold text-2xl text-center">
             Integer feugiat scelerisque varius morbi enim nunc
           </h2>
           <p className="text-center mt-4 p-4">
