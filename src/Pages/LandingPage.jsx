@@ -10,28 +10,26 @@ import {
   FaGithub,
   FaT,
 } from "react-icons/fa6";
-
+import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg";
 
 
 export default function LandingPage() {
     return (
-      <div className="h-full w-full grid bg-green-light tablet:px-32">
-        <div className="">
+      <div className="h-full w-full flex flex-col bg-green-light">
+        <div className=" bg-green bg-landingBanner bg-cover flex flex-col items-center h-full w-full">
           {/* CTA with background image and Get Started Button */}
-          <div className="h-auto tablet:h-96 w-full bg-landingBanner bg-cover mt-20 tablet:mt-10 flex items-center flex-col py-20 relative">
-            <h1 className="text-white text-2xl font-bold text-center bg-black bg-opacity-30 font-font py-4 h-auto w-full">
-              From Market to <span className="text-green-light">PANTRI</span>:
-              Nourish Your <span className="text-green-light">Home</span>,
-              Nourish Your <span className="text-green-light">Community</span>
-            </h1>
-            {/* Get Started Button */}
-            <Link
-              to={"/login"}
-              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-6"
-            >
-              Get Started
-            </Link>
-          </div>
+          <h1 className="text-white text-2xl font-bold text-center bg-black bg-opacity-40 h-auto w-full mt-10 z-20">
+            From Market to <span className="text-green-light">PANTRI</span>:
+            Nourish Your <span className="text-green-light">Home</span>, Nourish
+            Your <span className="text-green-light">Community</span>
+          </h1>
+          {/* Get Started Button */}
+          <Link
+            to={"/login"}
+            className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold  rounded-lg z-20"
+          >
+            Get Started
+          </Link>
         </div>
         {/* Info and data about food insecurity */}
         <div className="bg-green-light h-auto w-full p-4">
