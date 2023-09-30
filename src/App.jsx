@@ -19,7 +19,8 @@ import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
-import SellersById from "./Pages/SellersById"
+import SellersById from "./Pages/SellersById";
+import CartPage from "./Pages/CartPage";
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
               filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
-            // session={session}
+              session={session}
             />}
           />
           <Route path="/login" element={<Login />} />
@@ -86,7 +87,7 @@ function App() {
           <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
+          <Route path="/cart" element={<CartPage session={session} />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       </Router>
