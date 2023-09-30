@@ -21,12 +21,28 @@ export default function SearchResults({searchResults, session}) {
   }
 
   useEffect(() => {
-    if (cart.session_id && cart.product_id && cart.quantity) {
+    // addToCart = (id) => {
+    //   let item = this.getItem(id);
+    //   if ([...this.state.cart]) {
+    //     [...this.state.cart].map((i) => {
+    //       if (i.product_name == item.product_name) {
+    //         alert("Item is already in cart");
+    //       } else {
+    //         this.setState((this.state.cart = [...this.state.cart, item]));
+    //       }
+    //     });
+    //   } else {
+    //     this.setState((this.state.cart = [...this.state.cart, item]));
+    //   }
+    //   console.log(this.state.cart);
+    // };
+
+    // if (cart.session_id && cart.product_id && cart.quantity) {
       axios.post(`${API}/cart-products`, cart)
       .catch((error) => {
         console.log(error);
       });
-    }
+    // }
   }, [cart]);
 
 // function to create a new cart product
