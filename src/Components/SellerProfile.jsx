@@ -1,11 +1,13 @@
 // SellerProfile.jsx
 
-import React from "react";
+// import React from "react";
 import { useState } from "react";
 import SellerCard from "./sellerCard/SellerCard";
 
+// eslint-disable-next-line react/prop-types
 export default function SellerProfile({ seller }) {
-    const [bio, setBio] = useState("");
+
+    // const [bio, setBio] = useState("");
     const [pictures, setPictures] = useState([])
     const [inventory, setInventory] = useState([])
     const [newItem, setNewItem] = useState("");
@@ -116,4 +118,5 @@ export default function SellerProfile({ seller }) {
 
         </div>
     )
+
 }

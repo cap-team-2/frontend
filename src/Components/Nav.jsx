@@ -2,19 +2,17 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
 import axios from "axios";
-import PantriLogo from '../assets/Pantri-logo-removebg.png';
+import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
 import {
   MdMenu,
 } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
-import SearchBar from "./SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
 export default function Nav({ setSearchResults }) {
-  
+
   // Make an API call for all products when returning to the homepage to update the searchResults state
   const getAllProducts = () => {
     axios
@@ -26,16 +24,12 @@ export default function Nav({ setSearchResults }) {
         console.log(error);
       });
   }
-  
+
   return (
     <div className="h-auto w-full flex flex-col fixed top-0 bg-white z-50 shadow">
       <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center px-2 tablet:p-4">
-        {/* Hamburger Menu */}
-        <div className="tablet:hidden">
-          <MdMenu className="text-2xl cursor-pointer text-green-light" />
-        </div>
         {/* Logo that links back to homepage */}
-        <div className="flex items-center justify-center">
+        <div className="flex">
           <Link to={"/"} onClick={getAllProducts}>
             <img
               src={PantriLogo}
@@ -50,14 +44,26 @@ export default function Nav({ setSearchResults }) {
         {/* Nav Links */}
         <div className="flex gap-4 items-end justify-end">
           <Link
+            to={"/Home"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Home
+          </Link>
+          <Link
             to={"/market"}
             className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
           >
             Markets
           </Link>
           <Link
+            to={"/sellers"}
+            className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium hidden tablet:block "
+          >
+            Vendors
+          </Link>
+          <Link
             to={"/login"}
-            className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium "
+            className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8 hidden tablet:block font-medium "
           >
             Log In
           </Link>
@@ -68,8 +74,12 @@ export default function Nav({ setSearchResults }) {
             Get Started
           </Link>
           <Link to={"/cart"}>
-            <BsBag className="text-2xl text-green-light tablet:hover:text-green" />
+            <BsBag className="text-2xl text-green-light tablet:hover:text-green hidden tablet:block" />
           </Link>
+        </div>
+        {/* Hamburger Menu */}
+        <div className="tablet:hidden flex justify-end">
+          <MdMenu className="text-2xl cursor-pointer text-green-light" />
         </div>
       </div>
     </div>

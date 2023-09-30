@@ -54,14 +54,14 @@ export default function SearchResults({searchResults, session}) {
             const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
             return (
               <div
-                className="flex flex-col justify-between items-center p-2 gap-4 h-auto w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light tablet:shadow-xl"
+                className="flex flex-col justify-between items-center p-2 gap-4 h-auto w-auto max-w-52  border mobile:max-tablet:odd:border-l-0 mobile:max-tablet:even:border-r-0 tablet:[&:nth-child(4n)]:border-r-0 tablet:border-l-0 border-gray-light tablet:shadow-xl rounded-xl"
                 key={results.id}
               >
-                <div className="flex flex-col gap-4 shrink-0 ">
+                <div className="flex flex-col gap-4 shrink-0 w-full">
                   <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer tablet:hover:border tablet:hover:border-[transparent] peer"
+                    className="h-44 w-fit max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer tablet:hover:border tablet:hover:border-[transparent] peer"
                     onClick={() => navigate(`/products/${results.id}`)}
                   />
                   <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 peer-hover:decoration-green-light">

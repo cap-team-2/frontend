@@ -7,8 +7,9 @@ import axios from "axios"
 
 // PAGES 
 import Browse from "./Pages/Browse";
-import CartPage from "./Pages/CartPage";
+// import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
+import LandingPage from "./Pages/LandingPage";
 import Products from "./Pages/Products";
 import ProductById from "./Components/ProductDetails";
 import FourOFour from "./Pages/FourOFour";
@@ -22,10 +23,10 @@ import SellersById from "./Pages/SellersById"
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
-  const [ searchResults, setSearchResults ] = useState([]);
-  const [ filter, setFilter ] = useState("Home");
-  // const [ filteredProducts, setFilteredProducts ] = useState([]);
-  const [ session, setSession ] = useState(
+  const [searchResults, setSearchResults] = useState([]);
+  const [filter, setFilter] = useState("Home");
+  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [session, setSession] = useState(
     {
       user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
       total: '0.00',
@@ -33,47 +34,48 @@ function App() {
     }
   );
 
-  //replace with the signed in user or a guest uuid
-  // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
+  // replace with the signed in user or a guest uuid
+  const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e"
 
   // Update searchResults state to have all products App component is rendered
-  useEffect(() => {
-    // if (axios.get(`${API}/shopping-session`)) {
-    // } 
+    useEffect(() => {
+      // if (axios.get(`${API}/shopping-session`)) {
+      // } 
 
 // used to create a new shopping session
     axios.put(`${API}/shopping-session/1`, session )
 
-    axios.get(`${API}/shopping-session/1`)
-    .then((res) => {
-      setSession(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      axios.get(`${API}/shopping-session/1`)
+      .then((res) => {
+        setSession(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 
-  }, []);
+    }, []);
 
   return (
     <main className="h-full w-full font-font">
       <Router>
-        <Nav 
-        setSearchResults={setSearchResults}
+        <Nav
+          setSearchResults={setSearchResults}
         // setFilteredProducts={setFilteredProducts}
         // filter={filter}
         />
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route
-            path="/"
+            path="/home"
             element={<HomePage 
               searchResults={searchResults} 
               setSearchResults={setSearchResults} 
-              // setFilteredProducts={setFilteredProducts} 
-              // filteredProducts={filteredProducts}
+              setFilteredProducts={setFilteredProducts} 
+              filteredProducts={filteredProducts}
               filter={filter}
               setFilter={setFilter}
-              session={session}
-              />}
+            // session={session}
+            />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -84,7 +86,7 @@ function App() {
           <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<CartPage  session={session}/>} />
+          {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
           <Route path="*" element={<FourOFour />} />
         </Routes>
       </Router>
