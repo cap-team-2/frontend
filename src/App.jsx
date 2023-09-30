@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios"
 
-// PAGES
+// PAGES 
 import Browse from "./Pages/Browse";
 import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     // if (axios.get(`${API}/shopping-session`)) {
     // } 
-
 
 // used to create a new shopping session
     axios.put(`${API}/shopping-session/1`, session )
