@@ -1,7 +1,7 @@
 // LandingPage.jsx
 import { Link } from "react-router-dom";
 import landingVeggies from "/src/assets/Banners-page-sections/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg";
-
+import LandingBanner from "../assets/Banners-page-sections/pexels-erik-scheel-95425.jpg";
 
 
 export default function LandingPage() {
@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className=" bg-white pb-96  tablet:pb-[600px] xl:pb-[700px] relative">
          {/* Background Image */}
           <img src={LandingBanner} alt="Local vendor handing an apple to a customer" className="object-cover h-full w-full absolute" />
-          <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20 xl:p-0">
+          <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20 desktop:p-0">
             {/* CTA with background image and Get Started Button */}
             <div className=" bg-black bg-opacity-40 h-40 w-full flex justify-center items-center ">
               <h1 className="text-white text-[26px] tablet:text-4xl font-medium text-center py-4 mobile:w-[480px]">
