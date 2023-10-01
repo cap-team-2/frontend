@@ -60,7 +60,7 @@ function App() {
     }, []);
 
   return (
-    <main className="h-screen w-full font-font ">
+    <main className="h-screen w-full font-font flex flex-col">
       <Router>
         <Nav
           setSearchResults={setSearchResults}
@@ -81,6 +81,7 @@ function App() {
               setFilter={setFilter}
               session={session}
               searchForText={searchForText}
+              setSearchForText={setSearchForText}
             />}
           />
           <Route path="/login" element={<Login />} />

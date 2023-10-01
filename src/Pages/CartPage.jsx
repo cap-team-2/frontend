@@ -17,7 +17,7 @@ export default function CartPage({session}) {
     }, [])
 
     return (
-        <div className="h-full w-full flex flex-col pt-[136px] tablet:pt-24 display: grid grid-cols-2">
+        <div className="h-auto w-full flex flex-col pt-[136px] tablet:pt-24 desktop:grid grid-cols-2 pb-4">
             <div className="mt-5">
                 <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
             </div>
