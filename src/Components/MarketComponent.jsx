@@ -12,7 +12,7 @@ import SearchResults from "./SearchResults";
 
 const API = "https://data.ny.gov/resource/xjya-f8ng.json?";
 
-export default function MarketComponent({ searchResults, setSearchResults }) {
+export default function MarketComponent({ searchForText, setSearchForText }) {
     const [allMarkets, setAllMarkets] = useState([]);
     const [marketFilter, setMarketFilter] = useState('city');
     const [filterCounty, setFilterCounty] = useState('');
@@ -25,9 +25,9 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
 
     // When the page is rendered, all of the markets are stored in the allMarkets state variable
     useEffect(() => {
+        setSearchForText("Markets")
         axios.get(API)
             .then((res) => {
-              console.log(res.data)
                 setAllMarkets(res.data);  
             })
             .catch((error) => {
@@ -102,7 +102,7 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
           </h1>
           {/* Search Bar */}
           <div className="h-auto w-full ">
-            <SearchBar performSearch={performSearch} marketFilter={marketFilter} />
+            <SearchBar performSearch={performSearch} searchForText={searchForText} />
           </div>
           {/* Dropdown filter menu */}
           <form id="filterMarkets" className="ml-4">

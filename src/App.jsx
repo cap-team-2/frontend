@@ -22,12 +22,14 @@ import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById";
 import CartPage from "./Pages/CartPage";
+// import { search } from "requirejs";
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [filter, setFilter] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [searchForText, setSearchForText] = useState("Products");
   const [session, setSession] = useState(
     {
       user_id: '9e6ef4fb-5574-4968-912a-ea28257d708e',
@@ -78,20 +80,22 @@ function App() {
               filter={filter}
               setFilter={setFilter}
               session={session}
+              searchForText={searchForText}
             />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductById />} />
-          <Route path="/sellers" element={<Sellers />} />
+          <Route path="/sellers" element={<Sellers searchForText={searchForText} setSearchForText={setSearchForText} />} />
           <Route path="/sellers/:id" element={<SellersById />} />
           <Route
             path="/market"
             element={
               <Market
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
+                searchForText={searchForText}
+                setSearchForText={setSearchForText}
+
               />
             }
           />
