@@ -1,21 +1,12 @@
 // LandingPage.jsx
 import { Link } from "react-router-dom";
 import landingVeggies from "/src/assets/Banners-page-sections/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg";
-import {
-  FaTwitter,
-  FaYoutube,
-  FaLinkedinIn,
-  FaInstagram,
-  FaFacebookF,
-  FaGithub,
-  FaT,
-} from "react-icons/fa6";
 import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg";
 
 
 export default function LandingPage() {
     return (
-      <div className="h-full desktop:h-auto w-full flex flex-col bg-green-light pt-20 tablet:pt-16 desktop:px-36 ">
+      <div className="h-auto w-full flex flex-col bg-green-light pt-20 tablet:pt-16 desktop:px-36 ">
         <div className=" bg-white pb-96  tablet:pb-[600px] relative">
           <img src={LandingBanner} alt="Local vendor handing an apple to a customer" className="object-cover h-full w-full absolute" />
           <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20">
@@ -50,48 +41,6 @@ export default function LandingPage() {
         <div className="bg-green-light p-4">
           <img src={landingVeggies} alt="" className="p-6" />
         </div>
-        <footer className="flex flex-col items-center text-center gap-4 py-4 bg-white  h-auto w-full">
-          {/* Additional Links */}
-          <div className="flex flex-col text-sm gap-2 text-green">
-            <Link>Blog</Link>
-            <Link>Careers</Link>
-            <Link>Press</Link>
-            <Link>Support</Link>
-            <Link>Contact Us</Link>
-          </div>
-          <div className="flex flex-col text-sm gap-2 text-green">
-            <Link>Privacy Policy</Link>
-            <Link>Cookie Policy</Link>
-            <Link>Terms & Conditions</Link>
-            <Link>Interest Based Ads</Link>
-            <Link>Promotion and Referral Terms</Link>
-          </div>
-          {/* Social Media Links */}
-          <div className="flex gap-6 text-xl mt-4 text-green-light">
-            <Link to={"https://facebook.com"}>
-              <FaFacebookF />
-            </Link>
-            <Link to={"https://github.com/cap-team-2"}>
-              <FaGithub />
-            </Link>
-            <Link to={"https://instagram.com"}>
-              <FaInstagram />
-            </Link>
-            <Link to={"https://linkedin.com"}>
-              <FaLinkedinIn />
-            </Link>
-            <Link to={"https://twitter.com"}>
-              <FaTwitter />
-            </Link>
-            <Link to={"https://youtube.com"}>
-              <FaYoutube />
-            </Link>
-          </div>
-          {/* Copyright tag */}
-          <p className="mt-2 p-4 text-xs">
-            Copyright © 2023 PANTRI. All Rights Reserved.
-          </p>
-        </footer>
       </div>
     );
 }

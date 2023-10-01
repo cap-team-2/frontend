@@ -1,9 +1,9 @@
 // App.jsx
 
 // DEPENDENCIES
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios"
+import axios from "axios";
 
 // PAGES
 import Browse from "./Pages/Browse";
@@ -12,7 +12,7 @@ import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import Products from "./Pages/Products";
 import ProductById from "./Components/ProductDetails";
-// import Footer from "./Components/Footer.jsx";
+import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -58,26 +58,28 @@ function App() {
     }, []);
 
   return (
-    <main className="h-full w-full font-font">
+    <main className="h-screen w-full font-font">
       <Router>
         <Nav
           setSearchResults={setSearchResults}
-        // setFilteredProducts={setFilteredProducts}
-        // filter={filter}
+          // setFilteredProducts={setFilteredProducts}
+          // filter={filter}
         />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/home"
-            element={<HomePage 
-              searchResults={searchResults} 
-              setSearchResults={setSearchResults} 
-              setFilteredProducts={setFilteredProducts} 
-              filteredProducts={filteredProducts}
-              filter={filter}
-              setFilter={setFilter}
-            // session={session}
-            />}
+            element={
+              <HomePage
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+                setFilteredProducts={setFilteredProducts}
+                filteredProducts={filteredProducts}
+                filter={filter}
+                setFilter={setFilter}
+                // session={session}
+              />
+            }
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -85,13 +87,21 @@ function App() {
           <Route path="/products/:id" element={<ProductById />} />
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/sellers/:id" element={<SellersById />} />
-          <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
+          <Route
+            path="/market"
+            element={
+              <Market
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+              />
+            }
+          />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
           {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
           <Route path="*" element={<FourOFour />} />
         </Routes>
-      {/* <Footer /> */}
+      <Footer />
       </Router>
     </main>
   );

@@ -8,6 +8,7 @@ import {
   MdMenu,
 } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
+
 const API = import.meta.env.VITE_APP_API_URL;
 
 
