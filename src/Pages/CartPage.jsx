@@ -19,7 +19,7 @@ export default function CartPage({session}) {
     return (
         <div className="h-full w-full flex flex-col pt-[136px] tablet:pt-24 display: grid grid-cols-2">
             <div className="mt-5">
-                <Cart cartProducts={cartProducts} />
+                <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
             </div>
             <div className="mt-5 w-96 ">
                 <Summary cartProducts={cartProducts}/>

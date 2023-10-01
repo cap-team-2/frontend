@@ -1,7 +1,7 @@
 // LandingPage.jsx
 import { Link } from "react-router-dom";
 import landingVeggies from "/src/assets/Banners-page-sections/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg";
-import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg";
+
 
 
 export default function LandingPage() {
@@ -23,6 +23,7 @@ export default function LandingPage() {
             <Link
               to={"/login"}
               className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
+
             >
               Get Started
             </Link>
@@ -30,7 +31,7 @@ export default function LandingPage() {
         </div>
         {/* Info and data about food insecurity */}
         <div className="bg-green-light h-auto w-full p-4">
-          <h2 className="text-white font-extrabold text-2xl text-center pt-8">
+          <h2 className="text-white font-extrabold text-2xl text-center">
             Integer feugiat scelerisque varius morbi enim nunc
           </h2>
           <p className="text-center mt-4 p-4">

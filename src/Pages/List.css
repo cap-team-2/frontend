@@ -1,0 +1,28 @@
+.list {
+    width: 600px;
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {text-align: center;}
+.list__items {
+    margin-top: 20px;
+
+}
+.list__item {
+    display:flex;
+    margin: 10px 0;
+
+}
+.list__item input {
+    margin-right: 20px;
+    transform: scale(1.5);
+}
+
+.list__item-qty{
+    margin-left: auto;
+}
+.list__item-delete {
+    margin-left: 20px;
+}

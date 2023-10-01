@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// PAGES
+// PAGES 
 import Browse from "./Pages/Browse";
 // import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
@@ -20,7 +20,8 @@ import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
-import SellersById from "./Pages/SellersById"
+import SellersById from "./Pages/SellersById";
+import CartPage from "./Pages/CartPage";
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
@@ -43,9 +44,8 @@ function App() {
       // if (axios.get(`${API}/shopping-session`)) {
       // } 
 
-
-  // used to create a new shopping session
-      axios.put(`${API}/shopping-session/1`, session )
+// used to create a new shopping session
+    axios.put(`${API}/shopping-session/1`, session )
 
       axios.get(`${API}/shopping-session/1`)
       .then((res) => {
@@ -69,17 +69,16 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/home"
-            element={
-              <HomePage
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                setFilteredProducts={setFilteredProducts}
-                filteredProducts={filteredProducts}
-                filter={filter}
-                setFilter={setFilter}
-                // session={session}
-              />
-            }
+
+            element={<HomePage 
+              searchResults={searchResults} 
+              setSearchResults={setSearchResults} 
+              setFilteredProducts={setFilteredProducts} 
+              filteredProducts={filteredProducts}
+              filter={filter}
+              setFilter={setFilter}
+              session={session}
+            />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -98,7 +97,7 @@ function App() {
           />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
+          <Route path="/cart" element={<CartPage session={session} />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       <Footer />

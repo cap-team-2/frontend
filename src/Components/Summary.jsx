@@ -17,7 +17,7 @@ export default function Summary({cartProducts}) {
             return 0;
         }
     }
-    console.log(getTotal(), total)
+    
   return (
     <div>
         Summary
