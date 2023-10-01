@@ -20,19 +20,24 @@ export default function Sellers() {
   }, []);
 
   return (
-    <div className="mt-28 flex flex-col">
+    <div className="pt-32 flex flex-col gap-4 xl:px-32">
+      <h1 className="text-center text-4xl font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+        Vendors
+      </h1>
       <SearchBar />
       <div className="flex flex-col tablet:grid tablet:grid-cols-2 gap-y-16">
-
-        {sellers ? sellers.map((seller) => {
-          return (
-            <div key={seller.id} className="">
-              <SellerCard seller={seller} />
-            </div>
-          )
-        }) : <p>here</p>}
+        {sellers ? (
+          sellers.map((seller) => {
+            return (
+              <div key={seller.id} className="">
+                <SellerCard seller={seller} />
+              </div>
+            );
+          })
+        ) : (
+          <p>here</p>
+        )}
       </div>
-
     </div>
   );
 }

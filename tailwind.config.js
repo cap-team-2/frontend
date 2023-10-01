@@ -45,6 +45,7 @@ export default {
           "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
       },
     },
+  
   },
   plugins: [],
 };

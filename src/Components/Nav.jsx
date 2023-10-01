@@ -8,6 +8,7 @@ import {
   MdMenu,
 } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
+
 const API = import.meta.env.VITE_APP_API_URL;
 
 
@@ -26,7 +27,7 @@ export default function Nav({ setSearchResults }) {
   }
 
   return (
-    <div className="h-auto w-full flex flex-col fixed top-0 bg-white z-50 shadow">
+    <div className="h-auto w-full flex flex-col fixed bg-white z-50 shadow ">
       <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center px-2 tablet:p-4">
         {/* Logo that links back to homepage */}
         <div className="flex">
