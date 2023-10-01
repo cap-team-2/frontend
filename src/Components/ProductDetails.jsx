@@ -27,21 +27,27 @@ export default function ProductById() {
   
 
     return (
-      <div className="h-full w-full">
+      <div className="h-full w-full flex justify-center">
         {Object.keys(product).length !== 0 ? (
-          <div className="h-screen w-full flex flex-col justify-between px-4 pb-8 pt-32 gap-8 ">
+          <div className="h-screen w-full flex flex-col justify-between px-4 pb-20 pt-24 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
             {/* Image div */}
-            <div className="p-4">
+            <div className="p-4 flex flex-col items-center gap-4 flex-shrink-0">
               <img
                 src={product.image}
                 alt={product.description}
-                className="h-auto tablet:h-96 shadow-2xl rounded-xl"
+                className="h-auto w-auto tablet:h-96 shadow-2xl rounded-xl" 
               />
+              <div className="flex gap-4 ">
+                <p className="text-green">●</p>
+                <p className="text-gray">●</p>
+                <p className="text-gray">●</p>
+                <p className="text-gray">●</p>
+              </div>
             </div>
             {/* Name, stock, and description */}
-            <div>
-              <h2 className="text-2xl font-bold">{capitalize(product.name)}</h2>
+            <div className="flex flex-col gap-4  tablet:pt-4 tablet:gap-20 h-full w-full tablet:max-w-md">
               <div className="flex flex-col">
+              <h2 className="text-2xl font-bold">{capitalize(product.name)}</h2>
                 <p
                   className={`${
                     product.stock > 10
@@ -62,29 +68,32 @@ export default function ProductById() {
                   <p className="text-[gray] text-sm">{product.description}</p>
                 </div>
               </div>
-            </div>
-            {/* Price and Quantity */}
-            <div className="flex flex-col">
-              <div className="flex mb-2 justify-between">
-                <p className="text-2xl font-semibold relative">
-                  <span className="text-3xl">
-                    ${`${product.cost.split(".")[0]}`}
-                  </span>
-                  <span className="text-xs absolute top-1 ">
-                    {product.cost.split(".")[1]}
-                  </span>
-                  <span className="pl-4 text-[gray] text-sm font-normal">
-                    ({costPerUnitWeight}/{product.unit_measurement})
-                  </span>
-                </p>
-                <button className="bg-gray-light text-sm h-8 w-20 rounded">
-                  Qty: {product.quantity}
-                </button>
+            
+              {/* Price and Quantity */}
+              <div className="flex flex-col gap-4 border-t border-gray pt-4">
+                <div className="flex  justify-between">
+                  <p className="text-2xl font-semibold relative">
+                    <span className="text-3xl">
+                      ${`${product.cost.split(".")[0]}`}
+                    </span>
+                    <span className="text-xs absolute top-1 ">
+                      {product.cost.split(".")[1]}
+                    </span>
+                    <span className="pl-4 text-[gray] text-sm font-normal">
+                      ({costPerUnitWeight}/{product.unit_measurement})
+                    </span>
+                  </p>
+                </div>
+                {/* Add to cart button */}
+                <div className="flex justify-between tablet:justify-start gap-20">
+                  <button className="bg-gray-light text-sm h-8 w-20 rounded">
+                    Qty: {product.quantity}
+                  </button>
+                  <button className="bg-green-light rounded text-xs font-semibold text-white h-8 w-40">
+                    Add to cart
+                  </button>
+                </div>
               </div>
-              {/* Add to cart button */}
-              <button className="bg-green-light rounded text-xs font-semibold text-white h-8 w-full">
-                Add to cart
-              </button>
             </div>
           </div>
         ) : (
