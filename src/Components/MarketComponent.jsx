@@ -104,10 +104,12 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
           <h1 className="text-center text-4xl  font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
             <span>MARKETS</span>
           </h1>
-          {/* Search Bar */}
-          <div className="h-auto w-full relative ">
+          <div className="h-auto w-full ">
             {/* Dropdown filter menu */}
-            <form id="filterMarkets" className="ml-4 text-center  tablet:absolute top-2">
+            <form
+              id="filterMarkets"
+              className="ml-4 text-center"
+            >
               <label htmlFor="marketFilter" className="text-sm mr-2">
                 Filter Search By:
               </label>
@@ -117,32 +119,28 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
                 id="marketFilter"
                 defaultValue={"city"}
               >
-                <option id="City" value="city">City</option>
-                <option id="Name" value="market_name">Name</option>
-                <option id="County" value="county">County</option>
-                <option id="Zip Code" value="zip">Zip Code</option>
+                <option id="City" value="city">
+                  City
+                </option>
+                <option id="Name" value="market_name">
+                  Name
+                </option>
+                <option id="County" value="county">
+                  County
+                </option>
+                <option id="Zip Code" value="zip">
+                  Zip Code
+                </option>
               </select>
             </form>
+            {/* Search Bar */}
             <SearchBar
               performSearch={performSearch}
               searchForText={searchForText}
             />
           </div>
 
-          <div className=" grid tablet:grid-cols-3 desktop:grid-cols-4 gap-6 mt-4 mx-4">
-            {/*  all markets */}
-            {filteredMarkets.length > 0 &&
-              !filterZip &&
-              !filterCounty &&
-              !filterCity &&
-              filteredMarkets.map((market, index) => (
-                <MarketCard
-                  key={index}
-                  market={market}
-                  showDetails={(e) => handleShowDetails(e, market)}
-                />
-              ))}
-
+          <div className=" grid tablet:grid-cols-3 desktop:grid-cols-4 gap-10 laptop:gap-20 mt-4 mx-14 tablet:mx-4">
             {/* filtered markets */}
             {filteredMarkets.length > 0 &&
               filteredMarkets.map((market, index) => (
@@ -155,7 +153,10 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
 
             {/* no results */}
             {filteredMarkets.length === 0 && (
-              <div className="self-center w-full text-lg text-center"> No Results Found for "{query}"</div>
+              <div className="self-center w-full text-lg text-center">
+                {" "}
+                No Results Found for "{query}"
+              </div>
             )}
           </div>
         </div>
