@@ -21,11 +21,12 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
     const [filteredMarkets, setFilteredMarkets] = useState([]);
     const [selectedMarket, setSelectedMarket] = useState(null);
     const [open, setOpen] = useState(false);
+    const [query, setQuery] = useState('');
     const selectionRef = useRef();
 
     // When the page is rendered, all of the markets are stored in the allMarkets state variable
     useEffect(() => {
-        setSearchForText("Markets")
+        setSearchForText(`Markets by City`)
         axios.get(API)
             .then((res) => {
                 setAllMarkets(res.data);  
@@ -37,7 +38,7 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
 
     // Function to filter through allMarkets based on user search
     const performSearch = (searchQuery) => {
-      console.log(marketFilter)
+      setQuery(searchQuery)
       setFilteredMarkets(
         allMarkets.filter(
           (market) =>
@@ -83,7 +84,10 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
 
     // Function to handle search filter options
     const handleFilterChange = (selection) => {
-      setMarketFilter(selection);
+      const selectedValue = selection.value; 
+      const selectedId = selection.options[selection.selectedIndex].id; 
+      setMarketFilter(selectedValue);
+      setSearchForText(`Markets by ${selectedId}`);
     };
    
    // improve styling of filtering  component
@@ -100,43 +104,43 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
           <h1 className="text-center text-4xl  font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
             <span>MARKETS</span>
           </h1>
-          {/* Search Bar */}
           <div className="h-auto w-full ">
-            <SearchBar performSearch={performSearch} searchForText={searchForText} />
-          </div>
-          {/* Dropdown filter menu */}
-          <form id="filterMarkets" className="ml-4">
-            <label htmlFor="marketFilter" className="justify-center mr-4">
-              Filter Search By:
-            </label>
-            <select
-              onChange={(e) => handleFilterChange(e.target.value)}
-              className="h-auto w-auto self-center border mt-2 border-gray shadow cursor-pointer z-50"
-              id="marketFilter"
-              defaultValue={"market_name"}
+            {/* Dropdown filter menu */}
+            <form
+              id="filterMarkets"
+              className="ml-4 text-center"
             >
-              <option value="city">City</option>
-              <option value="market_name">
-                Name
-              </option>
-              <option value="county">County</option>
-              <option value="zip">Zip Code</option>
-            </select>
-          </form>
-          <div className=" grid tablet:grid-cols-3 desktop:grid-cols-4 gap-6 mt-4 mx-4">
-            {/*  all markets */}
-            {filteredMarkets.length > 0 &&
-              !filterZip &&
-              !filterCounty &&
-              !filterCity &&
-              filteredMarkets.map((market, index) => (
-                <MarketCard
-                  key={index}
-                  market={market}
-                  showDetails={(e) => handleShowDetails(e, market)}
-                />
-              ))}
+              <label htmlFor="marketFilter" className="text-sm mr-2">
+                Filter Search By:
+              </label>
+              <select
+                onChange={(e) => handleFilterChange(e.target)}
+                className="h-auto w-auto self-center border mt-2 border-gray shadow cursor-pointer z-50"
+                id="marketFilter"
+                defaultValue={"city"}
+              >
+                <option id="City" value="city">
+                  City
+                </option>
+                <option id="Name" value="market_name">
+                  Name
+                </option>
+                <option id="County" value="county">
+                  County
+                </option>
+                <option id="Zip Code" value="zip">
+                  Zip Code
+                </option>
+              </select>
+            </form>
+            {/* Search Bar */}
+            <SearchBar
+              performSearch={performSearch}
+              searchForText={searchForText}
+            />
+          </div>
 
+          <div className=" grid tablet:grid-cols-3 desktop:grid-cols-4 gap-10 laptop:gap-20 mt-4 mx-14 tablet:mx-4">
             {/* filtered markets */}
             {filteredMarkets.length > 0 &&
               filteredMarkets.map((market, index) => (
@@ -148,8 +152,12 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
               ))}
 
             {/* no results */}
-            {filteredMarkets.length === 0 && <div className="self-center w-full"> No Results Found</div>}
-          
+            {filteredMarkets.length === 0 && (
+              <div className="self-center w-full text-lg text-center">
+                {" "}
+                No Results Found for "{query}"
+              </div>
+            )}
           </div>
         </div>
 

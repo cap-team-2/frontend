@@ -60,7 +60,7 @@ function App() {
     }, []);
 
   return (
-    <main className="h-screen w-full font-font">
+    <main className="h-screen w-full font-font ">
       <Router>
         <Nav
           setSearchResults={setSearchResults}

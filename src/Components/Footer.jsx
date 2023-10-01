@@ -13,7 +13,7 @@ export default function Footer() {
 
     return (
         
-      <footer className="flex flex-col items-center text-center gap-4 py-4 bg-white h-auto w-full">
+      <footer className="flex flex-col items-center text-center gap-4 py-4 bg-white h-auto w-full border-t border-green-light">
         {/* Additional Links */}
         <div className="flex flex-col text-sm gap-2 text-green">
           <Link>Blog</Link>

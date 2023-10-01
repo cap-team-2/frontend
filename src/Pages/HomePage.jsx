@@ -34,8 +34,8 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
   }
 
   return (
-    <div className="h-full w-full flex flex-col tablet:pt-24">
-      <div className="flex flex-col fixed top-20 tablet:top-16 w-full bg-white z-40 tablet:pt-2">
+    <div className="h-auto w-full flex flex-col tablet:pt-24 pb-4 ">
+      <div className="flex flex-col fixed top-20 tablet:top-16 w-full bg-white z-40 pt-2">
         {/* Search Bar */}
         <SearchBar setSearchResults={setSearchResults} performSearch={performSearch} searchForText={searchForText} />
         <div className="flex overflow-x-auto scroll-smooth tablet:justify-center shadow-md tablet:pt-2">
@@ -47,7 +47,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
           />
         </div>
       </div>
-      <div className="mt-56 tablet:mt-32">
+      <div className="mt-56 tablet:mt-32 desktop:px-32 pt-4 desktop:pt-10">
         {/* Products */}
         <SearchResults
           session={session}

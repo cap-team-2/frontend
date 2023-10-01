@@ -7,7 +7,7 @@ import "./SellerCard.css";
 // eslint-disable-next-line react/prop-types
 export default function SellerCard({ seller }) {
     return (
-        <div className="h-full w-full px-8 mt-8">
+        <div className="h-auto w-full px-8 mt-8">
             <div className="border rounded-xl border-gray shadow-2xl p-4 h-full w-full flex flex-col justify-between">
                 <div className="p-4">
                     <img src={seller.image} alt={`Image of ${seller.first_name}`} className=" h-52 rounded-lg" />
