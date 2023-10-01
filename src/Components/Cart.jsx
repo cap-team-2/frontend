@@ -51,7 +51,7 @@ export default function Cart({cartProducts, setCartProducts}) {
                         <div className="col-span-1">
                             <img className="" src={productAdded.image} alt={productAdded.name}/>
                         </div>
-                        <div className="col-span-2 display: grid tablet: grid-cols-2">
+                        <div className="display: grid tablet:grid-cols-2">
                             <div>
                                 <p> Name: {productAdded.name}</p>
                                 <p> Description: {productAdded.description}</p>
