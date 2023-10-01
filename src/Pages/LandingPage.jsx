@@ -15,21 +15,25 @@ import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-
 
 export default function LandingPage() {
     return (
-      <div className="h-full w-full flex flex-col bg-green-light">
-        <div className=" bg-green bg-landingBanner bg-cover flex flex-col items-center h-full w-full">
-          {/* CTA with background image and Get Started Button */}
-          <h1 className="text-white text-2xl font-bold text-center bg-black bg-opacity-40 h-auto w-full mt-10 z-20">
-            From Market to <span className="text-green-light">PANTRI</span>:
-            Nourish Your <span className="text-green-light">Home</span>, Nourish
-            Your <span className="text-green-light">Community</span>
-          </h1>
-          {/* Get Started Button */}
-          <Link
-            to={"/login"}
-            className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold  rounded-lg z-20"
-          >
-            Get Started
-          </Link>
+      <div className="h-full w-full flex flex-col bg-green-light pt-20 tablet:pt-16">
+        <div className=" bg-white pb-60 tablet:pb-72 relative">
+          <div className="flex flex-col items-center justify-end h-full w-full gap-4 absolute pb-4 tablet:pt-20">
+            {/* CTA with background image and Get Started Button */}
+            <div className=" bg-black bg-opacity-40 h-auto w-full flex justify-center">
+              <h1 className="text-white text-2xl tablet:text-3xl font-bold text-center py-4 mobile:w-[480px]">
+                From Market to <span className="text-green-light">PANTRI</span>:
+                Nourish Your <span className="text-green-light">Home</span>,
+                Nourish Your <span className="text-green-light">Community</span>
+              </h1>
+            </div>
+            {/* Get Started Button */}
+            <Link
+              to={"/login"}
+              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
         {/* Info and data about food insecurity */}
         <div className="bg-green-light h-auto w-full p-4">
