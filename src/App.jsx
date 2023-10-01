@@ -12,6 +12,7 @@ import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import Products from "./Pages/Products";
 import ProductById from "./Components/ProductDetails";
+// import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -90,6 +91,7 @@ function App() {
           {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
           <Route path="*" element={<FourOFour />} />
         </Routes>
+      {/* <Footer /> */}
       </Router>
     </main>
   );

@@ -15,12 +15,13 @@ import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-
 
 export default function LandingPage() {
     return (
-      <div className="h-full w-full flex flex-col bg-green-light pt-20 tablet:pt-16">
-        <div className=" bg-white pb-60 tablet:pb-72 relative">
-          <div className="flex flex-col items-center justify-end h-full w-full gap-4 absolute pb-4 tablet:pt-20">
+      <div className="h-full desktop:h-auto w-full flex flex-col bg-green-light pt-20 tablet:pt-16 desktop:px-36 ">
+        <div className=" bg-white pb-96  tablet:pb-[600px] relative">
+          <img src={LandingBanner} alt="Local vendor handing an apple to a customer" className="object-cover h-full w-full absolute" />
+          <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20">
             {/* CTA with background image and Get Started Button */}
-            <div className=" bg-black bg-opacity-40 h-auto w-full flex justify-center">
-              <h1 className="text-white text-2xl tablet:text-3xl font-bold text-center py-4 mobile:w-[480px]">
+            <div className=" bg-black bg-opacity-40 h-40 w-full flex justify-center items-center ">
+              <h1 className="text-white text-[26px] tablet:text-4xl font-medium text-center py-4 mobile:w-[480px]">
                 From Market to <span className="text-green-light">PANTRI</span>:
                 Nourish Your <span className="text-green-light">Home</span>,
                 Nourish Your <span className="text-green-light">Community</span>
@@ -29,7 +30,7 @@ export default function LandingPage() {
             {/* Get Started Button */}
             <Link
               to={"/login"}
-              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg"
+              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
             >
               Get Started
             </Link>
@@ -49,7 +50,7 @@ export default function LandingPage() {
         <div className="bg-green-light p-4">
           <img src={landingVeggies} alt="" className="p-6" />
         </div>
-        <footer className="flex flex-col items-center text-center gap-4 py-4">
+        <footer className="flex flex-col items-center text-center gap-4 py-4 bg-white  h-auto w-full">
           {/* Additional Links */}
           <div className="flex flex-col text-sm gap-2 text-green">
             <Link>Blog</Link>
