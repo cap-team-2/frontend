@@ -7,9 +7,10 @@ import LandingBanner from "/src/assets/Banners-page-sections/pexels-erik-scheel-
 export default function LandingPage() {
     return (
       <div className="h-auto w-full flex flex-col bg-green-light pt-20 tablet:pt-16 desktop:px-36 ">
-        <div className=" bg-white pb-96  tablet:pb-[600px] relative">
+        <div className=" bg-white pb-96  tablet:pb-[600px] xl:pb-[700px] relative">
+         {/* Background Image */}
           <img src={LandingBanner} alt="Local vendor handing an apple to a customer" className="object-cover h-full w-full absolute" />
-          <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20">
+          <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20 xl:p-0">
             {/* CTA with background image and Get Started Button */}
             <div className=" bg-black bg-opacity-40 h-40 w-full flex justify-center items-center ">
               <h1 className="text-white text-[26px] tablet:text-4xl font-medium text-center py-4 mobile:w-[480px]">

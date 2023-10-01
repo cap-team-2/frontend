@@ -95,9 +95,9 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
     // lazy load cards or paginate cards / or simply filter out non-nyc markets before rendering 
 
     return (
-      <div className="flex flex-col mt-10 items-center">
-        <div className="w-[1000px] flex flex-col">
-          <h1 className="text-center text-4xl mt-10 font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+      <div className="flex flex-col pt-32 items-center">
+        <div className="w-full flex flex-col gap-4">
+          <h1 className="text-center text-4xl  font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
             <span>MARKETS</span>
           </h1>
           {/* Search Bar */}
@@ -123,7 +123,7 @@ export default function MarketComponent({ searchResults, setSearchResults }) {
               <option value="zip">Zip Code</option>
             </select>
           </form>
-          <div className=" grid tablet:grid-cols-3 gap-6 mt-4 mx-4">
+          <div className=" grid tablet:grid-cols-3 desktop:grid-cols-4 gap-6 mt-4 mx-4">
             {/*  all markets */}
             {filteredMarkets.length > 0 &&
               !filterZip &&
