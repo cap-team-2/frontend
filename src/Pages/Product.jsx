@@ -4,7 +4,7 @@ import ProductDetails from "../Components/ProductDetails";
 
 export default function Product() {
     return (
-        <div className="h-full w-full">
+        <div className="h-auto w-full">
             <ProductDetails />
         </div>
     )

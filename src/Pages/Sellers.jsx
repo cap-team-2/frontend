@@ -5,10 +5,11 @@ import SellerCard from "../Components/sellerCard/sellerCard";
 import SearchBar from "../Components/SearchBar.jsx";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function Sellers() {
+export default function Sellers({ searchForText, setSearchForText }) {
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
+    setSearchForText("Vendors")
     axios
       .get(`${API}/sellers`)
       .then((res) => {
@@ -20,19 +21,24 @@ export default function Sellers() {
   }, []);
 
   return (
-    <div className="mt-28 flex flex-col">
-      <SearchBar />
-      <div className="flex flex-col tablet:grid tablet:grid-cols-2 gap-y-16">
-
-        {sellers ? sellers.map((seller) => {
-          return (
-            <div key={seller.id} className="">
-              <SellerCard seller={seller} />
-            </div>
-          )
-        }) : <p>here</p>}
+    <div className="h-auto pt-24 flex flex-col gap-4 xl:px-32 pb-4">
+      <h1 className="text-center text-4xl font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+        VENDORS
+      </h1>
+      <SearchBar searchForText={searchForText}/>
+      <div className="tablet:grid tablet:grid-cols-2 gap-8 laptop:grid-cols-3 pt-4 px-16 ">
+        {sellers ? (
+          sellers.map((seller) => {
+            return (
+              <div key={seller.id} className="flex mb-8 justify-center">
+                <SellerCard seller={seller} />
+              </div>
+            );
+          })
+        ) : (
+          <p>here</p>
+        )}
       </div>
-
     </div>
   );
 }
