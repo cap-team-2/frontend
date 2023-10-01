@@ -8,9 +8,10 @@ import SearchBar from "../Components/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function HomePage({ searchResults, setSearchResults, setFilter, filter, filteredProducts, session, searchForText }) {
+export default function HomePage({ searchResults, setSearchResults, setFilter, filter, filteredProducts, session, searchForText, setSearchForText }) {
   // Make an API call for all products when returning to the homepage to update the searchResults state
   useEffect(() => {
+    setSearchForText("Products");
     axios
       .get(`${API}/products`)
       .then((res) => {
@@ -47,7 +48,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
           />
         </div>
       </div>
-      <div className="mt-56 tablet:mt-32 desktop:px-32 pt-4 desktop:pt-10">
+      <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 ">
         {/* Products */}
         <SearchResults
           session={session}

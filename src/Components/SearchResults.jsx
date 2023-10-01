@@ -48,7 +48,7 @@ export default function SearchResults({searchResults, session}) {
 // function to create a new cart product
 
     return (
-      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4  self-center gap-4 tablet:gap-8 desktop:gap-20">
+      <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4  self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20">
         {searchResults.length ? (
           searchResults.map((results) => {
             const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
