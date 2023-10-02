@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
-import HamburgerMenu from './HamburgerMenu';
 import NavLinks from './NavLinks';
-
+import { RxHamburgerMenu } from "react-icons/rx";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
@@ -42,13 +41,23 @@ export default function Nav({ setSearchResults }) {
             </p>
           </Link>
         </div>
-        <div className='flex items-end'>
+        <div className="flex items-end">
           {/* Nav Links */}
           <div className="hidden laptop:block">
             <NavLinks />
           </div>
-          {/* Hamburger Menu */}
-          <HamburgerMenu onClick={() => setIsOpen(!isOpen)} />
+          <div>
+            <RxHamburgerMenu
+              className="text-green-light text-2xl cursor-pointer hover:text-green z-50"
+              onClick={() => setIsOpen(!isOpen)}
+            />
+            {/* Menu Modal */}
+            {isOpen && (
+              <div className="h-screen w-full">
+                <NavLinks />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
