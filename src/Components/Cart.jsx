@@ -12,6 +12,9 @@ export default function Cart({cartProducts, setCartProducts}) {
     // })
     // console.log(session.id)
     // console.log(cartProducts)
+    function itemClick () {
+        console.log()
+    } 
 
     function updateInput (event, cart_id) {
         console.log(event.target.value)
@@ -62,24 +65,28 @@ export default function Cart({cartProducts, setCartProducts}) {
 
   return (
     <div className="w-full tablet:pl-10 pl-4 pr-10 py-8 overflow-y-auto overflow-x-hidden mobile:h-full tablet:h-screen scroll-smooth">
-        <p className="text-2xl font-bold">My Cart</p>
+        <p className="text-2xl font-bold border-b border-gray pb-5">My Cart</p>
         {cartProducts ? 
             cartProducts.map((productAdded, index) => {
                 return (
-                    <div key={productAdded.id + index} className="mobile:grid-cols-1 tablet:grid-cols-1 py-2 grid laptop:grid-cols-3 gap-4">
+                    <div key={productAdded.id + index} className="mobile:grid-cols-1 tablet:grid-cols-1 py-5 grid laptop:grid-cols-3 gap-4 border-b border-gray">
                         <div className="col-span-1">
                             <img className="" src={productAdded.image} alt={productAdded.name}/>
                         </div>
                         <div className="grid grid-cols-2 col-span-2">
-                            <div>
-                                <p> Name: {productAdded.name}</p>
-                                <p> Description: {productAdded.description}</p>
-                                <p> Cost: ${productAdded.cost}</p>
-                                <p> Weight: {productAdded.weight} {productAdded.unit_measurement}</p>
+                            <div className="text-xl font-medium">
+                                <p>{productAdded.name}</p>
+                                <p>${productAdded.cost}</p>
+                                <p 
+                                className="mobile:pt-2 tablet:pt-10 underline"
+                                onClick={()=>itemClick()}
+                                >View Details</p>
                             </div>
                             <div className="grid grid-cols-3 justify-self-center">
-                            <button className="text-right"
-                            onClick={()=>updateQuantity( productAdded, productAdded.quantity - 1)}>{"<"}</button>
+                            <button 
+                                className="text-right"
+                                onClick={()=>updateQuantity( productAdded, productAdded.quantity - 1)}
+                            >{"<"}</button>
                                 <form className="flex items-center">
                                     <input
                                     className="placeholder-black w-full text-center"
@@ -88,9 +95,14 @@ export default function Cart({cartProducts, setCartProducts}) {
                                     placeholder={productAdded.quantity}
                                     />                                    
                                 </form>
-                                <button className="text-left"
-                                onClick={()=>updateQuantity( productAdded, parseInt(productAdded.quantity) + 1)}>{">"}</button>
-                                <button onClick={()=>deleteProductFromCart(productAdded.cart_id)}>Remove</button>
+                                <button 
+                                    className="text-left"
+                                    onClick={()=>updateQuantity( productAdded, parseInt(productAdded.quantity) + 1)}
+                                >{">"}</button>
+                                <button 
+                                    onClick={()=>deleteProductFromCart(productAdded.cart_id)}
+                                    className="col-start-2 text-red"
+                                >Remove</button>
                             </div>
                         </div>
                     </div>
@@ -100,27 +112,3 @@ export default function Cart({cartProducts, setCartProducts}) {
     </div>
   )
 }
-
-/*
-<div>
-    <p class="text-4xl font-black leading-9 text-gray-800">Summary</p>
-    <div class="flex items-center justify-between pt-16">
-        <p class="text-base leading-none text-gray-800">Subtotal</p>
-        <p class="text-base leading-none text-gray-800">$9,000</p>
-    </div>
-    <div class="flex items-center justify-between pt-5">
-        <p class="text-base leading-none text-gray-800">Shipping</p>
-        <p class="text-base leading-none text-gray-800">$30</p>
-    </div>
-    <div class="flex items-center justify-between pt-5">
-        <p class="text-base leading-none text-gray-800">Tax</p>
-        <p class="text-base leading-none text-gray-800">$35</p>
-    </div>
-</div>
-<div>
-    <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-        <p class="text-2xl leading-normal text-gray-800">Total</p>
-        <p class="text-2xl font-bold leading-normal text-right text-gray-800">$10,240</p>
-    </div>
-</div>
-*/

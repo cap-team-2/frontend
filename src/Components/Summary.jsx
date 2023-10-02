@@ -39,7 +39,7 @@ export default function Summary({cartProducts}) {
             <p className='border-t mt-4'>Total:</p>
             <p className="text-right border-t mt-4">${(parseFloat((total).toFixed(2)) + parseFloat((total / 8.875).toFixed(2))).toFixed(2)}</p>
         </div>
-        <button>Checkout</button>
+        <button className="text-green-light">Checkout</button>
     </div>
   )
 }
