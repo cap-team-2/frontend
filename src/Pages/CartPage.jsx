@@ -17,11 +17,11 @@ export default function CartPage({session}) {
     }, [])
 
     return (
-        <div className="h-full w-full flex flex-col tablet:pt-16 display: grid tablet:grid-cols-3 ">
+        <div className="h-auto w-full tablet:pt-16 grid tablet:grid-cols-3 mobile:py-16">
             <div className="mt-1 col-span-2">
                 <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
             </div>
-            <div className="mt-5 w-96 ">
+            <div className="mt-1 mobile:col-span-2 tablet:col-span-1">
                 <Summary cartProducts={cartProducts}/>
             </div>
         </div>
