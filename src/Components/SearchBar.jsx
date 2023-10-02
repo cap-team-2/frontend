@@ -25,7 +25,7 @@ export default function SearchBar({ performSearch, searchForText }) {
   return (
     <>
       {/*search bar*/}
-      <div className="my-2">
+      <div className="my-4">
         <form onSubmit={handleSearchSubmit} id="search">
           <div className="flex justify-center">
             <div className="relative w-10/12 tablet:w-8/12 flex items-center">
