@@ -3,6 +3,7 @@
 import { keyframes } from "@emotion/react";
 import axios from "axios"
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Cart({cartProducts, setCartProducts}) {
@@ -12,15 +13,13 @@ export default function Cart({cartProducts, setCartProducts}) {
     // })
     // console.log(session.id)
     // console.log(cartProducts)
-    function itemClick () {
-        console.log()
-    } 
+    const navigate = useNavigate();
 
     function updateInput (event, cart_id) {
         console.log(event.target.value)
         axios.put(`${API}/cart-products/${cart_id}`, { quantity: event.target.value })
         .then(() => {
-            // Update the cartProducts state with the new quantity
+            // Update the cartProducts state with the event
             setCartProducts((prevCartProducts) =>
               prevCartProducts.map((product) =>
                 product.cart_id === cart_id
@@ -79,7 +78,7 @@ export default function Cart({cartProducts, setCartProducts}) {
                                 <p>${productAdded.cost}</p>
                                 <p 
                                 className="mobile:pt-2 tablet:pt-10 underline"
-                                onClick={()=>itemClick()}
+                                onClick={()=>navigate(`/products/${productAdded.product_id}`)}
                                 >View Details</p>
                             </div>
                             <div className="grid grid-cols-3 justify-self-center">
