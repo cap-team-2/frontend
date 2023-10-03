@@ -15,6 +15,7 @@ import ProductById from "./Components/ProductDetails";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
+import List from "./Pages/List";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
@@ -79,6 +80,7 @@ function App() {
             />}
           />
           <Route path="/login" element={<Login />} />
+           <Route path="/list" element={<List />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductById />} />
