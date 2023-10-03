@@ -5,7 +5,7 @@ import { BsBag } from "react-icons/bs";
 export default function NavLinks({ isOpen}) {
     return (
       <div
-        className={`flex gap-4 desktop:items-end  desktop:justify-end ${
+        className={`flex gap-4 desktop:items-end desktop:justify-end ${
           isOpen ? "flex-col h-full justify-center gap-y-10" : "flex-row"
         }`}
       >
@@ -54,10 +54,10 @@ export default function NavLinks({ isOpen}) {
         >   
           Get Started
         </Link>
-        <Link to={"/cart"} onClick={() => setIsOpen(!isOpen)}>
+        <Link to={"/cart"} className="self-start" onClick={() => setIsOpen(!isOpen)}>
           <BsBag
             className={`text-green-light hover:text-green font-medium ${
-              isOpen ? "text-3xl font-normal" : "text-base"
+              isOpen ? "text-3xl font-normal" : "text-xl"
             }`}
           />
         </Link>

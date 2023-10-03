@@ -37,12 +37,10 @@ export default function Nav({ setSearchResults }) {
                 alt="Pantri Logo"
                 className="h-20 tablet:hidden"
               /> */}
-              <p className="text-3xl text-green-light tablet:block">
-                PANTRI
-              </p>
+              <p className="text-3xl text-green-light tablet:block">PANTRI</p>
             </Link>
           </div>
-          <div className="flex items-end">
+          <div className="flex items-center">
             {/* Nav Links */}
             <div className="hidden laptop:block">
               <NavLinks />
@@ -58,8 +56,11 @@ export default function Nav({ setSearchResults }) {
       )}
       {/* Menu Modal */}
       {isOpen && (
-        <div className="h-screen w-full flex flex-col items-center justify-center relative">
-          <RxCross2 className='text-2xl text-green-light absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green' onClick={() => setIsOpen(!isOpen)} />
+        <div className="h-screen w-full flex flex-col items-center justify-center relative ">
+          <RxCross2
+            className="text-2xl text-green-light absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green transition ease-in-out duration-500"
+            onClick={() => setIsOpen(!isOpen)}
+          />
           <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       )}
