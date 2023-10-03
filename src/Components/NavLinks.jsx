@@ -2,41 +2,64 @@
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 
-export default function NavLinks() {
+export default function NavLinks({ isOpen}) {
     return (
-      <div className="flex gap-4 items-end justify-end">
+      <div
+        className={`flex gap-4 desktop:items-end  desktop:justify-end ${
+          isOpen ? "flex-col h-full justify-center gap-y-10" : "flex-row"
+        }`}
+      >
         <Link
           to={"/Home"}
-          className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium  "
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
         >
           Home
         </Link>
         <Link
           to={"/market"}
-          className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium  "
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
         >
           Markets
         </Link>
         <Link
           to={"/sellers"}
-          className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium  "
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
         >
           Vendors
         </Link>
         <Link
           to={"/login"}
-          className="text-sm tablet:text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium "
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
         >
           Log In
         </Link>
         <Link
           to={"/register"}
-          className="text-base text-green-light tablet:hover:underline tablet:hover:underline-offset-8  font-medium "
-        >
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
+        >   
           Get Started
         </Link>
-        <Link to={"/cart"}>
-          <BsBag className="text-2xl text-green-light tablet:hover:text-green " />
+        <Link to={"/cart"} onClick={() => setIsOpen(!isOpen)}>
+          <BsBag
+            className={`text-green-light hover:text-green font-medium ${
+              isOpen ? "text-3xl font-normal" : "text-base"
+            }`}
+          />
         </Link>
       </div>
     );
