@@ -26,7 +26,7 @@ export default function Nav({ setSearchResults }) {
   }
 
   return (
-    <div className="h-auto w-full flex flex-col fixed bg-white z-50 shadow ">
+    <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-green text-white desktop:px-10 xl:px-48">
       {!isOpen && (
         <div className="flex justify-between  tablet:flex tablet:justify-between tablet:px-8 items-center px-2 p-4">
           {/* Logo that links back to homepage */}
@@ -37,7 +37,7 @@ export default function Nav({ setSearchResults }) {
                 alt="Pantri Logo"
                 className="h-20 tablet:hidden"
               /> */}
-              <p className="text-3xl text-green-light tablet:block">PANTRI</p>
+              <p className="text-3xl text-white tablet:block">PANTRI</p>
             </Link>
           </div>
           <div className="flex items-center">
@@ -47,7 +47,7 @@ export default function Nav({ setSearchResults }) {
             </div>
             <div>
               <RxHamburgerMenu
-                className="text-green-light text-2xl cursor-pointer hover:text-green z-50 laptop:hidden"
+                className="text-white text-2xl cursor-pointer  z-50 laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
                 onClick={() => setIsOpen(!isOpen)}
               />
             </div>
@@ -58,7 +58,7 @@ export default function Nav({ setSearchResults }) {
       {isOpen && (
         <div className="h-screen w-full flex flex-col items-center justify-center relative ">
           <RxCross2
-            className="text-2xl text-green-light absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green transition ease-in-out duration-500"
+            className="text-2xl text-white absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
             onClick={() => setIsOpen(!isOpen)}
           />
           <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} />

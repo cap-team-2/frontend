@@ -11,11 +11,11 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center text-center  gap-4 py-10 pb-16 bg-white h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
+    <footer className="flex flex-col items-center justify-center text-center  gap-4 py-10 pb-16 bg-green h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
       {/* Additional Links */}
-      <div className="flex flex-col items-center tablet:flex-row tablet:text-start w-full  tablet:items-end tablet:justify-between">
-        <div className="flex flex-col tablet:flex-row gap-10 tablet:gap-20 ">
-          <div className="flex flex-col text-sm  text-green">
+      <div className="flex flex-col items-center tablet:flex-row tablet:text-start w-full  tablet:items-end tablet:justify-between text-white">
+        <div className="flex flex-col tablet:flex-row gap-10 tablet:gap-20 font-medium ">
+          <div className="flex flex-col text-sm">
             <Link className="tablet:hover:underline tablet:hover:underline-offset-4">
               Blog
             </Link>
@@ -32,10 +32,10 @@ export default function Footer() {
               Contact Us
             </Link>
           </div>
-          <div className="flex flex-col text-sm  text-green">
+          <div className="flex flex-col text-sm">
             <Link
               className="tablet:hover:underline tablet:hover:underline-offset-4"
-              to={"/home"}
+              to={"/products"}
             >
               Shop
             </Link>
@@ -55,35 +55,35 @@ export default function Footer() {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex gap-6 text-xl  text-green-light pt-6">
-          <Link className="tablet:hover:text-green" to={"https://facebook.com"}>
+        <div className="flex gap-6 text-xl text-white pt-6">
+          <Link className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded" to={"https://facebook.com"}>
             <FaFacebookF />
           </Link>
           <Link
-            className="tablet:hover:text-green "
+            className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded"
             to={"https://github.com/cap-team-2"}
           >
             <FaGithub />
           </Link>
           <Link
-            className="tablet:hover:text-green"
+            className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded"
             to={"https://instagram.com"}
           >
             <FaInstagram />
           </Link>
-          <Link className="tablet:hover:text-green" to={"https://linkedin.com"}>
+          <Link className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded" to={"https://linkedin.com"}>
             <FaLinkedinIn />
           </Link>
-          <Link className="tablet:hover:text-green" to={"https://twitter.com"}>
+          <Link className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded" to={"https://twitter.com"}>
             <FaTwitter />
           </Link>
-          <Link className="tablet:hover:text-green" to={"https://youtube.com"}>
+          <Link className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded" to={"https://youtube.com"}>
             <FaYoutube />
           </Link>
         </div>
       </div>
       {/* Copyright tag */}
-      <p className="p-4 text-xs absolute bottom-0 place-self-center">
+      <p className="p-4 text-white text-xs absolute bottom-0 place-self-center font-medium">
         Copyright © 2023 PANTRI. All Rights Reserved.
       </p>
     </footer>
