@@ -89,7 +89,7 @@ export default function ProductById() {
                   <button className="bg-gray-light text-sm h-8 w-20 rounded">
                     Qty: {product.quantity}
                   </button>
-                  <button className="bg-green-light rounded text-xs font-semibold text-white h-8 w-40">
+                  <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs laptop:text-sm font-semibold text-white h-8 w-40">
                     Add to cart
                   </button>
                 </div>

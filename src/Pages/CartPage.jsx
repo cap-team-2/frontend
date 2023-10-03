@@ -17,12 +17,14 @@ export default function CartPage({session}) {
     }, [])
 
     return (
-        <div className="h-auto w-full tablet:pt-16 grid tablet:grid-cols-3 mobile:py-16">
-            <div className="mt-1 col-span-2">
-                <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
-            </div>
-            <div className="mt-1 mobile:col-span-2 tablet:col-span-1">
-                <Summary cartProducts={cartProducts}/>
+        <div className="h-auto w-full px-10 tablet:pt-16 grid tablet:grid-cols-3 mobile:py-16 tablet:px-20 xl:px-60">
+            <div className="border mt-16 rounded-3xl border-gray shadow-md ">
+                <div className="mt-1 col-span-2">
+                    <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
+                </div>
+                <div className="mt-1 mobile:col-span-2 tablet:col-span-1">
+                    <Summary cartProducts={cartProducts}/>
+                </div>
             </div>
         </div>
     )
