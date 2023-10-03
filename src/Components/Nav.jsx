@@ -7,6 +7,8 @@ import axios from "axios";
 // import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
 import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { BsBag } from "react-icons/bs";
+
 const API = import.meta.env.VITE_APP_API_URL;
 
 
@@ -45,9 +47,18 @@ export default function Nav({ setSearchResults }) {
             <div className="hidden laptop:block">
               <NavLinks />
             </div>
-            <div>
+            <div className='flex gap-4' >
+              <Link
+                to={"/cart"}
+              >
+                <BsBag
+                  className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
+                    isOpen ? "text-3xl font-normal" : "text-2xl"
+                  }`}
+                />
+              </Link>
               <RxHamburgerMenu
-                className="text-white text-2xl cursor-pointer  z-50 laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
+                className="text-white text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
                 onClick={() => setIsOpen(!isOpen)}
               />
             </div>
