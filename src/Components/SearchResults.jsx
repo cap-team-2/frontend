@@ -10,14 +10,15 @@ export default function SearchResults({searchResults, session}) {
     {
       session_id: '',
       product_id: '',
-      quantity: ''
+      quantity: 0
     }
   );
   const navigate = useNavigate();
 
 // Function to add a product to the cart
   function addToCart (product) {
-    setCart({...cart, session_id: session.id, product_id: product.id, quantity: "1"})
+
+    setCart({...cart, session_id: session.id, product_id: product.id, quantity: + 1})
   }
 
   useEffect(() => {
