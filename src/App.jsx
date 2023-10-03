@@ -3,6 +3,7 @@
 // DEPENDENCIES
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { UserProvider } from "./Providers/UserProvider";
 import axios from "axios";
 
 // PAGES 
@@ -60,49 +61,51 @@ function App() {
 
   return (
     <main className="h-screen w-full font-font flex flex-col">
-      <Router>
-        <Nav
-          setSearchResults={setSearchResults}
-        />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/products"
-
-            element={<HomePage 
-              searchResults={searchResults} 
-              setSearchResults={setSearchResults} 
-              setFilteredProducts={setFilteredProducts} 
-              filteredProducts={filteredProducts}
-              filter={filter}
-              setFilter={setFilter}
-              session={session}
-              searchForText={searchForText}
-              setSearchForText={setSearchForText}
-            />}
+      <UserProvider>
+        <Router>
+          <Nav
+            setSearchResults={setSearchResults}
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById />} />
-          <Route path="/sellers" element={<Sellers searchForText={searchForText} setSearchForText={setSearchForText} />} />
-          <Route path="/sellers/:id" element={<SellersById />} />
-          <Route
-            path="/market"
-            element={
-              <Market
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/products"
+
+              element={<HomePage 
+                searchResults={searchResults} 
+                setSearchResults={setSearchResults} 
+                setFilteredProducts={setFilteredProducts} 
+                filteredProducts={filteredProducts}
+                filter={filter}
+                setFilter={setFilter}
+                session={session}
                 searchForText={searchForText}
                 setSearchForText={setSearchForText}
+              />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products/:id" element={<ProductById />} />
+            <Route path="/sellers" element={<Sellers searchForText={searchForText} setSearchForText={setSearchForText} />} />
+            <Route path="/sellers/:id" element={<SellersById />} />
+            <Route
+              path="/market"
+              element={
+                <Market
+                  searchForText={searchForText}
+                  setSearchForText={setSearchForText}
 
-              />
-            }
-          />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<CartPage session={session} />} />
-          <Route path="*" element={<FourOFour />} />
-        </Routes>
-      <Footer />
-      </Router>
+                />
+              }
+            />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/farmers-markets" element={<FarmersMarkets />} />
+            <Route path="/cart" element={<CartPage session={session} />} />
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
+        <Footer />
+        </Router>
+      </UserProvider>
     </main>
   );
 }
