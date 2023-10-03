@@ -44,9 +44,9 @@ export default {
           "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
         landingBanner:
           "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
+          background: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
       },
     },
-  
   },
   plugins: [],
 };

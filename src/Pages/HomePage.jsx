@@ -36,7 +36,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
 
   return (
     <div className="h-auto w-full flex flex-col tablet:pt-24 pb-4 ">
-      <div className="flex flex-col fixed top-20 tablet:top-16 w-full bg-white z-40 pt-2">
+      <div className="flex flex-col fixed top-16 tablet:top-16 w-full bg-white z-40 pt-2">
         {/* Search Bar */}
         <SearchBar setSearchResults={setSearchResults} performSearch={performSearch} searchForText={searchForText} />
         <div className="flex overflow-x-auto scroll-smooth tablet:justify-center shadow-md tablet:pt-2">
