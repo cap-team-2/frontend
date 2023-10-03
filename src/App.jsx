@@ -10,7 +10,6 @@ import Browse from "./Pages/Browse";
 // import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
-import Products from "./Pages/Products";
 import ProductById from "./Components/ProductDetails";
 import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
@@ -64,13 +63,11 @@ function App() {
       <Router>
         <Nav
           setSearchResults={setSearchResults}
-          // setFilteredProducts={setFilteredProducts}
-          // filter={filter}
         />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route
-            path="/home"
+            path="/products"
 
             element={<HomePage 
               searchResults={searchResults} 
@@ -86,7 +83,6 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductById />} />
           <Route path="/sellers" element={<Sellers searchForText={searchForText} setSearchForText={setSearchForText} />} />
           <Route path="/sellers/:id" element={<SellersById />} />

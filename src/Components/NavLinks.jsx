@@ -10,13 +10,22 @@ export default function NavLinks({ isOpen}) {
         }`}
       >
         <Link
-          to={"/Home"}
+          to={"/"}
           onClick={() => setIsOpen(!isOpen)}
           className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
           Home
+        </Link>
+        <Link
+          to={"/products"}
+          onClick={() => setIsOpen(!isOpen)}
+          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+            isOpen ? "text-3xl font-normal" : "text-base"
+          }`}
+        >
+          Products
         </Link>
         <Link
           to={"/market"}
@@ -51,10 +60,14 @@ export default function NavLinks({ isOpen}) {
           className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
-        >   
+        >
           Get Started
         </Link>
-        <Link to={"/cart"} className="self-start" onClick={() => setIsOpen(!isOpen)}>
+        <Link
+          to={"/cart"}
+          className="self-start"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <BsBag
             className={`text-green-light hover:text-green font-medium ${
               isOpen ? "text-3xl font-normal" : "text-xl"

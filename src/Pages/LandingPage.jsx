@@ -26,7 +26,7 @@ export default function LandingPage() {
             {/* Get Started Button */}
             <Link
               to={"/login"}
-              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
+              className="bg-green-light h-10 w-32 flex items-center justify-center text-white hover:border-2 hover:border-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
             >
               Get Started
             </Link>
