@@ -42,15 +42,18 @@ export default function SearchResults({searchResults, session}) {
                 key={results.id}
               >
                 <div className="flex flex-col gap-4 shrink-0 w-full">
+                {/* Product Image */}
                   <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-fit max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer tablet:hover:border tablet:hover:border-[transparent] peer"
+                    className="h-44 w-fit max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer hover:rounded-xl hover:transition ease-in-out delay-150 duration-300 peer"
                     onClick={() => navigate(`/products/${results.id}`)}
                   />
-                  <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 peer-hover:decoration-green-light">
+                  {/* Product Name */}
+                  <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 decoration-green hover:transition ease-in-out delay-150">
                     {capitalize(results.name)}
                   </p>
+                  {/* Price */}
                   <p className="text-2xl font-semibold relative -z-0">
                     <span className="text-3xl">
                       ${`${results.cost.split(".")[0]}`}
@@ -65,7 +68,7 @@ export default function SearchResults({searchResults, session}) {
                 </div>
 
                 <button
-                  className="bg-green-light rounded text-xs text-white font-semibold h-8 w-full self-start hover:bg-green"
+                  className="bg-green rounded text-xs bg-opacity-90 text-white font-semibold h-8 w-full self-start hover:bg-opacity-100"
                   onClick={() => addToCart(results)}
                 >
                   Add to cart

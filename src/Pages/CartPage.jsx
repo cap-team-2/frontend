@@ -1,12 +1,14 @@
 // Cart.jsx
-import { useEffect, useState } from "react"
-import Cart from "../Components/Cart.jsx"
-import Summary from "../Components/Summary.jsx"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import Cart from "../Components/Cart.jsx";
+import Summary from "../Components/Summary.jsx";
+import axios from "axios";
+import { BiArrowBack } from "react-icons/bi";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function CartPage({session}) {
-
+    const navigate = useNavigate();
     const [ cartProducts, setCartProducts ] = useState([])
     // gets all items in the cart
     useEffect(() => {
@@ -17,11 +19,12 @@ export default function CartPage({session}) {
     }, [])
 
     return (
-        <div className="h-auto w-full tablet:pt-16 grid tablet:grid-cols-3 mobile:py-16">
-            <div className="mt-1 col-span-2">
+        <div className="h-auto w-full p-6 mt-20 ">
+            <BiArrowBack className="mb-6 text-lg tablet:text-black hover:text-green cursor-pointer" onClick={() => navigate(-1)}/>
+            <div className="mb-8">
                 <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
             </div>
-            <div className="mt-1 mobile:col-span-2 tablet:col-span-1">
+            <div className="w-full">
                 <Summary cartProducts={cartProducts}/>
             </div>
         </div>

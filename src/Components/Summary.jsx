@@ -19,28 +19,25 @@ export default function Summary({cartProducts}) {
     }
     
   return (
-    <div className="w-full tablet:pl-10 pl-4 pr-10 py-8">
-        <p className="text-2xl font-bold mb-5">Summary</p>
-        {cartProducts ? 
-            cartProducts.map((cartProduct) => {
-                return (
-                    <div key={cartProduct.id} className="my-2 grid grid-cols-2">
-                        <p>${cartProduct.cost}</p>
-                        <p className="text-right">X {cartProduct.quantity}</p>
-                    </div>
-                )
-            })
-        : null}
-        <div className="grid grid-cols-2 mt-16">
-            <p className="">Subtotal:</p>
-            <p className="text-right">${total}</p>
-            <p className="">Tax:</p>
-            <p className="text-right">${(total / 8.875).toFixed(2)}</p>
-            <p className='border-t mt-4'>Total:</p>
-            <p className="text-right border-t mt-4">${(parseFloat((total).toFixed(2)) + parseFloat((total / 8.875).toFixed(2))).toFixed(2)}</p>
-        </div>
-        <button className="text-green-light">Checkout</button>
+    <div className="w-full">
+      <div className="grid grid-cols-2 my-10 text-sm font-medium gap-y-4">
+        <p className="">Cart total:</p>
+        <p className="text-right font-semibold">${total}</p>
+        <p className="">Tax:</p>
+        <p className="text-right font-semibold">${(total / 8.875).toFixed(2)}</p>
+        <p className="border-t pt-3">Subtotal:</p>
+        <p className="text-right border-t pt-2 font-bold text-lg">
+          $
+          {(
+            parseFloat(total.toFixed(2)) +
+            parseFloat((total / 8.875).toFixed(2))
+          ).toFixed(2)}
+        </p>
+      </div>
+      <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-sm laptop:text-base font-semibold text-white h-10 w-full ">
+        Proceed to Checkout
+      </button>
     </div>
-  )
+  );
 }
 

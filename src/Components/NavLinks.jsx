@@ -12,7 +12,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -21,7 +21,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/products"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -30,7 +30,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/market"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -39,7 +39,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/sellers"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -48,20 +48,11 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/login"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
           Log In
-        </Link>
-        <Link
-          to={"/register"}
-          onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
-            isOpen ? "text-3xl font-normal" : "text-base"
-          }`}
-        >
-          Get Started
         </Link>
         <Link
           to={"/cart"}
@@ -69,8 +60,8 @@ export default function NavLinks({ isOpen}) {
           onClick={() => setIsOpen(!isOpen)}
         >
           <BsBag
-            className={`text-green-light hover:text-green font-medium ${
-              isOpen ? "text-3xl font-normal" : "text-xl"
+            className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
+              isOpen ? "text-3xl font-normal" : "text-2xl"
             }`}
           />
         </Link>
