@@ -36,13 +36,10 @@ export default function SearchResults({searchResults, session}) {
     //   }
     //   console.log(this.state.cart);
     // };
-
-    // if (cart.session_id && cart.product_id && cart.quantity) {
       axios.post(`${API}/cart-products`, cart)
       .catch((error) => {
         console.log(error);
       });
-    // }
   }, [cart]);
 
 // function to create a new cart product
