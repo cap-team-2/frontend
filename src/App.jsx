@@ -16,6 +16,7 @@ import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
+import List from "./Pages/List";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
@@ -66,6 +67,7 @@ function App() {
           <Nav
             setSearchResults={setSearchResults}
           />
+<<<<<<< HEAD
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route
@@ -106,6 +108,22 @@ function App() {
         <Footer />
         </Router>
       </UserProvider>
+=======
+          <Route path="/login" element={<Login />} />
+           <Route path="/list" element={<List />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductById />} />
+          <Route path="/sellers" element={<Sellers />} />
+          <Route path="/sellers/:id" element={<SellersById />} />
+          <Route path="/market" element={<Market searchResults={searchResults} setSearchResults={setSearchResults} />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/farmers-markets" element={<FarmersMarkets />} />
+          {/* <Route path="/cart" element={<CartPage session={session} />} /> */}
+          <Route path="*" element={<FourOFour />} />
+        </Routes>
+      </Router>
+>>>>>>> 4c81483 (set route to list)
     </main>
   );
 }
