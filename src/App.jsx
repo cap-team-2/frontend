@@ -7,7 +7,6 @@ import axios from "axios";
 
 // PAGES 
 import Browse from "./Pages/Browse";
-// import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import ProductById from "./Components/ProductDetails";
@@ -21,11 +20,13 @@ import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById";
 import CartPage from "./Pages/CartPage";
-// import { search } from "requirejs";
+import { updateInput, updateQuantity, deleteProductFromCart } from "./Components/CartFunctions";
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [quantity, setQuantity] = useState(0);
   const [filter, setFilter] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [searchForText, setSearchForText] = useState("Products");
@@ -79,6 +80,8 @@ function App() {
               session={session}
               searchForText={searchForText}
               setSearchForText={setSearchForText}
+              quantity={quantity}
+              setQuantity={setQuantity}
             />}
           />
           <Route path="/login" element={<Login />} />
@@ -98,7 +101,7 @@ function App() {
           />
           <Route path="/browse" element={<Browse />} />
           <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route path="/cart" element={<CartPage session={session} />} />
+          <Route path="/cart" element={<CartPage cartProducts={cartProducts} setCartProducts={setCartProducts} session={session} quantity={quantity} setQuantity={setQuantity}  />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
       <Footer />

@@ -52,7 +52,7 @@ export default function Nav({ setSearchResults }) {
                 to={"/cart"}
               >
                 <BsBag
-                  className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
+                  className={`laptop:hidden hover:text-green-dark transition ease-in-out duration-500 rounded ${
                     isOpen ? "text-3xl font-normal" : "text-2xl"
                   }`}
                 />
