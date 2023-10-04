@@ -24,7 +24,7 @@ import CartPage from "./Pages/CartPage";
 import { updateInput, updateQuantity, deleteProductFromCart } from "./Components/CartFunctions";
 const API = import.meta.env.VITE_APP_API_URL;
 
-function App() {
+export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
@@ -68,26 +68,6 @@ function App() {
           setSearchResults={setSearchResults}
         />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/products"
-
-            element={<HomePage 
-              searchResults={searchResults} 
-              setSearchResults={setSearchResults} 
-              setFilteredProducts={setFilteredProducts} 
-              filteredProducts={filteredProducts}
-              filter={filter}
-              setFilter={setFilter}
-              session={session}
-              searchForText={searchForText}
-              setSearchForText={setSearchForText}
-              quantity={quantity}
-              setQuantity={setQuantity}
-            />}
-
-          />
-          <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route
               path="/products"
@@ -130,5 +110,3 @@ function App() {
     </main>
   );
 }
-
-export default App
