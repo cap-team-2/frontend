@@ -8,7 +8,6 @@ import axios from "axios";
 
 // PAGES 
 import Browse from "./Pages/Browse";
-// import CartPage from "./Pages/CartPage";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import ProductById from "./Components/ProductDetails";
@@ -22,11 +21,13 @@ import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById";
 import CartPage from "./Pages/CartPage";
-// import { search } from "requirejs";
+import { updateInput, updateQuantity, deleteProductFromCart } from "./Components/CartFunctions";
 const API = import.meta.env.VITE_APP_API_URL;
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [quantity, setQuantity] = useState(0);
   const [filter, setFilter] = useState("Home");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [searchForText, setSearchForText] = useState("Products");
@@ -61,10 +62,30 @@ function App() {
 
   return (
     <main className="h-screen w-full font-font flex flex-col">
-      <UserProvider>
-        <Router>
-          <Nav
-            setSearchResults={setSearchResults}
+
+      <Router>
+        <Nav
+          setSearchResults={setSearchResults}
+        />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/products"
+
+            element={<HomePage 
+              searchResults={searchResults} 
+              setSearchResults={setSearchResults} 
+              setFilteredProducts={setFilteredProducts} 
+              filteredProducts={filteredProducts}
+              filter={filter}
+              setFilter={setFilter}
+              session={session}
+              searchForText={searchForText}
+              setSearchForText={setSearchForText}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />}
+
           />
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -95,17 +116,17 @@ function App() {
                   searchForText={searchForText}
                   setSearchForText={setSearchForText}
 
-                />
-              }
-            />
-            <Route path="/browse" element={<Browse />} />
-            <Route path="/farmers-markets" element={<FarmersMarkets />} />
-            <Route path="/cart" element={<CartPage session={session} />} />
-            <Route path="*" element={<FourOFour />} />
-          </Routes>
-        <Footer />
-        </Router>
-      </UserProvider>
+              />
+            }
+          />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/farmers-markets" element={<FarmersMarkets />} />
+          <Route path="/cart" element={<CartPage cartProducts={cartProducts} setCartProducts={setCartProducts} session={session} quantity={quantity} setQuantity={setQuantity}  />} />
+          <Route path="*" element={<FourOFour />} />
+        </Routes>
+      <Footer />
+      </Router>
+
     </main>
   );
 }

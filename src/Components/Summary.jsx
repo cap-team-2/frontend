@@ -19,7 +19,7 @@ export default function Summary({cartProducts}) {
     }
     
   return (
-    <div className="w-full">
+    <div className="h-full w-full flex flex-row tablet:flex-col justify-between">
       <div className="grid grid-cols-2 my-10 text-sm font-medium gap-y-4">
         <p className="">Cart total:</p>
         <p className="text-right font-semibold">${total}</p>
