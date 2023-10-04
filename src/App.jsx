@@ -85,6 +85,7 @@ function App() {
               />}
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/list" element={<List />} />
             <Route path="/register" element={<Register />} />
             <Route path="/products/:id" element={<ProductById />} />
             <Route path="/sellers" element={<Sellers searchForText={searchForText} setSearchForText={setSearchForText} />} />
