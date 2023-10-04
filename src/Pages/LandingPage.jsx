@@ -38,7 +38,7 @@ export default function LandingPage() {
             See What Our Users Have to Say!
           </h2>
           <p className="text-center mt-4 p-4">
-          Empowering consumers and nurturing farmers for a brighter future! Pantri addresses a pressing issue: the disconnect between consumers and local farmers. In an age of mass production, it&#39;s easy to lose sight of where your food comes from. Our solution? We bridge the gap, providing you with access to fresh, sustainable produce and artisanal delights directly from local farms.Say farewell to the challenges of sourcing fresh, sustainable food from afar and embrace a healthier, more sustainable lifestyle. By choosing our app, you&#39;re not just enjoying delicious food; you&#39;re supporting local agriculture and building a stronger community. But don&#39;t take our word for it—see the smiles on the faces of our satisfied customers and the grateful farmers we partner with. Join us in cultivating a fruitful relationship between those who grow and those who enjoy, while taking a stand for a more connected, sustainable future
+       Say goodbye to the overwhelming task of searching for fresh, sustainable food sources from afar and embrace a healthier, more sustainable lifestyle. By choosing us, you&#39;re not only simplifying the process of discovering delicious cuisine; you&#39;re also supporting local agriculture and fostering a stronger community. Explore the satisfaction of our customers who have found produce, markets, and valuable farmer information on our website. Join us in cultivating a meaningful connection between growers and enthusiasts, all while advocating for a more interconnected and sustainable future.
           </p>
         </div>
         {/* reviews */}
