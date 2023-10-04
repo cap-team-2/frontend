@@ -13,7 +13,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
     
 
   return (
-    <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full tablet:h-screen scroll-smooth">
+    <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
       <p className="text-xl font-bold border-b border-gray pb-2 mb-4">
         My Cart ({quantity} item{`${quantity > 1 || quantity === 0 ? 's' : ''}`})
       </p>
@@ -22,7 +22,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
             return (
               <div
                 key={productAdded.id + index}
-                className="flex justify-between w-full shadow-lg border border-gray-light p-2 rounded-lg mb-4 "
+                className="flex justify-between h-auto w-full shadow-lg border border-gray-light p-2 rounded-lg mb-4"
               >
                 <div className="flex ">
                   {/* Product Image */}
