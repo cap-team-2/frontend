@@ -92,16 +92,6 @@ export default function ProductById() {
                 <div className="flex justify-between tablet:justify-start gap-20">
                   {/* Update Quantity Buttons and Display */}
                   <div className="flex flex-col ml-4 justify-between">
-                    <CgCloseR
-                      className="text-red self-end cursor-pointer"
-                      onClick={() =>
-                        deleteProductFromCart(
-                          product.cart_id,
-                          setQuantity,
-                          setCartProducts
-                        )
-                      }
-                    />
                     <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
                       <CgMathMinus
                         className="text-base cursor-pointer"
@@ -115,7 +105,7 @@ export default function ProductById() {
                             );
                         }}
                       />
-                      <p className="cursor-default">{product.quantity}</p>
+                      <p className="cursor-default h-8 flex items-center text-lg">{"1"}</p>
                       <CgMathPlus
                         className="text-base cursor-pointer"
                         onClick={() =>
@@ -129,9 +119,9 @@ export default function ProductById() {
                       />
                     </div>
                   </div>
-                  <button className="bg-gray-light text-sm h-8 w-20 rounded">
+                  {/* <button className="bg-gray-light text-sm h-8 w-20 rounded">
                     Qty: {product.quantity}
-                  </button>
+                  </button> */}
                   <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs laptop:text-sm font-semibold text-white h-8 w-40">
                     Add to cart
                   </button>
