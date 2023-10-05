@@ -31,7 +31,7 @@ export default function SellerCard({ seller }) {
             {/* Visit profile button */}
             <Link
                 to={`/sellers/${seller.id}`}
-                className="bg-green-light text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
+                className="bg-green bg-opacity-90 hover:bg-opacity-100 text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
             >
                 Visit Profile
             </Link>
