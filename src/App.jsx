@@ -60,9 +60,9 @@ export default function App() {
     axios
       .get(`${API}/cart-products`)
       .then((res) => {
-        setCartProducts()
+        setCartProducts(res.data)
       })
-
+      
     
   }, []);
 
