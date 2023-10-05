@@ -57,16 +57,20 @@ export default function App() {
     });
 
     // Assign quantity state to the amount of products in cart
-    axios
-      .get(`${API}/cart-products`)
-      .then((res) => {
-        setCartProducts()
-      })
 
+      if (cartProducts.length > 0) {
+        axios
+        .get(`${API}/cart-products`)
+        .then((res) => {
+          setCartProducts(res.data)
+          console.log(res.data)
+        })
+         setQuantity(parseFloat(cartProducts.reduce((acc, cartProduct) => acc + cartProduct.quantity,
+         0
+         )))
+     }
     
   }, []);
-
-
 
   return (
     <main className="h-screen w-full font-font flex flex-col">

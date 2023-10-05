@@ -5,11 +5,8 @@ import { keyframes } from "@emotion/react";
 import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 
-
 export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
-   
-
-
+console.log(quantity);
   return (
     <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
       <p className="text-xl font-bold border-b border-gray pb-2 mb-4">
@@ -55,7 +52,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                       }
                       }
                     />
-                    <p className="cursor-default">{quantity}</p>
+                    <p className="cursor-default">{productAdded.quantity}</p>
                     <CgMathPlus
                       className="text-base cursor-pointer"
                       onClick={() =>
@@ -71,9 +68,9 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
             );
           })
         : null}
-      {quantity === 0 && (
-        <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>
-      )}
+      {quantity > 0?
+      null
+      : <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>}
     </div>
   );
 }
