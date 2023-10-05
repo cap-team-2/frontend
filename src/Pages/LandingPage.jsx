@@ -18,15 +18,15 @@ export default function LandingPage() {
             {/* CTA with background image and Get Started Button */}
             <div className=" bg-black bg-opacity-40 h-40 w-full flex justify-center items-center ">
               <h1 className="text-white text-[26px] tablet:text-4xl font-medium text-center py-4 mobile:w-[480px]">
-                From Market to <span className="text-green-light">PANTRI</span>:
-                Nourish Your <span className="text-green-light">Home</span>,
-                Nourish Your <span className="text-green-light">Community</span>
+                From Market to <span className="text-green">PANTRI</span>:
+                Nourish Your <span className="text-green">Home</span>,
+                Nourish Your <span className="text-green">Community</span>
               </h1>
             </div>
             {/* Get Started Button */}
             <Link
-              to={"/login"}
-              className="bg-green-light h-10 w-32 flex items-center justify-center text-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
+              to={"/products"}
+              className="bg-green h-10 w-32 flex items-center justify-center text-white hover:border-2 hover:border-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
             >
               Get Started
             </Link>
@@ -34,7 +34,7 @@ export default function LandingPage() {
         </div>
         {/* Info and data about food insecurity */}
         <div className=" h-auto w-full p-4">
-          <h2 className="text-white font-extrabold text-2xl text-center">
+          <h2 className="text-green font-extrabold text-2xl text-center">
             Integer feugiat scelerisque varius morbi enim nunc
           </h2>
           <p className="text-center mt-4 p-4">

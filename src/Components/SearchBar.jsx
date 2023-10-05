@@ -32,13 +32,13 @@ export default function SearchBar({ performSearch, searchForText }) {
               <input
                 onChange={handleSearchChange}
                 type="text"
-                className="p-2.5 h-10 w-full text-sm rounded-3xl border border-gray text-black shadow pl-4 caret-green-light  focus:outline-none focus:ring-1 focus:ring-green-light"
+                className="p-2.5 h-10 w-full text-sm rounded-3xl border border-gray text-black shadow pl-4 caret-green  focus:outline-none focus:ring-1 focus:ring-green"
                 placeholder={`Search for ${searchForText}`}
               />
               {/* Search button magnifying glass */}
               <IoSearchCircleSharp
                 onClick={handleSearchSubmit}
-                className="absolute right-0 text-5xl h-10 text-green-light rounded-r-3xl cursor-pointer tablet:hover:bg-gray-light border border-gray"
+                className="absolute right-0 text-5xl h-10 text-green rounded-r-3xl cursor-pointer tablet:hover:bg-gray-light border border-gray"
               />
             </div>
           </div>

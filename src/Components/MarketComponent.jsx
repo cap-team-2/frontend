@@ -101,7 +101,7 @@ export default function MarketComponent({ searchForText, setSearchForText }) {
     return (
       <div className="flex flex-col pt-24 items-center">
         <div className="w-full flex flex-col gap-8">
-          <h1 className="text-center text-4xl  font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+          <h1 className="text-center text-4xl  font-light text-gray-900 text-green tablet:text-5xl desktop:text-6xl">
             <span>MARKETS</span>
           </h1>
           <div className="h-auto w-full flex flex-col gap-4">
