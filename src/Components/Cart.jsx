@@ -80,8 +80,8 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
 
 
 const capitalize = (str) => {
-  if (typeof str !== "string" || str.trim() === "") {
-    return ""; // or handle this case differently based on your requirements
+  if (!str || typeof str !== "string") {
+    return;
   }
   const stringArray = str.split(" ");
   const capitalizedString = stringArray.map(
@@ -90,3 +90,4 @@ const capitalize = (str) => {
 
   return capitalizedString.join(" ");
 };
+
