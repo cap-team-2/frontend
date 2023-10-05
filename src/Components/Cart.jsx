@@ -41,25 +41,24 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                 <div className="flex flex-col ml-4 justify-between">
                   <CgCloseR
                     className="text-red self-end cursor-pointer"
-                    onClick={() => deleteProductFromCart(productAdded.cart_id, setQuantity, setCartProducts)}
+                    onClick={() => deleteProductFromCart(productAdded.cart_id, productAdded.quantity, setQuantity, setCartProducts, quantity)}
                   />
                   <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
                     <CgMathMinus
                       className="text-base cursor-pointer"
                       onClick={() => {
-
-                       if(productAdded.quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts)
-                      }
+                       if(productAdded.quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts, quantity-1
+                        )}
                       }
                     />
                     <p className="cursor-default">{productAdded.quantity}</p>
                     <CgMathPlus
                       className="text-base cursor-pointer"
-                      onClick={() =>
+                      onClick={() =>{
                         updateQuantity(
                           productAdded,
-                          parseInt(productAdded.quantity) + 1, setQuantity, setCartProducts
-                        )
+                          parseInt(productAdded.quantity) + 1, setQuantity, setCartProducts, quantity+1
+                        )}
                       }
                     />
                   </div>
@@ -68,7 +67,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
             );
           })
         : null}
-      {quantity > 0?
+      {quantity ?
       null
       : <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>}
     </div>

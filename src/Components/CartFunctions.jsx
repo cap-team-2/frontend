@@ -4,14 +4,14 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 
 
-export const updateQuantity = ( cartProduct, newQuantity, setQuantity, setCartProducts ) => {
+export const updateQuantity = ( cartProduct, newQuantity, setQuantity, setCartProducts, quantity ) => {
   axios
     .put(`${API}/cart-products/${cartProduct.cart_id}`, {
       quantity: newQuantity,
     })
     .then(() => {
       // Update the cart quantity
-      setQuantity(newQuantity);
+      setQuantity(quantity);
 
       // Update the cartProducts state with the new quantity
       setCartProducts((prevCartProducts) =>
@@ -27,11 +27,10 @@ export const updateQuantity = ( cartProduct, newQuantity, setQuantity, setCartPr
     });
 };
 
-export const deleteProductFromCart = (id, setQuantity, setCartProducts) => {
+export const deleteProductFromCart = (id, productAddedQuantity, setQuantity, setCartProducts, quantity) => {
   axios
     .delete(`${API}/cart-products/${id}`)
     .then(() => {
-      setQuantity(0);
       setCartProducts((prevCartProducts) =>
         prevCartProducts.filter((product) => product.cart_id !== id)
       );
@@ -39,5 +38,6 @@ export const deleteProductFromCart = (id, setQuantity, setCartProducts) => {
     .catch((error) => {
       console.error(error);
     });
+    setQuantity(quantity - productAddedQuantity)
 };
 
