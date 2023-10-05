@@ -2,77 +2,71 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import axios from "axios";
-import PantriLogo from '../assets/Pantri-logo-removebg.png';
-import {
-  MdMenu,
-} from "react-icons/md";
+// import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
+import NavLinks from './NavLinks';
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";
-import SearchBar from "./SearchBar";
-const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function Nav({setSearchResults, setFilteredProducts}) {
-  
-  // Make an API call for all products when returning to the homepage to update the searchResults state
-  const getAllProducts = () => {
-    axios
-      .get(`${API}/products`)
-      .then((res) => {
-        setSearchResults(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  
+
+export default function Nav({ quantity }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+
+
   return (
-    <div className="h-auto w-full flex flex-col border-b-2 border-b-gray-light">
-      <div className="grid grid-cols-3 tablet:flex tablet:justify-between tablet:px-8 items-center top-5 px-2 tablet:mt-10 tablet:mb-2">
-        {/* Hamburger Menu */}
-        <div className="tablet:hidden">
-          <MdMenu className="text-2xl cursor-pointer" />
+    <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-green text-white desktop:px-10 xl:px-48">
+      {!isOpen && (
+        <div className="flex justify-between  tablet:flex tablet:justify-between tablet:px-8 items-center px-2 p-4">
+          {/* Logo that links back to homepage */}
+          <div className="flex">
+            <Link to={"/"}>
+              {/* <img
+                src={PantriLogo}
+                alt="Pantri Logo"
+                className="h-20 tablet:hidden"
+              /> */}
+              <p className="text-3xl text-white tablet:block">PANTRI</p>
+            </Link>
+          </div>
+          <div className="flex items-center">
+            {/* Nav Links */}
+            <div className="hidden laptop:block">
+              <NavLinks quantity={quantity} />
+            </div>
+            <div className='flex gap-4' >
+              <Link
+                to={"/cart"}
+                className='relative'
+              >
+                <BsBag
+                  className={`laptop:hidden hover:text-green-dark transition ease-in-out duration-500 rounded ${
+                    isOpen ? "text-3xl font-normal" : "text-2xl"
+                  }`}
+                />
+                <span className='laptop:hidden absolute top-3 left-3 text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark'>{quantity}</span>
+              </Link>
+              <RxHamburgerMenu
+                className="text-white text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+          </div>
         </div>
-        {/* Logo that links back to homepage */}
-        <div className="flex items-center justify-center">
-          <Link to={"/"} onClick={getAllProducts}>
-            <img
-              src={PantriLogo}
-              alt="Pantri Logo"
-              className="h-20 tablet:hidden"
-            />
-            <p className="text-black text-3xl hidden tablet:block tablet:text-green-light">
-              PANTRI
-            </p>
-          </Link>
+      )}
+      {/* Menu Modal */}
+      {isOpen && (
+        <div className="h-screen w-full flex flex-col items-center justify-center relative ">
+          <RxCross2
+            className="text-2xl text-white absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} quantity={quantity} />
         </div>
-        {/* Search Bar */}
-        <div className="h-auto w-full hidden tablet:block">
-          <SearchBar setSearchResults={setSearchResults} />
-        </div>
-        {/* Nav Links */}
-        <div className="flex items-center justify-end gap-4">
-          <Link
-            to={"/login"}
-            className="text-xs tablet:text-sm text-white bg-green-light p-1.5  text-center w-14 tablet:w-16 font-semibold rounded-3xl"
-          >
-            Log In
-          </Link>
-          <Link
-            to={"/register"}
-            className="text-xs bg-green-light p-1 rounded-full hidden"
-          >
-            Get Started
-          </Link>
-          <Link to={"/cart"}>
-            <BsBag className="text-2xl text-green-light" />
-          </Link>
-        </div>
-      </div>
-      <div className="tablet:hidden">
-        <SearchBar setSearchResults={setSearchResults} setFilteredProducts={setFilteredProducts} />
-      </div>
+      )}
     </div>
   );
 }
+

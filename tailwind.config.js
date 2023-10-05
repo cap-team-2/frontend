@@ -3,8 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{jsx,tsx}"],
   theme: {
     colors: {
-      white: "#ffffff",
+      white: "#FFFFFF",
       black: "#000000",
+      paper: "#F0F0F0",
       "gray-light": "#F6F6F5",
       gray: "#CCCCCC",
       topaz: "#FECF73",
@@ -15,6 +16,10 @@ export default {
       "blue-light": "#73A2FE",
       "blue-dark": "#0E4FE6",
       space: "#1D1D4B",
+      red: "#ff0000",
+    },
+    fontFamily: {
+      font: ["Montserrat"],
     },
     screens: {
       mobile: "375px",
@@ -33,12 +38,17 @@ export default {
     },
     extend: {
       backgroundImage: {
-        light: "url('./src/assets/GlassWater.png')",
-        dark: "url('./src/assets/slickCarbon.png')",
-        "veggieBanner":
+        light: "url('./src/assets/backgrounds/GlassWater.png')",
+        dark: "url('./src/assets/backgrounds/slickCarbon.png')",
+        veggieBanner:
           "url('./src/assets/background-ideas/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')",
+        landingBanner:
+          "url('./src/assets/Banners-page-sections/pexels-erik-scheel-95425.jpg')",
+          background: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
       },
     },
   },
   plugins: [],
 };
+
+
