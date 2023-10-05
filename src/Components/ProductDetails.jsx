@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
+import { updateQuantity } from "./CartFunctions";
 import { optional } from "joi";
 
 const API = import.meta.env.VITE_APP_API_URL;
@@ -35,7 +37,7 @@ export default function ProductById() {
               <img
                 src={product.image}
                 alt={product.description}
-                className="h-auto w-auto tablet:h-96 shadow-2xl rounded-xl" 
+                className="h-auto w-auto tablet:h-96 shadow-2xl rounded-xl"
               />
               <div className="flex gap-4 ">
                 <p className="text-green">●</p>
@@ -47,7 +49,9 @@ export default function ProductById() {
             {/* Name, stock, and description */}
             <div className="flex flex-col gap-4  tablet:pt-4 tablet:gap-20 h-full w-full tablet:max-w-md">
               <div className="flex flex-col">
-              <h2 className="text-2xl font-bold">{capitalize(product.name)}</h2>
+                <h2 className="text-2xl font-bold">
+                  {capitalize(product.name)}
+                </h2>
                 <p
                   className={`${
                     product.stock > 10
@@ -68,7 +72,7 @@ export default function ProductById() {
                   <p className="text-[gray] text-sm">{product.description}</p>
                 </div>
               </div>
-            
+
               {/* Price and Quantity */}
               <div className="flex flex-col gap-4 border-t border-gray pt-4">
                 <div className="flex  justify-between">
@@ -86,6 +90,45 @@ export default function ProductById() {
                 </div>
                 {/* Add to cart button */}
                 <div className="flex justify-between tablet:justify-start gap-20">
+                  {/* Update Quantity Buttons and Display */}
+                  <div className="flex flex-col ml-4 justify-between">
+                    <CgCloseR
+                      className="text-red self-end cursor-pointer"
+                      onClick={() =>
+                        deleteProductFromCart(
+                          product.cart_id,
+                          setQuantity,
+                          setCartProducts
+                        )
+                      }
+                    />
+                    <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
+                      <CgMathMinus
+                        className="text-base cursor-pointer"
+                        onClick={() => {
+                          if (product.quantity > 1)
+                            updateQuantity(
+                              product,
+                              product.quantity - 1,
+                              setQuantity,
+                              setCartProducts
+                            );
+                        }}
+                      />
+                      <p className="cursor-default">{product.quantity}</p>
+                      <CgMathPlus
+                        className="text-base cursor-pointer"
+                        onClick={() =>
+                          updateQuantity(
+                            product,
+                            parseInt(product.quantity) + 1,
+                            setQuantity,
+                            setCartProducts
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
                   <button className="bg-gray-light text-sm h-8 w-20 rounded">
                     Qty: {product.quantity}
                   </button>
