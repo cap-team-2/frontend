@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function SearchResults({searchResults, session, setSession, quantity, setQuantity, cartProducts, setCartProducts}) {
@@ -47,7 +48,7 @@ export default function SearchResults({searchResults, session, setSession, quant
                 <img
                   src={results.image}
                   alt={results.description}
-                  className="h-44 w-fit max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer hover:rounded-xl hover:transition ease-in-out delay-150 duration-300 peer"
+                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer object-cover peer"
                   onClick={() => navigate(`/products/${results.id}`)}
                 />
                 {/* Product Name */}
@@ -67,13 +68,16 @@ export default function SearchResults({searchResults, session, setSession, quant
                   </span>
                 </p>
               </div>
-
-              <button
-                className="bg-green rounded text-xs bg-opacity-90 text-white font-semibold h-8 w-full self-start hover:bg-opacity-100"
-                onClick={() => addToCart(results)}
-              >
-                Add to cart
-              </button>
+              <div className="bg-green rounded flex items-center justify-evenly text-white h-8 w-full  bg-opacity-90 hover:bg-opacity-100">
+                <CgMathMinus />
+                <button
+                  className=" text-xs tablet:text-sm text-white font-semibold"
+                  onClick={() => addToCart(results)}
+                >
+                  Add to cart
+                </button>
+                <CgMathPlus />
+              </div>
             </div>
           );
         })
