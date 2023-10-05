@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SellerCard.css";
 
+
 // eslint-disable-next-line react/prop-types
 export default function SellerCard({ seller }) {
     return (
