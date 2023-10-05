@@ -15,18 +15,20 @@ export default function SearchResults({searchResults, session, setSession, quant
   );
   const navigate = useNavigate();
 
+  console.log(quantity, cartProducts)
+
 // Function to add a product to the cart
   function addToCart (product) {
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
+    // setQuantity(quantity+1)
   }
 
   useEffect(() => {
-
       axios.post(`${API}/cart-products`, cart)
       .catch((error) => {
         console.log(error);
       });
-
+    // }
   }, [cart]);
 
 
