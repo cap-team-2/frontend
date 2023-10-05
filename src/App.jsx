@@ -58,19 +58,24 @@ export default function App() {
 
     // Assign quantity state to the amount of products in cart
 
-      if (cartProducts.length > 0) {
-        axios
-        .get(`${API}/cart-products`)
-        .then((res) => {
-          setCartProducts(res.data)
-          console.log(res.data)
-        })
-         setQuantity(parseFloat(cartProducts.reduce((acc, cartProduct) => acc + cartProduct.quantity,
-         0
-         )))
-     }
-    
-  }, []);
+    //   if (cartProducts.length > 0) {
+    //     axios
+    //     .get(`${API}/cart-products`)
+    //     .then((res) => {
+    //       setCartProducts(res.data)
+    //     })
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    //  }
+    if (cartProducts.length > 0) {
+      const newQuantity = cartProducts.reduce((acc, cartProduct) => acc + cartProduct.quantity,
+      0
+      );
+      setQuantity(newQuantity)
+}
+    console.log(quantity, cartProducts)
+  }, [cartProducts, quantity]);
 
   return (
     <main className="h-screen w-full font-font flex flex-col">
