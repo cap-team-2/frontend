@@ -17,7 +17,6 @@ export default function CartPage({ session, cartProducts, setCartProducts, quant
            .get(`${API}/cart-joins/${session.id || 1}`)
            .then((res) => {
              setCartProducts(res.data);
-             console.log(res.data)
            })
            .catch((error) => {
              console.log(error);
