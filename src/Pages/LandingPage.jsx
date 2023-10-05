@@ -28,7 +28,7 @@ export default function LandingPage() {
               to={"/products"}
               className="bg-green h-10 w-32 flex items-center justify-center text-white hover:border-2 hover:border-white font-bold rounded-lg absolute bottom-10 laptop:bottom-20"
             >
-              Get Started
+              Start Shopping
             </Link>
           </div>
         </div>
