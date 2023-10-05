@@ -100,7 +100,7 @@ if (!cartProducts.length > 0) {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById />} />
+          <Route path="/products/:id" element={<ProductById  session={session}/>} />
           <Route
             path="/sellers"
             element={
