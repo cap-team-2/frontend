@@ -30,7 +30,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
         setSearchResults(res.data);
       })
     } catch (error) {
-      setSearchResults([]);
+      setSearchResults(undefined);
     }
   }
 
