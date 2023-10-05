@@ -26,10 +26,10 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
   }, [filter])
   
     return (
-        <div className='flex tablet:gap-10'>
+        <div className='flex justify-between w-full gap-10 xl:px-60'>
             {ProductFilters.map(productFilter => {
                 return (
-                  <div className={`h-16 w-20 flex flex-col items-center justify-start gap-2 hover:underline hover:underline-offset-8 decoration-2 cursor-pointer ${filter == productFilter.category ? 'underline  underline-offset-8 decoration-green' : 'hover:decoration-gray'}`}
+                  <div className={`h-16 w-20 flex flex-col items-center justify-start gap-2 hover:underline hover:underline-offset-8 decoration-2 cursor-pointer shrink-0 ${filter == productFilter.category ? 'underline  underline-offset-8 decoration-green' : 'hover:decoration-gray'}`}
                   key={generateId()}
                   onClick={() => filterProducts(productFilter)}
                   >

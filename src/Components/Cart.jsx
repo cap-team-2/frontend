@@ -1,16 +1,14 @@
 // cart component 
 
 import { keyframes } from "@emotion/react";
+
 import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
-import { updateInput, updateQuantity, deleteProductFromCart } from "./CartFunctions";
+import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 
 
 export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
    
 
-    
-
-    
 
   return (
     <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
@@ -48,27 +46,16 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                     className="text-red self-end cursor-pointer"
                     onClick={() => deleteProductFromCart(productAdded.cart_id, setQuantity, setCartProducts)}
                   />
-                  <div className="flex border items-center w-20 justify-center rounded border-gray shadow">
+                  <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
                     <CgMathMinus
                       className="text-base cursor-pointer"
                       onClick={() => {
 
-                       if(quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts)
+                       if(productAdded.quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts)
                       }
                       }
                     />
-                    <form className="flex items-center">
-                      <input
-                        className="placeholder-black w-8 text-center"
-                        onChange={(event) =>
-                          updateInput(event, productAdded.cart_id, setQuantity, setCartProducts)
-                        }
-                        type="text"
-                        min={1}
-                        value={productAdded.quantity}
-                        placeholder={productAdded.quantity}
-                      />
-                    </form>
+                    <p className="cursor-default">{quantity}</p>
                     <CgMathPlus
                       className="text-base cursor-pointer"
                       onClick={() =>
@@ -93,6 +80,9 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
 
 
 const capitalize = (str) => {
+  if (typeof str !== "string" || str.trim() === "") {
+    return ""; // or handle this case differently based on your requirements
+  }
   const stringArray = str.split(" ");
   const capitalizedString = stringArray.map(
     (string) => string[0].toUpperCase() + string.slice(1)

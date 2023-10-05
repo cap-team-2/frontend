@@ -3,35 +3,6 @@ import axios from "axios";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export const updateInput = (event, cart_id, setQuantity, setCartProducts) => {
-  event.preventDefault();
-
-  if (
-    typeof Number(event.target.value) === "number" &&
-    Number(event.target.value) >= 0
-  ) {
-    setQuantity(event.target.value);
-    axios
-      .put(`${API}/cart-products/${cart_id}`, {
-        quantity: event.target.value,
-      })
-      .then(() => {
-        // Update the cartProducts state with the new quantity
-        setCartProducts((prevCartProducts) =>
-          prevCartProducts.map((product) =>
-            product.cart_id === cart_id
-              ? { ...product, quantity: event.target.value }
-              : product
-          )
-        );
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } else {
-    setQuantity(0);
-  }
-};
 
 export const updateQuantity = ( cartProduct, newQuantity, setQuantity, setCartProducts ) => {
   axios
