@@ -16,9 +16,9 @@ export default function SearchResults({searchResults, session, setSession, quant
   const navigate = useNavigate();
 
 
-
 // Function to add a product to the cart
   function addToCart (product) {
+    setQuantity(quantity+1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
     // setQuantity(quantity+1)
   }
@@ -78,7 +78,7 @@ export default function SearchResults({searchResults, session, setSession, quant
           );
         })
       ) : (
-        <h2 className="text-xl font-medium col-span-full text-center mt-10">
+        <h2 className="text-xl h-screen font-medium col-span-full text-center mt-10">
           Sorry, we couldn't find any results
         </h2>
       )}

@@ -16,7 +16,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
         ? cartProducts.map((productAdded, index) => {
             return (
               <div
-                key={productAdded.id + index}
+                key={index}
                 className="flex justify-between h-auto w-full shadow-lg border border-gray-light p-2 rounded-lg mb-4"
               >
                 <div className="flex ">
