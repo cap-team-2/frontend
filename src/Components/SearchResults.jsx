@@ -14,12 +14,15 @@ export default function SearchResults({searchResults, session, setSession, quant
       quantity: 1
     }
   );
+  // state that controls when the update quantity buttons are shown
+  const [showUpdateButtons, setShowUpdateButtons] = useState(0);
   const navigate = useNavigate();
 
 
 // Function to add a product to the cart
   function addToCart (product) {
     setQuantity(quantity+1)
+    setShowUpdateButtons(showUpdateButtons + 1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
     // setQuantity(quantity+1)
   }
@@ -69,14 +72,19 @@ export default function SearchResults({searchResults, session, setSession, quant
                 </p>
               </div>
               <div className="bg-green rounded flex items-center justify-evenly text-white h-8 w-full  bg-opacity-90 hover:bg-opacity-100">
-                <CgMathMinus />
+                {showUpdateButtons > 0 && (
+                  <CgMathMinus className="cursor-pointer hover:scale-110" />
+                )}
+
                 <button
                   className=" text-xs tablet:text-sm text-white font-semibold"
                   onClick={() => addToCart(results)}
                 >
                   Add to cart
                 </button>
-                <CgMathPlus />
+                {showUpdateButtons > 0 && (
+                  <CgMathPlus className="cursor-pointer hover:scale-110" />
+                )}
               </div>
             </div>
           );
