@@ -15,7 +15,7 @@ export default function SearchResults({searchResults, session, setSession, quant
   );
   const navigate = useNavigate();
 
-  console.log(quantity, cartProducts)
+
 
 // Function to add a product to the cart
   function addToCart (product) {

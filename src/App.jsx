@@ -74,7 +74,7 @@ export default function App() {
       );
       setQuantity(newQuantity)
 }
-    console.log(quantity, cartProducts)
+
   }, [cartProducts, quantity]);
 
   return (
