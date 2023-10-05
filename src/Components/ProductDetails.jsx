@@ -9,11 +9,33 @@ import { optional } from "joi";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function ProductById() {
+export default function ProductById({ session }) {
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState([]);
     const { id } = useParams();
     const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
+    const [cart, setCart] = useState({
+      session_id: "",
+      product_id: "",
+      quantity: 1,
+    });
+
+
+    // Function to add a product to the cart
+    function addToCart() {
+      setCart({
+        ...cart,
+        session_id: session.id,
+        product_id: id,
+        quantity: "1",
+      });
+    }
+
+    useEffect(() => {
+      axios.post(`${API}/cart-products`, cart).catch((error) => {
+        console.log(error);
+      });
+    }, [cart]);
 
     // Make an api call to retrieve a product with the given id
     useEffect(() => {
@@ -105,7 +127,9 @@ export default function ProductById() {
                             );
                         }}
                       />
-                      <p className="cursor-default h-8 flex items-center text-lg">{"1"}</p>
+                      <p className="cursor-default h-8 flex items-center text-lg">
+                        {"1"}
+                      </p>
                       <CgMathPlus
                         className="text-base cursor-pointer"
                         onClick={() =>
@@ -122,7 +146,10 @@ export default function ProductById() {
                   {/* <button className="bg-gray-light text-sm h-8 w-20 rounded">
                     Qty: {product.quantity}
                   </button> */}
-                  <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs laptop:text-sm font-semibold text-white h-8 w-40">
+                  <button
+                    onClick={() => addToCart()}
+                    className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs laptop:text-sm font-semibold text-white h-8 w-40"
+                  >
                     Add to cart
                   </button>
                 </div>
