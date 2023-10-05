@@ -2,8 +2,7 @@
 import axios from "axios";
 const API = import.meta.env.VITE_APP_API_URL;
 
-
-
+[]
 export const updateQuantity = ( cartProduct, newQuantity, setQuantity, setCartProducts, quantity ) => {
   axios
     .put(`${API}/cart-products/${cartProduct.cart_id}`, {
@@ -40,4 +39,3 @@ export const deleteProductFromCart = (id, productAddedQuantity, setQuantity, set
     });
     setQuantity(quantity - productAddedQuantity)
 };
-
