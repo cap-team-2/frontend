@@ -72,7 +72,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <main className="h-screen w-full font-font flex flex-col">
+    <main className="h-screen w-full font-font flex flex-col justify-between">
       <Router>
         <Nav setSearchResults={setSearchResults} quantity={quantity} />
         <Routes>
