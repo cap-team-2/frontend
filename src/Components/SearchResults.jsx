@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function SearchResults({searchResults, session, setSession, quantity, setQuantity, cartProducts, setCartProducts}) {
@@ -20,7 +19,7 @@ export default function SearchResults({searchResults, session, setSession, quant
 
 
 // Function to add a product to the cart
-  function addToCart (product) {
+  function addToCart(product) {
     setQuantity(quantity+1)
     setShowUpdateButtons(showUpdateButtons + 1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
@@ -28,11 +27,12 @@ export default function SearchResults({searchResults, session, setSession, quant
   }
 
   useEffect(() => {
-      axios.post(`${API}/cart-products`, cart)
-      .catch((error) => {
-        console.log(error);
-      });
-    // }
+    
+    axios.post(`${API}/cart-products`, cart)
+    .catch((error) => {
+      console.log(error);
+    });
+
   }, [cart]);
 
 
@@ -72,19 +72,12 @@ export default function SearchResults({searchResults, session, setSession, quant
                 </p>
               </div>
               <div className="bg-green rounded flex items-center justify-evenly text-white h-8 w-full  bg-opacity-90 hover:bg-opacity-100">
-                {showUpdateButtons > 0 && (
-                  <CgMathMinus className="cursor-pointer hover:scale-110" />
-                )}
-
                 <button
                   className=" text-xs tablet:text-sm text-white font-semibold"
                   onClick={() => addToCart(results)}
                 >
                   Add to cart
                 </button>
-                {showUpdateButtons > 0 && (
-                  <CgMathPlus className="cursor-pointer hover:scale-110" />
-                )}
               </div>
             </div>
           );
