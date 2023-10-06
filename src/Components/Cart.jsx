@@ -1,114 +1,89 @@
 // cart component 
 
 import { keyframes } from "@emotion/react";
-import axios from "axios"
-import { useEffect, useState } from "react";
-const API = import.meta.env.VITE_APP_API_URL;
 
-export default function Cart({cartProducts, setCartProducts}) {
-    const [ quantity, setQuantity ] = useState(1)
-    // const [ updateCart, setUpdatedCart ] = useState({
+import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
+import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 
-    // })
-    // console.log(session.id)
-    // console.log(cartProducts)
-    function itemClick () {
-        console.log()
-    } 
-
-    function updateInput (event, cart_id) {
-        console.log(event.target.value)
-        axios.put(`${API}/cart-products/${cart_id}`, { quantity: event.target.value })
-        .then(() => {
-            // Update the cartProducts state with the new quantity
-            setCartProducts((prevCartProducts) =>
-              prevCartProducts.map((product) =>
-                product.cart_id === cart_id
-                  ? { ...product, quantity: event.target.value }
-                  : product
-              )
-            );
-          })
-          .catch((error) => {
-            console.error(error);
-          });   
-    }
-
-    function updateQuantity (cartProduct, newQuantity) {
-        axios.put(`${API}/cart-products/${cartProduct.cart_id}`, { quantity: newQuantity })
-        .then(() => {
-          // Update the cartProducts state with the new quantity
-          setCartProducts((prevCartProducts) =>
-            prevCartProducts.map((product) =>
-              product.cart_id === cartProduct.cart_id
-                ? { ...product, quantity: newQuantity }
-                : product
-            )
-          );
-        })
-        .catch((error) => {
-          console.error(error);
-        });    
-    }
-
-    function deleteProductFromCart (id) {
-        axios.delete(`${API}/cart-products/${id}`)
-        .then(() => {
-            setCartProducts((prevCartProducts) =>
-              prevCartProducts.filter((product) => product.cart_id !== id)
-            );
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-    }
+export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
 
   return (
-    <div className="w-full tablet:pl-10 pl-4 pr-10 py-8 overflow-y-auto overflow-x-hidden mobile:h-full tablet:h-screen scroll-smooth">
-        <p className="text-2xl font-bold border-b border-gray pb-5">My Cart</p>
-        {cartProducts ? 
-            cartProducts.map((productAdded, index) => {
-                return (
-                    <div key={productAdded.id + index} className="mobile:grid-cols-1 tablet:grid-cols-1 py-5 grid laptop:grid-cols-3 gap-4 border-b border-gray">
-                        <div className="col-span-1">
-                            <img className="" src={productAdded.image} alt={productAdded.name}/>
-                        </div>
-                        <div className="grid grid-cols-2 col-span-2">
-                            <div className="text-xl font-medium">
-                                <p>{productAdded.name}</p>
-                                <p>${productAdded.cost}</p>
-                                <p 
-                                className="mobile:pt-2 tablet:pt-10 underline"
-                                onClick={()=>itemClick()}
-                                >View Details</p>
-                            </div>
-                            <div className="grid grid-cols-3 justify-self-center">
-                            <button 
-                                className="text-right"
-                                onClick={()=>updateQuantity( productAdded, productAdded.quantity - 1)}
-                            >{"<"}</button>
-                                <form className="flex items-center">
-                                    <input
-                                    className="placeholder-black w-full text-center"
-                                    onChange={(event)=>updateInput(event, productAdded.cart_id)}
-                                    type="text"
-                                    placeholder={productAdded.quantity}
-                                    />                                    
-                                </form>
-                                <button 
-                                    className="text-left"
-                                    onClick={()=>updateQuantity( productAdded, parseInt(productAdded.quantity) + 1)}
-                                >{">"}</button>
-                                <button 
-                                    onClick={()=>deleteProductFromCart(productAdded.cart_id)}
-                                    className="col-start-2 text-red"
-                                >Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })
-         : null}
+    <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
+      <p className="text-xl font-bold border-b border-gray pb-2 mb-4">
+        My Cart ({quantity} item{`${quantity > 1 || quantity === 0 ? 's' : ''}`})
+      </p>
+      {cartProducts
+        ? cartProducts.map((productAdded, index) => {
+            return (
+              <div
+                key={index}
+                className="flex justify-between h-auto w-full shadow-lg border border-gray-light p-2 rounded-lg mb-4"
+              >
+                <div className="flex ">
+                  {/* Product Image */}
+                  <img
+                    className="h-20 w-20 rounded shadow-lg mr-4"
+                    src={productAdded.image}
+                    alt={productAdded.name}
+                  />
+                  {/* Product Name and Price */}
+                  <div className="font-medium">
+                    <p className="font-semibold">
+                      {capitalize(productAdded.name)}
+                    </p>
+                    <p className="text-sm font-semibold text-green">
+                      ${productAdded.cost}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Update Quantity Buttons and Display */}
+                <div className="flex flex-col ml-4 justify-between">
+                  <CgCloseR
+                    className="text-red self-end cursor-pointer"
+                    onClick={() => deleteProductFromCart(productAdded.cart_id, productAdded.quantity, setQuantity, setCartProducts, quantity)}
+                  />
+                  <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
+                    <CgMathMinus
+                      className="text-base cursor-pointer"
+                      onClick={() => {
+                       if(productAdded.quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts, quantity-1
+                        )}
+                      }
+                    />
+                    <p className="cursor-default">{productAdded.quantity}</p>
+                    <CgMathPlus
+                      className="text-base cursor-pointer"
+                      onClick={() =>{
+                        updateQuantity(
+                          productAdded,
+                          parseInt(productAdded.quantity) + 1, setQuantity, setCartProducts, quantity+1
+                        )}
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        : null}
+      {quantity ?
+      null
+      : <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>}
     </div>
-  )
+  );
 }
+
+
+const capitalize = (str) => {
+  if (!str || typeof str !== "string") {
+    return;
+  }
+  const stringArray = str.split(" ");
+  const capitalizedString = stringArray.map(
+    (string) => string[0].toUpperCase() + string.slice(1)
+  );
+
+  return capitalizedString.join(" ");
+};
+

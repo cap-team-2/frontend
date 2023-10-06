@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 
-export default function NavLinks({ isOpen}) {
+export default function NavLinks({ isOpen, setIsOpen, quantity }) {
     return (
       <div
         className={`flex gap-4 desktop:items-end desktop:justify-end ${
@@ -12,7 +12,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -21,7 +21,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/products"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -30,7 +30,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/market"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -39,7 +39,7 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/sellers"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
@@ -48,31 +48,25 @@ export default function NavLinks({ isOpen}) {
         <Link
           to={"/login"}
           onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
+          className={`tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
             isOpen ? "text-3xl font-normal" : "text-base"
           }`}
         >
           Log In
         </Link>
         <Link
-          to={"/register"}
-          onClick={() => setIsOpen(!isOpen)}
-          className={`text-green-light tablet:hover:underline tablet:hover:underline-offset-8 font-medium ${
-            isOpen ? "text-3xl font-normal" : "text-base"
-          }`}
-        >
-          Get Started
-        </Link>
-        <Link
           to={"/cart"}
-          className="self-start"
+          className="self-start relative"
           onClick={() => setIsOpen(!isOpen)}
         >
           <BsBag
-            className={`text-green-light hover:text-green font-medium ${
-              isOpen ? "text-3xl font-normal" : "text-xl"
+            className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
+              isOpen ? "text-3xl font-normal" : "text-2xl"
             }`}
           />
+          <span className={`absolute text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark ${isOpen ? 'top-4 left-4 h-5 w-5' : 'top-3 left-3'}`}>
+            {quantity}
+          </span>
         </Link>
       </div>
     );

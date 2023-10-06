@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SellerCard.css";
 
+
 // eslint-disable-next-line react/prop-types
 export default function SellerCard({ seller }) {
     return (
@@ -21,20 +22,20 @@ export default function SellerCard({ seller }) {
                     to={`/sellers/${seller.id}`}
                     className="text-xl font-medium mb-1"
                 >
-                    {seller.first_name} {seller.last_name}
-                </Link>
-                <p className="text-sm mb-4">{seller.email}</p>
-                <p className="text-xs">
-                    {seller.address_1}, {seller.city}, {seller.zipcode}
-                </p>
 
-                <Link
-                    to={`/sellers/${seller.id}`}
-                    className="bg-green-light text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
-                >
-                    Visit Profile
-                </Link>
-            </div>
+                {seller.first_name} {seller.last_name}
+            </Link>
+            <p className="text-sm mb-4">{seller.email}</p>
+            <p className="text-xs">
+                {seller.address_1}, {seller.city}, {seller.zipcode}
+            </p>
+            {/* Visit profile button */}
+            <Link
+                to={`/sellers/${seller.id}`}
+                className="bg-green bg-opacity-90 hover:bg-opacity-100 text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
+            >
+                Visit Profile
+            </Link>
         </div>
     );
 }

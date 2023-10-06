@@ -8,7 +8,7 @@ import SearchBar from "../Components/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function HomePage({ searchResults, setSearchResults, setFilter, filter, filteredProducts, session, searchForText, setSearchForText }) {
+export default function HomePage({ searchResults, setSearchResults, setFilter, filter, session, setSession, searchForText, setSearchForText, quantity, setQuantity, cartProducts, setCartProducts }) {
   // Make an API call for all products when returning to the homepage to update the searchResults state
   useEffect(() => {
     setSearchForText("Products");
@@ -30,12 +30,12 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
         setSearchResults(res.data);
       })
     } catch (error) {
-      setSearchResults([]);
+      setSearchResults(undefined);
     }
   }
 
   return (
-    <div className="h-auto w-full flex flex-col tablet:pt-24 pb-4 ">
+    <div className="h-auto w-full flex flex-col tablet:pt-24 pb-4">
       <div className="flex flex-col fixed top-16 tablet:top-16 w-full bg-white z-40 pt-2">
         {/* Search Bar */}
         <SearchBar setSearchResults={setSearchResults} performSearch={performSearch} searchForText={searchForText} />
@@ -52,8 +52,12 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
         {/* Products */}
         <SearchResults
           session={session}
+          setSession={setSession}
           searchResults={searchResults}
-          filteredProducts={filteredProducts}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          cartProducts={cartProducts}
+          setCartProducts={setCartProducts}
         />
       </div>
     </div>

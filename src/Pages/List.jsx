@@ -1,5 +1,13 @@
+import { useContext } from "react";
+
+import { UserContext } from "../Providers/UserProvider";
+
 import "./List.css"
+
 export default function List() {
+
+    const user = useContext(UserContext);
+    
     return (
         <div className="list">
 

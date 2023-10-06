@@ -1,7 +1,7 @@
 // Sellers.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SellerCard from "../Components/sellerCard/sellerCard";
+import SellerCard from "../Components/sellerCard/SellerCard.jsx";
 import SearchBar from "../Components/SearchBar.jsx";
 const API = import.meta.env.VITE_APP_API_URL;
 
@@ -22,7 +22,7 @@ export default function Sellers({ searchForText, setSearchForText }) {
 
   return (
     <div className="h-auto pt-24 flex flex-col gap-4 xl:px-32 pb-4">
-      <h1 className="text-center text-4xl font-light text-gray-900 text-green-light tablet:text-5xl desktop:text-6xl">
+      <h1 className="text-center text-4xl font-light text-gray-900 text-green tablet:text-5xl desktop:text-6xl">
         VENDORS
       </h1>
       <SearchBar searchForText={searchForText}/>
