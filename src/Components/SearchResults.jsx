@@ -13,25 +13,26 @@ export default function SearchResults({searchResults, session, setSession, quant
       quantity: 1
     }
   );
-  // state that controls when the update quantity buttons are shown
-  const [showUpdateButtons, setShowUpdateButtons] = useState(0);
+
+
   const navigate = useNavigate();
 
 
 // Function to add a product to the cart
   function addToCart(product) {
     setQuantity(quantity+1)
-    setShowUpdateButtons(showUpdateButtons + 1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
     // setQuantity(quantity+1)
   }
 
   useEffect(() => {
-    
+
     axios.post(`${API}/cart-products`, cart)
     .catch((error) => {
       console.log(error);
     });
+
+    // axios.get(`${API}/cart-products/${}`)
 
   }, [cart]);
 
@@ -41,6 +42,7 @@ export default function SearchResults({searchResults, session, setSession, quant
       {searchResults.length ? (
         searchResults.map((results) => {
           const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
+
           return (
             <div
               className="flex flex-col justify-between items-center p-2 gap-4 h-auto w-auto max-w-52 shadow-xl rounded-xl"
@@ -71,14 +73,15 @@ export default function SearchResults({searchResults, session, setSession, quant
                   </span>
                 </p>
               </div>
-              <div className="bg-green rounded flex items-center justify-evenly text-white h-8 w-full  bg-opacity-90 hover:bg-opacity-100">
+              {/* Add to cart button */}
                 <button
-                  className=" text-xs tablet:text-sm text-white font-semibold"
+                  className=" text-xs tablet:text-sm text-white font-semibold bg-green rounded flex items-center justify-evenly h-8 w-full  bg-opacity-90 hover:bg-opacity-100"
                   onClick={() => addToCart(results)}
                 >
                   Add to cart
                 </button>
-              </div>
+                
+
             </div>
           );
         })
