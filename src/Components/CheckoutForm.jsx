@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 
-function CheckoutForm() {
-  const [formData, setFormData] = useState({
+function CheckoutForm({setThanks}) {
+  const [ formData, setFormData ] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
-    paymentMethod: 'credit-card',
+    cardNumber: '',
+    ExpireMonth: '',
+    CVC: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [id]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setThanks(true)
     // You can handle the form submission logic here, such as sending data to a server or performing client-side validation.
     console.log('Form Data:', formData);
   };
@@ -27,7 +30,7 @@ function CheckoutForm() {
     <div>
       <h1>Checkout</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">CardHolder Name</label>
         <input
           type="text"
           id="name"
@@ -58,16 +61,53 @@ function CheckoutForm() {
         />
 
         <label htmlFor="address">Shipping Address</label>
-        <textarea
+        <input
+          type="text"
           id="address"
           name="address"
           rows="4"
           value={formData.address}
           onChange={handleChange}
           required
-        ></textarea>
+        />
 
-        <label htmlFor="payment">Payment Method</label>
+        <label htmlFor="cardNumber">Card Number</label>
+        <input
+          type="tel"
+          inputMode="numeric"
+          id="cardNumber"
+          name="cardNumber"
+          pattern="[0-9\s]{13,19}"
+          autoComplete="cc-number"
+          maxLength="19"
+          placeholder="xxxx xxxx xxxx xxxx"
+          value={formData.cardNumber}
+          onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="ExpireMonth">Expire Month</label>
+        <input
+          type="month"
+          id="ExpireMonth"
+          name="ExpireMonth"
+          value={formData.ExpireMonth}
+          onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="CVC">CVC</label>
+        <input
+          type="password"
+          maxLength="3"
+          id="CVC"
+          name="CVC"
+          value={formData.CVC}
+          onChange={handleChange}
+          required
+        />
+
+        {/* <label htmlFor="payment">Payment Method</label>
         <select
           id="payment"
           name="paymentMethod"
@@ -77,8 +117,7 @@ function CheckoutForm() {
         >
           <option value="credit-card">Credit Card</option>
           <option value="paypal">PayPal</option>
-          <option value="stripe">Stripe</option>
-        </select>
+        </select> */}
 
         <button type="submit">Place Order</button>
       </form>

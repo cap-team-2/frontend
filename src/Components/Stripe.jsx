@@ -7,6 +7,7 @@ import CheckoutForm from './CheckoutForm.jsx';
 
 
 function Stripe() {
+  const [ thanks, setThanks ] = useState(false);
   // const [ stripePromise, setStripePromise ] = useState(null);
   // const [ clientSecret, setClientSecret ] = useState("");
   // useEffect(() => {
@@ -30,7 +31,9 @@ function Stripe() {
 
   return (
     <div>
-      <CheckoutForm/>
+      {thanks ? 
+      <p>Thank You For Your Purchase</p> :
+      <CheckoutForm setThanks={setThanks}/>}
       {/* {stripePromise && (
         <Elements stripe={stripePromise} >
           <CheckoutForm/>
