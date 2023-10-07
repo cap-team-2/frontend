@@ -21,7 +21,7 @@ export default function FilterProductsBy({setSearchResults, filter, setFilter })
       setSearchResults(res.data);
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
     })
   }, [filter])
   
