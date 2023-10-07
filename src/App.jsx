@@ -22,8 +22,6 @@ import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById";
 
-
-
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function App() {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Summary({cartProducts}) {
+export default function Summary({cartProducts, setCheckout, checkout}) {
     const [ total, setTotal ] = useState(0);
 
     useEffect(() => {
@@ -17,7 +17,11 @@ export default function Summary({cartProducts}) {
             return 0;
         }
     }
-    
+
+    function activateCheckout () {
+        setCheckout(!checkout);
+    }
+    console.log(checkout)
   return (
     <div className="h-full w-full flex flex-col tablet:justify-start">
       <div className="my-10 text-sm font-medium gap-y-4 flex flex-col">
@@ -40,7 +44,8 @@ export default function Summary({cartProducts}) {
           </p>
         </div>
       </div>
-      <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-sm laptop:text-base font-semibold text-white h-10 w-full ">
+      <button className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-sm laptop:text-base font-semibold text-white h-10 w-full"
+      onClick={()=>activateCheckout()}>
         Proceed to Checkout
       </button>
     </div>
