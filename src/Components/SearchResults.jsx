@@ -13,22 +13,27 @@ export default function SearchResults({searchResults, session, setSession, quant
       quantity: 1
     }
   );
+
+
   const navigate = useNavigate();
 
 
 // Function to add a product to the cart
-  function addToCart (product) {
+  function addToCart(product) {
     setQuantity(quantity+1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
     // setQuantity(quantity+1)
   }
 
   useEffect(() => {
-      axios.post(`${API}/cart-products`, cart)
-      .catch((error) => {
-        console.log(error);
-      });
-    // }
+
+    axios.post(`${API}/cart-products`, cart)
+    .catch((error) => {
+      console.log(error);
+    });
+
+    // axios.get(`${API}/cart-products/${}`)
+
   }, [cart]);
 
 
@@ -37,6 +42,7 @@ export default function SearchResults({searchResults, session, setSession, quant
       {searchResults.length ? (
         searchResults.map((results) => {
           const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
+
           return (
             <div
               className="flex flex-col justify-between items-center p-2 gap-4 h-auto w-auto max-w-52 shadow-xl rounded-xl"
@@ -47,7 +53,7 @@ export default function SearchResults({searchResults, session, setSession, quant
                 <img
                   src={results.image}
                   alt={results.description}
-                  className="h-44 w-fit max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center hover:cursor-pointer hover:rounded-xl hover:transition ease-in-out delay-150 duration-300 peer"
+                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer object-cover peer"
                   onClick={() => navigate(`/products/${results.id}`)}
                 />
                 {/* Product Name */}
@@ -67,13 +73,15 @@ export default function SearchResults({searchResults, session, setSession, quant
                   </span>
                 </p>
               </div>
+              {/* Add to cart button */}
+                <button
+                  className=" text-xs tablet:text-sm text-white font-semibold bg-green rounded flex items-center justify-evenly h-8 w-full  bg-opacity-90 hover:bg-opacity-100"
+                  onClick={() => addToCart(results)}
+                >
+                  Add to cart
+                </button>
+                
 
-              <button
-                className="bg-green rounded text-xs bg-opacity-90 text-white font-semibold h-8 w-full self-start hover:bg-opacity-100"
-                onClick={() => addToCart(results)}
-              >
-                Add to cart
-              </button>
             </div>
           );
         })
