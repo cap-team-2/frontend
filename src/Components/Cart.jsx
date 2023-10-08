@@ -1,93 +1,32 @@
 // cart component 
 
 import { keyframes } from "@emotion/react";
-import axios from "axios"
-import { useEffect, useState } from "react";
-import { CgCloseR } from "react-icons/cg";
-const API = import.meta.env.VITE_APP_API_URL;
 
-export default function Cart({cartProducts, setCartProducts}) {
-    const [ quantity, setQuantity ] = useState(0)
-    // const [ updateCart, setUpdatedCart ] = useState({
+import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
+import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 
-    // })
-    // console.log(session.id)
-    // console.log(cartProducts)
-    function itemClick () {
-        console.log()
-    } 
-
-    function updateInput (event, cart_id) {
-        console.log(event.target.value)
-        axios.put(`${API}/cart-products/${cart_id}`, { quantity: event.target.value })
-        .then(() => {
-            // Update the cartProducts state with the new quantity
-            setCartProducts((prevCartProducts) =>
-              prevCartProducts.map((product) =>
-                product.cart_id === cart_id
-                  ? { ...product, quantity: event.target.value }
-                  : product
-              )
-            );
-          })
-          .catch((error) => {
-            console.error(error);
-          });   
-    }
-
-    function updateQuantity (cartProduct, newQuantity) {
-        axios.put(`${API}/cart-products/${cartProduct.cart_id}`, { quantity: newQuantity })
-        .then(() => {
-          // Update the cart quantity
-          setQuantity(newQuantity)
-
-          // Update the cartProducts state with the new quantity
-          setCartProducts((prevCartProducts) =>
-            prevCartProducts.map((product) =>
-              product.cart_id === cartProduct.cart_id
-                ? { ...product, quantity: newQuantity }
-                : product
-            )
-          );
-        })
-        .catch((error) => {
-          console.error(error);
-        });    
-    }
-
-    function deleteProductFromCart (id) {
-        axios.delete(`${API}/cart-products/${id}`)
-        .then(() => {
-            setQuantity(0)
-            setCartProducts((prevCartProducts) =>
-              prevCartProducts.filter((product) => product.cart_id !== id)
-            );
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-    }
+export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
 
   return (
-    <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full tablet:h-screen scroll-smooth">
+    <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
       <p className="text-xl font-bold border-b border-gray pb-2 mb-4">
-        My Cart ({quantity} item{`${quantity > 1 ? 's' : ''}`})
+        My Cart ({quantity} item{`${quantity > 1 || quantity === 0 ? 's' : ''}`})
       </p>
       {cartProducts
         ? cartProducts.map((productAdded, index) => {
             return (
               <div
-                key={productAdded.id + index}
-                className="flex justify-evenly w-full shadow-lg border border-gray-light p-2 rounded-lg"
+                key={index}
+                className="flex justify-between h-auto w-full shadow-lg border border-gray-light p-2 rounded-lg mb-4"
               >
-                {/* Product Image */}
-                <img
-                  className="h-20 w-20 rounded shadow-lg mr-4"
-                  src={productAdded.image}
-                  alt={productAdded.name}
-                />
-                {/* Product Name and Price */}
-                <div className="flex">
+                <div className="flex ">
+                  {/* Product Image */}
+                  <img
+                    className="h-20 w-20 rounded shadow-lg mr-4"
+                    src={productAdded.image}
+                    alt={productAdded.name}
+                  />
+                  {/* Product Name and Price */}
                   <div className="font-medium">
                     <p className="font-semibold">
                       {capitalize(productAdded.name)}
@@ -96,63 +35,50 @@ export default function Cart({cartProducts, setCartProducts}) {
                       ${productAdded.cost}
                     </p>
                   </div>
-                  {/* Update Quantity Buttons and Display */}
-                  <div className="flex flex-col border">
-                    <CgCloseR
-                      className="text-red"
-                      onClick={() =>
-                        deleteProductFromCart(productAdded.cart_id)
+                </div>
+
+                {/* Update Quantity Buttons and Display */}
+                <div className="flex flex-col ml-4 justify-between">
+                  <CgCloseR
+                    className="text-red self-end cursor-pointer"
+                    onClick={() => deleteProductFromCart(productAdded.cart_id, productAdded.quantity, setQuantity, setCartProducts, quantity)}
+                  />
+                  <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
+                    <CgMathMinus
+                      className="text-base cursor-pointer"
+                      onClick={() => {
+                       if(productAdded.quantity > 1) updateQuantity(productAdded, productAdded.quantity - 1, setQuantity, setCartProducts, quantity-1
+                        )}
                       }
                     />
-                    <div className="flex">
-                      <button
-                        className="text-right"
-                        onClick={() =>
-                          updateQuantity(
-                            productAdded,
-                            productAdded.quantity - 1
-                          )
-                        }
-                      >
-                        {"<"}
-                      </button>
-                      <form className="flex items-center">
-                        <input
-                          className="placeholder-black w-full text-center"
-                          onChange={(event) =>
-                            updateInput(event, productAdded.cart_id)
-                          }
-                          type="text"
-                          placeholder={productAdded.quantity}
-                        />
-                      </form>
-                      <button
-                        className="text-left"
-                        onClick={() =>
-                          updateQuantity(
-                            productAdded,
-                            parseInt(productAdded.quantity) + 1
-                          )
-                        }
-                      >
-                        {">"}
-                      </button>
-                    </div>
+                    <p className="cursor-default">{productAdded.quantity}</p>
+                    <CgMathPlus
+                      className="text-base cursor-pointer"
+                      onClick={() =>{
+                        updateQuantity(
+                          productAdded,
+                          parseInt(productAdded.quantity) + 1, setQuantity, setCartProducts, quantity+1
+                        )}
+                      }
+                    />
                   </div>
                 </div>
               </div>
             );
           })
         : null}
-      {quantity === 0 && (
-        <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>
-      )}
+      {quantity ?
+      null
+      : <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>}
     </div>
   );
 }
 
 
 const capitalize = (str) => {
+  if (!str || typeof str !== "string") {
+    return;
+  }
   const stringArray = str.split(" ");
   const capitalizedString = stringArray.map(
     (string) => string[0].toUpperCase() + string.slice(1)
@@ -160,3 +86,4 @@ const capitalize = (str) => {
 
   return capitalizedString.join(" ");
 };
+

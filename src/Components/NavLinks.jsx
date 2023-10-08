@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 
-export default function NavLinks({ isOpen}) {
+export default function NavLinks({ isOpen, setIsOpen, quantity }) {
     return (
       <div
         className={`flex gap-4 desktop:items-end desktop:justify-end ${
@@ -56,7 +56,7 @@ export default function NavLinks({ isOpen}) {
         </Link>
         <Link
           to={"/cart"}
-          className="self-start"
+          className="self-start relative"
           onClick={() => setIsOpen(!isOpen)}
         >
           <BsBag
@@ -64,6 +64,9 @@ export default function NavLinks({ isOpen}) {
               isOpen ? "text-3xl font-normal" : "text-2xl"
             }`}
           />
+          <span className={`absolute text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark ${isOpen ? 'top-4 left-4 h-5 w-5' : 'top-3 left-3'}`}>
+            {quantity}
+          </span>
         </Link>
       </div>
     );

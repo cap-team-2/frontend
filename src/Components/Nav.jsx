@@ -9,23 +9,12 @@ import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";
 
-const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function Nav({ setSearchResults }) {
+export default function Nav({ quantity }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Make an API call for all products when returning to the homepage to update the searchResults state
-  const getAllProducts = () => {
-    axios
-      .get(`${API}/products`)
-      .then((res) => {
-        setSearchResults(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+
 
   return (
     <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-green text-white desktop:px-10 xl:px-48">
@@ -33,7 +22,7 @@ export default function Nav({ setSearchResults }) {
         <div className="flex justify-between  tablet:flex tablet:justify-between tablet:px-8 items-center px-2 p-4">
           {/* Logo that links back to homepage */}
           <div className="flex">
-            <Link to={"/"} onClick={getAllProducts}>
+            <Link to={"/"}>
               {/* <img
                 src={PantriLogo}
                 alt="Pantri Logo"
@@ -45,17 +34,19 @@ export default function Nav({ setSearchResults }) {
           <div className="flex items-center">
             {/* Nav Links */}
             <div className="hidden laptop:block">
-              <NavLinks />
+              <NavLinks quantity={quantity} />
             </div>
             <div className='flex gap-4' >
               <Link
                 to={"/cart"}
+                className='relative'
               >
                 <BsBag
-                  className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
+                  className={`laptop:hidden hover:text-green-dark transition ease-in-out duration-500 rounded ${
                     isOpen ? "text-3xl font-normal" : "text-2xl"
                   }`}
                 />
+                <span className='laptop:hidden absolute top-3 left-3 text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark'>{quantity}</span>
               </Link>
               <RxHamburgerMenu
                 className="text-white text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
@@ -72,7 +63,7 @@ export default function Nav({ setSearchResults }) {
             className="text-2xl text-white absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
             onClick={() => setIsOpen(!isOpen)}
           />
-          <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} />
+          <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} quantity={quantity} />
         </div>
       )}
     </div>
