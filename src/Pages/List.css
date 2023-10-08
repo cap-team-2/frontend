@@ -1,11 +1,47 @@
 .list {
     width: 600px;
-    border: 1px solid black;
-    margin: 20px auto;
+    margin: 80px auto;
     padding: 20px;
+    min-height: 80%;
 }
 
-h1 {text-align: center;}
+.list__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.list__title {
+    font-size: 1.5em;
+    font-weight: 600;;
+}
+
+.list button {
+    background-color: #10890F;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.list button:hover {
+    background-color: rgb(24, 166, 24);
+}
+
+
+.list__add-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list__add-item input {
+    border-bottom: 2px gray solid;
+}
+
+.list__add-item input:focus {
+    outline: none;
+    border-bottom: 2px rgb(36, 36, 36) solid;
+}
+
 .list__items {
     margin-top: 20px;
 

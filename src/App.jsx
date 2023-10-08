@@ -16,6 +16,7 @@ import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
+import List from "./Pages/List";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
