@@ -25,7 +25,7 @@ export default function Sellers({ searchForText, setSearchForText }) {
       <h1 className="text-center  text-4xl font-light text-gray-900 text-green tablet:text-5xl desktop:text-6xl">
         VENDORS
       </h1>
-      <SearchBar searchForText={searchForText}/>
+      <SearchBar searchForText={searchForText}/>  
       <div className="tablet:grid tablet:grid-cols-2 gap-8 laptop:grid-cols-3 desktop:grid-cols-4 pt-4 px-16">
         {sellers.length ? (
           sellers.map((seller) => {
