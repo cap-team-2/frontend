@@ -6,12 +6,15 @@ import axios from "axios";
 import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { updateQuantity } from "./CartFunctions";
 import { optional } from "joi";
+import Comments from "./Comments.jsx"
 
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function ProductById({ session }) {
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState([]);
+    const [comments, setComments] = useState({});
+    const [seller, setSeller] = useState({});
     const { id } = useParams();
     const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
     const [cart, setCart] = useState({
@@ -19,7 +22,6 @@ export default function ProductById({ session }) {
       product_id: "",
       quantity: 1,
     });
-
 
     // Function to add a product to the cart
     function addToCart() {
@@ -32,7 +34,8 @@ export default function ProductById({ session }) {
     }
 
     useEffect(() => {
-      axios.post(`${API}/cart-products`, cart).catch((error) => {
+      axios.post(`${API}/cart-products`, cart)
+      .catch((error) => {
         console.log(error);
       });
     }, [cart]);
@@ -47,12 +50,31 @@ export default function ProductById({ session }) {
             .catch((error) => {
                 console.log(error);
             })
+
+        axios
+        .get(`${API}/comments`)
+        .then((res) => {
+            setComments(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }, []);
-  
+
+    useEffect(() => {
+      axios
+          .get(`${API}/sellers`)
+          .then((res) => {
+              setSeller(res.data);
+          })
+          .catch((error) => {
+              console.log(error);
+          })
+  }, [product]);
 
     return (
       <div className="h-full w-full flex justify-center">
-        {Object.keys(product).length !== 0 ? (
+        {Object.keys(product).length !== 0 && seller[0] && comments ? (
           <div className="h-screen w-full flex flex-col justify-between px-4 pb-20 pt-24 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
             {/* Image div */}
             <div className="p-4 flex flex-col items-center gap-4 flex-shrink-0">
@@ -92,12 +114,13 @@ export default function ProductById({ session }) {
                 <div className="mt-4 flex flex-col">
                   <h3 className="font-medium text-base">Description</h3>
                   <p className="text-[gray] text-sm">{product.description}</p>
+                  <p>{seller[0].first_name} {seller[0].last_name}</p>
                 </div>
               </div>
 
               {/* Price and Quantity */}
               <div className="flex flex-col gap-4 border-t border-gray pt-4">
-                <div className="flex  justify-between">
+                <div className="flex justify-between">
                   <p className="text-2xl font-semibold relative">
                     <span className="text-3xl">
                       ${`${product.cost.split(".")[0]}`}
@@ -154,6 +177,14 @@ export default function ProductById({ session }) {
                   </button>
                 </div>
               </div>
+            </div>
+            <div>
+              {comments ? comments.map((userComment, index) =>  {
+                return(
+                <Comments key={index} productId={product.id} seller={seller[0]} userComment={userComment}/>
+                )
+              }) : null
+            }
             </div>
           </div>
         ) : (

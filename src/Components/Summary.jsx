@@ -21,7 +21,7 @@ export default function Summary({cartProducts, setCheckout, checkout}) {
     function activateCheckout () {
         setCheckout(!checkout);
     }
-    console.log(checkout)
+    
   return (
     <div className="h-full w-full flex flex-col tablet:justify-start">
       <div className="my-10 text-sm font-medium gap-y-4 flex flex-col">

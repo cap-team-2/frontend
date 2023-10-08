@@ -14,9 +14,7 @@ export default function SearchResults({searchResults, session, setSession, quant
     }
   );
 
-
   const navigate = useNavigate();
-
 
 // Function to add a product to the cart
   function addToCart(product) {
@@ -36,10 +34,9 @@ export default function SearchResults({searchResults, session, setSession, quant
 
   }, [cart]);
 
-
   return (
     <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4  self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pt-10">
-      {searchResults.length ? (
+      {searchResults  ? (
         searchResults.map((results) => {
           const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
 
@@ -87,7 +84,7 @@ export default function SearchResults({searchResults, session, setSession, quant
         })
       ) : (
         <h2 className="text-xl h-screen font-medium col-span-full text-center mt-10">
-          Sorry, we couldn't find any results
+          Sorry, we could not find any results
         </h2>
       )}
     </div>

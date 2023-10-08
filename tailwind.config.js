@@ -11,6 +11,7 @@ export default {
       topaz: "#FECF73",
       gold: "#E6A50E",
       green: "#10890F",
+      yellow: "#FFC300",
       "green-light": "#74C360",
       "green-dark": "#21610F",
       "blue-light": "#73A2FE",
