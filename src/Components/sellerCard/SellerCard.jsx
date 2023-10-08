@@ -8,21 +8,21 @@ import "./SellerCard.css";
 // eslint-disable-next-line react/prop-types
 export default function SellerCard({ seller }) {
     return (
-      <div className="h-full min-w-[250px] w-10 tablet:w-72">
-        <div className="border rounded-xl border-gray shadow-2xl p-4 h-full w-full flex flex-col justify-between">
-          {/* Image */}
-            <Link to={`/sellers/${seller.id}`} className="h-auto w-full mb-4">
-                <img
-                src={seller.image}
-                alt={`Image of ${seller.first_name}`}
-                className=" h-52 w-full rounded-lg "
-                />
-            </Link>
+        <div className="h-full min-w-[250px] w-10 tablet:w-72">
+            <div className="border rounded-xl border-gray shadow-2xl p-4 h-full w-full flex flex-col justify-between">
+                <Link to={`/sellers/${seller.id}`} className="h-auto w-full mb-4">
+                    <img
+                        src={seller.image}
+                        alt={`Image of ${seller.first_name}`}
+                        className=" h-52 w-full rounded-lg "
+                    />
+                </Link>
 
-            <Link
-                to={`/sellers/${seller.id}`}
-                className="text-xl font-medium mb-1"
+                <Link
+                    to={`/sellers/${seller.id}`}
+                    className="text-xl font-medium mb-1"
                 >
+
                 {seller.first_name} {seller.last_name}
             </Link>
             <p className="text-sm mb-4">{seller.email}</p>
@@ -37,7 +37,6 @@ export default function SellerCard({ seller }) {
                 Visit Profile
             </Link>
         </div>
-      </div>
     );
 }
 
