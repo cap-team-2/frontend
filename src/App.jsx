@@ -23,8 +23,6 @@ import Register from "./Pages/Register";
 import Sellers from "./Pages/Sellers";
 import SellersById from "./Pages/SellersById";
 
-
-
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function App() {
@@ -42,7 +40,17 @@ export default function App() {
 
   // replace with the signed in user or a guest uuid
   const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
-
+  useEffect(() => {
+    setSearchForText("Products");
+    axios
+      .get(`${API}/products`)
+      .then((res) => {
+        setSearchResults(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   // Update searchResults state to have all products App component is rendered
 useEffect(() => {
     // used to create a new shopping session

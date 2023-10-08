@@ -4,7 +4,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-// import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
+import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
 import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";
@@ -17,20 +17,20 @@ export default function Nav({ quantity }) {
 
 
   return (
-    <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-green text-white desktop:px-10 xl:px-48">
+    <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-white text-green desktop:px-10 xl:px-48">
       {!isOpen && (
-        <div className="flex justify-between  tablet:flex tablet:justify-between tablet:px-8 items-center px-2 p-4">
+        <div className="flex justify-between tablet:flex tablet:justify-between tablet:px-8 items-center px-2 p-4">
           {/* Logo that links back to homepage */}
-          <div className="flex">
-            <Link to={"/"}>
-              {/* <img
-                src={PantriLogo}
-                alt="Pantri Logo"
-                className="h-20 tablet:hidden"
-              /> */}
-              <p className="text-3xl text-white tablet:block">PANTRI</p>
-            </Link>
-          </div>
+          <div>
+      <Link to={"/"} className="flex items-center">
+        {/* <img
+          src={PantriLogo}
+          alt="Pantri Logo"
+          className="h-24 w-28 flex-shrink-0 mr-2" // Use flex-shrink-0 to prevent the image from shrinking
+        /> */}
+        <p className="text-3xl text-green font-medium tablet:block">PANTRI</p>
+      </Link>
+</div>
           <div className="flex items-center">
             {/* Nav Links */}
             <div className="hidden laptop:block">
