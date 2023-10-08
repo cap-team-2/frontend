@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SearchResultsProduct from "./SearchResultsProduct";
 const API = import.meta.env.VITE_APP_API_URL;
 
+
 export default function SearchResults({searchResults, session, quantity, setQuantity, cartProducts, setCartProducts}) {
   const [ cart, setCart ] = useState(
     {
@@ -13,8 +14,6 @@ export default function SearchResults({searchResults, session, quantity, setQuan
       quantity: 1
     }
   );
-
-  const navigate = useNavigate();
 
 // Function to add a product to the cart
   function addToCart(product) {
