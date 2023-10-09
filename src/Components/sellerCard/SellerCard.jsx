@@ -23,19 +23,20 @@ export default function SellerCard({ seller }) {
                     className="text-xl font-medium mb-1"
                 >
 
-                {seller.first_name} {seller.last_name}
-            </Link>
-            <p className="text-sm mb-4">{seller.email}</p>
-            <p className="text-xs">
-                {seller.address_1}, {seller.city}, {seller.zipcode}
-            </p>
-            {/* Visit profile button */}
-            <Link
-                to={`/sellers/${seller.id}`}
-                className="bg-green bg-opacity-90 hover:bg-opacity-100 text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
-            >
-                Visit Profile
-            </Link>
+                    {seller.first_name} {seller.last_name}
+                </Link>
+                <p className="text-sm mb-4">{seller.email}</p>
+                <p className="text-xs">
+                    {seller.address_1}, {seller.city}, {seller.zipcode}
+                </p>
+                {/* Visit profile button */}
+                <Link
+                    to={`/sellers/${seller.id}`}
+                    className="bg-green bg-opacity-90 hover:bg-opacity-100 text-white font-semibold h-8 w-full text-center flex items-center justify-center rounded text-sm mt-14"
+                >
+                    Visit Profile
+                </Link>
+            </div>
         </div>
     );
 }

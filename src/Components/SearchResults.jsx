@@ -29,7 +29,6 @@ export default function SearchResults({searchResults, session, quantity, setQuan
       console.log(error);
     });
 
-    // axios.get(`${API}/cart-products/${}`)
 
   }, [cart]);
 
