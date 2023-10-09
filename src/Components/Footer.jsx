@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Copyright tag */}
-      <p className="p-4 text-xs absolute bottom-0 place-self-center font-medium">
+      <p className="p-4 text-xs tablet:text-sm absolute bottom-0 place-self-center font-medium">
         Copyright © 2023 PANTRI. All Rights Reserved.
       </p>
     </footer>
