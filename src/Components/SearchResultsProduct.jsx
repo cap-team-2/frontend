@@ -2,6 +2,8 @@
     import axios from "axios";
     import { useState, useEffect } from "react";
     import { useNavigate } from "react-router-dom";
+    import { CgMathPlus, CgMathMinus } from "react-icons/cg";
+
     const API = import.meta.env.VITE_APP_API_URL;
 
 
@@ -24,20 +26,24 @@
                 .catch((error) => {
                   return error;
                 });
-          // setProductCost(results * productQuantity)
         }, [])
         
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
-        const handleAddToCart = (product) => {
+        const handleAddToCart = (product, operator = 'plus') => {
           if (productQuantity >= 1) {
-            setProductQuantity(productQuantity + 1)
-            setQuantity(quantity + 1)
+            if(operator === 'minus') {
+              setQuantity(quantity - 1)
+              setProductQuantity(productQuantity - 1)
+            } else {
+              setProductQuantity(productQuantity + 1)
+              setQuantity(quantity + 1)
+            }
             
             axios
             .get(`${API}/cart-products`)
             .then((res) => {
               const currentProduct = res.data.find(data => data.product_id === product.id)
-              updateQuantity(currentProduct)
+              updateQuantity(currentProduct, operator)
             })
             .catch((error) => {
               return error;
@@ -49,8 +55,14 @@
         }
         
         // Makes a put request to update the quantity of the product
-        const updateQuantity = (product) => {
-          axios.put(`${API}/cart-products/${product.cart_id}`, {quantity: (product.quantity) + 1})
+        const updateQuantity = (product, operator = 'plus') => {
+          if(operator === 'minus') {
+            axios.put(`${API}/cart-products/${product.cart_id}`, {quantity: (product.quantity) - 1})
+          } else {
+             axios.put(`${API}/cart-products/${product.cart_id}`, {
+               quantity: product.quantity + 1,
+             });
+          }
         }
 
         return (
@@ -62,12 +74,18 @@
                   src={results.image}
                   alt={results.description}
                   className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer object-cover peer"
-                  onClick={() => navigate(`/products/${results.id}`)}
+                  onClick={() =>
+                    navigate(`/products/${results.id}`, {
+                      state: { productQuantity },
+                    })
+                  }
                 />
                 {productQuantity > 0 && (
-                  <p className="bg-topaz text-green h-8 w-8 rounded-full flex items-center justify-center absolute top-0 right-0">
-                    {productQuantity}
-                  </p>
+                  <div className="flex bg-topaz h-8 w-20 items-center justify-center gap-2 rounded-full absolute top-0 right-0">
+                    <CgMathMinus className="text-lg text-green cursor-pointer hover:scale-110" onClick={() => handleAddToCart(results, 'minus')} />
+                    <p className=" text-green ">{productQuantity}</p>
+                    <CgMathPlus className="text-lg text-green cursor-pointer hover:scale-110" onClick={() => handleAddToCart(results)} />
+                  </div>
                 )}
               </div>
               {/* Product Name */}

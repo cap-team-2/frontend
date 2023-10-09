@@ -109,7 +109,7 @@ useEffect(() => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById  session={session}/>} />
+          <Route path="/products/:id" element={<ProductById  session={session} quantity={quantity} setQuantity={setQuantity} />} />
           <Route
             path="/sellers"
             element={
