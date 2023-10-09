@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
+import { GiPitchfork } from "react-icons/gi";
 import { Users } from "./Users";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
@@ -25,7 +26,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
     product_id: "",
     quantity: 1,
   });
-  const { id, qty } = useParams();
+  const { id } = useParams();
 
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
 
@@ -107,7 +108,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
   useEffect(() => {
     axios
-      .get(`${API}/sellers`)
+      .get(`${API}/sellers/${id}`)
       .then((res) => {
         setSeller(res.data);
       })
@@ -130,9 +131,9 @@ export default function ProductById({ session, quantity, setQuantity }) {
    };
 
   return (
-    <div className="h-full w-full flex justify-center">
+    <div className="h-max w-full flex justify-center">
       {Object.keys(product).length !== 0 && seller[0] && comments ? (
-        <div className="h-screen w-full flex flex-col justify-between px-4 pb-20 pt-24 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
+        <div className="h-auto w-full flex flex-col justify-center px-4 pb-20 mt-20 tablet:mt-0 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
           {/* Image div */}
           <div className="p-4 flex flex-col items-center gap-4 flex-shrink-0">
             <img
@@ -169,14 +170,17 @@ export default function ProductById({ session, quantity, setQuantity }) {
               <div className="mt-4 flex flex-col">
                 <h3 className="font-medium text-base">Description</h3>
                 <p className="text-[gray] text-sm">{product.description}</p>
-                <Link
-                  to={`/sellers/${seller[0].id}`}
-                  className="text-green text-xl"
-                >
-                  <p>
-                    {seller[0].first_name} {seller[0].last_name}
-                  </p>
-                </Link>
+                <div className="flex items-center gap-2 mt-2">
+                  <GiPitchfork className="text-gold"/>
+                  <Link
+                    to={`/sellers/${seller[0].id}`}
+                    className="text-green text-lg hover:underline underline-offset-4"
+                  >
+                    <p>
+                      {seller[0].first_name} {seller[0].last_name}
+                    </p>
+                  </Link>
+                </div>
               </div>
             </div>
 
