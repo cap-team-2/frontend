@@ -1,0 +1,416 @@
+.entire-page-container {
+    display: flex;
+    padding: 50px;
+  }
+  
+  .left-panel {
+    flex: 1;
+    padding: 20px;
+    background-color: #0000;
+    margin: 35px;
+  }
+  
+  .profile-card {
+    display: flex;
+    flex-direction: row;
+    width: 15em;
+    height: 12em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5%;
+  }
+  
+  .profile-info-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5%;
+  }
+  
+  .profile-card h2 {
+    margin-top: 0;
+  }
+  
+  .profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .right-panel {
+    flex: 2;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .edit-button {
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.edit-button:hover {
+    background-color:blue;
+}
+  .left-card-side {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .left-card-side p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .left-card-side h3 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  
+  .right-card-side {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .right-side-card-info-top {
+    display: flex;
+    width: 75px;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 1, 0, 0.15);
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+  .seller-details{
+    padding: 10px;
+  }
+  .seller-details p {
+    padding: 10px;
+  }
+  .right-side-card-info-top p {
+    margin: 0;
+  }
+  
+  .review-number {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .review-title {
+    font-size: 12px;
+  }
+  
+  .right-side-card-info-bottom {
+    display: flex;
+    width: 75px;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+  .right-side-card-info-bottom p {
+    margin: 0;
+  }
+  .member-number {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .member-title {
+    font-size: 12px;
+  }
+  .profile-info-card h2 {
+    font-family: sans-serif light;
+  }
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .right-panel-top {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    margin-right: 30%;
+  }
+  .right-panel-top-about {
+    background-color: #fff;
+    flex: 1;
+    flex-direction: column;
+    margin: 50px;
+  }
+  
+  .right-panel-top-about h2,
+  p,
+  button {
+    margin-left: 10px;
+  }
+
+  .right-panel-top-about-details {
+    background-color: #fff;
+    flex: 1;
+    position: relative;
+    width: 100%; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  
+  }
+  
+  .right-panel-top-about-details-p {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 100px;
+    width: 100%;
+  }
+  .info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .right-panel-top-about-details-p .icon,
+  .right-panel-top-about-details-p p {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+  }
+  .right-panel-top-about-details-p .icon{
+    margin-right: 20px;
+  }
+  .farm-size,
+  .favorite-produce,
+  .additional-details {
+    display: inline-block;
+    margin-right: 20px; 
+  }
+  
+  .icon {
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .farm-size {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHFGfJuAHGzNL2IamWbRUcQL1faHzuskSj9S7GGl7K6L0kvYQ&s");
+  }
+  
+  .favorite-produce {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbLzSepwNONjUnY-VUQyJiQzL53v61DA63TlMzxrxc99kYUZ4&s");
+  }
+  
+  .additional-details {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd0muviEXON7PrKAlpNn9XQVs3bWzkBsAfSbO5qrD37_SH8Qu8&s");
+  }
+  
+  .balloon {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThrt-fvYrUjoLK28qiwNqnF0Jmwpuy5zfPJYMeyIW5It_8_1o&s");
+    background-size: contain; 
+    width: 20px; 
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px; 
+  }
+  
+  .briefcase {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT8HCn8hFG20EJjjeIoLhmAPKWxC7ODgeTtgTVm_PGjoYONDvc&s");
+    background-size: contain;
+    width: 20px; 
+    height: 15px;
+    display: inline-block;
+    margin-right: 10px; 
+  }
+  
+  .chat-bubble {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4RVfV43ZJhYPnGcURwnX4vj0T3qGJbtCgSGBkSPytivQjMms&s");
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+    background-size: contain;
+    width: 20px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .map {
+    background-image: url("https://www.supercoloring.com/sites/default/files/styles/coloring_medium/public/cif/2022/01/585-globe-showing-americas-coloring-page.png");
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px; 
+  }
+  .right-panel-bottom {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+  }
+  .right-panel-bottom-title {
+    flex-grow: 1;
+  }
+  .right-panel-bottom-title h2 {
+    display: inline;
+  }
+  .right-panel-button-carrot {
+    margin-left: 10px;
+  }
+  .carrot-button {
+    background-color: #fff;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .carrot-button:hover {
+    background-color: green;
+  }
+  
+  .right-panel-bottom-review-card-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .right-panel-bottom-review-card {
+    display: flex;
+    justify-content: space-between;
+  }
+  .right-panel-bottom-review-card-1,
+  .right-panel-bottom-review-card-2,
+  .right-panel-bottom-review-card-3,
+  .right-panel-bottom-review-card-4,
+  .right-panel-bottom-review-card-5
+  {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    height: 12em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5%;
+    margin: 10px;
+    position: relative;
+  }
+  
+  .right-panel-bottom-review-card-1 img,
+  .right-panel-bottom-review-card-2 img,
+  .right-panel-bottom-review-card-3 img,
+  .right-panel-bottom-review-card-4 img,
+  .right-panel-bottom-review-card-5 img{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .right-panel-bottom-review-card-1 p,
+  .right-panel-bottom-review-card-2 p,
+  .right-panel-bottom-review-card-3 p,
+  .right-panel-bottom-review-card-4 p,
+  .right-panel-bottom-review-card-5 p 
+  {
+    position: relative;
+    top: 120px;
+    width: 100%;
+    text-align: center;
+  }
+  p.review {
+    position: absolute;
+    top: 1%;
+    left: 20px;
+    text-align: left;
+    width: calc(100% - 40px);
+  }
+  p.reviewer-name {
+    left: -50px;
+    top: 145px;
+  }
+  p.inventory-name {
+    left: -50px;
+    top: 145px;
+  }
+  .right-panel-bottom-inventory {
+    padding: 5px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    border: 3px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    justify-content: space-around;
+  }
+  .right-panel-bottom-inventory-card {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .right-panel-bottom-inventory-card-1,
+  .right-panel-bottom-inventory-card-2,
+  .right-panel-bottom-inventory-card-3 {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    height: 12em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5%;
+    margin: 10px;
+  }
+  
+  .right-panel-bottom-inventory-card-1 img,
+  .right-panel-bottom-inventory-card-2 img,
+  .right-panel-bottom-inventory-card-3 img,
+  .right-panel-bottom-inventory-card-4 img,
+  .right-panel-bottom-inventory-card-5 img
+   {
+    width: 250px;
+    height: 158px;
+    object-fit: fill;
+  }
+  
+  .right-panel-bottom-inventory-card-1 p,
+  .right-panel-bottom-inventory-card-2 p,
+  .right-panel-bottom-inventory-card-3 p,
+  .right-panel-bottom-inventory-card-4 p,
+  .right-panel-bottom-inventory-card-5 p {
+    text-align: center;
+    margin-top: -30px;
+    padding: 1px;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+  }
+  

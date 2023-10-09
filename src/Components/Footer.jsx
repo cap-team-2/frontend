@@ -11,9 +11,9 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center text-center  gap-4 py-10 pb-16 bg-green h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
+    <footer className="flex flex-col items-center justify-center text-center gap-4 py-10 pb-16 bg-white text-green h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
       {/* Additional Links */}
-      <div className="flex flex-col items-center tablet:flex-row tablet:text-start w-full  tablet:items-end tablet:justify-between text-white">
+      <div className="flex flex-col items-center tablet:flex-row tablet:text-start w-full  tablet:items-end tablet:justify-between">
         <div className="flex flex-col tablet:flex-row gap-10 tablet:gap-20 font-medium ">
           <div className="flex flex-col text-sm">
             <Link className="tablet:hover:underline tablet:hover:underline-offset-4">
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex gap-6 text-xl text-white pt-6">
+        <div className="flex gap-6 text-xl pt-6">
           <Link className="tablet:hover:outline tablet:hover:outline-1 p-1 rounded" to={"https://facebook.com"}>
             <FaFacebookF />
           </Link>
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Copyright tag */}
-      <p className="p-4 text-white text-xs absolute bottom-0 place-self-center font-medium">
+      <p className="p-4 text-xs absolute bottom-0 place-self-center font-medium">
         Copyright © 2023 PANTRI. All Rights Reserved.
       </p>
     </footer>

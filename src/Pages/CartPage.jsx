@@ -1,13 +1,15 @@
 // Cart.jsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Cart from "../Components/Cart.jsx";
 import Summary from "../Components/Summary.jsx";
+import Stripe from "../Components/Stripe.jsx";
 import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function CartPage({ session, cartProducts, setCartProducts, quantity, setQuantity }) {
+    const [ checkout, setCheckout ] = useState(false);
     const navigate = useNavigate();
    
     // gets all items in the cart
@@ -33,15 +35,19 @@ export default function CartPage({ session, cartProducts, setCartProducts, quant
           onClick={() => navigate(-1)}
         />
           <div className="h-full w-full min-w-fit max-w-xl mb-8 border rounded-2xl pt-10 pb-4 px-4 border-gray-light shadow-lg">
-            <Cart
-              cartProducts={cartProducts}
-              setCartProducts={setCartProducts}
-              quantity={quantity}
-              setQuantity={setQuantity}
-            />
+           {checkout ? 
+           <Stripe/>
+           :
+           <Cart
+           cartProducts={cartProducts}
+           setCartProducts={setCartProducts}
+           quantity={quantity}
+           setQuantity={setQuantity}
+         />
+            }
           </div>
           <div className="h-fit w-full desktop:w-[400px] xl:w-[400px] border rounded-2xl pb-4 px-4 border-gray-light shadow-lg max-w-xs">
-            <Summary cartProducts={cartProducts} />
+            <Summary cartProducts={cartProducts} setCheckout={setCheckout} checkout={checkout}/>
           </div>
         </div>
       </div>
