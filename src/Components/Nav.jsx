@@ -49,7 +49,7 @@ export default function Nav({ quantity }) {
                 <span className='laptop:hidden absolute top-3 left-3 text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark'>{quantity}</span>
               </Link>
               <RxHamburgerMenu
-                className="text-white text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
+                className="text-green text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
                 onClick={() => setIsOpen(!isOpen)}
               />
             </div>
