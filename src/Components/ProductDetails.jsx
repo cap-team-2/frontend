@@ -77,25 +77,31 @@ export default function ProductById({ session, quantity, setQuantity }) {
   }, [cart]);
 
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
-  const handleAddToCart = (product) => {
-    if (productQuantity < 1) {
-      // setProductQuantity(productQuantity + 1);
-      // setQuantity(quantity + 1);
+  const handleAddToCart = (product, operator = "plus") => {
+    if (productQuantity >= 1) {
+      if (operator === "minus") {
+        setQuantity(quantity - 1);
+        setProductQuantity(productQuantity - 1);
+      } else {
+        setProductQuantity(productQuantity + 1);
+        setQuantity(quantity + 1);
+      }
 
-      // axios
-      //   .get(`${API}/cart-products`)
-      //   .then((res) => {
-      //     const currentProduct = res.data.find(
-      //       (data) => data.product_id === product.id
-      //     );
-      //     updateQuantity(currentProduct);
-      //   })
-      //   .catch((error) => {
-      //     return error;
-      //   });
+      axios
+        .get(`${API}/cart-products`)
+        .then((res) => {
+          const currentProduct = res.data.find(
+            (data) => data.product_id === product.id
+          );
+          updateQuantity(currentProduct, operator);
+        })
+        .catch((error) => {
+          return error;
+        });
+    } else {
       addToCart(product);
       setProductQuantity(productQuantity + 1);
-      setQuantity(quantity + 1)
+      setQuantity(quantity + 1);
     }
   };
 
@@ -111,17 +117,17 @@ export default function ProductById({ session, quantity, setQuantity }) {
   }, [product]);
 
   // Makes a put request to update the quantity of the product
-  const updateQuantity = (product, operator) => {
-    if (operator === "plus") {
-      axios.put(`${API}/cart-products/${product.cart_id}`, {
-        quantity: product.quantity + 1,
-      });
-    } else {
-      axios.put(`${API}/cart-products/${product.cart_id}`, {
-        quantity: product.quantity + 1,
-      });
-    }
-  };
+   const updateQuantity = (product, operator = "plus") => {
+     if (operator === "minus") {
+       axios.put(`${API}/cart-products/${product.cart_id}`, {
+         quantity: product.quantity - 1,
+       });
+     } else {
+       axios.put(`${API}/cart-products/${product.cart_id}`, {
+         quantity: product.quantity + 1,
+       });
+     }
+   };
 
   return (
     <div className="h-full w-full flex justify-center">
@@ -192,30 +198,25 @@ export default function ProductById({ session, quantity, setQuantity }) {
               {/* Add to cart button */}
               <div className="flex justify-between tablet:justify-start gap-20">
                 {/* Update Quantity Buttons and Display */}
-                <div className="flex flex-col ml-4 justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="font-medium">Qty</p>
                   <div className="flex border items-center w-20 justify-evenly rounded border-gray shadow">
                     <CgMathMinus
-                      className="text-base cursor-pointer"
-                      onClick={() => {
-                        if (product.quantity > 1)
-                          updateQuantity(product, "minus");
-                      }}
+                      className="text-base cursor-pointer hover:text-green hover:scale-110"
+                      onClick={() => handleAddToCart(product, "minus")}
                     />
-                    <p className="cursor-default h-8 flex items-center text-lg">
+                    <p className="cursor-default h-8 flex items-center text-lg gap-1">
                       {productQuantity > 0 ? productQuantity : 0}
                     </p>
                     <CgMathPlus
-                      className="text-base cursor-pointer"
-                      onClick={() => updateQuantity(product, "plus")}
+                      className="text-base cursor-pointer hover:text-green hover:scale-110"
+                      onClick={() => handleAddToCart(product)}
                     />
                   </div>
                 </div>
-                {/* <button className="bg-gray-light text-sm h-8 w-20 rounded">
-                    Qty: {product.quantity}
-                  </button> */}
                 <button
-                  onClick={() => handleAddToCart()}
-                  className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs laptop:text-sm font-semibold text-white h-8 w-40"
+                  onClick={() => handleAddToCart(product)}
+                  className="bg-green rounded bg-opacity-90 hover:bg-opacity-100 text-xs tablet:text-sm font-semibold text-white h-8 w-40"
                 >
                   Add to cart
                 </button>
