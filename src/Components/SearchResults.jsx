@@ -36,7 +36,7 @@ export default function SearchResults({ searchResults, session, quantity, setQua
       {searchResults  ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} />
+            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} quantity={quantity} setQuantity={setQuantity} />
           );
         })
       ) : (

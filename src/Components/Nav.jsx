@@ -49,7 +49,7 @@ export default function Nav({ quantity }) {
                 <span className='laptop:hidden absolute top-3 left-3 text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark'>{quantity}</span>
               </Link>
               <RxHamburgerMenu
-                className="text-green text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
+                className="text-green text-opacity-90 text-2xl cursor-pointer laptop:hidden hover:text-green-dark transition ease-in-out duration-500"
                 onClick={() => setIsOpen(!isOpen)}
               />
             </div>
@@ -60,7 +60,7 @@ export default function Nav({ quantity }) {
       {isOpen && (
         <div className="h-screen w-full flex flex-col items-center justify-center relative ">
           <RxCross2
-            className="text-2xl text-white absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
+            className="text-2xl text-green text-opacity-80 absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
             onClick={() => setIsOpen(!isOpen)}
           />
           <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} quantity={quantity} />
