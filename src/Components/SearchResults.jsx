@@ -6,7 +6,7 @@ import SearchResultsProduct from "./SearchResultsProduct";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function SearchResults({searchResults, session, quantity, setQuantity, cartProducts, setCartProducts}) {
+export default function SearchResults({ searchResults, session, quantity, setQuantity }) {
   const [ cart, setCart ] = useState(
     {
       session_id: '',
@@ -29,7 +29,6 @@ export default function SearchResults({searchResults, session, quantity, setQuan
       console.log(error);
     });
 
-
   }, [cart]);
 
   return (
@@ -37,7 +36,7 @@ export default function SearchResults({searchResults, session, quantity, setQuan
       {searchResults  ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} />
+            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} quantity={quantity} setQuantity={setQuantity} />
           );
         })
       ) : (
