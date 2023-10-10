@@ -141,16 +141,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
    };
 
   //  Function to delete a product from the cart
-  const deleteProductFromCart = (product) => {
-    console.log(product)
-    axios
-      .delete(`${API}/cart-products/${product.cart_id}`)
-      .catch((error) => {
-        return error;
-      })
-  }
-
-
+  // const deleteProductFromCart = (product) => {
+  //   console.log(product)
+  //   axios
+  //     .delete(`${API}/cart-products/${product.cart_id}`)
+  //     .catch((error) => {
+  //       return error;
+  //     })
+  // }
 
   return (
     <div className="h-max w-full flex justify-center">
@@ -259,7 +257,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
                     />
                   );
                 })
-              : "he"}
+              : null}
           </div>
         </div>
       ) : (

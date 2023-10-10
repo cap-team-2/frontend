@@ -10,7 +10,7 @@ function Comments({productId, index, users, userComment}) {
     //         setUsers(res.data);
     //     })
     // }, [])
-console.log(userComment)
+
   return (
   <div>
     { productId === userComment.product_id ?
