@@ -27,10 +27,13 @@ function CheckoutForm({setThanks}) {
   };
 
   return (
-    <div>
-      <h1>Checkout</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">CardHolder Name</label>
+    <div className="max-w-md mx-auto p-2">
+    <h1 className="text-xl font-semibold mb-2">Checkout</h1>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+          Cardholder Name
+        </label>
         <input
           type="text"
           id="name"
@@ -38,9 +41,14 @@ function CheckoutForm({setThanks}) {
           value={formData.name}
           onChange={handleChange}
           required
+          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
         />
-
-        <label htmlFor="email">Email</label>
+      </div>
+  
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+          Email
+        </label>
         <input
           type="email"
           id="email"
@@ -48,9 +56,14 @@ function CheckoutForm({setThanks}) {
           value={formData.email}
           onChange={handleChange}
           required
+          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
         />
-
-        <label htmlFor="phone">Phone Number</label>
+      </div>
+  
+      <div className="mb-4">
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-600">
+          Phone Number
+        </label>
         <input
           type="tel"
           id="phone"
@@ -58,20 +71,29 @@ function CheckoutForm({setThanks}) {
           value={formData.phone}
           onChange={handleChange}
           required
+          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
         />
-
-        <label htmlFor="address">Shipping Address</label>
+      </div>
+  
+      <div className="mb-4">
+        <label htmlFor="address" className="block text-sm font-medium text-gray-600">
+          Shipping Address
+        </label>
         <input
           type="text"
           id="address"
           name="address"
-          rows="4"
           value={formData.address}
           onChange={handleChange}
           required
+          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
         />
-
-        <label htmlFor="cardNumber">Card Number</label>
+      </div>
+  
+      <div className="mb-4">
+        <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-600">
+          Card Number
+        </label>
         <input
           type="tel"
           inputMode="numeric"
@@ -84,44 +106,50 @@ function CheckoutForm({setThanks}) {
           value={formData.cardNumber}
           onChange={handleChange}
           required
+          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
         />
-
-        <label htmlFor="ExpireMonth">Expire Month</label>
-        <input
-          type="month"
-          id="ExpireMonth"
-          name="ExpireMonth"
-          value={formData.ExpireMonth}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="CVC">CVC</label>
-        <input
-          type="password"
-          maxLength="3"
-          id="CVC"
-          name="CVC"
-          value={formData.CVC}
-          onChange={handleChange}
-          required
-        />
-
-        {/* <label htmlFor="payment">Payment Method</label>
-        <select
-          id="payment"
-          name="paymentMethod"
-          value={formData.paymentMethod}
-          onChange={handleChange}
-          required
-        >
-          <option value="credit-card">Credit Card</option>
-          <option value="paypal">PayPal</option>
-        </select> */}
-
-        <button type="submit">Place Order</button>
-      </form>
-    </div>
+      </div>
+        <div className='grid grid-cols-2 gap-x-10'>
+        <div className="mb-4">
+          <label htmlFor="ExpireMonth" className="block text-sm font-medium text-gray-600">
+            Expire Month
+          </label>
+          <input
+            type="month"
+            id="ExpireMonth"
+            name="ExpireMonth"
+            value={formData.ExpireMonth}
+            onChange={handleChange}
+            required
+            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+    
+        <div className="mb-4 ">
+          <label htmlFor="CVC" className="block text-sm font-medium text-gray-600">
+            CVC
+          </label>
+          <input
+            type="password"
+            maxLength="3"
+            id="CVC"
+            name="CVC"
+            value={formData.CVC}
+            onChange={handleChange}
+            required
+            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <button
+        type="submit"
+        className="bg-blue-500 text-green font-medium py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+      >
+        Place Order
+      </button>
+      </div>
+    </form>
+  </div>
+  
   );
 }
 

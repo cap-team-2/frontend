@@ -141,16 +141,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
    };
 
   //  Function to delete a product from the cart
-  const deleteProductFromCart = (product) => {
-    console.log(product)
-    axios
-      .delete(`${API}/cart-products/${product.cart_id}`)
-      .catch((error) => {
-        return error;
-      })
-  }
-
-
+  // const deleteProductFromCart = (product) => {
+  //   console.log(product)
+  //   axios
+  //     .delete(`${API}/cart-products/${product.cart_id}`)
+  //     .catch((error) => {
+  //       return error;
+  //     })
+  // }
 
   return (
     <div className="h-max w-full flex justify-center">
@@ -192,17 +190,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
               <div className="mt-4 flex flex-col">
                 <h3 className="font-medium text-base">Description</h3>
                 <p className="text-[gray] text-sm">{product.description}</p>
-                <div className="flex items-center gap-2 mt-2">
-                  <GiPitchfork className="text-gold"/>
-                  <Link
-                    to={`/sellers/${seller[0].id}`}
-                    className="text-green text-lg hover:underline underline-offset-4"
-                  >
-                    <p>
-                      {seller[0].first_name} {seller[0].last_name}
-                    </p>
-                  </Link>
-                </div>
+                <Link
+                  to={`/sellers/${seller[0].id}`}
+                  className="text-green text-xl"
+                >
+                  <p>
+                    {seller[0].first_name} {seller[0].last_name}
+                  </p>
+                </Link>
               </div>
             </div>
 
@@ -257,7 +252,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
                       key={index}
                       productId={product.id}
                       index={index}
-                      user={user}
+                      users={users}
                       userComment={userComment}
                     />
                   );
