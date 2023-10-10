@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 const API = import.meta.env.VITE_APP_API_URL;
 
-function Comments({productId, index, user, userComment}) {
+function Comments({productId, index, users, userComment}) {
     // const [users, setUsers] = useState([]);
     // useEffect(() => {
     //     axios.get(`${API}/users`)
@@ -10,14 +10,14 @@ function Comments({productId, index, user, userComment}) {
     //         setUsers(res.data);
     //     })
     // }, [])
-
+console.log(userComment)
   return (
   <div>
     { productId === userComment.product_id ?
         <article>
     <div className="flex items-center mb-4 space-x-4">
-        <img className="w-10 h-10 rounded-full" src={user[index].img} alt=""/>
-        <p>{user[index].name}</p>
+        <img className="w-10 h-10 rounded-full" src={users[index].img} alt=""/>
+        <p>{users[index].name}</p>
         <div className="space-y-1 font-medium dark:text-white">
             <p>Jese Leos <time dateTime="2014-08-16 19:00" className="block text-sm text-gray-500 dark:text-gray-400">Joined on August 2014</time></p>
         </div>

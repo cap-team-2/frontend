@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
-import { Users } from "./Users";
+import { users } from "./Users";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
 
@@ -26,7 +26,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
     quantity: 1,
   });
   const { id, qty } = useParams();
-
+console.log(users)
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
 
   // Make an api call to retrieve a product with the given id
@@ -40,14 +40,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
         console.log(error);
       });
 
-    // axios
-    //   .get(`${API}/comments`)
-    //   .then((res) => {
-    //     setComments(res.data);
-    //   })
-    //   .catch((error) => {
-    //     return error;
-    //   });
+    axios
+      .get(`${API}/comments`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((error) => {
+        return error;
+      });
        axios
          .get(`${API}/cart-products`)
          .then((res) => {
@@ -231,12 +231,12 @@ export default function ProductById({ session, quantity, setQuantity }) {
                       key={index}
                       productId={product.id}
                       index={index}
-                      user={user}
+                      users={users}
                       userComment={userComment}
                     />
                   );
                 })
-              : null}
+              : "he"}
           </div>
         </div>
       ) : (
