@@ -11,7 +11,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { auth, provider } from "../fireBase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo-dark.png";
 
 
 // const API = import.meta.env.VITE_APP_API_URL;
@@ -61,24 +61,25 @@ export default function LoginForm() {
 
     return (
       <div className="bg-[#BFDCBC] h-full w-full flex justify-center pt-[10%]">
-        <div className="h-fit w-[500px] px-8 bg-white rounded flex flex-col items-center">
+        <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center">
           <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
-          <div className="flex gap-2 mb-8">
-            <div className="flex">
-              <Link>Log in</Link>
+          <div className="flex flex-col items-center gap-2 mb-2 w-full">
+            <div className="flex w-full justify-around">
+              <Link className="w-40 text-center font-semibold border-b-2 border-green text-green p-2">Log in</Link>
               <Link
-                className="text-blue-dark underline underline-offset-4 hover:text-blue-light"
+                className="w-40 font-semibold opacity-50 p-2 text-center hover:text-green hover:opacity-100"
                 to={"/register"}
               >
-                Create an Account
+                Create account
               </Link>
             </div>
+            <h2 className="text-2xl text-green font-semibold m-2">Welcome back!</h2>
           </div>
           <form id="login" className="grid gap-2 mb-8 relative">
             <div className="grid gap-2">
               <input
                 placeholder="Email address"
-                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light "
+                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring focus:ring-green-light invalid:border-b-2 invalid:border-b-[red] focus:border-green-light "
                 onChange={handleFormChange}
                 value={login.email}
                 type="email"
@@ -92,7 +93,7 @@ export default function LoginForm() {
             <div className="grid relative">
               <input
                 placeholder="Password"
-                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring focus:ring-green-light ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-green-light"
                 onChange={handleFormChange}
                 value={login.password}
                 type={passwordType}
@@ -105,13 +106,13 @@ export default function LoginForm() {
                 uppercase letter, one lowercase letter, and one digit.
               </p>
               <AiOutlineEye
-                className={`absolute top-3 right-10 text-2xl cursor-pointer ${
+                className={`absolute top-3 right-10 text-2xl cursor-pointer text-green ${
                   passwordType === "password" ? "visible" : "invisible"
                 }`}
                 onClick={() => togglePassword("password")}
               />
               <AiOutlineEyeInvisible
-                className={`absolute top-3 right-10 text-2xl cursor-pointer ${
+                className={`absolute top-3 right-10 text-2xl cursor-pointer text-green ${
                   passwordType === "text" ? "visible" : "invisible"
                 }`}
                 onClick={() => togglePassword("text")}
@@ -129,14 +130,14 @@ export default function LoginForm() {
             <div className="grid text-center mt-4 gap-2 text-sm">
               <button
                 onClick={logIn}
-                className="rounded-md h-12 bg-green bg-opacity-70 font-light cursor-default"
+                className="rounded-md h-12 bg-green bg-opacity-70 hover:bg-opacity-90 font-bold cursor-pointer text-white"
               >
                 Log In
               </button>
               <p>or</p>
               <button
                 onClick={google}
-                className="border border-green-light rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
+                className="border border-green-light rounded-md h-12 mb-2 font-medium flex justify-center items-center gap-2 hover:border-green"
               >
                 <FcGoogle size={24} /> Sign in with Google
               </button>
