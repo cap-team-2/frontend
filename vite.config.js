@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   // Base public path when served in production (e.g., "/my-app/").
   base: "/",
-  
+
   publicDir: "frontend/public",
 
   // Define the entry point of your application.
@@ -14,9 +14,13 @@ export default defineConfig({
   },
 
   build: {
-    outDir: "dist",
-    assetsDir: "assets",
-    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        // Add this line to include _redirects
+        _redirects: resolve(__dirname, "_redirects"),
+      },
+    },
   },
 
   // Configure the development server options.
