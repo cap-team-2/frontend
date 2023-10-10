@@ -83,10 +83,7 @@ export default function Nav({ quantity }) {
                 >
                   Log In
                 </Link>
-                <Link
-                  to={"/cart"}
-                  className="self-start relative"
-                >
+                <Link to={"/cart"} className="self-start relative">
                   <BsBag
                     className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
                       isOpen ? "text-3xl font-normal" : "text-2xl"
