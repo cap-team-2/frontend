@@ -65,8 +65,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="h-full w-full flex justify-center items-center z-50">
-      <div className="w-96">
+    <div className="h-full w-full flex justify-center items-center z-50 bg-[#BFDCBC]">
+      <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center">
         <h1 className="text-2xl font-semibold mb-4">Create a Free Account</h1>
         <div className="flex gap-2 mb-8">
           <p>Already have an account?</p>
