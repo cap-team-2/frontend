@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { GiPitchfork } from "react-icons/gi";
-import { users } from "./users";
+import { users } from "./users.jsx";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
 import { deleteProductFromCart } from "./CartFunctions";
