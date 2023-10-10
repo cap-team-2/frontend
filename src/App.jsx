@@ -16,6 +16,7 @@ import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
+import List from "./Pages/List";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
@@ -80,7 +81,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <main className="h-screen w-full font-font flex flex-col justify-between">
+    <main className="h-screen w-full font-font flex flex-col justify-between items-center">
       <Router>
         <Nav setSearchResults={setSearchResults} quantity={quantity} />
         <Routes>
@@ -108,7 +109,7 @@ useEffect(() => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById  session={session}/>} />
+          <Route path="/products/:id" element={<ProductById  session={session} quantity={quantity} setQuantity={setQuantity} />} />
           <Route
             path="/sellers"
             element={
