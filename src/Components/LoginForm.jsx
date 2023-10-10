@@ -11,7 +11,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { auth, provider } from "../fireBase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo-dark.png";
 
 
 // const API = import.meta.env.VITE_APP_API_URL;
@@ -65,9 +65,9 @@ export default function LoginForm() {
           <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
           <div className="flex flex-col items-center gap-2 mb-2 w-full">
             <div className="flex w-full justify-around">
-              <Link className="w-40 text-center font-semibold border-b-2 border-green text-green">Log in</Link>
+              <Link className="w-40 text-center font-semibold border-b-2 border-green text-green p-2">Log in</Link>
               <Link
-                className="w-40 font-semibold opacity-50"
+                className="w-40 font-semibold opacity-50 p-2 text-center hover:text-green hover:opacity-100"
                 to={"/register"}
               >
                 Create account
@@ -130,14 +130,14 @@ export default function LoginForm() {
             <div className="grid text-center mt-4 gap-2 text-sm">
               <button
                 onClick={logIn}
-                className="rounded-md h-12 bg-green bg-opacity-70 font-light cursor-default"
+                className="rounded-md h-12 bg-green bg-opacity-70 hover:bg-opacity-90 font-bold cursor-pointer text-white"
               >
                 Log In
               </button>
               <p>or</p>
               <button
                 onClick={google}
-                className="border border-green-light rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
+                className="border border-green-light rounded-md h-12 mb-2 font-medium flex justify-center items-center gap-2 hover:border-green"
               >
                 <FcGoogle size={24} /> Sign in with Google
               </button>
