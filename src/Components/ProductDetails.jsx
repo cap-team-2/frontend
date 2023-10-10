@@ -6,9 +6,10 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { GiPitchfork } from "react-icons/gi";
-import { Users } from "./Users";
+import { users } from "./users";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
+import { deleteProductFromCart } from "./CartFunctions";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
@@ -41,14 +42,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
         console.log(error);
       });
 
-    // axios
-    //   .get(`${API}/comments`)
-    //   .then((res) => {
-    //     setComments(res.data);
-    //   })
-    //   .catch((error) => {
-    //     return error;
-    //   });
+    axios
+      .get(`${API}/comments`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((error) => {
+        return error;
+      });
        axios
          .get(`${API}/cart-products`)
          .then((res) => {
@@ -79,36 +80,44 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
   const handleAddToCart = (product, operator = "plus") => {
-    if (productQuantity >= 1) {
+    let currentProduct;
+    axios
+      .get(`${API}/cart-products`)
+      .then((res) => {
+        currentProduct = res.data.find(
+          (data) => data.product_id === product.id
+        );
+        updateQuantity(currentProduct, operator);
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    if (productQuantity > 1) {
       if (operator === "minus") {
         setQuantity(quantity - 1);
         setProductQuantity(productQuantity - 1);
+      
       } else {
         setProductQuantity(productQuantity + 1);
         setQuantity(quantity + 1);
       }
 
-      axios
-        .get(`${API}/cart-products`)
-        .then((res) => {
-          const currentProduct = res.data.find(
-            (data) => data.product_id === product.id
-          );
-          updateQuantity(currentProduct, operator);
-        })
-        .catch((error) => {
-          return error;
-        });
     } else {
-      addToCart(product);
-      setProductQuantity(productQuantity + 1);
-      setQuantity(quantity + 1);
+      if(operator !== 'minus') {
+
+        addToCart(product);
+        setProductQuantity(productQuantity + 1);
+        setQuantity(quantity + 1);
+      }
+
     }
+    
   };
 
   useEffect(() => {
     axios
-      .get(`${API}/sellers/${id}`)
+      .get(`${API}/sellers`)
       .then((res) => {
         setSeller(res.data);
       })
@@ -119,6 +128,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
   // Makes a put request to update the quantity of the product
    const updateQuantity = (product, operator = "plus") => {
+    console.log(productQuantity)
      if (operator === "minus") {
        axios.put(`${API}/cart-products/${product.cart_id}`, {
          quantity: product.quantity - 1,
@@ -129,6 +139,18 @@ export default function ProductById({ session, quantity, setQuantity }) {
        });
      }
    };
+
+  //  Function to delete a product from the cart
+  const deleteProductFromCart = (product) => {
+    console.log(product)
+    axios
+      .delete(`${API}/cart-products/${product.cart_id}`)
+      .catch((error) => {
+        return error;
+      })
+  }
+
+
 
   return (
     <div className="h-max w-full flex justify-center">
