@@ -5,9 +5,11 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
-import { Users } from "./Users";
+import { GiPitchfork } from "react-icons/gi";
+import { users } from "./users";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
+import { deleteProductFromCart } from "./CartFunctions";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
@@ -25,7 +27,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
     product_id: "",
     quantity: 1,
   });
-  const { id, qty } = useParams();
+  const { id } = useParams();
 
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
 
@@ -40,14 +42,14 @@ export default function ProductById({ session, quantity, setQuantity }) {
         console.log(error);
       });
 
-    // axios
-    //   .get(`${API}/comments`)
-    //   .then((res) => {
-    //     setComments(res.data);
-    //   })
-    //   .catch((error) => {
-    //     return error;
-    //   });
+    axios
+      .get(`${API}/comments`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((error) => {
+        return error;
+      });
        axios
          .get(`${API}/cart-products`)
          .then((res) => {
@@ -78,31 +80,39 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
   const handleAddToCart = (product, operator = "plus") => {
-    if (productQuantity >= 1) {
+    let currentProduct;
+    axios
+      .get(`${API}/cart-products`)
+      .then((res) => {
+        currentProduct = res.data.find(
+          (data) => data.product_id === product.id
+        );
+        updateQuantity(currentProduct, operator);
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    if (productQuantity > 1) {
       if (operator === "minus") {
         setQuantity(quantity - 1);
         setProductQuantity(productQuantity - 1);
+      
       } else {
         setProductQuantity(productQuantity + 1);
         setQuantity(quantity + 1);
       }
 
-      axios
-        .get(`${API}/cart-products`)
-        .then((res) => {
-          const currentProduct = res.data.find(
-            (data) => data.product_id === product.id
-          );
-          updateQuantity(currentProduct, operator);
-        })
-        .catch((error) => {
-          return error;
-        });
     } else {
-      addToCart(product);
-      setProductQuantity(productQuantity + 1);
-      setQuantity(quantity + 1);
+      if(operator !== 'minus') {
+
+        addToCart(product);
+        setProductQuantity(productQuantity + 1);
+        setQuantity(quantity + 1);
+      }
+
     }
+    
   };
 
   useEffect(() => {
@@ -118,6 +128,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
   // Makes a put request to update the quantity of the product
    const updateQuantity = (product, operator = "plus") => {
+    console.log(productQuantity)
      if (operator === "minus") {
        axios.put(`${API}/cart-products/${product.cart_id}`, {
          quantity: product.quantity - 1,
@@ -129,10 +140,22 @@ export default function ProductById({ session, quantity, setQuantity }) {
      }
    };
 
+  //  Function to delete a product from the cart
+  const deleteProductFromCart = (product) => {
+    console.log(product)
+    axios
+      .delete(`${API}/cart-products/${product.cart_id}`)
+      .catch((error) => {
+        return error;
+      })
+  }
+
+
+
   return (
-    <div className="h-full w-full flex justify-center">
+    <div className="h-max w-full flex justify-center">
       {Object.keys(product).length !== 0 && seller[0] && comments ? (
-        <div className="h-screen w-full flex flex-col justify-between px-4 pb-20 pt-24 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
+        <div className="h-auto w-full flex flex-col justify-center px-4 pb-20 mt-20 tablet:mt-0 gap-6 tablet:flex-row tablet:items-start tablet:pt-40 tablet:justify-center  tablet:h-fit">
           {/* Image div */}
           <div className="p-4 flex flex-col items-center gap-4 flex-shrink-0">
             <img
@@ -169,14 +192,17 @@ export default function ProductById({ session, quantity, setQuantity }) {
               <div className="mt-4 flex flex-col">
                 <h3 className="font-medium text-base">Description</h3>
                 <p className="text-[gray] text-sm">{product.description}</p>
-                <Link
-                  to={`/sellers/${seller[0].id}`}
-                  className="text-green text-xl"
-                >
-                  <p>
-                    {seller[0].first_name} {seller[0].last_name}
-                  </p>
-                </Link>
+                <div className="flex items-center gap-2 mt-2">
+                  <GiPitchfork className="text-gold"/>
+                  <Link
+                    to={`/sellers/${seller[0].id}`}
+                    className="text-green text-lg hover:underline underline-offset-4"
+                  >
+                    <p>
+                      {seller[0].first_name} {seller[0].last_name}
+                    </p>
+                  </Link>
+                </div>
               </div>
             </div>
 

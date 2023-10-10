@@ -11,6 +11,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { auth, provider } from "../fireBase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
+import logo from "../assets/logo.png";
 
 
 // const API = import.meta.env.VITE_APP_API_URL;
@@ -41,7 +42,7 @@ export default function LoginForm() {
         event.preventDefault();
         signInWithEmailAndPassword(auth, login.email, login.password)
         .then((userCredential) => {
-          navigate("/");
+          navigate("/products");
           console.log(userCredential);
         })
         .catch((error) => {
@@ -55,28 +56,29 @@ export default function LoginForm() {
       .catch((error) => {
         alert(error);
       });
-      navigate("/items");
+      navigate("/products");
     }
 
     return (
-      <div className="bg-white h-full w-full flex justify-center pt-[10%]">
-        <div className="h-96 w-96 p-2">
-          <h1 className="text-2xl font-semibold mb-4">Login</h1>
+      <div className="bg-[#BFDCBC] h-full w-full flex justify-center pt-[10%]">
+        <div className="h-fit w-[500px] px-8 bg-white rounded flex flex-col items-center">
+          <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
           <div className="flex gap-2 mb-8">
-            <p>New?</p>
-            <Link
-              className="text-blue-dark underline underline-offset-4 hover:text-blue-light"
-              to={"/register"}
-            >
-              Create an Account
-            </Link>
+            <div className="flex">
+              <Link>Log in</Link>
+              <Link
+                className="text-blue-dark underline underline-offset-4 hover:text-blue-light"
+                to={"/register"}
+              >
+                Create an Account
+              </Link>
+            </div>
           </div>
-          <form id="login" className="grid gap-4 mb-8 relative">
+          <form id="login" className="grid gap-2 mb-8 relative">
             <div className="grid gap-2">
-              <label htmlFor="email">Email Address</label>
               <input
-                placeholder="yourname@domain.com"
-                className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light "
+                placeholder="Email address"
+                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light "
                 onChange={handleFormChange}
                 value={login.email}
                 type="email"
@@ -85,13 +87,12 @@ export default function LoginForm() {
               <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
                 Please enter a valid email
               </p>
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-3.5 right-2 text-green-dark text-xl" />
             </div>
-            <div className="grid gap-2 relative">
-              <label htmlFor="password">Password</label>
+            <div className="grid relative">
               <input
                 placeholder="Password"
-                className="peer h-12 border placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
+                className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-blue-light"
                 onChange={handleFormChange}
                 value={login.password}
                 type={passwordType}
@@ -99,54 +100,48 @@ export default function LoginForm() {
                 maxLength={40}
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
               />
-              <p className="text-xs text-[red] invisible peer-invalid:visible peer-focus:invisible">
+              <p className="text-xs text-[red] invisible mt-1 peer-invalid:visible peer-focus:invisible">
                 Password must contain at least 8 characters, including one
                 uppercase letter, one lowercase letter, and one digit.
               </p>
               <AiOutlineEye
-                className={`absolute top-11 right-10 text-2xl cursor-pointer ${
+                className={`absolute top-3 right-10 text-2xl cursor-pointer ${
                   passwordType === "password" ? "visible" : "invisible"
                 }`}
                 onClick={() => togglePassword("password")}
               />
               <AiOutlineEyeInvisible
-                className={`absolute top-11 right-10 text-2xl cursor-pointer ${
+                className={`absolute top-3 right-10 text-2xl cursor-pointer ${
                   passwordType === "text" ? "visible" : "invisible"
                 }`}
                 onClick={() => togglePassword("text")}
               />
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-3.5 right-2 text-green-dark text-xl" />
+              {/* link to reset page-need to add reset page** */}
+              <Link
+                to="/reset"
+                className="text-green hover:underline underline-offset-4 place-self-center"
+              >
+                {" "}
+                Forgot your password?
+              </Link>
             </div>
-            <div className="grid text-center gap-2 text-sm">
+            <div className="grid text-center mt-4 gap-2 text-sm">
               <button
                 onClick={logIn}
-                className="rounded-md h-12 bg-blue-light bg-opacity-70 font-light cursor-default"
+                className="rounded-md h-12 bg-green bg-opacity-70 font-light cursor-default"
               >
                 Log In
               </button>
               <p>or</p>
               <button
                 onClick={google}
-                className="border border-[#e2e2e2] rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
+                className="border border-green-light rounded-md h-10 mb-2 font-medium flex justify-center items-center gap-2"
               >
                 <FcGoogle size={24} /> Sign in with Google
               </button>
-              <button
-                onClick={logIn}
-                className="border bg-black text-white rounded-md h-12 ease-in-out duration-300 hover:bg-opacity-60"
-              >
-                Sign in with Facebook
-              </button>
             </div>
           </form>
-          {/* link to reset page-need to add reset page** */}
-          <Link
-            to="/reset"
-            className="text-blue-dark underline underline-offset-4 hover:text-blue-light"
-          >
-            {" "}
-            Forgot your password?
-          </Link>
         </div>
       </div>
     );
