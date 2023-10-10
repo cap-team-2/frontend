@@ -80,6 +80,7 @@
                     })
                   }
                 />
+                {/* Update Quantity  */}
                 {productQuantity > 0 && (
                   <div className="flex bg-topaz h-8 w-20 items-center justify-center gap-2 rounded-full absolute top-0 right-0">
                     <CgMathMinus className="text-lg text-green cursor-pointer hover:scale-110" onClick={() => handleAddToCart(results, 'minus')} />

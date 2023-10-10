@@ -1,4 +1,4 @@
-// Users.jsx
+// users.jsx
 
 export const users = [
   {
