@@ -8,7 +8,6 @@ import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
   const navigate = useNavigate();
 
-
   return (
     <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
       <p className="text-xl font-bold border-b border-gray pb-2 mb-4">

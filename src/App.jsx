@@ -8,7 +8,7 @@ import axios from "axios";
 
 // PAGES 
 import Browse from "./Pages/Browse";
-import CartPage from "./Pages/CartPage";
+import CartPage from "./Pages/CartPage.jsx";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import ProductById from "./Components/ProductDetails";
@@ -39,7 +39,7 @@ export default function App() {
   });
 
   // replace with the signed in user or a guest uuid
-  const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
+  // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
   useEffect(() => {
     setSearchForText("Products");
     axios
@@ -151,3 +151,7 @@ useEffect(() => {
     </main>
   );
 }
+
+
+
+
