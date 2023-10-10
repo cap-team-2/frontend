@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center text-center gap-4 py-10 pb-16 bg-white text-green h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
+    <footer className="flex flex-col items-center justify-center text-center gap-4 pt-4 pb-16 bg-white text-green h-auto w-full border-t border-gray  relative  tablet:py-20 tablet:items-start tablet:px-10 desktop:px-40 xl:px-48">
       {/* Additional Links */}
       <div className="flex flex-col items-center tablet:flex-row tablet:text-start w-full  tablet:items-end tablet:justify-between">
         <div className="flex flex-col tablet:flex-row gap-10 tablet:gap-20 font-medium ">
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Copyright tag */}
-      <p className="p-4 text-xs absolute bottom-0 place-self-center font-medium">
+      <p className="p-4 text-xs tablet:text-sm absolute bottom-0 place-self-center font-medium">
         Copyright © 2023 PANTRI. All Rights Reserved.
       </p>
     </footer>
