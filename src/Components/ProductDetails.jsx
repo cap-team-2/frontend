@@ -257,7 +257,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
                     />
                   );
                 })
-              : null}
+              : 'here'}
           </div>
         </div>
       ) : (
