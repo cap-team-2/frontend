@@ -8,7 +8,7 @@ import axios from "axios";
 
 // PAGES 
 import Browse from "./Pages/Browse";
-import CartPage from "./Pages/CartPage";
+import CartPage from "./Pages/CartPage.jsx";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
 import ProductById from "./Components/ProductDetails";
