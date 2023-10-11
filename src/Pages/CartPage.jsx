@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Cart from "../Components/Cart.jsx";
 import Summary from "../Components/Summary.jsx";
-// import Stripe from "../Components/Stripe.jsx";
+import Stripe from "../Components/Stripe.jsx";
 import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 const API = import.meta.env.VITE_APP_API_URL;

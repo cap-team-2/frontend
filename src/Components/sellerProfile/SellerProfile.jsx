@@ -152,15 +152,15 @@ export default function SellerProfile({ seller }) {
                     <div className="right-panel-bottom-review-card-container">
                         <div className="right-panel-bottom-review-card">
                             <div className="right-panel-bottom-review-card-1">
-                                <p className="review"> Review here</p>
                                 <div className="reviewer-info">
+                                <p className="review"> I enjoyed the fresh vegetables.</p>
                                     <img src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tYW4lMjBoZWFkc2hvdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="Jessica" />
                                     <p className="reviewer-name">Jessica</p>
                                 </div>
                             </div>
                             <div className="right-panel-bottom-review-card">
                                 <div className="right-panel-bottom-review-card-2">
-                                    <p className="review"> Review here</p>
+                                    <p className="review"> Every thing was fresh and organic</p>
                                     <div className="reviewer-info">
                                         <img src="https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/ab48139b-8026-44e6-a043-c24ddc3782c6/2022-05-12-Brooke+Johnson-1052.jpg?format=500w" alt="Karen" />
                                         <p className="reviewer-name">Karen</p>
@@ -168,15 +168,15 @@ export default function SellerProfile({ seller }) {
                                 </div>
 
                                 <div className="right-panel-bottom-review-card-3">
-                                    <p className="review"> Review here</p>
+                                    <p className="review"> The tour was great!</p>
                                     <div className="reviewer-info">
                                         <img src="https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/6d0d06ce-e8a5-434e-a633-a4893841b6a3/2022-08-10-Trinet-Henderson-Tiara-1485.jpg?format=500w" alt="Roam" />
-                                        <p className="reviewer-name">Roam</p>
+                                        <p className="reviewer-name">Emma</p>
                                     </div>
 
                                 </div>
                                 <div className="right-panel-bottom-review-card-4">
-                                    <p className="review"> Review here</p>
+                                    <p className="review"> Seeing the animals raom free was relieving.</p>
                                     <div className="reviewer-info">
                                         <img src="https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/da52fbea-abb9-4a9e-94b8-f68ad42069d4/2022-09-16-Alaia-Azarcon-0130.jpg?format=500w" alt="Michelle" />
                                         <p className="reviewer-name">Michelle</p>
