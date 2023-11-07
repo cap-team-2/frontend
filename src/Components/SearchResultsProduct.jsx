@@ -7,7 +7,7 @@
     const API = import.meta.env.VITE_APP_API_URL;
 
 
-    export default function SearchResultsProduct({ results, addToCart, quantity, setQuantity }) {
+    export default function SearchResultsProduct({ results, addToCart, cartQuantity, setCartQuantity }) {
         const [ productQuantity, setProductQuantity ] = useState(0);
         const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
         const navigate = useNavigate();
@@ -32,11 +32,11 @@
         const handleAddToCart = (product, operator = 'plus') => {
           if (productQuantity >= 1) {
             if(operator === 'minus') {
-              setQuantity(quantity - 1)
+              setCartQuantity(cartQuantity - 1)
               setProductQuantity(productQuantity - 1)
             } else {
               setProductQuantity(productQuantity + 1)
-              setQuantity(quantity + 1)
+              setCartQuantity(cartQuantity + 1)
             }
             
             axios

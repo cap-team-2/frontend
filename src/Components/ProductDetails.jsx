@@ -72,16 +72,16 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
       .catch((error) => {
         return error;
       });
-       axios
-         .get(`${API}/cart-products`)
-         .then((res) => {
-           const data = res.data.find((data) => data.product_id === product.id);
-           const currentQuantity = data.quantity;
-           setProductQuantity(currentQuantity);
-         })
-         .catch((error) => {
-           return error;
-         });
+    axios
+      .get(`${API}/cart-products`)
+      .then((res) => {
+        const data = res.data.find((data) => data.product_id === product.id);
+        const currentQuantity = data.quantity;
+        setProductQuantity(currentQuantity);
+      })
+      .catch((error) => {
+        return error;
+      });
   }, []);
 
   // Function to add a product to the cart
@@ -101,41 +101,41 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
   }, [cart]);
 
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
-  const handleAddToCart = (product, operator = "plus") => {
-    let currentProduct;
-    axios
-      .get(`${API}/cart-products`)
-      .then((res) => {
-        currentProduct = res.data.find(
-          (data) => data.product_id === product.id
-        );
-        updateQuantity(currentProduct, operator);
-      })
-      .catch((error) => {
-        return error;
-      });
+  // const handleAddToCart = (product, operator = "plus") => {
 
-    if (productQuantity > 1) {
-      if (operator === "minus") {
-        setCartQuantity(quantity - 1);
-        setProductQuantity(productQuantity - 1);
-      
-      } else {
-        setProductQuantity(productQuantity + 1);
-        setCartQuantity(quantity + 1);
-      }
+  //   axios
+  //     .get(`${API}/cart-products`)
+  //     .then((res) => {
+  //       const currentProduct = res.data.find(
+  //         (data) => data.product_id === product.id
+  //       );
+  //       updateQuantity(currentProduct, operator);
+  //     })
+  //     .catch((error) => {
+  //       return error;
+  //     });
 
-    } else {
-      if(operator !== 'minus') {
+  //   if (productQuantity > 1) {
+  //     if (operator === "minus") {
+  //       setCartQuantity(quantity - 1);
+  //       setProductQuantity(productQuantity - 1);
 
-        addToCart(product);
-        setProductQuantity(productQuantity + 1);
-        setCartQuantity(cartQuantity + 1);
-      }
+  //     } else {
+  //       setProductQuantity(productQuantity + 1);
+  //       setCartQuantity(quantity + 1);
+  //     }
 
-    }
-    
-  };
+  //   } else {
+  //     if(operator !== 'minus') {
+
+  //       addToCart(product);
+  //       setProductQuantity(productQuantity + 1);
+  //       setCartQuantity(cartQuantity + 1);
+  //     }
+
+  //   }
+
+  // };
 
   useEffect(() => {
     axios
@@ -149,18 +149,18 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
   }, [product]);
 
   // Makes a put request to update the quantity of the product
-   const updateQuantity = (product, operator = "plus") => {
-    console.log(productQuantity)
-     if (operator === "minus") {
-       axios.put(`${API}/cart-products/${product.cart_id}`, {
-         quantity: product.quantity - 1,
-       });
-     } else {
-       axios.put(`${API}/cart-products/${product.cart_id}`, {
-         quantity: product.quantity + 1,
-       });
-     }
-   };
+  //  const updateQuantity = (product, operator = "plus") => {
+  //   console.log(productQuantity)
+  //    if (operator === "minus") {
+  //      axios.put(`${API}/cart-products/${product.cart_id}`, {
+  //        quantity: product.quantity - 1,
+  //      });
+  //    } else {
+  //      axios.put(`${API}/cart-products/${product.cart_id}`, {
+  //        quantity: product.quantity + 1,
+  //      });
+  //    }
+  //  };
 
   //  Function to delete a product from the cart
   // const deleteProductFromCart = (product) => {
@@ -171,6 +171,47 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
   //       return error;
   //     })
   // }
+
+  // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
+  const handleAddToCart = (product, operator = "plus") => {
+    if (productQuantity > 0) {
+      if (operator === "minus") {
+        setCartQuantity(cartQuantity - 1);
+        setProductQuantity(productQuantity - 1);
+      } else {
+        setProductQuantity(productQuantity + 1);
+        setCartQuantity(cartQuantity + 1);
+      }
+
+      axios
+        .get(`${API}/cart-products`)
+        .then((res) => {
+          const currentProduct = res.data.find(
+            (data) => data.product_id === product.id
+          );
+          updateQuantity(currentProduct, operator);
+        })
+        .catch((error) => {
+          return error;
+        });
+    } else {
+      addToCart(product);
+      setProductQuantity(productQuantity + 1);
+    }
+  };
+
+  // Makes a put request to update the quantity of the product
+  const updateQuantity = (product, operator = "plus") => {
+    if (operator === "minus") {
+      axios.put(`${API}/cart-products/${product.cart_id}`, {
+        quantity: product.quantity - 1,
+      });
+    } else {
+      axios.put(`${API}/cart-products/${product.cart_id}`, {
+        quantity: product.quantity + 1,
+      });
+    }
+  };
 
   return (
     <div className="h-max w-full flex justify-center">
