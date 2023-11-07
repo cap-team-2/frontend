@@ -73,7 +73,7 @@
                 <img
                   src={results.image}
                   alt={results.description}
-                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer object-cover peer"
+                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer shadow object-cover peer"
                   onClick={() =>
                     navigate(`/products/${results.id}`, {
                       state: { productQuantity },
