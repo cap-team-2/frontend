@@ -8,7 +8,7 @@ import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function CartPage({ session, cartProducts, setCartProducts, quantity, setQuantity }) {
+export default function CartPage({ session, cartProducts, setCartProducts, cartQuantity, setCartQuantity }) {
     const [ checkout, setCheckout ] = useState(false);
     const navigate = useNavigate();
    
@@ -41,8 +41,8 @@ export default function CartPage({ session, cartProducts, setCartProducts, quant
            <Cart
            cartProducts={cartProducts}
            setCartProducts={setCartProducts}
-           quantity={quantity}
-           setQuantity={setQuantity}
+           cartQuantity={cartQuantity}
+           setCartQuantity={setCartQuantity}
          />
             }
           </div>

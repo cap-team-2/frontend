@@ -8,7 +8,7 @@ import SearchBar from "../Components/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function HomePage({ searchResults, setSearchResults, setFilter, filter, session, setSession, searchForText, setSearchForText, quantity, setQuantity, cartProducts, setCartProducts }) {
+export default function HomePage({ searchResults, setSearchResults, setFilter, filter, session, setSession, searchForText, setSearchForText, cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
   // Make an API call for all products when returning to the homepage to update the searchResults state
   useEffect(() => {
     setSearchForText("Products");
@@ -54,8 +54,8 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
           session={session}
           setSession={setSession}
           searchResults={searchResults}
-          quantity={quantity}
-          setQuantity={setQuantity}
+          cartQuantity={cartQuantity}
+          setCartQuantity={setCartQuantity}
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
         />
