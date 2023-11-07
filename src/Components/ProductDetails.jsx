@@ -35,7 +35,7 @@ const users = [
 
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function ProductById({ session, quantity, setQuantity }) {
+export default function ProductById({ session, cartQuantity, setCartQuantity }) {
   const { state } = useLocation();
   const initialProductQuantity = state?.productQuantity || 0;
   const [productQuantity, setProductQuantity] = useState(
@@ -117,12 +117,12 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
     if (productQuantity > 1) {
       if (operator === "minus") {
-        setQuantity(quantity - 1);
+        setCartQuantity(quantity - 1);
         setProductQuantity(productQuantity - 1);
       
       } else {
         setProductQuantity(productQuantity + 1);
-        setQuantity(quantity + 1);
+        setCartQuantity(quantity + 1);
       }
 
     } else {
@@ -130,7 +130,7 @@ export default function ProductById({ session, quantity, setQuantity }) {
 
         addToCart(product);
         setProductQuantity(productQuantity + 1);
-        setQuantity(quantity + 1);
+        setCartQuantity(cartQuantity + 1);
       }
 
     }
