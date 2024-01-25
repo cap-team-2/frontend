@@ -325,7 +325,7 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
         </div>
       ) : (
         <p className="text-2xl mt-40 text-center">
-          Loading<span className="animate-ping ">...</span>
+          Loading<span className="animate-ping ">. . .</span>
         </p>
       )}
     </div>

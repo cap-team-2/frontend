@@ -44,6 +44,9 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
           Sorry, we could not find any results
         </h2>
       )}
+      <p className="text-2xl text-center z-0 col-start-2">
+          Loading Products <span className="animate-ping ">. . .</span>
+      </p>
     </div>
   );
 }
