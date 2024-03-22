@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
     // SearchResultsProduct.jsx
     import axios from "axios";
     import { useState, useEffect } from "react";
@@ -7,7 +8,7 @@
     const API = import.meta.env.VITE_APP_API_URL;
 
 
-    export default function SearchResultsProduct({ results, addToCart, quantity, setQuantity }) {
+    export default function SearchResultsProduct({ results, addToCart, cartQuantity, setCartQuantity }) {
         const [ productQuantity, setProductQuantity ] = useState(0);
         const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
         const navigate = useNavigate();
@@ -26,17 +27,17 @@
                 .catch((error) => {
                   return error;
                 });
-        }, [])
+        }, [results.id])
         
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
         const handleAddToCart = (product, operator = 'plus') => {
           if (productQuantity >= 1) {
             if(operator === 'minus') {
-              setQuantity(quantity - 1)
+              setCartQuantity(cartQuantity - 1)
               setProductQuantity(productQuantity - 1)
             } else {
               setProductQuantity(productQuantity + 1)
-              setQuantity(quantity + 1)
+              setCartQuantity(cartQuantity + 1)
             }
             
             axios
@@ -73,7 +74,7 @@
                 <img
                   src={results.image}
                   alt={results.description}
-                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer object-cover peer"
+                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer shadow object-cover peer"
                   onClick={() =>
                     navigate(`/products/${results.id}`, {
                       state: { productQuantity },

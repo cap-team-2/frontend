@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // SearchResults.jsx
 
 import axios from "axios";
@@ -6,7 +7,7 @@ import SearchResultsProduct from "./SearchResultsProduct";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function SearchResults({ searchResults, session, quantity, setQuantity }) {
+export default function SearchResults({ searchResults, session, cartQuantity, setCartQuantity }) {
   const [ cart, setCart ] = useState(
     {
       session_id: '',
@@ -17,7 +18,7 @@ export default function SearchResults({ searchResults, session, quantity, setQua
 
 // Function to add a product to the cart
   function addToCart(product) {
-    setQuantity(quantity+1)
+    setCartQuantity(cartQuantity + 1)
     setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
 
   }
@@ -36,7 +37,7 @@ export default function SearchResults({ searchResults, session, quantity, setQua
       {searchResults  ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} quantity={quantity} setQuantity={setQuantity} />
+            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />
           );
         })
       ) : (
@@ -44,6 +45,9 @@ export default function SearchResults({ searchResults, session, quantity, setQua
           Sorry, we could not find any results
         </h2>
       )}
+      <p className="text-2xl text-center z-0 col-start-2">
+          Loading Products <span className="animate-ping ">. . .</span>
+      </p>
     </div>
   );
 }

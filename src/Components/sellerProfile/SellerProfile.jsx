@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // SellerProfile.jsx
 import React from "react";
 import { useState, useEffect } from "react";

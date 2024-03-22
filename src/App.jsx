@@ -28,7 +28,7 @@ const API = import.meta.env.VITE_APP_API_URL;
 export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const [filter, setFilter] = useState(0);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchForText, setSearchForText] = useState("Products");
@@ -65,14 +65,14 @@ useEffect(() => {
       console.log(error);
     });
 
-    // Assign quantity state to the amount of products in cart
+    // Assign cartQuantity state to the amount of products in cart
   if (!cartProducts.length > 0) {
     axios
     .get(`${API}/cart-products`)
     .then((res) => {
-      // Calculate the new quantity
-      const newQuantity = res.data.reduce((acc, cartProduct) => acc + cartProduct.quantity, 0);
-      setQuantity(newQuantity);
+      // Calculate the new cartQuantity
+      const newQuantity = res.data.reduce((acc, cartProduct) => acc + cartProduct.cartQuantity, 0);
+      setCartQuantity(newQuantity);
     })
     .catch((error) => {
       return error
@@ -83,7 +83,7 @@ useEffect(() => {
   return (
     <main className="h-screen w-full font-font flex flex-col justify-between items-center">
       <Router>
-        <Nav setSearchResults={setSearchResults} quantity={quantity} />
+        <Nav setSearchResults={setSearchResults} cartQuantity={cartQuantity} />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route
@@ -100,8 +100,8 @@ useEffect(() => {
                 setSession={setSession}
                 searchForText={searchForText}
                 setSearchForText={setSearchForText}
-                quantity={quantity}
-                setQuantity={setQuantity}
+                cartQuantity={cartQuantity}
+                setCartQuantity={setCartQuantity}
                 cartProducts={cartProducts}
                 setCartProducts={setCartProducts}
               />
@@ -109,7 +109,7 @@ useEffect(() => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById  session={session} quantity={quantity} setQuantity={setQuantity} />} />
+          <Route path="/products/:id" element={<ProductById  session={session} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
           <Route
             path="/sellers"
             element={
@@ -139,8 +139,8 @@ useEffect(() => {
                 setSession={setSession}
                 cartProducts={cartProducts}
                 setCartProducts={setCartProducts}
-                quantity={quantity}
-                setQuantity={setQuantity}
+                cartQuantity={cartQuantity}
+                setCartQuantity={setCartQuantity}
               />
             }
           />

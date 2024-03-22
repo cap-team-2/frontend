@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // SellerCard.jsx
 
 import React from "react";
