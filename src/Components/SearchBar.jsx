@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 // SearchBar.jsx
-import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import { useState } from "react";
+// import axios from "axios";
 import { IoSearchCircleSharp } from "react-icons/io5";
 
 export default function SearchBar({ performSearch, searchForText }) {

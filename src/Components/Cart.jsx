@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // cart component 
 
 import { keyframes } from "@emotion/react";

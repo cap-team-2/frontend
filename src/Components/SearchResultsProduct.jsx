@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
     // SearchResultsProduct.jsx
     import axios from "axios";
     import { useState, useEffect } from "react";
@@ -26,7 +27,7 @@
                 .catch((error) => {
                   return error;
                 });
-        }, [])
+        }, [results.id])
         
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
         const handleAddToCart = (product, operator = 'plus') => {

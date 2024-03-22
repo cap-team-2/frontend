@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // FilterProductsBy.jsx
 
 import { v4 as generateId } from "uuid";
@@ -6,7 +7,7 @@ import axios from "axios";
 import ProductFilters from "./ProductFilters";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function FilterProductsBy({setSearchResults, filter, setFilter }) {
+export default function FilterProductsBy({ setSearchResults, filter, setFilter }) {
 
   // Update the filter state to switch between the different filters for each product category
   function filterProducts (productFilter) {

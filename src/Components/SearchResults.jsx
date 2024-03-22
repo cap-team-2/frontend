@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // SearchResults.jsx
 
 import axios from "axios";

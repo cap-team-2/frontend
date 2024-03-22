@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // NavLinks.jsx
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
