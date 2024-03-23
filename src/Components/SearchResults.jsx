@@ -33,7 +33,7 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
   }, [cart]);
 
   return (
-    <div className="grid grid-cols-1 mobile:grid-cols-2 h-auto w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4  self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pt-10">
+    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 ">
       {searchResults  ? (
         searchResults.map((results) => {
           return (
@@ -45,7 +45,7 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
           Sorry, we could not find any results
         </h2>
       )}
-      <p className="text-2xl text-center z-0 col-start-2">
+      <p className="text-2xl col-span-full self-center  text-center z-0">
           Loading Products <span className="animate-ping ">. . .</span>
       </p>
     </div>
