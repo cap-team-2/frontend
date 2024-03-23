@@ -16,7 +16,7 @@ import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
-import List from "./Pages/List";
+// import List from "./Pages/List";
 import Market from "./Pages/Market";
 import Nav from "./Components/Nav";
 import Register from "./Pages/Register";
@@ -81,71 +81,73 @@ useEffect(() => {
 }, []);
 
   return (
-    <main className="h-screen w-full font-font flex flex-col justify-between items-center">
+    <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
       <Router>
         <Nav setSearchResults={setSearchResults} cartQuantity={cartQuantity} />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/products"
-            element={
-              <HomePage
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                setFilteredProducts={setFilteredProducts}
-                filteredProducts={filteredProducts}
-                filter={filter}
-                setFilter={setFilter}
-                session={session}
-                setSession={setSession}
-                searchForText={searchForText}
-                setSearchForText={setSearchForText}
-                cartQuantity={cartQuantity}
-                setCartQuantity={setCartQuantity}
-                cartProducts={cartProducts}
-                setCartProducts={setCartProducts}
-              />
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/products/:id" element={<ProductById  session={session} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
-          <Route
-            path="/sellers"
-            element={
-              <Sellers
-                searchForText={searchForText}
-                setSearchForText={setSearchForText}
-              />
-            }
-          />
-          <Route path="/sellers/:id" element={<SellersById />} />
-          <Route
-            path="/market"
-            element={
-              <Market
-                searchForText={searchForText}
-                setSearchForText={setSearchForText}
-              />
-            }
-          />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/farmers-markets" element={<FarmersMarkets />} />
-          <Route
-            path="/cart"
-            element={
-              <CartPage
-                session={session}
-                setSession={setSession}
-                cartProducts={cartProducts}
-                setCartProducts={setCartProducts}
-                cartQuantity={cartQuantity}
-                setCartQuantity={setCartQuantity}
-              />
-            }
-          />
-          <Route path="*" element={<FourOFour />} />
-        </Routes>
+        <div className='h-full w-auto'>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/products"
+              element={
+                <HomePage
+                  searchResults={searchResults}
+                  setSearchResults={setSearchResults}
+                  setFilteredProducts={setFilteredProducts}
+                  filteredProducts={filteredProducts}
+                  filter={filter}
+                  setFilter={setFilter}
+                  session={session}
+                  setSession={setSession}
+                  searchForText={searchForText}
+                  setSearchForText={setSearchForText}
+                  cartQuantity={cartQuantity}
+                  setCartQuantity={setCartQuantity}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
+                />
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products/:id" element={<ProductById  session={session} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
+            <Route
+              path="/sellers"
+              element={
+                <Sellers
+                  searchForText={searchForText}
+                  setSearchForText={setSearchForText}
+                />
+              }
+            />
+            <Route path="/sellers/:id" element={<SellersById />} />
+            <Route
+              path="/market"
+              element={
+                <Market
+                  searchForText={searchForText}
+                  setSearchForText={setSearchForText}
+                />
+              }
+            />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/farmers-markets" element={<FarmersMarkets />} />
+            <Route
+              path="/cart"
+              element={
+                <CartPage
+                  session={session}
+                  setSession={setSession}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
+                  cartQuantity={cartQuantity}
+                  setCartQuantity={setCartQuantity}
+                />
+              }
+            />
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
+        </div>
         <Footer />
       </Router>
     </main>

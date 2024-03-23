@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // Home.jsx
 
 import { useEffect, useCallback } from "react";
@@ -35,7 +36,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
   }
 
   return (
-    <div className="h-auto w-full flex flex-col tablet:pt-24 pb-4">
+    <div className="h-full min-h-full w-full flex flex-col tablet:pt-24 pb-4">
       <div className="flex flex-col fixed top-16 tablet:top-16 w-full bg-white z-40 pt-2">
         {/* Search Bar */}
         <SearchBar setSearchResults={setSearchResults} performSearch={performSearch} searchForText={searchForText} />
@@ -48,7 +49,7 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
           />
         </div>
       </div>
-      <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 ">
+      <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 h-full ">
         {/* Products */}
         <SearchResults
           session={session}
