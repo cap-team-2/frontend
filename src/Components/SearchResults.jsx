@@ -15,6 +15,20 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
       quantity: 1
     }
   );
+  // page loading state variable 
+  const [isLoading, setIsLoading] = useState(true);
+
+  // function for toggling loading state
+  const handleLoading = () => {
+    setIsLoading(!isLoading);
+  }
+
+  // event listener added to the window used to call handleLoading function 
+  useEffect(() => {
+    window.addEventListener("load", handleLoading);
+    return () => window.removeEventListener("load", handleLoading);
+  }, []) 
+
 
 // Function to add a product to the cart
   function addToCart(product) {
@@ -33,11 +47,14 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
   }, [cart]);
 
   return (
+   !isLoading ? (
+
     <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 ">
-      {searchResults  ? (
+      {console.log('searchResults', searchResults)}
+      {searchResults.length  ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />
+            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />            
           );
         })
       ) : (
@@ -45,10 +62,14 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
           Sorry, we could not find any results
         </h2>
       )}
+    </div>
+   ) : (
+
       <p className="text-2xl col-span-full self-center  text-center z-0">
           Loading Products <span className="animate-ping ">. . .</span>
-      </p>
-    </div>
+      </p> 
+   ) 
   );
+   
 }
 
