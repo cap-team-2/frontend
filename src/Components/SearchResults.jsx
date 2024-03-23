@@ -49,8 +49,7 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
   return (
    !isLoading ? (
 
-    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 ">
-      {console.log('searchResults', searchResults)}
+    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pb-12">
       {searchResults.length  ? (
         searchResults.map((results) => {
           return (
@@ -65,9 +64,9 @@ export default function SearchResults({ searchResults, session, cartQuantity, se
     </div>
    ) : (
 
-      <p className="text-2xl col-span-full self-center  text-center z-0">
-          Loading Products <span className="animate-ping ">. . .</span>
-      </p> 
+    <p className="h-screen w-auto text-2xl pt-40 text-center z-0">
+        Loading Products <span className="animate-ping ">. . .</span>
+    </p> 
    ) 
   );
    
