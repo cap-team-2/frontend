@@ -67,20 +67,20 @@
         }
 
         return (
-          <div className="flex flex-col justify-between items-center p-2 gap-4 h-auto w-auto max-w-52 shadow-xl rounded-xl">
-            <div className="flex flex-col gap-4 shrink-0 w-full">
+          <div className="flex flex-col justify-between items-center gap-4 h-auto  max-w-40 shrink-0 shadow-xl rounded-xl">
+            <img
+                src={results.image}
+                alt={results.description}
+                className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 flex-shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
+                onClick={() =>
+                  navigate(`/products/${results.id}`, {
+                    state: { productQuantity },
+                  })
+                }
+              />
+            <div className="flex flex-col gap-4 shrink-0 w-full p-2">
               {/* Product Image and quantity */}
               <div className="relative">
-                <img
-                  src={results.image}
-                  alt={results.description}
-                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-2xl hover:cursor-pointer shadow object-cover peer"
-                  onClick={() =>
-                    navigate(`/products/${results.id}`, {
-                      state: { productQuantity },
-                    })
-                  }
-                />
                 {/* Update Quantity  */}
                 {productQuantity > 0 && (
                   <div className="flex bg-topaz h-8 w-20 items-center justify-center gap-2 rounded-full absolute top-0 right-0">
@@ -106,7 +106,6 @@
                   ({costPerUnitWeight}/{results.unit_measurement})
                 </span>
               </p>
-            </div>
             {/* Add to cart button */}
             <button
               className=" text-xs tablet:text-sm text-white font-semibold bg-green rounded flex items-center justify-evenly h-8 w-full  bg-opacity-90 hover:bg-opacity-100"
@@ -114,6 +113,7 @@
             >
               Add to cart
             </button>
+            </div>
           </div>
         );
     }
