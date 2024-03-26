@@ -2,9 +2,7 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from "axios";
-import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
+import { useState } from 'react';
 import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";

@@ -29,7 +29,7 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [filter, setFilter] = useState(0);
+  const [filter, setFilter] = useState('Home');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchForText, setSearchForText] = useState("Products");
   const [session, setSession] = useState({
