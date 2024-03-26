@@ -10,7 +10,7 @@ import SearchBar from "../Components/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function HomePage({ searchResults, setSearchResults, setFilter, filter, session, setSession, searchForText, setSearchForText, cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
+export default function HomePage({ searchResults, setSearchResults, setFilter, filter, searchForText, setSearchForText, cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
   
   const location = useLocation();
 
@@ -56,8 +56,6 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
       <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 h-full ">
         {/* Products */}
         <SearchResults
-          session={session}
-          setSession={setSession}
           searchResults={searchResults}
           cartQuantity={cartQuantity}
           setCartQuantity={setCartQuantity}

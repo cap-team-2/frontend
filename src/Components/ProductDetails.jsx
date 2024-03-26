@@ -15,7 +15,7 @@ import { deleteProductFromCart } from "./CartFunctions";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function ProductById({ session, cartQuantity, setCartQuantity }) {
+export default function ProductDetails({ cartQuantity, setCartQuantity }) {
   const { state } = useLocation();
   const initialProductQuantity = state?.productQuantity || 0;
   const [productQuantity, setProductQuantity] = useState(
@@ -61,19 +61,13 @@ export default function ProductById({ session, cartQuantity, setCartQuantity }) 
 
   // Function to add a product to the cart
   function addToCart() {
-    setCart({
-      ...cart,
-      session_id: session.id,
-      product_id: id,
-      quantity: "1",
-    });
   }
 
-  useEffect(() => {
-    axios.post(`${API}/cart-products`, cart).catch((error) => {
-      console.log(error);
-    });
-  }, [cart]);
+  // useEffect(() => {
+  //   axios.post(`${API}/cart-products`, cart).catch((error) => {
+  //     console.log(error);
+  //   });
+  // }, [cart]);
 
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
   // const handleAddToCart = (product, operator = "plus") => {

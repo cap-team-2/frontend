@@ -11,7 +11,7 @@ import Browse from "./Pages/Browse";
 import CartPage from "./Pages/CartPage.jsx";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
-import ProductById from "./Components/ProductDetails";
+import ProductDetails from "./Components/ProductDetails";
 import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
@@ -81,8 +81,6 @@ useEffect(() => {
                   filteredProducts={filteredProducts}
                   filter={filter}
                   setFilter={setFilter}
-                  session={session}
-                  setSession={setSession}
                   searchForText={searchForText}
                   setSearchForText={setSearchForText}
                   cartQuantity={cartQuantity}
@@ -94,7 +92,7 @@ useEffect(() => {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/products/:id" element={<ProductById  session={session} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
+            <Route path="/products/:id" element={<ProductDetails cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
             <Route
               path="/sellers"
               element={
@@ -120,8 +118,6 @@ useEffect(() => {
               path="/cart"
               element={
                 <CartPage
-                  session={session}
-                  setSession={setSession}
                   cartProducts={cartProducts}
                   setCartProducts={setCartProducts}
                   cartQuantity={cartQuantity}

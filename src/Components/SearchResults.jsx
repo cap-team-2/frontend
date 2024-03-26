@@ -7,7 +7,7 @@ import SearchResultsProduct from "./SearchResultsProduct";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function SearchResults({ searchResults, session, cartQuantity, setCartQuantity }) {
+export default function SearchResults({ searchResults, cartQuantity, setCartQuantity }) {
 
 // Function to add a product to the cart
   function addToCart(product) {
