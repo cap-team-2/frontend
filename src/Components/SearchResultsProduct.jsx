@@ -14,20 +14,20 @@
         const navigate = useNavigate();
     
         // Function to keep track of the current product's quantity and cart_id
-        useEffect(() => {
-          axios.get(`${API}/cart-products`)
-            .then((res) => {
-                const data = res.data.find(
-                  (data) => data.product_id === results.id
-                );
-                const currentQuantity = data.quantity;
-                setProductQuantity(currentQuantity)
+        // useEffect(() => {
+        //   axios.get(`${API}/cart-products`)
+        //     .then((res) => {
+        //         const data = res.data.find(
+        //           (data) => data.product_id === results.id
+        //         );
+        //         const currentQuantity = data.quantity;
+        //         setProductQuantity(currentQuantity)
                   
-                })
-                .catch((error) => {
-                  return error;
-                });
-        }, [results.id])
+        //         })
+        //         .catch((error) => {
+        //           return error;
+        //         });
+        // }, [results.id])
         
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
         const handleAddToCart = (product, operator = 'plus') => {

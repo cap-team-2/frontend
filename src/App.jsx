@@ -66,7 +66,7 @@ useEffect(() => {
     });
 
     // Assign cartQuantity state to the amount of products in cart
-  if (!cartProducts.length > 0) {
+  if (cartProducts.length > 0) {
     axios
     .get(`${API}/cart-products`)
     .then((res) => {

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 // cart component 
 
-import { keyframes } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
