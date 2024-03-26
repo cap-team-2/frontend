@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 // Home.jsx
 
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import FilterProductsBy from "../Components/FilterProductsBy";
 import SearchResults from "../Components/SearchResults";
@@ -10,18 +11,22 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 
 export default function HomePage({ searchResults, setSearchResults, setFilter, filter, session, setSession, searchForText, setSearchForText, cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
+  
+  const location = useLocation();
+
   // Make an API call for all products when returning to the homepage to update the searchResults state
   useEffect(() => {
     setSearchForText("Products");
     axios
-      .get(`${API}/products`)
-      .then((res) => {
+    .get(`${API}/products`)
+    .then((res) => {
+        console.log('SUCCESS', )
         setSearchResults(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [location, setSearchForText, setSearchResults, filter]);
 
   // Api call to retrieve a specific product
   function performSearch(searchQuery) {

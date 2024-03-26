@@ -24,7 +24,7 @@ export default function FilterProductsBy({ setSearchResults, filter, setFilter }
     .catch((error) => {
       console.log(error);
     })
-  }, [filter])
+  }, [filter, setSearchResults])
   
     return (
       <div className="flex justify-between w-full gap-10 desktop:px-10 xl:px-48">
@@ -32,7 +32,7 @@ export default function FilterProductsBy({ setSearchResults, filter, setFilter }
           return (
             <div
               className={`h-16 w-20 flex flex-col items-center justify-start gap-2 hover:underline hover:underline-offset-8 decoration-2 cursor-pointer shrink-0 ${
-                filter == productFilter.category
+                filter === productFilter.category
                   ? "underline  underline-offset-8 decoration-green"
                   : "hover:decoration-gray"
               }`}
