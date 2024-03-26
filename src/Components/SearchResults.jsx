@@ -8,29 +8,13 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 
 export default function SearchResults({ searchResults, session, cartQuantity, setCartQuantity }) {
-  const [ cart, setCart ] = useState(
-    {
-      session_id: '',
-      product_id: '',
-      quantity: 1
-    }
-  );
 
 // Function to add a product to the cart
   function addToCart(product) {
     setCartQuantity(cartQuantity + 1)
-    setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
 
   }
 
-  useEffect(() => {
-
-    axios.post(`${API}/cart-products`, cart)
-    .catch((error) => {
-      console.log(error);
-    });
-
-  }, [cart]);
 
   return (
 

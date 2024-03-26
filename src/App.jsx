@@ -32,11 +32,6 @@ export default function App() {
   const [filter, setFilter] = useState('Home');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchForText, setSearchForText] = useState("Products");
-  const [session, setSession] = useState({
-    user_id: "9e6ef4fb-5574-4968-912a-ea28257d708e",
-    total: "0.00",
-    created_at: "today",
-  });
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
@@ -53,17 +48,6 @@ export default function App() {
   }, []);
   // Update searchResults state to have all products App component is rendered
 useEffect(() => {
-    // used to create a new shopping session
-    axios.put(`${API}/shopping-session/1`, session);
-
-    axios
-    .get(`${API}/shopping-session/1`)
-    .then((res) => {
-      setSession(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
     // Assign cartQuantity state to the amount of products in cart
   if (cartProducts.length > 0) {
