@@ -20,7 +20,6 @@ export default function HomePage({ searchResults, setSearchResults, setFilter, f
     axios
     .get(`${API}/products`)
     .then((res) => {
-        console.log('SUCCESS', )
         setSearchResults(res.data);
       })
       .catch((error) => {
