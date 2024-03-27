@@ -13,7 +13,6 @@ export default function Nav({ cartQuantity }) {
   const [isOpen, setIsOpen] = useState(false);
 
 
-
   return (
     <div className="h-auto w-full flex flex-col fixed bg-wh z-50 shadow bg-white text-green desktop:px-10 xl:px-48">
       {!isOpen && (
@@ -21,11 +20,6 @@ export default function Nav({ cartQuantity }) {
           {/* Logo that links back to homepage */}
           <div>
             <Link to={"/"} className="flex items-center">
-              {/* <img
-          src={PantriLogo}
-          alt="Pantri Logo"
-          className="h-24 w-28 flex-shrink-0 mr-2" // Use flex-shrink-0 to prevent the image from shrinking
-        /> */}
               <p className="text-3xl text-green font-medium tablet:block">
                 PANTRI
               </p>

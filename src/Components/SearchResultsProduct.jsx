@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
     // SearchResultsProduct.jsx
     import axios from "axios";
-    import { useState, useEffect } from "react";
+    import { useState, useEffect, useRef } from "react";
     import { useNavigate } from "react-router-dom";
     import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 
@@ -10,24 +10,29 @@
 
     export default function SearchResultsProduct({ results, addToCart, cartQuantity, setCartQuantity }) {
         const [ productQuantity, setProductQuantity ] = useState(0);
+        const prodQuantity = useRef(0);
         const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
         const navigate = useNavigate();
     
         // Function to keep track of the current product's quantity and cart_id
         useEffect(() => {
-          axios.get(`${API}/cart-products`)
-            .then((res) => {
-                const data = res.data.find(
-                  (data) => data.product_id === results.id
-                );
-                const currentQuantity = data.quantity;
-                setProductQuantity(currentQuantity)
-                  
-                })
-                .catch((error) => {
-                  return error;
-                });
-        }, [results.id])
+          if (productQuantity > 0) {
+
+            axios.get(`${API}/cart-products`)
+              .then((res) => {
+                  const data = res.data.find(
+                    (data) => data.product_id === results.id
+                  );
+                  const currentQuantity = data.quantity;
+                  setProductQuantity(currentQuantity)
+                    
+                  })
+                  .catch((error) => {
+                    return error;
+                  });
+          }
+            
+        }, [])
         
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
         const handleAddToCart = (product, operator = 'plus') => {

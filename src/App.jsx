@@ -1,9 +1,8 @@
 // App.jsx
 
 // DEPENDENCIES
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { UserProvider } from "./Providers/UserProvider";
 import axios from "axios";
 
 // PAGES 
@@ -11,7 +10,7 @@ import Browse from "./Pages/Browse";
 import CartPage from "./Pages/CartPage.jsx";
 import FarmersMarkets from "./Pages/FarmersMarkets";
 import LandingPage from "./Pages/LandingPage";
-import ProductById from "./Components/ProductDetails";
+import ProductDetails from "./Components/ProductDetails";
 import Footer from "./Components/Footer.jsx";
 import FourOFour from "./Pages/FourOFour";
 import HomePage from "./Pages/HomePage";
@@ -29,14 +28,8 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [filter, setFilter] = useState('Home');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  //create state variable for the current cart, object with sessionId, product: quantity
   const [searchForText, setSearchForText] = useState("Products");
-  const [session, setSession] = useState({
-    user_id: "9e6ef4fb-5574-4968-912a-ea28257d708e",
-    total: "0.00",
-    created_at: "today",
-  });
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
@@ -53,20 +46,9 @@ export default function App() {
   }, []);
   // Update searchResults state to have all products App component is rendered
 useEffect(() => {
-    // used to create a new shopping session
-    axios.put(`${API}/shopping-session/1`, session);
-
-    axios
-    .get(`${API}/shopping-session/1`)
-    .then((res) => {
-      setSession(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
     // Assign cartQuantity state to the amount of products in cart
-  if (!cartProducts.length > 0) {
+  if (cartProducts.length > 0) {
     axios
     .get(`${API}/cart-products`)
     .then((res) => {
@@ -93,12 +75,6 @@ useEffect(() => {
                 <HomePage
                   searchResults={searchResults}
                   setSearchResults={setSearchResults}
-                  setFilteredProducts={setFilteredProducts}
-                  filteredProducts={filteredProducts}
-                  filter={filter}
-                  setFilter={setFilter}
-                  session={session}
-                  setSession={setSession}
                   searchForText={searchForText}
                   setSearchForText={setSearchForText}
                   cartQuantity={cartQuantity}
@@ -110,7 +86,7 @@ useEffect(() => {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/products/:id" element={<ProductById  session={session} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
+            <Route path="/products/:id" element={<ProductDetails cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
             <Route
               path="/sellers"
               element={
@@ -136,8 +112,6 @@ useEffect(() => {
               path="/cart"
               element={
                 <CartPage
-                  session={session}
-                  setSession={setSession}
                   cartProducts={cartProducts}
                   setCartProducts={setCartProducts}
                   cartQuantity={cartQuantity}
