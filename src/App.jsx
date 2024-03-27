@@ -1,9 +1,8 @@
 // App.jsx
 
 // DEPENDENCIES
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { UserProvider } from "./Providers/UserProvider";
 import axios from "axios";
 
 // PAGES 
@@ -29,8 +28,7 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [filter, setFilter] = useState('Home');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  //create state variable for the current cart, object with sessionId, product: quantity
   const [searchForText, setSearchForText] = useState("Products");
 
   // replace with the signed in user or a guest uuid
@@ -77,10 +75,6 @@ useEffect(() => {
                 <HomePage
                   searchResults={searchResults}
                   setSearchResults={setSearchResults}
-                  setFilteredProducts={setFilteredProducts}
-                  filteredProducts={filteredProducts}
-                  filter={filter}
-                  setFilter={setFilter}
                   searchForText={searchForText}
                   setSearchForText={setSearchForText}
                   cartQuantity={cartQuantity}
