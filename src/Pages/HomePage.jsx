@@ -36,7 +36,6 @@ export default function HomePage({ searchResults, setSearchResults, searchForTex
       filter.current = `${category}`;
       axios.get(`${API}/products?${category === 'Home' ? '' : `category=${category}`}`)
       .then((res) => {
-        console.log(category, res.data, filter, 'TEST')
         setSearchResults(res.data);
       })
       .catch((error) => {
