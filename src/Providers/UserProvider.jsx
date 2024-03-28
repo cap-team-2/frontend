@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 //  this PROVIDER will be responsible for reutrning the
 //  functionality of our  FIREBASE SERVICE.
 import { useEffect, useState, createContext } from 'react';
