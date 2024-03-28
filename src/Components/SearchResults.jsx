@@ -18,7 +18,7 @@ export default function SearchResults({ searchResults, cartQuantity, setCartQuan
 
   return (
 
-    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pb-12">
+    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto min-w-full tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pb-12">
       {searchResults.length  ? (
         searchResults.map((results) => {
           return (
