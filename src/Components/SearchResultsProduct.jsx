@@ -13,26 +13,8 @@
         const prodQuantity = useRef(0);
         const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
         const navigate = useNavigate();
-    
-        // Function to keep track of the current product's quantity and cart_id
-        // useEffect(() => {
-        //   if (productQuantity > 0) {
-        //     axios.get(`${API}/cart-products`)
-        //       .then((res) => {
-        //           const data = res.data.find(
-        //             (data) => data.product_id === results.id
-        //           );
-        //           const currentQuantity = data.quantity;
-        //           setProductQuantity(currentQuantity)
-                    
-        //           })
-        //           .catch((error) => {
-        //             return error;
-        //           });
-        //   }
-            
-        // }, [])
         
+
         // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
         const handleAddToCart = (product, operator = 'plus') => {
           if (productQuantity >= 1) {
@@ -73,16 +55,18 @@
         return (
           <div className="grid grid-rows-[2fr_1fr] h-auto max-w-full shrink-0 shadow-xl rounded-xl relative">
             <div className="relative">
-              <img
-                  src={results.image}
-                  alt={results.description}
-                  className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
-                  onClick={() =>
-                    navigate(`/products/${results.id}`, {
-                      state: { productQuantity },
-                    })
-                  }
-                />
+              <a 
+                onClick={() =>
+                  navigate(`/products/${results.id}`, {
+                    state: { productQuantity },
+                  })
+                }>
+                <img
+                    src={results.image}
+                    alt={results.description}
+                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
+                  />
+              </a>
                 {/* Product Image and quantity */}
                   {/* Update Quantity  */}
                   {productQuantity > 0 && (

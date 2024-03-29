@@ -32,34 +32,7 @@ export default function App() {
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
-  useEffect(() => {
-    setSearchForText("Products");
-    axios
-      .get(`${API}/products`)
-      .then((res) => {
-        setSearchResults(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  // Update searchResults state to have all products App component is rendered
-useEffect(() => {
-
-    // Assign cartQuantity state to the amount of products in cart
-  if (cartProducts.length > 0) {
-    axios
-    .get(`${API}/cart-products`)
-    .then((res) => {
-      // Calculate the new cartQuantity
-      const newQuantity = res.data.reduce((acc, cartProduct) => acc + cartProduct.cartQuantity, 0);
-      setCartQuantity(newQuantity);
-    })
-    .catch((error) => {
-      return error
-    });
-  }
-}, []);
+  
 
   return (
     <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
