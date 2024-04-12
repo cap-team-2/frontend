@@ -53,7 +53,7 @@
         }
 
         return (
-          <div className="grid grid-rows-[2fr_1fr] h-auto max-w-full shrink-0 shadow-xl rounded-xl relative">
+          <div className="grid grid-rows-1 h-auto max-w-full shrink-0 shadow-xl rounded-xl relative">
             <div className="relative">
               <a 
                 onClick={() =>
@@ -64,20 +64,20 @@
                 <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
+                    className="h-44 w-full tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
                   />
               </a>
                 {/* Product Image and quantity */}
                   {/* Update Quantity  */}
                   {productQuantity > 0 && (
-                    <div className="flex bg-topaz h-8 w-20 items-center justify-center gap-2 rounded-full absolute bottom-14 right-2">
+                    <div className="flex bg-topaz h-8 w-20 items-center justify-center gap-2 rounded-full absolute bottom-2 right-2">
                       <CgMathMinus className="text-lg text-green cursor-pointer hover:scale-110" onClick={() => handleAddToCart(results, 'minus')} />
                       <p className=" text-green ">{productQuantity}</p>
                       <CgMathPlus className="text-lg text-green cursor-pointer hover:scale-110" onClick={() => handleAddToCart(results)} />
                     </div>
                   )}
             </div>
-            <div className="flex flex-col justify-end gap-4 shrink-0 w-full p-2">
+            <div className="flex flex-col justify-end gap-4 shrink-0 w-full p-2 mt-4">
               {/* Product Name */}
               <p className="text-lg font-medium peer-hover:underline peer-hover:underline-offset-8 decoration-green hover:transition ease-in-out delay-150">
                 {capitalize(results.name)}

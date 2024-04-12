@@ -1,27 +1,22 @@
 // RegisterForm.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { HiOutlineCheck } from "react-icons/hi";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+
 import { auth, provider  } from "../fireBase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { HiOutlineCheck } from "react-icons/hi";
 import logo from "../assets/logo-dark.png";
-import axios from "axios"
 
 
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function RegisterForm() {
-  const [registration, setRegistration] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    type: "buyer",
-  });
+  const [registration, setRegistration] = useState({type: "buyer"});
 
   const [passwordType, setPasswordType] = useState("password");
 
@@ -37,14 +32,14 @@ export default function RegisterForm() {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
-        console.log(userCredential);
     })
     .catch((error) => {
         console.log(error);
     });
+
+    // Add user to users table in database
     axios.post(`${API}/users`, registration)
     .then(() => {
-      console.log(registration)
       navigate("/");
     })
     .catch((error) => {
@@ -82,9 +77,10 @@ export default function RegisterForm() {
             </Link>
           </div>
           <h2 className="text-2xl text-green font-semibold m-2">
-            Welcome back!
+            Welcome!
           </h2>
         </div>
+        {/* Registration Form */}
         <form id="register" noValidate className="group">
           <div className="flex w-full items-center justify-between gap-2">
             {/* First Name */}
@@ -94,16 +90,16 @@ export default function RegisterForm() {
                 id="first_name"
                 name="first_name"
                 placeholder="First Name"
-                value={registration.first_name}
+                value={registration.first_name || ""}
                 onChange={handleFormChange}
-                className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
+                className="peer relative h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
                 // pattern={`^[A-Za-z'-]+$`}
                 required
               />
               <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible peer-invalid:visible peer-valid:invisible peer-focus:invisible">
                 Please enter your first name
               </p>
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[20%] right-2 text-green-dark text-xl" />
             </div>
             {/* Last Name */}
             <div className="grid gap-2 relative w-full">
@@ -112,7 +108,7 @@ export default function RegisterForm() {
                 id="last_name"
                 name="last_name"
                 placeholder="Last Name"
-                value={registration.last_name}
+                value={registration.last_name || ""}
                 onChange={handleFormChange}
                 className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
                 // pattern="^[A-Za-z'-]+$"
@@ -121,7 +117,7 @@ export default function RegisterForm() {
               <p className="text-xs text-[red] invisible peer-placeholder-shown:peer-invalid:invisible peer-focus:invisible peer-invalid:visible">
                 Please enter your last name
               </p>
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[20%] right-2 text-green-dark text-xl" />
             </div>
           </div>
           <div className="grid gap-2 relative">
@@ -130,7 +126,7 @@ export default function RegisterForm() {
               id="email"
               name="email"
               placeholder="Email (email@domain.com)"
-              value={registration.email}
+              value={registration.email || ""}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
               required
@@ -145,7 +141,7 @@ export default function RegisterForm() {
               placeholder="Password"
               className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none focus:ring-1 focus:ring-green-light ease-in-out duration-500 focus:border-green-light"
               onChange={handleFormChange}
-              value={registration.password}
+              value={registration.password || ""}
               type={passwordType}
               id="password"
               maxLength={40}
