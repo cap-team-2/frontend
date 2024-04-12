@@ -1,15 +1,16 @@
 // RegisterForm.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { HiOutlineCheck } from "react-icons/hi";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+
 import { auth, provider  } from "../fireBase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { HiOutlineCheck } from "react-icons/hi";
 import logo from "../assets/logo-dark.png";
-import axios from "axios"
 
 
 const API = import.meta.env.VITE_APP_API_URL;
@@ -82,9 +83,10 @@ export default function RegisterForm() {
             </Link>
           </div>
           <h2 className="text-2xl text-green font-semibold m-2">
-            Welcome back!
+            Welcome!
           </h2>
         </div>
+        {/* Registration Form */}
         <form id="register" noValidate className="group">
           <div className="flex w-full items-center justify-between gap-2">
             {/* First Name */}

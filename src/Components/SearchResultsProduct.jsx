@@ -64,7 +64,7 @@
                 <img
                     src={results.image}
                     alt={results.description}
-                    className="h-44 w-full max-w-20 tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
+                    className="h-44 w-full tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
                   />
               </a>
                 {/* Product Image and quantity */}
