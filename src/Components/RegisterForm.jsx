@@ -43,6 +43,8 @@ export default function RegisterForm() {
     .catch((error) => {
         console.log(error);
     });
+
+    // Add user to users table in database
     axios.post(`${API}/users`, registration)
     .then(() => {
       console.log(registration)

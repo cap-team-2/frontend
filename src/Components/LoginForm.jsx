@@ -1,16 +1,17 @@
 // LoginForm.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { auth, provider } from "../fireBase.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
-import { auth, provider } from "../fireBase.js";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { signInWithPopup } from "firebase/auth";
 import logo from "../assets/logo-dark.png";
 
 
@@ -47,7 +48,7 @@ export default function LoginForm() {
         })
         .catch((error) => {
           console.log(error);
-          alert("Wrong Email or Password!!!!");
+          alert("Wrong Email or Password!");
         });
     }
 
