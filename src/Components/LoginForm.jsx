@@ -18,10 +18,7 @@ import logo from "../assets/logo-dark.png";
 // const API = import.meta.env.VITE_APP_API_URL;
 
 export default function LoginForm() {
-    const [login, setLogin] = useState({ 
-        email: "",
-        password: "", 
-    });
+    const [login, setLogin] = useState({});
 
     const [passwordType, setPasswordType] = useState('password');
 
@@ -44,7 +41,6 @@ export default function LoginForm() {
         signInWithEmailAndPassword(auth, login.email, login.password)
         .then((userCredential) => {
           navigate("/products");
-          console.log(userCredential);
         })
         .catch((error) => {
           console.log(error);
@@ -82,7 +78,7 @@ export default function LoginForm() {
                 placeholder="Email address"
                 className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring focus:ring-green-light invalid:border-b-2 invalid:border-b-[red] focus:border-green-light "
                 onChange={handleFormChange}
-                value={login.email}
+                value={login.email || ""}
                 type="email"
                 id="email"
               />
@@ -96,7 +92,7 @@ export default function LoginForm() {
                 placeholder="Password"
                 className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring focus:ring-green-light ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-green-light"
                 onChange={handleFormChange}
-                value={login.password}
+                value={login.password || ""}
                 type={passwordType}
                 id="password"
                 maxLength={40}
