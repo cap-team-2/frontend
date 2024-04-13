@@ -12,6 +12,7 @@ import {
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
+import { MdKeyboardBackspace  } from "react-icons/md";
 import logo from "../assets/logo-dark.png";
 
 
@@ -58,8 +59,10 @@ export default function LoginForm() {
 
     return (
       <div className="bg-[#BFDCBC] h-full w-full flex justify-center pt-[10%]">
-        <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center">
-          <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
+        <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center relative">
+            <MdKeyboardBackspace onClick={() => navigate(-1)} id='back-btn' className='absolute left-[5%] top-[5%] text-green opacity-70 hover:opacity-90 cursor-pointer' size={24} />
+           
+            <img onClick={() => navigate('/')} src={logo} alt="Pantri Logo" className="h-32 w-32 cursor-pointer" />
           <div className="flex flex-col items-center gap-2 mb-2 w-full">
             <div className="flex w-full justify-around">
               <Link className="w-40 text-center font-semibold border-b-2 border-green text-green p-2">Log in</Link>
