@@ -17,7 +17,7 @@ export default function LandingPage() {
           />
           <div className="flex flex-col items-center justify-center h-full w-full absolute pb-4 tablet:pt-20 desktop:p-0">
             {/* CTA with background image and Get Started Button */}
-            <div className=" bg-black bg-opacity-40 h-40 w-full flex justify-center items-center ">
+            <div className=" bg-black bg-opacity-60 h-40 w-full flex justify-center items-center ">
               <h1 className="text-white text-[26px] tablet:text-4xl font-medium text-center py-4 mobile:w-[480px]">
                 From Market to <span className="text-green">PANTRI</span>:
                 Nourish Your <span className="text-green">Home</span>, Nourish
