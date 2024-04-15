@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { auth, provider } from "../fireBase.js";
+import { auth, provider } from "../firebase/fireBase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
 
