@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 
-import { auth, provider  } from "../fireBase.js";
+import { auth, provider  } from "/src/firebase/fireBase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
 
@@ -31,6 +31,7 @@ export default function RegisterForm() {
 
   const signUp = (e) => {
     e.preventDefault();
+
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
     })
