@@ -3,6 +3,7 @@
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { auth } from "../firebase/fireBase.js";
 import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";
@@ -75,6 +76,7 @@ export default function Nav({ cartQuantity }) {
                 >
                   Log In
                 </Link>
+                  <p onClick={() => auth.signOut().then(() => { console.log('User Signed Out') })} className="tablet:hover:underline tablet:hover:underline-offset-8 font-medium cursor-pointer">Log Out</p>
                 <Link to={"/cart"} className="self-start relative">
                   <BsBag
                     className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${

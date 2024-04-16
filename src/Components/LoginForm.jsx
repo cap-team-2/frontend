@@ -41,6 +41,7 @@ export default function LoginForm() {
         event.preventDefault();
         signInWithEmailAndPassword(auth, login.email, login.password)
         .then((userCredential) => {
+          console.log(userCredential)
           navigate("/products");
         })
         .catch((error) => {
