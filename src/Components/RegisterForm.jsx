@@ -18,8 +18,9 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 export default function RegisterForm() {
   const [registration, setRegistration] = useState({type: "buyer"});
-
   const [passwordType, setPasswordType] = useState("password");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,25 +30,65 @@ export default function RegisterForm() {
     setRegistration({ ...registration, [id]: value });
   };
 
-  const signUp = (e) => {
+  // Handle user sign up, create user in firebase table and server table
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
+        const user = userCredential.user;
+        sendVerificationEmail(user);
     })
     .catch((error) => {
-        console.log(error);
+        const errorMessage = error.message;
+        const errorCode = error.code;
+
+        setError(true);
+
+        switch(errorCode) {
+           case "auth/weak-password":
+              setErrorMessage("The password is too weak.");
+              break;
+           case "auth/email-already-in-use":
+              setErrorMessage("This email address is already in use by another account.");
+              break;
+           case "auth/invalid-email":
+              setErrorMessage("This email address is invalid.");
+              break;
+           case "auth/operation-not-allowed":
+              setErrorMessage("Email/password accounts are not enabled.");
+              break;
+           default:
+              setErrorMessage('Please fill out all fields correctly');
+              break;
+        }
     });
 
     // Add user to users table in database
-    axios.post(`${API}/users`, registration)
-    .then(() => {
-      navigate("/");
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+   // axios.post(`${API}/users`, registration)
+   // .then(() => {
+   //   navigate("/");
+   // })
+   // .catch((error) => {
+   //   console.log(error);
+   // })
   };
+
+  // Send email verification to registered user
+    const sendVerificationEmail = (user) => {
+
+        user.sendEmailVerification()
+            .then(() => {
+                console.log('Verification email sent!');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    const handleErrorModal = () => {
+        setError(false);
+        setErrorMessage("");
+    }
 
   function google() {
     signInWithPopup(auth, provider)
@@ -172,7 +213,7 @@ export default function RegisterForm() {
           </div>
           <div className="grid text-center gap-2 text-sm">
             <button
-              onClick={signUp}
+              onClick={handleSubmit}
               className="rounded-md h-12 bg-green bg-opacity-70 hover:bg-opacity-90 font-bold cursor-pointer text-white"
             >
               Create My Account
@@ -185,8 +226,16 @@ export default function RegisterForm() {
               <FcGoogle size={24} /> Sign up with Google
             </button>
           </div>
-        </form>
-      </div>
+            {error && (
+                <div>
+                    <div id='errorModal'>
+                        <p>{errorMessage}</p>
+                        <button onClick={handleErrorModal}>Try Again</button>
+                    </div>
+                </div>
+            )}
+         </form>
+        </div>
     </div>
   );
 }

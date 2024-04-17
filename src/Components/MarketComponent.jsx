@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import MarketCard from "./marketCard/MarketCard";
-import FilterMarketComponent from "./FilterMarketComponent";
+import FilterMarketComponent from "./filter/FilterMarketComponent";
 import DetailedMarketView from "./DetailedMarketViewComponent";
 import Modal from "@mui/material/Modal"
-import SearchBar from "../Components/SearchBar";
-import SearchResults from "./SearchResults";
+import SearchBar from "../Components/search/SearchBar";
+import SearchResults from "./search/SearchResults";
 
 
 const API = "https://data.ny.gov/resource/xjya-f8ng.json?";

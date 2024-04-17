@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SellerCard from "../Components/sellerCard/SellerCard.jsx";
-import SearchBar from "../Components/SearchBar.jsx";
+import SearchBar from "../Components/search/SearchBar.jsx";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function Sellers({ searchForText, setSearchForText }) {

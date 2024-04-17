@@ -2,7 +2,7 @@
 // Cart.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Cart from "../Components/Cart.jsx";
+import Cart from "../Components/cart/Cart.jsx";
 import Summary from "../Components/Summary.jsx";
 import Stripe from "../Components/Stripe.jsx";
 import axios from "axios";
