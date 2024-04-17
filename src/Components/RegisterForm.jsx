@@ -42,6 +42,25 @@ export default function RegisterForm() {
     .catch((error) => {
         const errorMessage = error.message;
         const errorCode = error.code;
+
+        setError(true);
+
+        switch(errorCode) {
+           case "auth/weak-password":
+              setErrorMessage("The password is too weak.");
+              break;
+           case "auth/email-already-in-use":
+              setErrorMessage("This email address is already in use by another account.");
+           case "auth/invalid-email":
+              setErrorMessage("This email address is invalid.");
+              break;
+           case "auth/operation-not-allowed":
+              setErrorMessage("Email/password accounts are not enabled.");
+              break;
+           default:
+              setErrorMessage(errorMessage);
+              break;
+        }
     });
 
     // Add user to users table in database

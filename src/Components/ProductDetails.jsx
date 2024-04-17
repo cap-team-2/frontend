@@ -9,7 +9,7 @@ import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { GiPitchfork } from "react-icons/gi";
 // import { optional } from "joi";
 import Comments from "./Comments.jsx"
-import { deleteProductFromCart } from "./CartFunctions";
+import { deleteProductFromCart } from "./cart/CartFunctions";
 
 
 
