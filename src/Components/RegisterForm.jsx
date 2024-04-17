@@ -18,8 +18,9 @@ const API = import.meta.env.VITE_APP_API_URL;
 
 export default function RegisterForm() {
   const [registration, setRegistration] = useState({type: "buyer"});
-
   const [passwordType, setPasswordType] = useState("password");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
