@@ -33,7 +33,6 @@ export default function RegisterForm() {
   // Handle user sign up, create user in firebase table and server table
   const handleSubmit = (e) => {
     e.preventDefault();
-
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
         const user = userCredential.user;
@@ -51,6 +50,7 @@ export default function RegisterForm() {
               break;
            case "auth/email-already-in-use":
               setErrorMessage("This email address is already in use by another account.");
+              break;
            case "auth/invalid-email":
               setErrorMessage("This email address is invalid.");
               break;
@@ -58,7 +58,7 @@ export default function RegisterForm() {
               setErrorMessage("Email/password accounts are not enabled.");
               break;
            default:
-              setErrorMessage(errorMessage);
+              setErrorMessage('Please fill out all fields correctly');
               break;
         }
     });
@@ -83,6 +83,11 @@ export default function RegisterForm() {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    const handleErrorModal = () => {
+        setError(false);
+        setErrorMessage("");
     }
 
   function google() {
@@ -221,8 +226,16 @@ export default function RegisterForm() {
               <FcGoogle size={24} /> Sign up with Google
             </button>
           </div>
-        </form>
-      </div>
+            {error && (
+                <div>
+                    <div id='errorModal'>
+                        <p>{errorMessage}</p>
+                        <button onClick={handleErrorModal}>Try Again</button>
+                    </div>
+                </div>
+            )}
+         </form>
+        </div>
     </div>
   );
 }
