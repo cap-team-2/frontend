@@ -36,7 +36,8 @@ export default function RegisterForm() {
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
         const user = userCredential.user;
-        sendVerificationEmail(user);
+        //Work on sending verification email to user
+        //sendVerificationEmail(user);
     })
     .catch((error) => {
         const errorMessage = error.message;
