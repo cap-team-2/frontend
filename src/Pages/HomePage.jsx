@@ -3,9 +3,9 @@
 
 import { useEffect, useRef } from "react";
 import axios from "axios";
-import FilterProductsBy from "../Components/FilterProductsBy";
-import SearchResults from "../Components/SearchResults";
-import SearchBar from "../Components/SearchBar";
+import FilterProductsBy from "../Components/filter/FilterProductsBy";
+import SearchResults from "../Components/search/SearchResults";
+import SearchBar from "../Components/search/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
