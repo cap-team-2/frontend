@@ -94,7 +94,27 @@ export default function RegisterForm() {
   function google() {
     signInWithPopup(auth, provider)
     .catch((error) => {
-      alert(error);
+        const errorMessage = error.message;
+        const errorCode = error.code;
+
+        switch (errorCode) {
+            case "auth/operation-not-allowed":
+              setErrorMessage("Email/password accounts are not enabled.");
+              break;
+            case "auth/operation-not-supported-in-this-environment":
+              setErrorMessage("HTTP protocol is not supported. Please use HTTPS.")
+              break;
+            case "auth/popup-blocked":
+              setErrorMessage("Popup has been blocked by the browser. Please allow popups for this website.")
+              break;
+            case "auth/popup-closed-by-user":
+              setErrorMessage("Popup has been closed by the user before finalizing the operation. Please try again.")
+              break;
+            default:
+              setErrorMessage(errorMessage);
+            break;
+        }
+
     });
     navigate("/");
   }
@@ -105,7 +125,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="h-full w-full flex justify-center items-center z-50 bg-[#BFDCBC]  pt-[5%]">
+  <div className="h-full w-full flex justify-center items-center z-50 bg-[#BFDCBC]  pt-[5%]">
       <div className="h-[620px] w-[500px] px-8 bg-white rounded flex flex-col items-center relative">
             <MdKeyboardBackspace onClick={() => navigate('/')} id='back-btn' className='absolute left-[5%] top-[5%] text-green opacity-70 hover:opacity-90 cursor-pointer' size={24} />
            
@@ -237,6 +257,6 @@ export default function RegisterForm() {
             )}
          </form>
         </div>
-    </div>
+    </div>      
   );
 }
