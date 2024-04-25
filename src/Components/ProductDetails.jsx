@@ -35,8 +35,8 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
       .get(`${API}/products/${id}`)
       .then((res) => {
         setProduct(res.data);
-        setCurrentProductCost(res.data.cost)
-        console.log(res.data)
+        const currentCost = (cartQuantity * res.data.cost).toFixed(2);
+        setCurrentProductCost(currentCost);
       })
       .catch((error) => {
         console.log(error);
@@ -240,9 +240,13 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
             <div className="flex flex-col gap-4 border-t border-gray pt-4">
               <div className="flex justify-between">
                 <p className="text-2xl font-semibold relative">
-                  <span className="text-3xl">
-                    ${`${product.cost.split(".")[0]}`}
-                  </span>
+                    {currentCost > 0 ? (
+                        <span></span>
+                    ) : (
+                      <span className="text-3xl">
+                        ${`${product.cost.split(".")[0]}`}
+                      </span>
+                    )}
                   <span className="text-xs absolute top-1 ">
                     {product.cost.split(".")[1]}
                   </span>
