@@ -24,7 +24,7 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState({});
   const [seller, setSeller] = useState({});
-  const [cost, setCost] = useState(0);
+  const [currentProductCost, setCurrentProductCost] = useState(0);
   const { id } = useParams();
 
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
@@ -35,8 +35,8 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
       .get(`${API}/products/${id}`)
       .then((res) => {
         setProduct(res.data);
-        setCost(res.data.cost)
-        console.log(res.data.cost)
+        setCurrentProductCost(res.data.cost)
+        console.log(res.data)
       })
       .catch((error) => {
         console.log(error);
