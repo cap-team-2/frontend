@@ -15,7 +15,7 @@ import { deleteProductFromCart } from "./cart/CartFunctions";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function ProductDetails({ cartQuantity, setCartQuantity }) {
+export default function ProductDetails({ cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
   const { state } = useLocation();
   const initialProductQuantity = state?.productQuantity || 0;
   const [productQuantity, setProductQuantity] = useState(
@@ -24,6 +24,7 @@ export default function ProductDetails({ cartQuantity, setCartQuantity }) {
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState({});
   const [seller, setSeller] = useState({});
+  const [cost, setCost] = useState(0);
   const { id } = useParams();
 
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
@@ -34,6 +35,8 @@ export default function ProductDetails({ cartQuantity, setCartQuantity }) {
       .get(`${API}/products/${id}`)
       .then((res) => {
         setProduct(res.data);
+        setCost(res.data.cost)
+        console.log(res.data.cost)
       })
       .catch((error) => {
         console.log(error);

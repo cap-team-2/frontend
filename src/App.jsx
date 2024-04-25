@@ -58,7 +58,7 @@ export default function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/products/:id" element={<ProductDetails cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />} />
+            <Route path="/products/:id" element={<ProductDetails cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} cartProducts={cartProducts} setCartProducts={setCartProducts} />} />
             <Route
               path="/sellers"
               element={
