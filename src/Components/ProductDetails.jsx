@@ -240,8 +240,8 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
             <div className="flex flex-col gap-4 border-t border-gray pt-4">
               <div className="flex justify-between">
                 <p className="text-2xl font-semibold relative">
-                    {currentCost > 0 ? (
-                        <span></span>
+                    {currentProductCost > 0 ? (
+                        <span>{currentProductCost}</span>
                     ) : (
                       <span className="text-3xl">
                         ${`${product.cost.split(".")[0]}`}
