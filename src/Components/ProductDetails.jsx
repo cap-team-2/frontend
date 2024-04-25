@@ -15,7 +15,7 @@ import { deleteProductFromCart } from "./cart/CartFunctions";
 
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function ProductDetails({ cartQuantity, setCartQuantity }) {
+export default function ProductDetails({ cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
   const { state } = useLocation();
   const initialProductQuantity = state?.productQuantity || 0;
   const [productQuantity, setProductQuantity] = useState(
@@ -24,6 +24,7 @@ export default function ProductDetails({ cartQuantity, setCartQuantity }) {
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState({});
   const [seller, setSeller] = useState({});
+  const [currentProductCost, setCurrentProductCost] = useState(0);
   const { id } = useParams();
 
   const costPerUnitWeight = (product.cost / product.weight).toFixed(2);
@@ -34,6 +35,8 @@ export default function ProductDetails({ cartQuantity, setCartQuantity }) {
       .get(`${API}/products/${id}`)
       .then((res) => {
         setProduct(res.data);
+        const currentCost = (cartQuantity * res.data.cost).toFixed(2);
+        setCurrentProductCost(currentCost);
       })
       .catch((error) => {
         console.log(error);
@@ -237,9 +240,13 @@ export default function ProductDetails({ cartQuantity, setCartQuantity }) {
             <div className="flex flex-col gap-4 border-t border-gray pt-4">
               <div className="flex justify-between">
                 <p className="text-2xl font-semibold relative">
-                  <span className="text-3xl">
-                    ${`${product.cost.split(".")[0]}`}
-                  </span>
+                    {currentCost > 0 ? (
+                        <span></span>
+                    ) : (
+                      <span className="text-3xl">
+                        ${`${product.cost.split(".")[0]}`}
+                      </span>
+                    )}
                   <span className="text-xs absolute top-1 ">
                     {product.cost.split(".")[1]}
                   </span>
