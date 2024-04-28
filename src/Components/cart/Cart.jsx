@@ -1,17 +1,17 @@
+/* eslint-disable react/prop-types */
 // cart component 
 
-import { keyframes } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { CgCloseR, CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { updateQuantity, deleteProductFromCart } from "./CartFunctions";
 
-export default function Cart({cartProducts, setCartProducts, quantity, setQuantity}) {
+export default function Cart({cartProducts, setCartProducts, cartQuantity, setCartQuantity}) {
   const navigate = useNavigate();
 
   return (
     <div className="w-full overflow-y-auto overflow-x-hidden mobile:h-full scroll-smooth">
       <p className="text-xl font-bold border-b border-gray pb-2 mb-4">
-        My Cart ({quantity} item{`${quantity > 1 || quantity === 0 ? 's' : ''}`})
+        My Cart ({cartQuantity} item{`${cartQuantity > 1 || cartQuantity === 0 ? 's' : ''}`})
       </p>
       {cartProducts
         ? cartProducts.map((productAdded, index) => {
@@ -63,9 +63,9 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                       deleteProductFromCart(
                         productAdded.cart_id,
                         productAdded.quantity,
-                        setQuantity,
+                        setCartQuantity,
                         setCartProducts,
-                        quantity
+                        cartQuantity
                       )
                     }
                   />
@@ -77,9 +77,9 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                           updateQuantity(
                             productAdded,
                             productAdded.quantity - 1,
-                            setQuantity,
+                            setCartQuantity,
                             setCartProducts,
-                            quantity - 1
+                            cartQuantity - 1
                           );
                       }}
                     />
@@ -90,9 +90,9 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
                         updateQuantity(
                           productAdded,
                           parseInt(productAdded.quantity) + 1,
-                          setQuantity,
+                          setCartQuantity,
                           setCartProducts,
-                          quantity + 1
+                          cartQuantity + 1
                         );
                       }}
                     />
@@ -102,7 +102,7 @@ export default function Cart({cartProducts, setCartProducts, quantity, setQuanti
             );
           })
         : null}
-      {quantity ?
+      {cartQuantity ?
       null
       : <p className="text-xl font-bold pt-10 text-center">Your Cart is empty</p>}
     </div>

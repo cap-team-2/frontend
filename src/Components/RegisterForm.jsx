@@ -1,29 +1,26 @@
 // RegisterForm.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+
+import { auth, provider  } from "/src/firebase/fireBase.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineCheck } from "react-icons/hi";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { auth, provider  } from "../fireBase.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { signInWithPopup } from "firebase/auth";
+import { MdKeyboardBackspace  } from "react-icons/md";
 import logo from "../assets/logo-dark.png";
-import axios from "axios"
 
 
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function RegisterForm() {
-  const [registration, setRegistration] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    type: "buyer",
-  });
-
+  const [registration, setRegistration] = useState({type: "buyer"});
   const [passwordType, setPasswordType] = useState("password");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,29 +30,91 @@ export default function RegisterForm() {
     setRegistration({ ...registration, [id]: value });
   };
 
-  const signUp = (e) => {
+  // Handle user sign up, create user in firebase table and server table
+  const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, registration.email, registration.password)
     .then((userCredential) => {
-        console.log(userCredential);
+        const user = userCredential.user;
+        //Work on sending verification email to user
+        //sendVerificationEmail(user);
     })
     .catch((error) => {
-        console.log(error);
+        const errorMessage = error.message;
+        const errorCode = error.code;
+
+        setError(true);
+
+        switch(errorCode) {
+           case "auth/weak-password":
+              setErrorMessage("The password is too weak.");
+              break;
+           case "auth/email-already-in-use":
+              setErrorMessage("This email address is already in use by another account.");
+              break;
+           case "auth/invalid-email":
+              setErrorMessage("This email address is invalid.");
+              break;
+           case "auth/operation-not-allowed":
+              setErrorMessage("Email/password accounts are not enabled.");
+              break;
+           default:
+              setErrorMessage('Please fill out all fields correctly');
+              break;
+        }
     });
-    axios.post(`${API}/users`, registration)
-    .then(() => {
-      console.log(registration)
-      navigate("/");
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+
+    // Add user to users table in database
+   // axios.post(`${API}/users`, registration)
+   // .then(() => {
+   //   navigate("/");
+   // })
+   // .catch((error) => {
+   //   console.log(error);
+   // })
   };
+
+  // Send email verification to registered user
+    const sendVerificationEmail = (user) => {
+
+        user.sendEmailVerification()
+            .then(() => {
+                console.log('Verification email sent!');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    const handleErrorModal = () => {
+        setError(false);
+        setErrorMessage("");
+    }
 
   function google() {
     signInWithPopup(auth, provider)
     .catch((error) => {
-      alert(error);
+        const errorMessage = error.message;
+        const errorCode = error.code;
+
+        switch (errorCode) {
+            case "auth/operation-not-allowed":
+              setErrorMessage("Email/password accounts are not enabled.");
+              break;
+            case "auth/operation-not-supported-in-this-environment":
+              setErrorMessage("HTTP protocol is not supported. Please use HTTPS.")
+              break;
+            case "auth/popup-blocked":
+              setErrorMessage("Popup has been blocked by the browser. Please allow popups for this website.")
+              break;
+            case "auth/popup-closed-by-user":
+              setErrorMessage("Popup has been closed by the user before finalizing the operation. Please try again.")
+              break;
+            default:
+              setErrorMessage(errorMessage);
+            break;
+        }
+
     });
     navigate("/");
   }
@@ -66,9 +125,11 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="h-full w-full flex justify-center items-center z-50 bg-[#BFDCBC]  pt-[5%]">
-      <div className="h-[620px] w-[500px] px-8 bg-white rounded flex flex-col items-center">
-        <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
+  <div className="h-full w-full flex justify-center items-center z-50 bg-[#BFDCBC]  pt-[5%]">
+      <div className="h-[620px] w-[500px] px-8 bg-white rounded flex flex-col items-center relative">
+            <MdKeyboardBackspace onClick={() => navigate('/')} id='back-btn' className='absolute left-[5%] top-[5%] text-green opacity-70 hover:opacity-90 cursor-pointer' size={24} />
+           
+          <img onClick={() => navigate('/')} src={logo} alt="Pantri Logo" className="h-32 w-32 cursor-pointer" />
         <div className="flex flex-col items-center gap-2 mb-2 w-full">
           <div className="flex w-full justify-around">
             <Link
@@ -82,9 +143,10 @@ export default function RegisterForm() {
             </Link>
           </div>
           <h2 className="text-2xl text-green font-semibold m-2">
-            Welcome back!
+            Welcome!
           </h2>
         </div>
+        {/* Registration Form */}
         <form id="register" noValidate className="group">
           <div className="flex w-full items-center justify-between gap-2">
             {/* First Name */}
@@ -94,16 +156,16 @@ export default function RegisterForm() {
                 id="first_name"
                 name="first_name"
                 placeholder="First Name"
-                value={registration.first_name}
+                value={registration.first_name || ""}
                 onChange={handleFormChange}
-                className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
+                className="peer relative h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
                 // pattern={`^[A-Za-z'-]+$`}
                 required
               />
               <p className="text-xs text-[red] peer-placeholder-shown:peer-invalid:invisible peer-invalid:visible peer-valid:invisible peer-focus:invisible">
                 Please enter your first name
               </p>
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[45px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[20%] right-2 text-green-dark text-xl" />
             </div>
             {/* Last Name */}
             <div className="grid gap-2 relative w-full">
@@ -112,7 +174,7 @@ export default function RegisterForm() {
                 id="last_name"
                 name="last_name"
                 placeholder="Last Name"
-                value={registration.last_name}
+                value={registration.last_name || ""}
                 onChange={handleFormChange}
                 className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
                 // pattern="^[A-Za-z'-]+$"
@@ -121,7 +183,7 @@ export default function RegisterForm() {
               <p className="text-xs text-[red] invisible peer-placeholder-shown:peer-invalid:invisible peer-focus:invisible peer-invalid:visible">
                 Please enter your last name
               </p>
-              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[54px] right-2 text-green-dark text-xl" />
+              <HiOutlineCheck className="absolute peer-placeholder-shown:!invisible peer-invalid:invisible peer-valid:visible top-[20%] right-2 text-green-dark text-xl" />
             </div>
           </div>
           <div className="grid gap-2 relative">
@@ -130,7 +192,7 @@ export default function RegisterForm() {
               id="email"
               name="email"
               placeholder="Email (email@domain.com)"
-              value={registration.email}
+              value={registration.email || ""}
               onChange={handleFormChange}
               className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none ease-in-out duration-500 focus:ring-1 focus:ring-green-light  focus:border-green-light"
               required
@@ -145,7 +207,7 @@ export default function RegisterForm() {
               placeholder="Password"
               className="peer h-12 border placeholder:text-[#5a5a5a] rounded pl-4 outline-none focus:ring-1 focus:ring-green-light ease-in-out duration-500 focus:border-green-light"
               onChange={handleFormChange}
-              value={registration.password}
+              value={registration.password || ""}
               type={passwordType}
               id="password"
               maxLength={40}
@@ -172,7 +234,7 @@ export default function RegisterForm() {
           </div>
           <div className="grid text-center gap-2 text-sm">
             <button
-              onClick={signUp}
+              onClick={handleSubmit}
               className="rounded-md h-12 bg-green bg-opacity-70 hover:bg-opacity-90 font-bold cursor-pointer text-white"
             >
               Create My Account
@@ -185,8 +247,16 @@ export default function RegisterForm() {
               <FcGoogle size={24} /> Sign up with Google
             </button>
           </div>
-        </form>
-      </div>
-    </div>
+            {error && (
+                <div>
+                    <div id='errorModal'>
+                        <p>{errorMessage}</p>
+                        <button onClick={handleErrorModal}>Try Again</button>
+                    </div>
+                </div>
+            )}
+         </form>
+        </div>
+    </div>      
   );
 }

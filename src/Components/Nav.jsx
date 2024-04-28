@@ -2,18 +2,16 @@
 // Nav.jsx
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from "axios";
-import PantriLogo from '../assets/backgrounds/Pantri-logo-removebg.png';
+import { useState } from 'react';
+import { auth } from "../firebase/fireBase.js";
 import NavLinks from './NavLinks';
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { BsBag } from "react-icons/bs";
 
 
 
-export default function Nav({ quantity }) {
+export default function Nav({ cartQuantity }) {
   const [isOpen, setIsOpen] = useState(false);
-
 
 
   return (
@@ -23,11 +21,6 @@ export default function Nav({ quantity }) {
           {/* Logo that links back to homepage */}
           <div>
             <Link to={"/"} className="flex items-center">
-              {/* <img
-          src={PantriLogo}
-          alt="Pantri Logo"
-          className="h-24 w-28 flex-shrink-0 mr-2" // Use flex-shrink-0 to prevent the image from shrinking
-        /> */}
               <p className="text-3xl text-green font-medium tablet:block">
                 PANTRI
               </p>
@@ -83,6 +76,7 @@ export default function Nav({ quantity }) {
                 >
                   Log In
                 </Link>
+                  {/* <p onClick={() => auth.signOut().then(() => { console.log('User Signed Out') })} className="tablet:hover:underline tablet:hover:underline-offset-8 font-medium cursor-pointer">Log Out</p> */}
                 <Link to={"/cart"} className="self-start relative">
                   <BsBag
                     className={` hover:text-green-dark transition ease-in-out duration-500 rounded ${
@@ -94,7 +88,7 @@ export default function Nav({ quantity }) {
                       isOpen ? "top-4 left-4 h-5 w-5" : "top-3 left-3"
                     }`}
                   >
-                    {quantity}
+                    {cartQuantity}
                   </span>
                 </Link>
               </div>
@@ -107,7 +101,7 @@ export default function Nav({ quantity }) {
                   }`}
                 />
                 <span className="laptop:hidden absolute top-3 left-3 text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark">
-                  {quantity}
+                  {cartQuantity}
                 </span>
               </Link>
               <RxHamburgerMenu
@@ -125,7 +119,7 @@ export default function Nav({ quantity }) {
             className="text-2xl text-green text-opacity-80 absolute top-6 right-2 tablet:top-6 tablet:right-8 cursor-pointer hover:text-green-dark transition ease-in-out duration-500"
             onClick={() => setIsOpen(!isOpen)}
           />
-          <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} quantity={quantity} />
+          <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} cartQuantity={cartQuantity} />
         </div>
       )}
     </div>

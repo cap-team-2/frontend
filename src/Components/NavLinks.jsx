@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 // NavLinks.jsx
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 
-export default function NavLinks({ isOpen, setIsOpen, quantity }) {
+export default function NavLinks({ isOpen, setIsOpen, cartQuantity }) {
     return (
       <div
         className={`flex gap-4 desktop:items-end desktop:justify-end ${
@@ -65,7 +66,7 @@ export default function NavLinks({ isOpen, setIsOpen, quantity }) {
             }`}
           />
           <span className={`absolute text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark ${isOpen ? 'top-4 left-4 h-5 w-5' : 'top-3 left-3'}`}>
-            {quantity}
+            {cartQuantity}
           </span>
         </Link>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 const API = import.meta.env.VITE_APP_API_URL;

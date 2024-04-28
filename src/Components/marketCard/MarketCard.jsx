@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./MarketCard.css";
 
 const MarketCard = ({ market, showDetails }) => {

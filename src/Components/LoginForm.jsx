@@ -1,26 +1,25 @@
 // LoginForm.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { auth, provider } from "../firebase/fireBase.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { HiOutlineCheck } from "react-icons/hi";
-import { auth, provider } from "../fireBase.js";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { signInWithPopup } from "firebase/auth";
+import { MdKeyboardBackspace  } from "react-icons/md";
 import logo from "../assets/logo-dark.png";
 
 
 // const API = import.meta.env.VITE_APP_API_URL;
 
 export default function LoginForm() {
-    const [login, setLogin] = useState({ 
-        email: "",
-        password: "", 
-    });
+    const [login, setLogin] = useState({});
 
     const [passwordType, setPasswordType] = useState('password');
 
@@ -42,12 +41,12 @@ export default function LoginForm() {
         event.preventDefault();
         signInWithEmailAndPassword(auth, login.email, login.password)
         .then((userCredential) => {
+          console.log(userCredential)
           navigate("/products");
-          console.log(userCredential);
         })
         .catch((error) => {
           console.log(error);
-          alert("Wrong Email or Password!!!!");
+          alert("Wrong Email or Password!");
         });
     }
 
@@ -61,8 +60,10 @@ export default function LoginForm() {
 
     return (
       <div className="bg-[#BFDCBC] h-full w-full flex justify-center pt-[10%]">
-        <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center">
-          <img src={logo} alt="Pantri Logo" className="h-32 w-32" />
+        <div className="h-[600px] w-[500px] px-8 bg-white rounded flex flex-col items-center relative">
+            <MdKeyboardBackspace onClick={() => navigate(-1)} id='back-btn' className='absolute left-[5%] top-[5%] text-green opacity-70 hover:opacity-90 cursor-pointer' size={24} />
+           
+            <img onClick={() => navigate('/')} src={logo} alt="Pantri Logo" className="h-32 w-32 cursor-pointer" />
           <div className="flex flex-col items-center gap-2 mb-2 w-full">
             <div className="flex w-full justify-around">
               <Link className="w-40 text-center font-semibold border-b-2 border-green text-green p-2">Log in</Link>
@@ -81,7 +82,7 @@ export default function LoginForm() {
                 placeholder="Email address"
                 className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none ease-in-out duration-500 focus:ring focus:ring-green-light invalid:border-b-2 invalid:border-b-[red] focus:border-green-light "
                 onChange={handleFormChange}
-                value={login.email}
+                value={login.email || ""}
                 type="email"
                 id="email"
               />
@@ -95,7 +96,7 @@ export default function LoginForm() {
                 placeholder="Password"
                 className="peer h-12 border rounded placeholder:text-[#5a5a5a] pl-4 outline-none focus:ring focus:ring-green-light ease-in-out duration-500 invalid:border-b-2 invalid:border-b-[red] focus:border-green-light"
                 onChange={handleFormChange}
-                value={login.password}
+                value={login.password || ""}
                 type={passwordType}
                 id="password"
                 maxLength={40}
