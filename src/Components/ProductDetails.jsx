@@ -12,7 +12,6 @@ import Comments from "./Comments.jsx"
 import { deleteProductFromCart } from "./cart/CartFunctions";
 
 
-
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function ProductDetails({ cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {

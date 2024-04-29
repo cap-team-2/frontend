@@ -27,12 +27,43 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
+  const [session, setSession] = useState({
+    id: "9e6ef4fb-5574-4968-912a-ea28257d708e",
+    total: "0.00",
+    created_at: "today",
+  });
   //create state variable for the current cart, object with sessionId, product: quantity
   const [searchForText, setSearchForText] = useState("Products");
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
-  
+  useEffect(() => {
+    // used to create a new shopping session
+    axios.put(`${API}/shopping-session/1`, session);
+
+    axios
+    .get(`${API}/shopping-session/1`)
+    .then((res) => {
+      setSession(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+    // Assign quantity state to the amount of products in cart
+  if (!cartProducts.length > 0) {
+    axios
+    .get(`${API}/cart-products`)
+    .then((res) => {
+      // Calculate the new quantity
+      const newQuantity = res.data.reduce((acc, cartProduct) => acc + cartProduct.quantity, 0);
+      setCartQuantity(newQuantity);
+    })
+    .catch((error) => {
+      return error
+    });
+  }
+}, []);
 
   return (
     <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
@@ -53,6 +84,7 @@ export default function App() {
                   setCartQuantity={setCartQuantity}
                   cartProducts={cartProducts}
                   setCartProducts={setCartProducts}
+                  session={session}
                 />
               }
             />
@@ -88,6 +120,7 @@ export default function App() {
                   setCartProducts={setCartProducts}
                   cartQuantity={cartQuantity}
                   setCartQuantity={setCartQuantity}
+                  session={session}
                 />
               }
             />
