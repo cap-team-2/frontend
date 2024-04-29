@@ -9,7 +9,7 @@ import SearchBar from "../Components/search/SearchBar";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function HomePage({ searchResults, setSearchResults, searchForText,  cartQuantity, setCartQuantity, cartProducts, setCartProducts }) {
+export default function HomePage({ searchResults, setSearchResults, searchForText,  cartQuantity, setCartQuantity, cartProducts, setCartProducts, session }) {
   
   const filter = useRef('Home')
 
@@ -66,6 +66,7 @@ export default function HomePage({ searchResults, setSearchResults, searchForTex
           setCartQuantity={setCartQuantity}
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
+          session={session}
         />
       </div>
     </div>

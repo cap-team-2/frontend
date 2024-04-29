@@ -9,24 +9,24 @@ import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 const API = import.meta.env.VITE_APP_API_URL;
 
-export default function CartPage({ cartProducts, setCartProducts, cartQuantity, setCartQuantity }) {
+export default function CartPage({ cartProducts, setCartProducts, cartQuantity, setCartQuantity, session }) {
     const [ checkout, setCheckout ] = useState(false);
     const navigate = useNavigate();
    
     // gets all items in the cart
-    // useEffect(() => {
-    //   if(session) {
-    //      axios
-    //        .get(`${API}/cart-joins/${session.id || 1}`)
-    //        .then((res) => {
-    //          setCartProducts(res.data);
-    //        })
-    //        .catch((error) => {
-    //          console.log(error);
-    //        });
-    //   }
+    useEffect(() => {
+      if(session) {
+         axios
+           .get(`${API}/cart-joins/${session.id || 1}`)
+           .then((res) => {
+             setCartProducts(res.data);
+           })
+           .catch((error) => {
+             console.log(error);
+           });
+      }
        
-    // }, [])
+    }, [])
 
     return ( 
       <div className="h-auto w-full px-6 pt-4 tablet:pt-4  pb-20 mt-20 tablet:mt-24 flex flex-col  tablet:px-20 items-center relative">

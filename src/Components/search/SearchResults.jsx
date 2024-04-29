@@ -7,13 +7,29 @@ import SearchResultsProduct from "./SearchResultsProduct";
 const API = import.meta.env.VITE_APP_API_URL;
 
 
-export default function SearchResults({ searchResults, cartQuantity, setCartQuantity }) {
+export default function SearchResults({ searchResults, cartQuantity, setCartQuantity, session, cartProducts }) {
+  const [ cart, setCart ] = useState(
+    {
+      session_id: '',
+      product_id: '',
+      quantity: 1
+    }
+  );
 
 // Function to add a product to the cart
   function addToCart(product) {
     setCartQuantity(cartQuantity + 1)
-
+    setCart({...cart, session_id: session.id, product_id: product.id, quantity: '1'})
   }
+
+  useEffect(() => {
+
+    axios.post(`${API}/cart-products`, cart)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  }, [cart]);
 
 
   return (
@@ -22,7 +38,7 @@ export default function SearchResults({ searchResults, cartQuantity, setCartQuan
       {searchResults.length  ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} />            
+            <SearchResultsProduct key={results.id} results={results} addToCart={addToCart} cartQuantity={cartQuantity} setCartQuantity={setCartQuantity} session={session} />            
           );
         })
       ) : (

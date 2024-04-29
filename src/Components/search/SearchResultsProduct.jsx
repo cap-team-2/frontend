@@ -8,7 +8,7 @@
     const API = import.meta.env.VITE_APP_API_URL;
 
 
-    export default function SearchResultsProduct({ results, addToCart, cartQuantity, setCartQuantity }) {
+    export default function SearchResultsProduct({ results, addToCart, cartQuantity, setCartQuantity, session }) {
         const [ productQuantity, setProductQuantity ] = useState(0);
         const prodQuantity = useRef(0);
         const costPerUnitWeight = (results.cost / results.weight).toFixed(2);
