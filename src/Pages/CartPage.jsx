@@ -65,6 +65,5 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
           </div>
         </div>
       </div>
-    </div>
   )
 }

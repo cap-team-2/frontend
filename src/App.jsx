@@ -34,7 +34,6 @@ export default function App() {
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
 
-
   return (
     <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
       <Router>
