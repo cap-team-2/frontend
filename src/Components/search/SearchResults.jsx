@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 // SearchResults.jsx
 
-
 import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
@@ -15,11 +14,21 @@ export default function SearchResults({
   setCartQuantity,
   searchQuery,
 }) {
+  const [isLoading, setIsLoading] = useState(true)
+
   // Function to add a product to the cart
   function addToCart(product) {
     setCartQuantity(cartQuantity + 1)
   }
 
+
+  if (searchQuery) {
+    return (
+      <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
+        Sorry, we could not find any results for {searchQuery}
+      </h2>
+    )
+  }
 
   return (
     <div
@@ -29,7 +38,6 @@ export default function SearchResults({
       {searchResults ? (
         searchResults.map((results) => {
           return (
-
             <Suspense key={results.id} fallback={<Loading />}>
               <SearchResultsProduct
                 results={results}
@@ -39,12 +47,9 @@ export default function SearchResults({
               />
             </Suspense>
           )
-
         })
       ) : (
-        <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
-          Sorry, we could not find any results for {searchQuery}
-        </h2>
+        <Loading />
       )}
     </div>
   )
