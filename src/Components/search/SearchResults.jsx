@@ -20,13 +20,15 @@ export default function SearchResults({
   }
 
   return (
-    <div className="grid grid-cols-1 mobile:grid-cols-2 h-full w-auto min-w-full tablet:grid-cols-3 laptop:grid-cols-4 px-4 self-center gap-4 tablet:gap-8 xl:px-20 xl:gap-20 pb-12">
+    <div
+      id="products-container"
+      className="flex flex-wrap justify-center gap-8"
+    >
       {searchResults ? (
         searchResults.map((results) => {
           return (
             <Suspense key={results.id} fallback={<Loading />}>
               <SearchResultsProduct
-
                 results={results}
                 addToCart={addToCart}
                 cartQuantity={cartQuantity}

@@ -61,7 +61,10 @@ export default function SearchResultsProduct({
   }
 
   return (
-    <div className="grid grid-rows-1 h-auto max-w-full shrink-0 shadow-xl rounded-xl relative">
+    <div
+      id="product-container"
+      className="grid grid-rows-1 h-auto w-[250px] shrink-0 shadow-xl rounded-xl relative"
+    >
       <div className="relative">
         <a
           onClick={() =>
@@ -73,7 +76,7 @@ export default function SearchResultsProduct({
           <img
             src={results.image}
             alt={results.description}
-            className="h-44 w-full tablet:h-52 laptop:h-56 desktop:h-60 shrink-0 grow-1 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
+            className="h-[200px] w-full shrink-0 grow-0 self-center rounded-t-xl hover:cursor-pointer shadow object-cover peer"
           />
         </a>
         {/* Product Image and quantity */}
