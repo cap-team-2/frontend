@@ -12,7 +12,7 @@ import FarmersMarkets from './Pages/FarmersMarkets'
 import LandingPage from './Pages/LandingPage'
 import ProductDetails from './Components/ProductDetails'
 import Footer from './Components/Footer.jsx'
-import FourOFour from './Pages/FourOFour'
+import ErrorPage from './Pages/ErrorPage'
 import HomePage from './Pages/HomePage'
 import Login from './Pages/Login'
 import Market from './Pages/Market'
@@ -100,7 +100,7 @@ export default function App() {
                 />
               }
             />
-            <Route path="*" element={<FourOFour />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
         <Footer />
