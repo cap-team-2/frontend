@@ -35,6 +35,7 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
       .then((res) => {
         setProduct(res.data);
         const currentCost = (cartQuantity * res.data.cost).toFixed(2);
+        console.log(currentCost)
         setCurrentProductCost(currentCost);
       })
       .catch((error) => {
@@ -149,9 +150,12 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
       if (operator === "minus") {
         setCartQuantity(cartQuantity - 1);
         setProductQuantity(productQuantity - 1);
+        setCurrentProductCost(+currentProductCost - product.cost)
       } else {
         setProductQuantity(productQuantity + 1);
         setCartQuantity(cartQuantity + 1);
+        const newCost = Number(currentProductCost) + Number(product.cost);
+        setCurrentProductCost(toString(newCost))
       }
 
       axios
@@ -240,15 +244,22 @@ export default function ProductDetails({ cartQuantity, setCartQuantity, cartProd
               <div className="flex justify-between">
                 <p className="text-2xl font-semibold relative">
                     {currentProductCost > 0 ? (
-                        <span>{currentProductCost}</span>
+                        <>
+                            <span className="text-3xl">{currentProductCost.split('.')[0]}</span>
+                            <span className="text-xs absolute top-1 ">
+                                {currentProductCost.split(".")[1]}
+                            </span>
+                        </>
                     ) : (
-                      <span className="text-3xl">
-                        ${`${product.cost.split(".")[0]}`}
-                      </span>
+                       <>
+                          <span className="text-3xl">
+                            ${`${product.cost.split(".")[0]}`}
+                          </span>
+                          <span className="text-xs absolute top-1 ">
+                              {product.cost.split(".")[1]}
+                          </span>
+                       </>
                     )}
-                  <span className="text-xs absolute top-1 ">
-                    {product.cost.split(".")[1]}
-                  </span>
                   <span className="pl-4 text-[gray] text-sm font-normal">
                     ({costPerUnitWeight}/{product.unit_measurement})
                   </span>
