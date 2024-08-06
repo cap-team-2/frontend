@@ -44,6 +44,7 @@ export default function HomePage({
 
   // Update the filter state to switch between the different filters for each product category
   function filterProducts(category) {
+    setSearchQuery(null)
     if (category !== filter) {
       filter.current = `${category}`
       axios
