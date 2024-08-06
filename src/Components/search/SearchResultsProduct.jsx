@@ -63,7 +63,7 @@ export default function SearchResultsProduct({
   return (
     <div
       id="product-container"
-      className="grid grid-rows-1 h-auto w-[250px] shrink-0 shadow-xl rounded-xl relative"
+      className="grid grid-rows-1 h-auto w-[225px] shrink-0 shadow-xl rounded-xl relative"
     >
       <div className="relative">
         <a

@@ -77,7 +77,9 @@ export default function HomePage({
           />
         </div>
       </div>
-      <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 h-full ">
+      <div
+        className="mt-56 tablet:mt-36 px-4"
+      >
         {/* Products */}
         <SearchResults
           searchResults={searchResults}
