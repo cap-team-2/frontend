@@ -24,7 +24,6 @@ export default function HomePage({
     filterProducts(filter.current)
   }, [])
 
-
   // Api call to retrieve a specific product
   function performSearch(searchQuery) {
     try {
