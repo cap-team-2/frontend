@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import FilterProductsBy from '../Components/filter/FilterProductsBy'
+import Loading from '../Components/Loading'
 import SearchResults from '../Components/search/SearchResults'
 import SearchBar from '../Components/search/SearchBar'
 const API = import.meta.env.VITE_APP_API_URL
@@ -84,7 +85,7 @@ export default function HomePage({
           setCartQuantity={setCartQuantity}
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
-    searchQuery={searchQuery}
+          searchQuery={searchQuery}
         />
       </div>
     </div>

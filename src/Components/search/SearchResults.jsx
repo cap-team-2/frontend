@@ -3,7 +3,9 @@
 
 import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
-import SearchResultsProduct from './SearchResultsProduct'
+import Loading from '../Loading'
+//import SearchResultsProduct from './SearchResultsProduct'
+const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))
 const API = import.meta.env.VITE_APP_API_URL
 
 export default function SearchResults({
@@ -22,13 +24,15 @@ export default function SearchResults({
       {searchResults ? (
         searchResults.map((results) => {
           return (
-            <SearchResultsProduct
-              key={results.id}
-              results={results}
-              addToCart={addToCart}
-              cartQuantity={cartQuantity}
-              setCartQuantity={setCartQuantity}
-            />
+            <Suspense key={results.id} fallback={<Loading />}>
+              <SearchResultsProduct
+
+                results={results}
+                addToCart={addToCart}
+                cartQuantity={cartQuantity}
+                setCartQuantity={setCartQuantity}
+              />
+            </Suspense>
           )
         })
       ) : (
