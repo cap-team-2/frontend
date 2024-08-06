@@ -27,11 +27,13 @@ export default function App() {
   const [searchResults, setSearchResults] = useState(null)
   const [cartProducts, setCartProducts] = useState([])
   const [cartQuantity, setCartQuantity] = useState(0)
+  
   //create state variable for the current cart, object with sessionId, product: quantity
   const [searchForText, setSearchForText] = useState('Products')
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
+
 
   return (
     <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
@@ -52,6 +54,7 @@ export default function App() {
                   setCartQuantity={setCartQuantity}
                   cartProducts={cartProducts}
                   setCartProducts={setCartProducts}
+                  session={session}
                 />
               }
             />
@@ -97,6 +100,7 @@ export default function App() {
                   setCartProducts={setCartProducts}
                   cartQuantity={cartQuantity}
                   setCartQuantity={setCartQuantity}
+                  session={session}
                 />
               }
             />

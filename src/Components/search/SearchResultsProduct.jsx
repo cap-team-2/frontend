@@ -19,6 +19,7 @@ export default function SearchResultsProduct({
   const costPerUnitWeight = (results.cost / results.weight).toFixed(2)
   const navigate = useNavigate()
 
+
   // Calls the addToCart function, updates the quantity for the product that calls it, updates the cart if the quantity is 1 or greater
   const handleAddToCart = (product, operator = 'plus') => {
     if (productQuantity >= 1) {
@@ -29,6 +30,7 @@ export default function SearchResultsProduct({
         setProductQuantity(productQuantity + 1)
         setCartQuantity(cartQuantity + 1)
       }
+
 
       axios
         .get(`${API}/cart-products`)
