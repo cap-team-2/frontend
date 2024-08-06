@@ -27,7 +27,7 @@ export default function App() {
   const [searchResults, setSearchResults] = useState(null)
   const [cartProducts, setCartProducts] = useState([])
   const [cartQuantity, setCartQuantity] = useState(0)
-  
+
   //create state variable for the current cart, object with sessionId, product: quantity
   const [searchForText, setSearchForText] = useState('Products')
 
@@ -54,7 +54,6 @@ export default function App() {
                   setCartQuantity={setCartQuantity}
                   cartProducts={cartProducts}
                   setCartProducts={setCartProducts}
-                  session={session}
                 />
               }
             />
@@ -100,7 +99,6 @@ export default function App() {
                   setCartProducts={setCartProducts}
                   cartQuantity={cartQuantity}
                   setCartQuantity={setCartQuantity}
-                  session={session}
                 />
               }
             />
