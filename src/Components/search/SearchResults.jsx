@@ -2,7 +2,7 @@
 // SearchResults.jsx
 
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense, lazy } from 'react'
 import SearchResultsProduct from './SearchResultsProduct'
 const API = import.meta.env.VITE_APP_API_URL
 
