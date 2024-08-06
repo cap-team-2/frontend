@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// PAGES 
+// PAGES
 import Browse from "./Pages/Browse";
 import CartPage from "./Pages/CartPage.jsx";
 import FarmersMarkets from "./Pages/FarmersMarkets";
@@ -24,7 +24,7 @@ import SellersById from "./Pages/SellersById";
 const API = import.meta.env.VITE_APP_API_URL;
 
 export default function App() {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
   //create state variable for the current cart, object with sessionId, product: quantity
@@ -32,7 +32,7 @@ export default function App() {
 
   // replace with the signed in user or a guest uuid
   // const userId = "9e6ef4fb-5574-4968-912a-ea28257d708e";
-  
+
 
   return (
     <main className="h-full w-full font-font grid grid-cols-1 grid-rows-[auto_auto_auto]">
@@ -99,7 +99,3 @@ export default function App() {
     </main>
   );
 }
-
-
-
-
