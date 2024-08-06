@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 // Cart.jsx
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import Cart from "../Components/cart/Cart.jsx";
-import Summary from "../Components/Summary.jsx";
-import Stripe from "../Components/Stripe.jsx";
-import axios from "axios";
-import { BiArrowBack } from "react-icons/bi";
-const API = import.meta.env.VITE_APP_API_URL;
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
+import Cart from '../Components/cart/Cart.jsx'
+import Summary from '../Components/Summary.jsx'
+import Stripe from '../Components/Stripe.jsx'
+import axios from 'axios'
+import { BiArrowBack } from 'react-icons/bi'
+const API = import.meta.env.VITE_APP_API_URL
 
-export default function CartPage({ cartProducts, setCartProducts, cartQuantity, setCartQuantity, session }) {
+export default function CartPage({ cartProducts, setCartProducts, cartQuantity, setCartQuantity }) {
     const [ checkout, setCheckout ] = useState(false);
     const navigate = useNavigate();
-   
+
     // gets all items in the cart
     useEffect(() => {
       if(session) {
@@ -27,6 +27,19 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
       }
        
     }, [])
+    // useEffect(() => {
+    //   if(session) {
+    //      axios
+    //        .get(`${API}/cart-joins/${session.id || 1}`)
+    //        .then((res) => {
+    //          setCartProducts(res.data);
+    //        })
+    //        .catch((error) => {
+    //          console.log(error);
+    //        });
+    //   }
+
+    // }, [])
 
     return ( 
       <div className="h-auto w-full px-6 pt-4 tablet:pt-4  pb-20 mt-20 tablet:mt-24 flex flex-col  tablet:px-20 items-center relative">
@@ -52,5 +65,5 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
           </div>
         </div>
       </div>
-    );
+  )
 }

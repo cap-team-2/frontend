@@ -9,7 +9,6 @@ import SearchResults from '../Components/search/SearchResults'
 import SearchBar from '../Components/search/SearchBar'
 const API = import.meta.env.VITE_APP_API_URL
 
-
 export default function HomePage({
   searchResults,
   setSearchResults,
@@ -20,7 +19,6 @@ export default function HomePage({
   setCartProducts,
 }) {
   const [searchQuery, setSearchQuery] = useState(null)
-
   const filter = useRef('Home')
 
   // Make an API call for all products when returning to the homepage to update the searchResults state
@@ -79,7 +77,7 @@ export default function HomePage({
           />
         </div>
       </div>
-      <div className="mt-56 tablet:mt-32 desktop:px-32 xl:px-40 pt-4 desktop:pt-10 h-full ">
+      <div className="mt-56 tablet:mt-36 px-4">
         {/* Products */}
         <SearchResults
           searchResults={searchResults}
@@ -88,7 +86,6 @@ export default function HomePage({
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
           searchQuery={searchQuery}
-
         />
       </div>
     </div>
