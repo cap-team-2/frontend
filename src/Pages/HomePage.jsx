@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 // Home.jsx
 
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import FilterProductsBy from '../Components/filter/FilterProductsBy'
 import SearchResults from '../Components/search/SearchResults'
@@ -17,6 +17,7 @@ export default function HomePage({
   cartProducts,
   setCartProducts,
 }) {
+  const [searchQuery, setSearchQuery] = useState(null)
   const filter = useRef('Home')
 
   // Make an API call for all products when returning to the homepage to update the searchResults state
@@ -25,11 +26,12 @@ export default function HomePage({
   }, [])
 
   // Api call to retrieve a specific product
-  function performSearch(searchQuery) {
+  function performSearch(query) {
     try {
-      axios.get(`${API}/products/?q=${searchQuery}`).then((res) => {
+      axios.get(`${API}/products/?q=${query}`).then((res) => {
         if (!res.data.length) {
           setSearchResults(null)
+          setSearchQuery(query)
         } else {
           setSearchResults(res.data)
         }
@@ -82,6 +84,7 @@ export default function HomePage({
           setCartQuantity={setCartQuantity}
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
+    searchQuery={searchQuery}
         />
       </div>
     </div>

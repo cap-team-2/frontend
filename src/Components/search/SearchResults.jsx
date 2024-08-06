@@ -10,6 +10,7 @@ export default function SearchResults({
   searchResults,
   cartQuantity,
   setCartQuantity,
+  searchQuery,
 }) {
   // Function to add a product to the cart
   function addToCart(product) {
@@ -32,7 +33,7 @@ export default function SearchResults({
         })
       ) : (
         <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
-          Sorry, we could not find any results
+          Sorry, we could not find any results for {searchQuery}
         </h2>
       )}
     </div>
