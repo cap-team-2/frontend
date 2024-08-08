@@ -7,7 +7,7 @@ import veggieImage from "../assets/Banners-page-sections/markus-spiske-mvu1-Gzg1
 
 export default function LandingPage() {
     return (
-      <div className="h-auto w-full flex flex-col bg-white pt-16 tablet:pt-16 desktop:px-36 xl:px-80 ">
+      <div id='landing' className="h-auto w-full flex flex-col bg-white pt-16 tablet:pt-16 desktop:px-36 xl:px-80 ">
         <div className="pb-96  tablet:pb-[600px] xl:pb-[700px] relative">
           {/* Background Image */}
           <img

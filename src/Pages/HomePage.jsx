@@ -60,7 +60,10 @@ export default function HomePage({
   }
 
   return (
-    <div className="h-full min-h-full w-full flex flex-col tablet:pt-24 pb-4">
+    <div
+      id="home"
+      className="h-full min-h-full w-full flex flex-col pt-24 pb-4"
+    >
       <div
         id="search-bar-container"
         className="flex flex-col fixed top-16 tablet:top-16 w-full bg-white z-40 pt-2"
@@ -85,7 +88,7 @@ export default function HomePage({
       </div>
       <div
         id="search-results-container"
-        className="flex justify-center mt-56 tablet:mt-36 px-4"
+        className="flex justify-center mt-32 px-4"
       >
         {/* Products */}
         <SearchResults
