@@ -21,7 +21,6 @@ export default function SearchResults({
     setCartQuantity(cartQuantity + 1)
   }
 
-
   if (searchQuery) {
     return (
       <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
@@ -33,7 +32,8 @@ export default function SearchResults({
   return (
     <div
       id="products-container"
-      className="flex flex-wrap justify-center gap-8"
+      //className="flex flex-wrap justify-start gap-8 w-fit"
+      className={productsContainer}
     >
       {searchResults ? (
         searchResults.map((results) => {
@@ -54,3 +54,9 @@ export default function SearchResults({
     </div>
   )
 }
+
+// Tailwind Styles
+const mobile = 'mobile:grid-cols-2'
+const tablet = 'tablet:grid-cols-3'
+const laptop = 'laptop:grid-cols-4'
+const productsContainer = `grid grid-cols-1 justify-center w-full gap-8 py-4 ${mobile} ${tablet} ${laptop}`
