@@ -88,7 +88,7 @@ export default function HomePage({
       </div>
       <div
         id="search-results-container"
-        className="flex justify-center mt-32 px-4"
+        className="grid justify-center mt-32 px-8 min-w-max"
       >
         {/* Products */}
         <SearchResults
