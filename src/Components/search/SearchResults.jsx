@@ -4,6 +4,7 @@
 import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
+import { useInView } from 'react-intersection-observer'
 //import SearchResultsProduct from './SearchResultsProduct'
 const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))
 const API = import.meta.env.VITE_APP_API_URL
@@ -15,6 +16,32 @@ export default function SearchResults({
   searchQuery,
 }) {
   const [isLoading, setIsLoading] = useState(true)
+  const [visibleProducts, setVisibleProducts] = useState([])
+  const [page, setPage] = useState(1)
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  useEffect(() => {
+    if (searchResults) {
+      setVisibleProducts(searchResults.slice(0, 8))
+      setIsLoading(false)
+    }
+  }, [searchResults])
+
+  useEffect(() => {
+    if (inView && visibleProducts.length < searchResults.length) {
+      loadMoreProducts()
+    }
+  }, [inView])
+
+  const loadMoreProducts = () => {
+    const nextPage = page + 1
+    const newProducts = searchResults.slice(0, nextPage * 8)
+    setVisibleProducts(newProducts)
+    setPage(nextPage)
+  }
 
   // Function to add a product to the cart
   function addToCart(product) {
@@ -35,6 +62,30 @@ export default function SearchResults({
       //className="flex flex-wrap justify-start gap-8 w-fit"
       className={productsContainer}
     >
+      {visibleProducts.map((results, index) => (
+        <Suspense key={results.id} fallback={<Loading />}>
+          <SearchResultsProduct
+            results={results}
+            addToCart={addToCart}
+            cartQuantity={cartQuantity}
+            setCartQuantity={setCartQuantity}
+          />
+          {index === visibleProducts.length - 1 && <div ref={ref}></div>}
+        </Suspense>
+      ))}
+      {isLoading && <Loading />}
+    </div>
+  )
+}
+
+// Tailwind Styles
+const mobile = 'mobile:grid-cols-2'
+const tablet = 'tablet:grid-cols-3'
+const laptop = 'laptop:grid-cols-4'
+const productsContainer = `grid grid-cols-1 justify-center w-full gap-8 py-4 ${mobile} ${tablet} ${laptop}`
+
+/*
+  *
       {searchResults ? (
         searchResults.map((results) => {
           return (
@@ -51,12 +102,5 @@ export default function SearchResults({
       ) : (
         <Loading />
       )}
-    </div>
-  )
-}
-
-// Tailwind Styles
-const mobile = 'mobile:grid-cols-2'
-const tablet = 'tablet:grid-cols-3'
-const laptop = 'laptop:grid-cols-4'
-const productsContainer = `grid grid-cols-1 justify-center w-full gap-8 py-4 ${mobile} ${tablet} ${laptop}`
+  *
+  */
