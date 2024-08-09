@@ -14,19 +14,6 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
     const navigate = useNavigate();
 
     // gets all items in the cart
-    useEffect(() => {
-      if(session) {
-         axios
-           .get(`${API}/cart-joins/${session.id || 1}`)
-           .then((res) => {
-             setCartProducts(res.data);
-           })
-           .catch((error) => {
-             console.log(error);
-           });
-      }
-       
-    }, [])
     // useEffect(() => {
     //   if(session) {
     //      axios
@@ -41,7 +28,7 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
 
     // }, [])
 
-    return ( 
+    return (
       <div className="h-auto w-full px-6 pt-4 tablet:pt-4  pb-20 mt-20 tablet:mt-24 flex flex-col  tablet:px-20 items-center relative">
         <div className="flex flex-col tablet:flex-row h-full tablet:h-[600px] w-full rounded-2xl border-gray tablet:gap-10 tablet:justify-center">
         <BiArrowBack
@@ -49,7 +36,7 @@ export default function CartPage({ cartProducts, setCartProducts, cartQuantity, 
           onClick={() => navigate(-1)}
         />
           <div className="h-full w-full min-w-fit max-w-xl mb-8 border rounded-2xl pt-10 pb-4 px-4 border-gray-light shadow-lg">
-           {checkout ? 
+           {checkout ?
            <Stripe/>
            :
            <Cart
