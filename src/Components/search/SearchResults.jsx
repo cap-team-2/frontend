@@ -83,24 +83,3 @@ const mobile = 'mobile:grid-cols-2'
 const tablet = 'tablet:grid-cols-3'
 const laptop = 'laptop:grid-cols-4'
 const productsContainer = `grid grid-cols-1 justify-center w-full gap-8 py-4 ${mobile} ${tablet} ${laptop}`
-
-/*
-  *
-      {searchResults ? (
-        searchResults.map((results) => {
-          return (
-            <Suspense key={results.id} fallback={<Loading />}>
-              <SearchResultsProduct
-                results={results}
-                addToCart={addToCart}
-                cartQuantity={cartQuantity}
-                setCartQuantity={setCartQuantity}
-              />
-            </Suspense>
-          )
-        })
-      ) : (
-        <Loading />
-      )}
-  *
-  */
