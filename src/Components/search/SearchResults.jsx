@@ -6,6 +6,7 @@ import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
 import { useInView } from 'react-intersection-observer'
 //import SearchResultsProduct from './SearchResultsProduct'
+import SkeletonProduct from '../skeleton/SkeletonProduct'
 const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))
 const API = import.meta.env.VITE_APP_API_URL
 
@@ -63,7 +64,7 @@ export default function SearchResults({
       className={productsContainer}
     >
       {visibleProducts.map((results, index) => (
-        <Suspense key={results.id} fallback={<Loading />}>
+        <Suspense key={results.id} fallback={<SkeletonProduct />}>
           <SearchResultsProduct
             results={results}
             addToCart={addToCart}
