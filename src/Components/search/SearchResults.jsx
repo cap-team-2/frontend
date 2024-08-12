@@ -63,7 +63,6 @@ export default function SearchResults({
       //className="flex flex-wrap justify-start gap-8 w-fit"
       className={productsContainer}
     >
-      {/*
       {visibleProducts.map((results, index) => (
         <Suspense key={results.id} fallback={<SkeletonProduct />}>
         <SearchResultsProduct
@@ -75,7 +74,6 @@ export default function SearchResults({
         {index === visibleProducts.length - 1 && <div ref={ref}></div>}
         </Suspense>
       ))}
-      */}
       {isLoading && <Loading />}
     </div>
   )
