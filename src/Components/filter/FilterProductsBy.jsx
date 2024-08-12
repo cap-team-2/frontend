@@ -5,7 +5,6 @@ import { v4 as generateId } from 'uuid'
 import ProductFilters from './ProductFilters'
 
 export default function FilterProductsBy({ filterProducts, filter }) {
-
   return (
     <div className="flex justify-between w-full gap-10 desktop:px-10 xl:px-48">
       {ProductFilters.map((productFilter) => {
