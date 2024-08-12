@@ -27,6 +27,7 @@ export default function HomePage({
 
   // Api call to retrieve a specific product
   function performSearch(query) {
+
     try {
       axios.get(`${API}/products/?q=${query}`).then((res) => {
         if (!res.data.length) {
@@ -56,6 +57,7 @@ export default function HomePage({
         .catch((error) => {
           console.log(error)
         })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
