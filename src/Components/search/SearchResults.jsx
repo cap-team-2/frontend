@@ -27,7 +27,7 @@ export default function SearchResults({
   useEffect(() => {
     if (searchResults) {
       setVisibleProducts(searchResults.slice(0, 8))
-      setIsLoading(false)
+      //setIsLoading(false)
     }
   }, [searchResults])
 
@@ -63,17 +63,19 @@ export default function SearchResults({
       //className="flex flex-wrap justify-start gap-8 w-fit"
       className={productsContainer}
     >
+      {/*
       {visibleProducts.map((results, index) => (
         <Suspense key={results.id} fallback={<SkeletonProduct />}>
-          <SearchResultsProduct
-            results={results}
-            addToCart={addToCart}
-            cartQuantity={cartQuantity}
-            setCartQuantity={setCartQuantity}
-          />
-          {index === visibleProducts.length - 1 && <div ref={ref}></div>}
+        <SearchResultsProduct
+        results={results}
+        addToCart={addToCart}
+        cartQuantity={cartQuantity}
+        setCartQuantity={setCartQuantity}
+        />
+        {index === visibleProducts.length - 1 && <div ref={ref}></div>}
         </Suspense>
       ))}
+      */}
       {isLoading && <Loading />}
     </div>
   )
