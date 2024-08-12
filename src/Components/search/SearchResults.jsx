@@ -14,7 +14,7 @@ export default function SearchResults({
   searchResults,
   cartQuantity,
   setCartQuantity,
-  searchQuery,
+  invalidQuery,
 }) {
   const [isLoading, setIsLoading] = useState(true)
   const [visibleProducts, setVisibleProducts] = useState([])
@@ -49,10 +49,10 @@ export default function SearchResults({
     setCartQuantity(cartQuantity + 1)
   }
 
-  if (searchQuery) {
+  if (invalidQuery) {
     return (
       <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
-        Sorry, we could not find any results for {searchQuery}
+        Sorry, we could not find any results for {invalidQuery}
       </h2>
     )
   }
