@@ -2,6 +2,7 @@
 // Home.jsx
 
 import { useState, useEffect, useRef } from 'react'
+import { scrollToTop } from '../utils/scrollUtil'
 import axios from 'axios'
 import FilterProductsBy from '../Components/filter/FilterProductsBy'
 import SearchResults from '../Components/search/SearchResults'
@@ -17,7 +18,7 @@ export default function HomePage({
   cartProducts,
   setCartProducts,
 }) {
-  const [searchQuery, setSearchQuery] = useState(null)
+  const [invalidQuery, setInvalidQuery] = useState(null)
   const filter = useRef('Home')
 
   // Make an API call for all products when returning to the homepage to update the searchResults state
@@ -27,12 +28,13 @@ export default function HomePage({
 
   // Api call to retrieve a specific product
   function performSearch(query) {
+    setInvalidQuery(null)
 
     try {
       axios.get(`${API}/products/?q=${query}`).then((res) => {
         if (!res.data.length) {
           setSearchResults(null)
-          setSearchQuery(query)
+          setInvalidQuery(query)
         } else {
           setSearchResults(res.data)
         }
@@ -40,11 +42,13 @@ export default function HomePage({
     } catch (error) {
       setSearchResults(null)
     }
+
+    scrollToTop()
   }
 
   // Update the filter state to switch between the different filters for each product category
   function filterProducts(category) {
-    setSearchQuery(null)
+    setInvalidQuery(null)
     if (category !== filter) {
       filter.current = `${category}`
       axios
@@ -52,13 +56,15 @@ export default function HomePage({
           `${API}/products?${category === 'Home' ? '' : `category=${category}`}`
         )
         .then((res) => {
+          setSearchResults(null)
           setSearchResults(res.data)
         })
         .catch((error) => {
           console.log(error)
         })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+
+    scrollToTop()
   }
 
   return (
@@ -99,7 +105,7 @@ export default function HomePage({
           setCartQuantity={setCartQuantity}
           cartProducts={cartProducts}
           setCartProducts={setCartProducts}
-          searchQuery={searchQuery}
+          invalidQuery={invalidQuery}
         />
       </div>
     </div>
