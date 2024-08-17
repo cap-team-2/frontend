@@ -51,18 +51,14 @@ export default function SearchResults({
 
   if (invalidQuery) {
     return (
-      <h2 className="text-xl h-full font-medium col-span-full text-center mt-10">
+      <h2 className="text-xl h-full w-fit font-medium text-center mt-10">
         Sorry, we could not find any results for {invalidQuery}
       </h2>
     )
   }
 
   return (
-    <div
-      id="products-container"
-      //className="flex flex-wrap justify-start gap-8 w-fit"
-      className={productsContainer}
-    >
+    <div id="products-container" className={productsContainer}>
       {visibleProducts.map((results, index) => (
         <Suspense key={results.id} fallback={<SkeletonProduct />}>
           <SearchResultsProduct
