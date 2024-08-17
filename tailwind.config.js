@@ -24,18 +24,11 @@ export default {
     },
     screens: {
       mobile: "375px",
-      // => @media (min-width: 375px)
+      mobileMd: "560px",
       tablet: "640px",
-      // => @media (min-width: 640px)
-
       laptop: "1024px",
-      // => @media (min-width: 1024px)
-
       desktop: "1280px",
-      // => @media (min-width: 1280px)
-
       xl: "1680px",
-      // => @media (min-width: 1680px)
     },
     extend: {
       backgroundImage: {
