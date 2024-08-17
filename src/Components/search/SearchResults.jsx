@@ -80,7 +80,8 @@ export default function SearchResults({
 }
 
 // Tailwind Styles
-const mobile = 'mobile:grid-cols-2'
+const mobile = 'mobile:grid-cols-1'
+const mobileMd = 'mobileMd:grid-cols-2'
 const tablet = 'tablet:grid-cols-3'
 const laptop = 'laptop:grid-cols-4'
-const productsContainer = `grid grid-cols-1 justify-center w-full gap-8 py-4 ${mobile} ${tablet} ${laptop}`
+const productsContainer = `grid justify-center w-full gap-8 py-4 ${mobile} ${mobileMd} ${tablet} ${laptop}`
