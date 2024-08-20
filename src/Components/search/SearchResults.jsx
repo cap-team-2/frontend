@@ -5,13 +5,7 @@ import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
 import { useInView } from 'react-intersection-observer'
-import {
-  mobile,
-  mobileMd,
-  tablet,
-  laptop,
-  productsContainer,
-} from './resultsStyles'
+import { productsContainer } from './resultsStyles'
 //import SearchResultsProduct from './SearchResultsProduct'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))

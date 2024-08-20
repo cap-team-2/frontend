@@ -23,7 +23,7 @@ export default {
       font: ['Montserrat'],
     },
     screens: {
-      mobile: '375px',
+      mobile: '200px',
       mobileMd: '500px',
       tablet: '640px',
       laptop: '1024px',
