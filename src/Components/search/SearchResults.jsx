@@ -5,6 +5,13 @@ import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
 import { useInView } from 'react-intersection-observer'
+import {
+  mobile,
+  mobileMd,
+  tablet,
+  laptop,
+  productsContainer,
+} from './resultsStyles'
 //import SearchResultsProduct from './SearchResultsProduct'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))
@@ -74,10 +81,3 @@ export default function SearchResults({
     </div>
   )
 }
-
-// Tailwind Styles
-const mobile = 'mobile:grid-cols-1'
-const mobileMd = 'mobileMd:grid-cols-2'
-const tablet = 'tablet:grid-cols-3'
-const laptop = 'laptop:grid-cols-4'
-const productsContainer = `grid justify-center w-full gap-8 py-4 ${mobile} ${mobileMd} ${tablet} ${laptop}`
