@@ -65,7 +65,7 @@ export default function NavLinks({ isOpen, setIsOpen, cartQuantity }) {
               isOpen ? "text-3xl font-normal" : "text-2xl"
             }`}
           />
-          <span className={`absolute text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark ${isOpen ? 'top-4 left-4 h-5 w-5' : 'top-3 left-3'}`}>
+          <span className={`absolute text-xs bg-topaz rounded-3xl h-4 w-4 min-w-fit flex justify-center items-center text-green-dark ${isOpen ? 'top-4 left-4 h-5 w-5' : 'top-3 left-3'} ${cartQuantity < 1 && 'hidden'}`}>
             {cartQuantity}
           </span>
         </Link>
