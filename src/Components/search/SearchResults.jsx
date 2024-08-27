@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Loading from '../Loading'
 import { useInView } from 'react-intersection-observer'
-import { productsContainer } from './resultsStyles'
 //import SearchResultsProduct from './SearchResultsProduct'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 const SearchResultsProduct = lazy(() => import('./SearchResultsProduct'))
@@ -59,7 +58,10 @@ export default function SearchResults({
   }
 
   return (
-    <div id="products-container" className={productsContainer}>
+    <div
+      id="products-container"
+      className="grid grid-cols-1 gap-8 pt-4 mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5"
+    >
       {visibleProducts.map((results, index) => (
         <Suspense key={results.id} fallback={<SkeletonProduct />}>
           <SearchResultsProduct
