@@ -60,7 +60,7 @@ export default function SearchResults({
   return (
     <div
       id="products-container"
-      className="grid grid-cols-1 gap-8 pt-4 mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5"
+      className="grid grid-cols-1 gap-8 pt-4 mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 xl:grid-cols-5"
     >
       {visibleProducts.map((results, index) => (
         <Suspense key={results.id} fallback={<SkeletonProduct />}>
